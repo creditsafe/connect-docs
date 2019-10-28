@@ -2,26 +2,31 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0",
-    "title": "Creditsafe Connect"
+    "title": "Creditsafe Connect (Swagger Beta)",
+    "description": "Creditsafe Connect is a REST API that provides access to the [Creditsafe Global Company Database](https://www.creditsafe.com/gb/en/more/about/our-data.html) allowing you to qualify your Prospects, make quick informed decisions on Suppliers and monitor your existing Customers. <br><br> [Postman](https://www.getpostman.com/apps) collection of the most common example calls to Creditsafe Connect. <br> [Connect Portal](https://connect-portal.creditsafe.com) Front End Demo Site <br><br> <form action=\"https://www.creditsafe.com/gb/en/forms/free-trial-form.html?cta=view-documenation-api\" method=\"get\" target=\"_blank\"> <button type=\"submit\"><b>Try It Now</b></button>"
   },
   "host": "connect.creditsafe.com",
   "basePath": "/v1",
   "tags": [
     {
-      "name": "Authentication"
+      "name": "Authentication",
+      "description": "Initial call to generate authentication token"
     },
     {
       "name": "Companies",
-      "description": "Company Endpoint"
+      "description": "Search and Report on Companies"
     },
     {
-      "name": "Monitoring Companies"
+      "name": "Monitoring Companies",
+      "description": "Monitoring"
     },
     {
-      "name": "People/Directors"
+      "name": "People/Directors",
+      "description": "Search and Report on People/Directors"
     },
     {
-      "name": "Decision Engine"
+      "name": "Decision Engine",
+      "description": "Decision Engine"
     }
   ],
   "schemes": [
@@ -33,7 +38,7 @@
         "tags": [
           "Authentication"
         ],
-        "description": "Endpoint to generate a Bearer/JWT Authentication Token based on the users Username & Password. When calling other endpoints, include this token under the Header value Authorization as proof of authenticity (Bearer security scehema is also accepted). Tokens persist for 1 hour after being issued and can exist concurrently.'",
+        "description": "Endpoint to generate a Bearer/JWT Authentication Token. When calling other endpoints, include this token under the Header value Authorization as proof of authenticity (Bearer security scehema is also accepted). Tokens persist for 1 hour after being issued and can exist concurrently.",
         "operationId": "Generate Auth Token",
         "consumes": [
           "application/json"
@@ -47,10 +52,7 @@
             "name": "generated",
             "required": false,
             "schema": {
-              "example": {
-                "username": "TOM.NELSON@creditsafe.com",
-                "password": "Cx0iC|woIxlgksJ_"
-              }
+              "$ref": "#/definitions/authenticationRequest"
             },
             "x-amf-mediaType": "application/json"
           }
@@ -59,9 +61,7 @@
           "200": {
             "description": "",
             "schema": {
-              "example": {
-                "token": "eyJraWQiOiJEbUZkQXVITDNKS1hMZFpBcXdTREx2S01tOE5qeE1lXC94eDg3a0Y1ZDR3VT0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiI0Mjk1ZDIwOC1jZjlkLTRhMzYtYjcxMi0yN2VmODQzYWEzZTUiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tXC9ldS13ZXN0LTFfcUNmOURsUVhmIiwiY29nbml0bzp1c2VybmFtZSI6ImNvbm5lY3R1c2VyMzhAbWFpbGluYXRvci5jb20iLCJjdXN0b206Y3NVc2VySWQiOiIxMDAwMDE3Mzc4IiwiYXVkIjoiNXY1ZXJjaHJhdHRiMnFlZDQ2dDJ2OGJ0ZmUiLCJjdXN0b206Y3NVc2VyQ291bnRyeUNvZGUiOiJHQiIsImV2ZW50X2lkIjoiZjY5NTA4NTctMDUwOC0xMWU5LWIxYTYtMjM5ZmMxZWMwMzBlIiwidG9rZW5fdXNlIjoiaWQiLCJjdXN0b206Y3NVc2VyTGFuZ3VhZ2VDb2RlIjoiZW4iLCJhdXRoX3RpbWUiOjE1NDUzODcxNjYsImV4cCI6MTU0NTM5MDc2NiwiaWF0IjoxNTQ1Mzg3MTY2LCJlbWFpbCI6ImNvbm5lY3R1c2VyMzhAbWFpbGluYXRvci5jb20ifQ.YhD6Nr2798pe8Ct1djygKtR7pibzzeHGgWpnduaaKMf468cJyEPH_A7qpcGWDeur0NuYUQvNCAbmtSj_uQWkajOgjwJE3Mt0URVsDDvtdYt3ggRZl6-mByQAcP50HDUxH0SGNLnUeYhAkVbZqoc4PQme-WXwBsGAg2x_kWKRsicfmVfnXE67BDZ06mceC1WpPA72Kg6O-AWcPe5yIC3JpV2N1HWjuPym2fZGv13Rl1gCWSO0NACE069zT6pqePbBr5QWddf-GE6AI0lISmLyF_mTC0NYpGL_k5nl6H-K2mi6e-QcCcfz8eIQHGDFi_icPCXMAtS2WV5lTFw20loQdw"
-              }
+              "$ref": "#/definitions/authenticationSuccessResponse"
             },
             "x-amf-mediaType": "application/json"
           },
@@ -164,7 +164,7 @@
           {
             "name": "acronym",
             "in": "query",
-            "description": "A non-unique identifier to look for Companies by their more commonly known acronym rather than their lesser known full name. Acronym is predominantly available on French Companies.",
+            "description": "A (non-unique) identifier to look for Companies by their more commonly known acronym rather than their lesser known full name. Acronym is predominantly available on French Companies.",
             "required": false,
             "type": "string"
           },
@@ -289,44 +289,7 @@
           "200": {
             "description": "",
             "schema": {
-              "example": {
-                "totalSize": 10780,
-                "companies": [
-                  {
-                    "id": "GB001-1-3031798",
-                    "country": "GB",
-                    "safeNo": "UK10731246",
-                    "name": "BANKS",
-                    "address": {
-                      "simpleValue": "KIMBOLTON ROAD, BOLNHURST, BEDFORD, BEDFORDSHIRE, MK44 2ES",
-                      "street": "BOLNHURST",
-                      "city": "BEDFORD",
-                      "postalCode": "MK44 2ES"
-                    },
-                    "status": "Active",
-                    "type": "NonLtd",
-                    "dateOfLatestChange": "2009-03-31T23:00:00.000Z"
-                  },
-                  {
-                    "id": "GB001-0-04348058",
-                    "country": "GB",
-                    "regNo": "04348058",
-                    "safeNo": "UK03996906",
-                    "name": "BANK LTD",
-                    "address": {
-                      "simpleValue": "HESKETH HOUSE 43-45 PORTMAN SQUARE, 43-45 PORTMAN SQUARE, LONDON, Greater London, W1H 6HN",
-                      "street": "43-45 PORTMAN SQUARE",
-                      "city": "LONDON",
-                      "postalCode": "W1H 6HN"
-                    },
-                    "status": "Active",
-                    "type": "Ltd",
-                    "dateOfLatestAccounts": "2016-01-31T00:00:00.000000Z",
-                    "dateOfLatestChange": "2018-07-04T15:43:14.000Z",
-                    "activityCode": "9999"
-                  }
-                ]
-              }
+              "$ref": "#/definitions/companySearchSuccessResult"
             },
             "x-amf-mediaType": "application/json"
           },
@@ -418,7 +381,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "Connect Id to order Company Credit Report.",
+            "description": "The Connect Id (optionally Safe Number where available) of the Company to order their Company Credit Report.",
             "required": true,
             "type": "string"
           },
@@ -434,136 +397,7 @@
           "200": {
             "description": "",
             "schema": {
-              "example": {
-                "CompanyId": "CN001/X/9382773186",
-                "OrderNumber": 0,
-                "Language": "EN",
-                "ReportCurrency": "CNY",
-                "CompanySummary": {
-                  "BusinessName": "Zhejiang Shaoxing RuiFeng Rural Commercial Bank Co., Ltd.",
-                  "Country": "CN",
-                  "CompanyRegistrationNumber": "330621000018996",
-                  "MainActivity": {
-                    "ActivityCode": "6620",
-                    "ActivityDescription": "Monetary Banking Services"
-                  },
-                  "CompanyStatus": {
-                    "Code": "Active",
-                    "Text": "Active"
-                  },
-                  "CreditRating": {
-                    "CommonValue": "C",
-                    "CommonDescription": "Moderate Risk",
-                    "CreditLimit": "CNY 20,000,000",
-                    "ProviderValue": {
-                      "MaxValue": 600,
-                      "MinValue": 100,
-                      "Value": 310
-                    },
-                    "ProviderDescription": "Moderate risk"
-                  }
-                },
-                "CompanyIdentification": {
-                  "BasicInformation": {
-                    "BusinessName": "Zhejiang Shaoxing RuiFeng Rural Commercial Bank Co., Ltd.",
-                    "RegisteredCompanyName": "Zhejiang Shaoxing RuiFeng Rural Commercial Bank Co., Ltd.",
-                    "CompanyRegistrationNumber": "330621000018996",
-                    "Country": "CN",
-                    "DateofCompanyRegistration": "2005-01-28T00:00:00Z",
-                    "LegalForm": "Public Company",
-                    "TypeofOwnership": "Joint Stock Company",
-                    "CompanyStatus": {
-                      "Code": "Active",
-                      "Text": "Active"
-                    },
-                    "PrincipalActivity": {
-                      "ActivityCode": "6620",
-                      "ActivityDescription": "Monetary Banking Services"
-                    },
-                    "ContactAddress": {
-                      "SimpleValue": ", China"
-                    }
-                  }
-                },
-                "CreditScore": {
-                  "CurrentCreditRating": {
-                    "CommonValue": "C",
-                    "CommonDescription": "Moderate Risk",
-                    "CreditLimit": "CNY 20,000,000",
-                    "ProviderValue": {
-                      "MaxValue": 600,
-                      "MinValue": 100,
-                      "Value": 310
-                    },
-                    "ProviderDescription": "Moderate risk"
-                  }
-                },
-                "ContactInformation": {
-                  "MainAddress": {
-                    "Address": {
-                      "SimpleValue": "Ruifeng, Shao Xing Xian Ke Qiao Street Office",
-                      "Street": "Ruifeng, Shao Xing Xian Ke Qiao Street Office",
-                      "PostalCode": "312030"
-                    },
-                    "Country": "CN"
-                  }
-                },
-                "ShareCapitalStructure": {
-                  "NominalShareCapital": {
-                    "Currency": "CNY",
-                    "Value": 1293732441
-                  },
-                  "IssuedShareCapital": {
-                    "Currency": "CNY",
-                    "Value": 0
-                  }
-                },
-                "AdditionalInformation": {
-                  "Misc": {
-                    "LegalRepresentative": "Yu Junhai"
-                  },
-                  "RegistrationChanges": {
-                    "RegistrationChange": [
-                      {
-                        "DateOfChange": "2015-06-25",
-                        "ChangeDescription": "Reg. Capital",
-                        "DetailsBeforeChange": "119790.0449",
-                        "DetailsAfterChange": "129373.2441"
-                      },
-                      {
-                        "DateOfChange": "2015-06-25",
-                        "ChangeDescription": "Reg. Shareholding",
-                        "DetailsBeforeChange": "Name: natural person shareholder investment: 7; 163.35; percentage: 0.1364% Name: Yu Guangmin and other internal staff sponsor 1013; Investment: 16114.4775; percentage: 13.4523% Name: social natural initiated 1454; Investment: 18010.6987; percentage: 15.0352% Enterprise Name: Zhejiang Qinye Group Co. Ltd. 95: 74611.4738; investment; percentage: 62.2852%; legal nature: enterprise legal person",
-                        "DetailsAfterChange": "Name: natural person shareholder investment: 21; 601.5857; percentage: 0.465% Name: Yu Guangmin and other internal staff sponsor 1011; Investment: 19126.7731; percentage: 14.7842% Name: social natural initiated 1440; Investment: 21421.5268; percentage: 16.5579% Enterprise Name: Zhejiang Qinye Group Co. Ltd. 87: 88223.3585; investment; percentage: 68.1929%; legal nature: enterprise legal person"
-                      },
-                      {
-                        "DateOfChange": "2014-09-19",
-                        "ChangeDescription": "Reg. Capital",
-                        "DetailsBeforeChange": "108900",
-                        "DetailsAfterChange": "119790.0449"
-                      },
-                      {
-                        "DateOfChange": "2014-09-19",
-                        "ChangeDescription": "Reg. Capital",
-                        "DetailsBeforeChange": "108900",
-                        "DetailsAfterChange": "119790.0449"
-                      },
-                      {
-                        "DateOfChange": "2013-07-08",
-                        "ChangeDescription": "Reg. Capital",
-                        "DetailsBeforeChange": "99000",
-                        "DetailsAfterChange": "108900"
-                      },
-                      {
-                        "DateOfChange": "2013-07-08",
-                        "ChangeDescription": "Reg. Capital",
-                        "DetailsBeforeChange": "99000",
-                        "DetailsAfterChange": "108900"
-                      }
-                    ]
-                  }
-                }
-              }
+              "$ref": "#/definitions/gbCompanyReportExampleResponse"
             },
             "x-amf-mediaType": "application/json",
             "x-amf-responsePayloads": [
@@ -846,86 +680,6 @@
                         "used": 0
                       },
                       {
-                        "countryName": "New Zealand",
-                        "countryIso2": "NZ",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Turkey",
-                        "countryIso2": "TR",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Guam",
-                        "countryIso2": "GU",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "American Samoa",
-                        "countryIso2": "AS",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Marshall Islands",
-                        "countryIso2": "MH",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Micronesia (Federated States of)",
-                        "countryIso2": "FM",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Northern Mariana Islands",
-                        "countryIso2": "MP",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Palau",
-                        "countryIso2": "PW",
-                        "used": 1
-                      },
-                      {
-                        "countryName": "Puerto Rico",
-                        "countryIso2": "PR",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Virgin Islands (U.S.)",
-                        "countryIso2": "VI",
-                        "used": 1
-                      },
-                      {
-                        "countryName": "France",
-                        "countryIso2": "FR",
-                        "used": 1
-                      },
-                      {
-                        "countryName": "Germany",
-                        "countryIso2": "DE",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Ireland",
-                        "countryIso2": "IE",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Luxembourg",
-                        "countryIso2": "LU",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Netherlands",
-                        "countryIso2": "NL",
-                        "used": 54
-                      },
-                      {
-                        "countryName": "Norway",
-                        "countryIso2": "NO",
-                        "used": 0
-                      },
-                      {
                         "countryName": "Sweden",
                         "countryIso2": "SE",
                         "used": 10
@@ -948,386 +702,6 @@
                       {
                         "countryName": "Czech Republic",
                         "countryIso2": "CZ",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Congo (Democratic Republic of the)",
-                        "countryIso2": "CD",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Ecuador",
-                        "countryIso2": "EC",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Egypt",
-                        "countryIso2": "EG",
-                        "used": 1
-                      },
-                      {
-                        "countryName": "Estonia",
-                        "countryIso2": "EE",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Finland",
-                        "countryIso2": "FI",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Georgia",
-                        "countryIso2": "GE",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Greece",
-                        "countryIso2": "GR",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Albania",
-                        "countryIso2": "AL",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Armenia",
-                        "countryIso2": "AM",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Austria",
-                        "countryIso2": "AT",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Azerbaijan",
-                        "countryIso2": "AZ",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Bahrain",
-                        "countryIso2": "BH",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Bangladesh",
-                        "countryIso2": "BD",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Belarus",
-                        "countryIso2": "BY",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Benin",
-                        "countryIso2": "BJ",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Bosnia and Herzegovina",
-                        "countryIso2": "BA",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Brazil",
-                        "countryIso2": "BR",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Bulgaria",
-                        "countryIso2": "BG",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Burkina Faso",
-                        "countryIso2": "BF",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Cambodia",
-                        "countryIso2": "KH",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Canada",
-                        "countryIso2": "CA",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "China",
-                        "countryIso2": "CN",
-                        "used": 1
-                      },
-                      {
-                        "countryName": "Colombia",
-                        "countryIso2": "CO",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Croatia",
-                        "countryIso2": "HR",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Hong Kong",
-                        "countryIso2": "HK",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Hungary",
-                        "countryIso2": "HU",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Iceland",
-                        "countryIso2": "IS",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "India",
-                        "countryIso2": "IN",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Japan",
-                        "countryIso2": "JP",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Jordan",
-                        "countryIso2": "JO",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Kazakhstan",
-                        "countryIso2": "KZ",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Korea (Republic of ) South",
-                        "countryIso2": "KR",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Kosovo",
-                        "countryIso2": "XK",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Kuwait",
-                        "countryIso2": "KW",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Kyrgyzstan",
-                        "countryIso2": "KG",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Lao People's Democratic Republic",
-                        "countryIso2": "LA",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Latvia",
-                        "countryIso2": "LV",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Lebanon",
-                        "countryIso2": "LB",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Liechtenstein",
-                        "countryIso2": "LI",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Lithuania",
-                        "countryIso2": "LT",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Macedonia (the former Yugoslav Republic of)",
-                        "countryIso2": "MK",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Malaysia",
-                        "countryIso2": "MY",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Malta",
-                        "countryIso2": "MT",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Moldova (Republic of)",
-                        "countryIso2": "MD",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Montenegro",
-                        "countryIso2": "ME",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Myanmar",
-                        "countryIso2": "MM",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Nepal",
-                        "countryIso2": "NP",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Oman",
-                        "countryIso2": "OM",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Pakistan",
-                        "countryIso2": "PK",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Palestinian Territory - Occupied",
-                        "countryIso2": "PS",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Poland",
-                        "countryIso2": "PL",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Portugal",
-                        "countryIso2": "PT",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Qatar",
-                        "countryIso2": "QA",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Romania",
-                        "countryIso2": "RO",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Russian Federation",
-                        "countryIso2": "RU",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Saudi Arabia",
-                        "countryIso2": "SA",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Serbia",
-                        "countryIso2": "RS",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Singapore",
-                        "countryIso2": "SG",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Slovakia",
-                        "countryIso2": "SK",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Slovenia",
-                        "countryIso2": "SI",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Spain",
-                        "countryIso2": "ES",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Sri Lanka",
-                        "countryIso2": "LK",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Sudan",
-                        "countryIso2": "SD",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Switzerland",
-                        "countryIso2": "CH",
-                        "used": 1
-                      },
-                      {
-                        "countryName": "Syrian Arab Republic",
-                        "countryIso2": "SY",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Taiwan, Province of China",
-                        "countryIso2": "TW",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Tajikistan",
-                        "countryIso2": "TJ",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Thailand",
-                        "countryIso2": "TH",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Turkmenistan",
-                        "countryIso2": "TM",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Ukraine",
-                        "countryIso2": "UA",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "United Arab Emirates",
-                        "countryIso2": "AE",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Uzbekistan",
-                        "countryIso2": "UZ",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Venezuela (Bolivarian Republic of)",
-                        "countryIso2": "VE",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Viet Nam",
-                        "countryIso2": "VN",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Western Sahara",
-                        "countryIso2": "EH",
-                        "used": 0
-                      },
-                      {
-                        "countryName": "Public Limited Company",
-                        "countryIso2": "PLC",
                         "used": 0
                       }
                     ]
@@ -1379,6 +753,9 @@
     },
     "/people": {
       "get": {
+        "tags": [
+          "People/Directors"
+        ],
         "description": "Get directors based on the search request",
         "operationId": "Searching People / Directors",
         "consumes": [
@@ -1617,6 +994,9 @@
     },
     "/people/{personId}": {
       "get": {
+        "tags": [
+          "People/Directors"
+        ],
         "operationId": "Director Report by Id",
         "consumes": [
           "application/json"
@@ -1767,6 +1147,9 @@
     },
     "/people/searchcriteria": {
       "get": {
+        "tags": [
+          "People/Directors"
+        ],
         "description": "Get the people search criteria based on the country",
         "consumes": [
           "application/json"
@@ -1989,6 +1372,9 @@
     "/monitoring": {},
     "/monitoring/user/details": {
       "get": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Get User details",
         "consumes": [
           "application/json"
@@ -2031,6 +1417,9 @@
     },
     "/monitoring/companies/{id}/events": {
       "get": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Collection of events based on the connect id and which are received from each    country , optionally filtered",
         "consumes": [
           "application/json"
@@ -2155,6 +1544,9 @@
     },
     "/monitoring/eventRules": {
       "get": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Get all eventRules, optionally filtered",
         "consumes": [
           "application/json"
@@ -2230,6 +1622,9 @@
     },
     "/monitoring/eventRules/{countryCode}": {
       "get": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Get all eventRules, optionally filtered",
         "consumes": [
           "application/json"
@@ -2314,6 +1709,9 @@
     },
     "/monitoring/notificationEvents": {
       "get": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Get all notificationEvents, optionally filtered",
         "consumes": [
           "application/json"
@@ -2681,6 +2079,9 @@
     },
     "/monitoring/portfolios": {
       "get": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Get all portfolios, optionally filtered",
         "consumes": [
           "application/json"
@@ -2786,6 +2187,9 @@
         "security": []
       },
       "post": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Create a new Portfolio",
         "consumes": [
           "application/json"
@@ -2806,7 +2210,7 @@
             "name": "generated",
             "required": false,
             "schema": {
-              "$ref": "#/definitions/generated"
+              "example": "toDo"
             },
             "x-amf-mediaType": "application/json"
           }
@@ -2857,7 +2261,10 @@
     },
     "/monitoring/portfolios/{portfolioId}": {
       "get": {
-        "description": "Get the portfolio\nwith portfolioId =\n{portfolioId}\n",
+        "tags": [
+          "Monitoring Companies"
+        ],
+        "description": "Get the portfolio with portfolioId = portfolioId}",
         "consumes": [
           "application/json"
         ],
@@ -2940,6 +2347,9 @@
         "security": []
       },
       "delete": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Delete the portfolio with portfolioId",
         "consumes": [
           "application/json"
@@ -3002,6 +2412,9 @@
         "security": []
       },
       "patch": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Update Portfolio details",
         "consumes": [
           "application/json"
@@ -3028,7 +2441,7 @@
             "name": "generated",
             "required": false,
             "schema": {
-              "$ref": "#/definitions/generated_1"
+              "example": "toDo"
             },
             "x-amf-mediaType": "application/json"
           }
@@ -3071,6 +2484,9 @@
     },
     "/monitoring/portfolios/{portfolioId}/countries": {
       "get": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Get a list of distinct countries of companies monitored with in a portfolio",
         "consumes": [
           "application/json"
@@ -3145,6 +2561,9 @@
     },
     "/monitoring/portfolios/{portfolioId}/eventRules": {
       "get": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Get all eventRules, optionally filtered",
         "consumes": [
           "application/json"
@@ -3226,6 +2645,9 @@
     },
     "/monitoring/portfolios/{portfolioId}/eventRules/{countryCode}": {
       "get": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Get all eventRules, optionally filtered",
         "consumes": [
           "application/json"
@@ -3313,6 +2735,9 @@
         "security": []
       },
       "put": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Update eventRules",
         "consumes": [
           "application/json"
@@ -3479,6 +2904,9 @@
     },
     "/monitoring/portfolios/{portfolioId}/eventRules/setDefault": {
       "put": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Update (set) event rules to default based on the portfolio id",
         "consumes": [
           "application/json"
@@ -3539,6 +2967,9 @@
     },
     "/monitoring/portfolios/{portfolioId}/import": {
       "post": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Import companies in to a portfolio",
         "consumes": [
           "application/json"
@@ -3565,7 +2996,7 @@
             "name": "generated",
             "required": false,
             "schema": {
-              "$ref": "#/definitions/generated_2"
+              "example": "toDo"
             },
             "x-amf-mediaType": "multipart/form-data"
           }
@@ -3614,6 +3045,9 @@
     },
     "/monitoring/portfolios/{portfolioId}/sync": {
       "post": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Delete companies from portfolio and update new companies from CSV file",
         "consumes": [
           "application/json"
@@ -3640,7 +3074,7 @@
             "name": "generated",
             "required": false,
             "schema": {
-              "$ref": "#/definitions/generated_3"
+              "example": "toDo"
             },
             "x-amf-mediaType": "multipart/form-data"
           }
@@ -3689,6 +3123,9 @@
     },
     "/monitoring/portfolios/{portfolioId}/riskSummary": {
       "get": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Get current portfolio risk summary information",
         "consumes": [
           "application/json"
@@ -3765,6 +3202,9 @@
     },
     "/monitoring/portfolios/{portfolioId}/notificationEvents": {
       "get": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Get all notificationEvents based on the portfolio id , optionally filtered",
         "consumes": [
           "application/json"
@@ -3927,6 +3367,9 @@
     },
     "/monitoring/portfolios/{portfolioId}/companies": {
       "get": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Get all companies, optionally filtered",
         "consumes": [
           "application/json"
@@ -4067,6 +3510,9 @@
         }
       },
       "post": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Add new company to portfolio",
         "consumes": [
           "application/json"
@@ -4147,6 +3593,9 @@
     },
     "/monitoring/portfolios/{portfolioId}/companies/copy": {
       "post": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Copy companies from one portfolio to single (or) multiple portfolios.",
         "consumes": [
           "application/json"
@@ -4258,6 +3707,9 @@
     },
     "/monitoring/portfolios/{portfolioId}/companies/remove": {
       "post": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Move companies from one portfolio to single (or) multiple portfolios.",
         "consumes": [
           "application/json"
@@ -4369,6 +3821,9 @@
     },
     "/monitoring/portfolios/{portfolioId}/companies/clear": {
       "patch": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Delete companies from current portfolio",
         "consumes": [
           "application/json"
@@ -4462,6 +3917,9 @@
     },
     "/monitoring/portfolios/{portfolioId}/companies/{id}": {
       "get": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Get the company\nwith companyId =\n{companyId}\n",
         "consumes": [
           "application/json"
@@ -4665,6 +4123,9 @@
         "security": []
       },
       "delete": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Delete a Company",
         "consumes": [
           "application/json"
@@ -4733,6 +4194,9 @@
         "security": []
       },
       "patch": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Updates a Company",
         "consumes": [
           "application/json"
@@ -4762,11 +4226,11 @@
           },
           {
             "in": "body",
+            "schema": {
+              "example": "toDo"
+            },
             "name": "generated",
             "required": false,
-            "schema": {
-              "$ref": "#/definitions/generated_4"
-            },
             "x-amf-mediaType": "application/json"
           }
         ],
@@ -4808,6 +4272,9 @@
     },
     "/monitoring/portfolios/{portfolioId}/companies/{id}/notificationEvents": {
       "get": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "List of notification events based on the connect id , optionally filtered",
         "consumes": [
           "application/json"
@@ -4975,6 +4442,9 @@
     },
     "/monitoring/portfolios/{portfolioId}/sharingPermissions": {
       "get": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Retrieve user permissions within the customer for portfolio Id",
         "consumes": [
           "application/json"
@@ -5052,6 +4522,9 @@
         "security": []
       },
       "patch": {
+        "tags": [
+          "Monitoring Companies"
+        ],
         "description": "Update/Create user permissions within the customer for portfolio Id",
         "consumes": [
           "application/json"
@@ -5147,6 +4620,9 @@
     },
     "/decisionEngine/{provenirId}": {
       "get": {
+        "tags": [
+          "Decision Engine"
+        ],
         "description": "Get Decision(s) for the company based on the Provenir Decision flow",
         "consumes": [
           "application/json"
@@ -5243,6 +4719,9 @@
         "security": []
       },
       "post": {
+        "tags": [
+          "Decision Engine"
+        ],
         "description": "Send a Decision(s) for the company based on the Provenir Decision flow",
         "consumes": [
           "application/json"
@@ -5355,6 +4834,9 @@
     },
     "/decisionEngine/GUID": {
       "get": {
+        "tags": [
+          "Decision Engine"
+        ],
         "description": "Get a list of GUID's and Friendly Name for particular UserId",
         "consumes": [
           "application/json"
@@ -5457,6 +4939,9 @@
     },
     "/reportcustomdata/{country}": {
       "get": {
+        "tags": [
+          "Companies"
+        ],
         "description": "Get the Report Customdata of a country.",
         "consumes": [
           "application/json"
@@ -5550,94 +5035,225 @@
     }
   },
   "definitions": {
-    "generated": {
+    "authenticationRequest": {
       "type": "object",
-      "required": [
-        "name"
-      ],
       "properties": {
-        "name": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 250
+        "username": {
+          "type": "string"
         },
-        "isDefault": {
-          "type": "boolean",
-          "description": "Will set this new portfolio to be the default portfolio"
-        },
-        "emails": {
-          "type": "array",
-          "description": "Email addresses to send notifications to",
-          "items": {
-            "$ref": "#/definitions/monitoringportfolios_emails"
-          }
-        },
-        "emailLanguage": {
-          "description": "Email Language",
-          "x-amf-union": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "emailSubject": {
-          "description": "Email Subject",
-          "x-amf-union": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "frequency": {
-          "description": "Frequency of notifications",
-          "x-amf-union": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "webhookUrl": {
-          "description": "URL for  event callback",
-          "x-amf-union": [
-            {
-              "type": "string"
-            },
-            {
-              "type": "null"
-            }
-          ]
-        },
-        "webhookEnabled": {
-          "type": "boolean",
-          "description": "Must be set to true to enable the calls to your webhook url."
+        "password": {
+          "type": "string"
         }
       },
       "example": {
-        "name": "My new portfolio",
-        "isDefault": false,
-        "emails": [
-          {
-            "firstName": "Bob",
-            "lastName": "Smith",
-            "emailAddress": "bob.smith@adomain.com"
-          }
-        ],
-        "emailSubject": "Monitoring",
-        "emailLanguage": "en",
-        "frequency": "DailyDigest",
-        "webhookUrl": "https://www.mycompanydomain.co.uk/incoming/ggs.ashx",
-        "webhookEnabled": true
+        "username": "username@domain.com",
+        "password": "password"
+      }
+    },
+    "authenticationSuccessResponse": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
       },
-      "additionalProperties": {}
+      "example": {
+        "token": "eyJraWQiOiJEbUZkQXVITDNKS1hMZFpBcXdTREx2S01tOE5qeE1lXC94eDg3a0Y1ZDR3VT0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiI0Mjk1ZDIwOC1jZjlkLTRhMzYtYjcxMi0yN2VmODQzYWEzZTUiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tXC9ldS13ZXN0LTFfcUNmOURsUVhmIiwiY29nbml0bzp1c2VybmFtZSI6ImNvbm5lY3R1c2VyMzhAbWFpbGluYXRvci5jb20iLCJjdXN0b206Y3NVc2VySWQiOiIxMDAwMDE3Mzc4IiwiYXVkIjoiNXY1ZXJjaHJhdHRiMnFlZDQ2dDJ2OGJ0ZmUiLCJjdXN0b206Y3NVc2VyQ291bnRyeUNvZGUiOiJHQiIsImV2ZW50X2lkIjoiZjY5NTA4NTctMDUwOC0xMWU5LWIxYTYtMjM5ZmMxZWMwMzBlIiwidG9rZW5fdXNlIjoiaWQiLCJjdXN0b206Y3NVc2VyTGFuZ3VhZ2VDb2RlIjoiZW4iLCJhdXRoX3RpbWUiOjE1NDUzODcxNjYsImV4cCI6MTU0NTM5MDc2NiwiaWF0IjoxNTQ1Mzg3MTY2LCJlbWFpbCI6ImNvbm5lY3R1c2VyMzhAbWFpbGluYXRvci5jb20ifQ.YhD6Nr2798pe8Ct1djygKtR7pibzzeHGgWpnduaaKMf468cJyEPH_A7qpcGWDeur0NuYUQvNCAbmtSj_uQWkajOgjwJE3Mt0URVsDDvtdYt3ggRZl6-mByQAcP50HDUxH0SGNLnUeYhAkVbZqoc4PQme-WXwBsGAg2x_kWKRsicfmVfnXE67BDZ06mceC1WpPA72Kg6O-AWcPe5yIC3JpV2N1HWjuPym2fZGv13Rl1gCWSO0NACE069zT6pqePbBr5QWddf-GE6AI0lISmLyF_mTC0NYpGL_k5nl6H-K2mi6e-QcCcfz8eIQHGDFi_icPCXMAtS2WV5lTFw20loQdw"
+      }
+    },
+    "companySearchSuccessResult": {
+      "type": "object",
+      "properties": {
+        "totalSize": {
+          "type": "number"
+        },
+        "companies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "country": {
+                "type": "string"
+              },
+              "regNo": {
+                "type": "string"
+              },
+              "vatNo": {
+                "type": "object"
+              },
+              "safeNo": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "officeType": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "statusDescription": {
+                "type": "string"
+              },
+              "activityCode": {
+                "type": "string"
+              },
+              "tradingNames": {
+                "type": "object"
+              },
+              "address": {
+                "type": "object",
+                "properties": {
+                  "simpleValue": {
+                    "type": "string"
+                  },
+                  "street": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "postCode": {
+                    "type": "string"
+                  },
+                  "province": {
+                    "type": "string"
+                  }
+                }
+              },
+              "dateOfLatestChange": {
+                "type": "object"
+              },
+              "dateOfLatestCAccounts": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      },
+      "example": {
+        "totalSize": 10780,
+        "companies": [
+          {
+            "id": "GB001-1-3031798",
+            "country": "GB",
+            "safeNo": "UK10731246",
+            "name": "BANKS",
+            "address": {
+              "simpleValue": "KIMBOLTON ROAD, BOLNHURST, BEDFORD, BEDFORDSHIRE, MK44 2ES",
+              "street": "BOLNHURST",
+              "city": "BEDFORD",
+              "postalCode": "MK44 2ES"
+            },
+            "status": "Active",
+            "type": "NonLtd",
+            "dateOfLatestChange": "2009-03-31T23:00:00.000Z"
+          },
+          {
+            "id": "GB001-0-04348058",
+            "country": "GB",
+            "regNo": "04348058",
+            "safeNo": "UK03996906",
+            "name": "BANK LTD",
+            "address": {
+              "simpleValue": "HESKETH HOUSE 43-45 PORTMAN SQUARE, 43-45 PORTMAN SQUARE, LONDON, Greater London, W1H 6HN",
+              "street": "43-45 PORTMAN SQUARE",
+              "city": "LONDON",
+              "postalCode": "W1H 6HN"
+            },
+            "status": "Active",
+            "type": "Ltd",
+            "dateOfLatestAccounts": "2016-01-31T00:00:00.000000Z",
+            "dateOfLatestChange": "2018-07-04T15:43:14.000Z",
+            "activityCode": "9999"
+          }
+        ]
+      }
+    },
+    "peopleSearchRequest": {
+      "type": "object",
+      "properties": {
+        "totalSize": {
+          "type": "number"
+        },
+        "companies": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "country": {
+                "type": "string"
+              },
+              "regNo": {
+                "type": "string"
+              },
+              "vatNo": {
+                "type": "object"
+              },
+              "safeNo": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "officeType": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "statusDescription": {
+                "type": "string"
+              },
+              "activityCode": {
+                "type": "string"
+              },
+              "tradingNames": {
+                "type": "object"
+              },
+              "address": {
+                "type": "object",
+                "properties": {
+                  "simpleValue": {
+                    "type": "string"
+                  },
+                  "street": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "postCode": {
+                    "type": "string"
+                  },
+                  "province": {
+                    "type": "string"
+                  }
+                }
+              },
+              "dateOfLatestChange": {
+                "type": "object"
+              },
+              "dateOfLatestCAccounts": {
+                "type": "object"
+              }
+            }
+          }
+        }
+      }
     },
     "monitoringportfoliosportfolioId_emails": {
       "type": "object",
@@ -5693,134 +5309,1412 @@
       },
       "example": "{\"firstName\":\"Bob\",\"lastName\":\"Smith\",\"emailAddress\":\"bob.smith@adomain.com\"}"
     },
-    "generated_2": {
+    "gbCompanyReportExampleResponse": {
       "type": "object",
-      "required": [
-        "importCSV1"
-      ],
       "properties": {
-        "importCSV1": {
-          "type": "string",
-          "format": "binary"
-        },
-        "email": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": {}
-    },
-    "generated_3": {
-      "type": "object",
-      "required": [
-        "importCsv"
-      ],
-      "properties": {
-        "importCsv": {
-          "type": "string",
-          "format": "binary",
-          "description": "CSV file containng companies to import"
-        },
-        "email": {
-          "type": "string",
-          "description": "An optional string"
-        }
-      },
-      "additionalProperties": {}
-    },
-    "generated_1": {
-      "type": "object",
-      "required": [
-        "name"
-      ],
-      "properties": {
-        "name": {
+        "orderId": {
           "type": "string"
         },
-        "isDefault": {
-          "type": "boolean",
-          "description": "Will set this new portfolio to be the default portfolio",
-          "default": false
+        "companyId": {
+          "type": "string"
         },
-        "emails": {
-          "type": "array",
-          "description": "Email addresses to send notifications to",
-          "items": {
-            "$ref": "#/definitions/monitoringportfoliosportfolioId_emails"
-          }
+        "dateOfOrder": {
+          "type": "string"
         },
-        "emailLanguage": {
-          "type": "string",
-          "description": "Email Language",
-          "default": "en"
+        "language": {
+          "type": "string"
         },
-        "emailSubject": {
-          "type": "string",
-          "description": "Email Subject"
+        "userId": {
+          "type": "string"
         },
-        "frequency": {
-          "type": "string",
-          "description": "Frequency of notifications",
-          "default": "DailyDigest",
-          "enum": [
-            "Never",
-            "Immediate",
-            "DailyDigest"
-          ]
-        },
-        "webhookUrl": {
-          "type": "string",
-          "description": "URL for  event callback"
-        },
-        "webhookEnabled": {
-          "type": "boolean",
-          "description": "Must be set to true to enable the calls to your webhook url."
+        "report": {
+          "properties": {
+            "companyId": {
+              "type": "string"
+            },
+            "language": {
+              "type": "string"
+            },
+            "companySummary": {
+              "properties": {
+                "businessName": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "companyNumber": {
+                  "type": "string"
+                },
+                "companyRegistrationNumber": {
+                  "type": "string"
+                },
+                "mainActivity": {
+                  "properties": {
+                    "code": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "classification": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "companyStatus": {
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "latestTurnoverFigure": {
+                  "properties": {
+                    "currency": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "latestShareholdersEquityFigure": {
+                  "properties": {
+                    "currency": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "creditRating": {
+                  "properties": {
+                    "commonValue": {
+                      "type": "string"
+                    },
+                    "commonDescription": {
+                      "type": "string"
+                    },
+                    "creditLimit": {
+                      "required": [
+                        "currency",
+                        "value"
+                      ],
+                      "properties": {
+                        "currency": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "providerValue": {
+                      "properties": {
+                        "maxValue": {
+                          "type": "string"
+                        },
+                        "minValue": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "providerDescription": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "companyIdentification": {
+              "properties": {
+                "basicInformation": {
+                  "properties": {
+                    "businessName": {
+                      "type": "string"
+                    },
+                    "registeredCompanyName": {
+                      "type": "string"
+                    },
+                    "companyRegistrationNumber": {
+                      "type": "string"
+                    },
+                    "country": {
+                      "type": "string"
+                    },
+                    "companyRegistrationDate": {
+                      "type": "string"
+                    },
+                    "legalForm": {
+                      "properties": {
+                        "description": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "companyStatus": {
+                      "properties": {
+                        "status": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "principalActivity": {
+                      "properties": {
+                        "description": {
+                          "type": "string"
+                        },
+                        "classification": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "contactAddress": {
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "simpleValue": {
+                          "type": "string"
+                        },
+                        "postalCode": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                },
+                "activityClassifications": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "classification": {
+                        "type": "string"
+                      },
+                      "activities": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "code": {
+                              "type": "string"
+                            },
+                            "description": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "previousNames": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "dateChanged": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            },
+            "creditScore": {
+              "properties": {
+                "currentCreditRating": {
+                  "properties": {
+                    "commonValue": {
+                      "type": "string"
+                    },
+                    "commonDescription": {
+                      "type": "string"
+                    },
+                    "creditLimit": {
+                      "properties": {
+                        "currency": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "providerValue": {
+                      "properties": {
+                        "maxValue": {
+                          "type": "string"
+                        },
+                        "minValue": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "providerDescription": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "currentContractLimit": {
+                  "properties": {
+                    "currency": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "previousCreditRating": {
+                  "properties": {
+                    "commonValue": {
+                      "type": "string"
+                    },
+                    "commonDescription": {
+                      "type": "string"
+                    },
+                    "creditLimit": {
+                      "properties": {
+                        "currency": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "providerValue": {
+                      "properties": {
+                        "maxValue": {
+                          "type": "string"
+                        },
+                        "minValue": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "providerDescription": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "latestRatingChangeDate": {
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "contactInformation": {
+              "properties": {
+                "mainAddress": {
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    },
+                    "simpleValue": {
+                      "type": "string"
+                    },
+                    "postalCode": {
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                },
+                "otherAddresses": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "simpleValue": {
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "type": "string"
+                      },
+                      "telephone": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "websites": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "type": "object"
+            },
+            "shareCapitalStructure": {
+              "properties": {
+                "issuedShareCapital": {
+                  "properties": {
+                    "currency": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "numberOfSharesIssued": {
+                  "type": "number"
+                },
+                "shareHolders": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "shareholderType": {
+                        "type": "string"
+                      },
+                      "shareType": {
+                        "type": "string"
+                      },
+                      "currency": {
+                        "type": "string"
+                      },
+                      "totalNumberOfSharesOwned": {
+                        "type": "number"
+                      },
+                      "percentSharesHeld": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            },
+            "directors": {
+              "properties": {
+                "currentDirectors": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "firstName": {
+                        "type": "string"
+                      },
+                      "surname": {
+                        "type": "string"
+                      },
+                      "address": {
+                        "properties": {
+                          "simpleValue": {
+                            "type": "string"
+                          },
+                          "postalCode": {
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "gender": {
+                        "type": "string"
+                      },
+                      "dateOfBirth": {
+                        "type": "string"
+                      },
+                      "directorType": {
+                        "type": "string"
+                      },
+                      "positions": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "dateAppointed": {
+                              "type": "string"
+                            },
+                            "positionName": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "previousDirectors": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "gender": {
+                        "type": "string"
+                      },
+                      "directorType": {
+                        "type": "string"
+                      },
+                      "positions": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            },
+            "otherInformation": {
+              "properties": {
+                "advisors": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "auditorName": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "employeesInformation": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "year": {
+                        "type": "number"
+                      },
+                      "numberOfEmployees": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            },
+            "groupStructure": {
+              "properties": {
+                "subsidiaryCompanies": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "country": {
+                        "type": "string"
+                      },
+                      "id": {
+                        "type": "string"
+                      },
+                      "safeNumber": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "registrationNumber": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            },
+            "extendedGroupStructure": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "type": "string"
+                  },
+                  "safeNumber": {
+                    "type": "string"
+                  },
+                  "companyName": {
+                    "type": "string"
+                  },
+                  "registeredNumber": {
+                    "type": "string"
+                  },
+                  "latestAnnualAccounts": {
+                    "type": "string"
+                  },
+                  "level": {
+                    "type": "number"
+                  },
+                  "status": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "financialStatements": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  },
+                  "yearEndDate": {
+                    "type": "string"
+                  },
+                  "numberOfWeeks": {
+                    "type": "number"
+                  },
+                  "currency": {
+                    "type": "string"
+                  },
+                  "consolidatedAccounts": {
+                    "type": "boolean"
+                  },
+                  "profitAndLoss": {
+                    "properties": {
+                      "revenue": {
+                        "type": "number"
+                      },
+                      "operatingCosts": {
+                        "type": "number"
+                      },
+                      "operatingProfit": {
+                        "type": "number"
+                      },
+                      "wagesAndSalaries": {
+                        "type": "number"
+                      },
+                      "pensionCosts": {
+                        "type": "number"
+                      },
+                      "depreciation": {
+                        "type": "number"
+                      },
+                      "amortisation": {
+                        "type": "number"
+                      },
+                      "financialExpenses": {
+                        "type": "number"
+                      },
+                      "profitBeforeTax": {
+                        "type": "number"
+                      },
+                      "tax": {
+                        "type": "number"
+                      },
+                      "profitAfterTax": {
+                        "type": "number"
+                      },
+                      "dividends": {
+                        "type": "number"
+                      },
+                      "minorityInterests": {
+                        "type": "number"
+                      },
+                      "otherAppropriations": {
+                        "type": "number"
+                      },
+                      "retainedProfit": {
+                        "type": "number"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "balanceSheet": {
+                    "properties": {
+                      "totalTangibleAssets": {
+                        "type": "number"
+                      },
+                      "totalIntangibleAssets": {
+                        "type": "number"
+                      },
+                      "totalOtherFixedAssets": {
+                        "type": "number"
+                      },
+                      "totalFixedAssets": {
+                        "type": "number"
+                      },
+                      "totalInventories": {
+                        "type": "number"
+                      },
+                      "tradeReceivables": {
+                        "type": "number"
+                      },
+                      "miscellaneousReceivables": {
+                        "type": "number"
+                      },
+                      "totalReceivables": {
+                        "type": "number"
+                      },
+                      "cash": {
+                        "type": "number"
+                      },
+                      "otherCurrentAssets": {
+                        "type": "number"
+                      },
+                      "totalCurrentAssets": {
+                        "type": "number"
+                      },
+                      "totalAssets": {
+                        "type": "number"
+                      },
+                      "tradePayables": {
+                        "type": "number"
+                      },
+                      "bankLiabilities": {
+                        "type": "number"
+                      },
+                      "otherLoansOrFinance": {
+                        "type": "number"
+                      },
+                      "miscellaneousLiabilities": {
+                        "type": "number"
+                      },
+                      "totalCurrentLiabilities": {
+                        "type": "number"
+                      },
+                      "bankLiabilitiesDueAfter1Year": {
+                        "type": "number"
+                      },
+                      "otherLoansOrFinanceDueAfter1Year": {
+                        "type": "number"
+                      },
+                      "miscellaneousLiabilitiesDueAfter1Year": {
+                        "type": "number"
+                      },
+                      "totalLongTermLiabilities": {
+                        "type": "number"
+                      },
+                      "totalLiabilities": {
+                        "type": "number"
+                      },
+                      "calledUpShareCapital": {
+                        "type": "number"
+                      },
+                      "revenueReserves": {
+                        "type": "number"
+                      },
+                      "otherReserves": {
+                        "type": "number"
+                      },
+                      "totalShareholdersEquity": {
+                        "type": "number"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "otherFinancials": {
+                    "properties": {
+                      "contingentLiabilities": {
+                        "type": "string"
+                      },
+                      "workingCapital": {
+                        "type": "number"
+                      },
+                      "netWorth": {
+                        "type": "number"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "ratios": {
+                    "properties": {
+                      "preTaxProfitMargin": {
+                        "type": "number"
+                      },
+                      "returnOnCapitalEmployed": {
+                        "type": "number"
+                      },
+                      "returnOnTotalAssetsEmployed": {
+                        "type": "number"
+                      },
+                      "returnOnNetAssetsEmployed": {
+                        "type": "number"
+                      },
+                      "salesOrNetWorkingCapital": {
+                        "type": "number"
+                      },
+                      "stockTurnoverRatio": {
+                        "type": "number"
+                      },
+                      "debtorDays": {
+                        "type": "number"
+                      },
+                      "creditorDays": {
+                        "type": "number"
+                      },
+                      "currentRatio": {
+                        "type": "number"
+                      },
+                      "liquidityRatioOrAcidTest": {
+                        "type": "number"
+                      },
+                      "currentDebtRatio": {
+                        "type": "number"
+                      },
+                      "gearing": {
+                        "type": "number"
+                      },
+                      "equityInPercentage": {
+                        "type": "number"
+                      },
+                      "totalDebtRatio": {
+                        "type": "number"
+                      }
+                    },
+                    "type": "object"
+                  }
+                }
+              }
+            },
+            "localFinancialStatements": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  },
+                  "yearEndDate": {
+                    "type": "string"
+                  },
+                  "numberOfWeeks": {
+                    "type": "number"
+                  },
+                  "currency": {
+                    "type": "string"
+                  },
+                  "consolidatedAccounts": {
+                    "type": "boolean"
+                  },
+                  "auditQualification": {
+                    "type": "string"
+                  },
+                  "profitAndLoss": {
+                    "properties": {
+                      "turnover": {
+                        "type": "number"
+                      },
+                      "costOfSales": {
+                        "type": "number"
+                      },
+                      "grossProfit": {
+                        "type": "number"
+                      },
+                      "depreciation": {
+                        "type": "number"
+                      },
+                      "auditFees": {
+                        "type": "number"
+                      },
+                      "wagesAndSalaries": {
+                        "type": "number"
+                      },
+                      "directorsRemuneration": {
+                        "type": "number"
+                      },
+                      "operatingProfit": {
+                        "type": "number"
+                      },
+                      "interestExpense": {
+                        "type": "number"
+                      },
+                      "profitBeforeTax": {
+                        "type": "number"
+                      },
+                      "taxation": {
+                        "type": "number"
+                      },
+                      "profitAfterTax": {
+                        "type": "number"
+                      },
+                      "dividends": {
+                        "type": "number"
+                      },
+                      "retainedProfit": {
+                        "type": "number"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "balanceSheet": {
+                    "properties": {
+                      "tangibleAssets": {
+                        "type": "number"
+                      },
+                      "intangibleAssets": {
+                        "type": "number"
+                      },
+                      "totalFixedAssets": {
+                        "type": "number"
+                      },
+                      "stock": {
+                        "type": "number"
+                      },
+                      "tradeDebtors": {
+                        "type": "number"
+                      },
+                      "otherDebtors": {
+                        "type": "number"
+                      },
+                      "cash": {
+                        "type": "number"
+                      },
+                      "miscCurrentAssets": {
+                        "type": "number"
+                      },
+                      "totalCurrentAssets": {
+                        "type": "number"
+                      },
+                      "totalAssets": {
+                        "type": "number"
+                      },
+                      "tradeCreditors": {
+                        "type": "number"
+                      },
+                      "bankBorrowingsCurrent": {
+                        "type": "number"
+                      },
+                      "otherShortTermFinance": {
+                        "type": "number"
+                      },
+                      "miscCurrentLiabilities": {
+                        "type": "number"
+                      },
+                      "totalCurrentLiabilities": {
+                        "type": "number"
+                      },
+                      "otherLongTermFinance": {
+                        "type": "number"
+                      },
+                      "totalLongTermLiabilities": {
+                        "type": "number"
+                      },
+                      "totalLiabilities": {
+                        "type": "number"
+                      },
+                      "netAssets": {
+                        "type": "number"
+                      },
+                      "issuedShareCapital": {
+                        "type": "number"
+                      },
+                      "revaluationReserve": {
+                        "type": "number"
+                      },
+                      "revenueReserves": {
+                        "type": "number"
+                      },
+                      "otherReserves": {
+                        "type": "number"
+                      },
+                      "totalShareholdersEquity": {
+                        "type": "number"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "cashFlow": {
+                    "properties": {
+                      "netCashFlowFromOperations": {
+                        "type": "number"
+                      },
+                      "netCashFlowBeforeFinancing": {
+                        "type": "number"
+                      },
+                      "netCashFlowFromFinancing": {
+                        "type": "number"
+                      },
+                      "increaseInCash": {
+                        "type": "number"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "otherFinancials": {
+                    "properties": {
+                      "contingentLiabilities": {
+                        "type": "boolean"
+                      },
+                      "bankOverdraftAndLTL": {
+                        "type": "number"
+                      },
+                      "workingCapital": {
+                        "type": "number"
+                      },
+                      "capitalEmployed": {
+                        "type": "number"
+                      },
+                      "netWorth": {
+                        "type": "number"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "ratios": {
+                    "properties": {
+                      "preTaxProfitMargin": {
+                        "type": "number"
+                      },
+                      "returnOnCapitalEmployed": {
+                        "type": "number"
+                      },
+                      "returnOnTotalAssetsEmployed": {
+                        "type": "number"
+                      },
+                      "returnOnNetAssetsEmployed": {
+                        "type": "number"
+                      },
+                      "salesOrNetWorkingCapital": {
+                        "type": "number"
+                      },
+                      "stocKTurnoverRatio": {
+                        "type": "number"
+                      },
+                      "debtorDays": {
+                        "type": "number"
+                      },
+                      "creditorDays": {
+                        "type": "number"
+                      },
+                      "currentRatio": {
+                        "type": "number"
+                      },
+                      "liquidityRatioOrAcidTest": {
+                        "type": "number"
+                      },
+                      "currentDebtRatio": {
+                        "type": "number"
+                      },
+                      "gearing": {
+                        "type": "number"
+                      },
+                      "equityInPercentage": {
+                        "type": "number"
+                      },
+                      "totalDebtRatio": {
+                        "type": "number"
+                      }
+                    },
+                    "type": "object"
+                  }
+                }
+              }
+            },
+            "paymentData": {
+              "properties": {
+                "paymentsOnFile": {
+                  "type": "number"
+                },
+                "paymentsOnTime": {
+                  "type": "number"
+                },
+                "paymentsPaidLate": {
+                  "type": "number"
+                },
+                "paymentsSentLegal": {
+                  "type": "number"
+                },
+                "paymentsStillOwingLate": {
+                  "type": "number"
+                },
+                "paymentsPaid0to30Days": {
+                  "type": "number"
+                },
+                "highestInvoiceValueOutstandingLate": {
+                  "type": "number"
+                },
+                "paymentsPaid90DaysplusLate": {
+                  "type": "number"
+                },
+                "totalBalanceStillOwingLate": {
+                  "type": "number"
+                },
+                "dbt": {
+                  "type": "number"
+                },
+                "paymentsPaid61to90Days": {
+                  "type": "number"
+                },
+                "totalBalanceStillOwing": {
+                  "type": "number"
+                },
+                "payments31to60DaysLate": {
+                  "type": "number"
+                },
+                "payments61to90DaysLate": {
+                  "type": "number"
+                },
+                "highestInvoiceValueOutstanding": {
+                  "type": "number"
+                },
+                "paymentsStillOwing": {
+                  "type": "number"
+                },
+                "paymentsWithinTerms": {
+                  "type": "number"
+                },
+                "payments0to30Dayslate": {
+                  "type": "number"
+                },
+                "averageInvoiceValue": {
+                  "type": "number"
+                },
+                "paymentsPaid31to60Days": {
+                  "type": "number"
+                },
+                "paymentsPaid90Daysplus": {
+                  "type": "number"
+                },
+                "totalInvoiceValues": {
+                  "type": "number"
+                },
+                "paymentTrend": {
+                  "type": "string"
+                },
+                "industryDBT": {
+                  "type": "number"
+                }
+              },
+              "type": "object"
+            },
+            "negativeInformation": {
+              "properties": {
+                "ccjSummary": {
+                  "properties": {
+                    "exactRegistered": {
+                      "type": "number"
+                    },
+                    "possibleRegistered": {
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "countyCourtJudgements": {
+                  "properties": {
+                    "registered": {
+                      "properties": {
+                        "exact": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "ccjDate": {
+                                "type": "string"
+                              },
+                              "court": {
+                                "type": "string"
+                              },
+                              "ccjAmount": {
+                                "type": "number"
+                              },
+                              "caseNumber": {
+                                "type": "string"
+                              },
+                              "ccjStatus": {
+                                "type": "string"
+                              },
+                              "incomingRecordDetails": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        },
+                        "possible": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "ccjDate": {
+                                "type": "string"
+                              },
+                              "court": {
+                                "type": "string"
+                              },
+                              "ccjAmount": {
+                                "type": "number"
+                              },
+                              "caseNumber": {
+                                "type": "string"
+                              },
+                              "ccjStatus": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "additionalInformation": {
+              "properties": {
+                "companyHistory": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "mortgageSummary": {
+                  "properties": {
+                    "outstanding": {
+                      "type": "number"
+                    },
+                    "satisfied": {
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                },
+                "mortgageDetails": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "mortgageType": {
+                        "type": "string"
+                      },
+                      "dateChargeCreated": {
+                        "type": "string"
+                      },
+                      "dateChargeRegistered": {
+                        "type": "string"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "personsEntitled": {
+                        "type": "string"
+                      },
+                      "amountSecured": {
+                        "type": "string"
+                      },
+                      "details": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "commentaries": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "commentaryText": {
+                        "type": "string"
+                      },
+                      "positiveNegative": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "ratingHistory": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "type": "string"
+                      },
+                      "companyValue": {
+                        "type": "number"
+                      },
+                      "ratingDescription": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                },
+                "creditLimitHistory": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "type": "string"
+                      },
+                      "companyValue": {
+                        "properties": {
+                          "currency": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "number"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    }
+                  }
+                },
+                "badDebtDetails": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "statementDate": {
+                        "type": "string"
+                      },
+                      "registrationNumber": {
+                        "type": "string"
+                      },
+                      "companyName": {
+                        "type": "string"
+                      },
+                      "amount": {
+                        "properties": {
+                          "currency": {
+                            "type": "string"
+                          },
+                          "value": {
+                            "type": "number"
+                          }
+                        },
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
         }
       },
       "example": {
-        "name": "My new portfolio",
-        "isDefault": false,
-        "emails": [
-          {
-            "firstName": "Bob,",
-            "lastName": "Smith,",
-            "emailAddress": "bob.smith@adomain.com"
+        "orderId": "N/A",
+        "companyId": "GB-0-03836192",
+        "dateOfOrder": "2019-10-23T16:39:07.116Z",
+        "language": "en",
+        "userId": "100000000",
+        "chargeRef": null,
+        "report": {
+          "companyId": "GB001-0-03836192",
+          "language": "EN",
+          "companySummary": {
+            "businessName": "CREDITSAFE BUSINESS SOLUTIONS LIMITED",
+            "country": "GB",
+            "companyNumber": "UK03490298",
+            "companyRegistrationNumber": "03836192",
+            "mainActivity": {
+              "code": "7487",
+              "description": "Other business activities",
+              "classification": "SIC03"
+            },
+            "companyStatus": {
+              "status": "Active",
+              "description": "Active - Accounts Filed"
+            },
+            "latestTurnoverFigure": {
+              "value": 45245000
+            },
+            "latestShareholdersEquityFigure": {
+              "value": 11269000
+            },
+            "creditRating": {
+              "commonValue": "B",
+              "commonDescription": "Low Risk",
+              "creditLimit": {
+                "currency": "GBP",
+                "value": "785000"
+              },
+              "providerValue": {
+                "maxValue": "100",
+                "minValue": "1",
+                "value": "55"
+              },
+              "providerDescription": "Low Risk"
+            }
           }
-        ],
-        "emailSubject": "Notification Subject",
-        "emailLanguage": "en",
-        "frequency": "DailyDigest",
-        "webhookUrl": "https://www.mycompanydomain.co.uk/incoming/ggs.ashx",
-        "webhookEnabled": true
-      },
-      "additionalProperties": {}
-    },
-    "generated_4": {
-      "type": "object",
-      "properties": {
-        "personalReference": {
-          "type": "string",
-          "description": "Personal reference"
-        },
-        "freeText": {
-          "type": "string",
-          "description": "Free text"
-        },
-        "personalLimit": {
-          "type": "string",
-          "description": "Accepts numeric only values; Parameter type will change from 'string' to 'number' in the future."
         }
-      },
-      "example": {
-        "personalReference": "Some text",
-        "freeText": "Some useful test",
-        "personalLimit": "40"
-      },
-      "additionalProperties": {}
+      }
     }
-  },
-  "externalDocs": {
-    "description": "Creditsafe Connect API .\n",
-    "url": "http://",
-    "x-amf-title": "Creditsafe Connect"
   }
 }
