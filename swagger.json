@@ -1,9 +1,6 @@
 openapi: 3.0.1
 info:
   title: Creditsafe Connect (Swagger Beta)
-  x-logo:
-    url: "https://connect-portal.creditsafe.com/static/media/connect-api-logo.46d15d9b.png"
-    altText: "Connect Logo"
   description: |-
     <h2>Introduction</h2>
     - Creditsafe Connect is a REST API that provides access to the [Creditsafe Global Company Database](https://www.creditsafe.com/gb/en/more/about/our-data.html) allowing you to qualify/onboard your prospects, make quick informed decisions on suppliers and monitor your existing customers.
