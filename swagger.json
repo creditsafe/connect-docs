@@ -3,7 +3,6 @@ info:
   title: Creditsafe Connect (Swagger Beta)
   x-logo:
     url: "https://connect-portal.creditsafe.com/static/media/connect-api-logo.46d15d9b.png"
-    backgroundColor: "#FFFFFF"
     altText: "Connect Logo"
   description: |-
     <h2>Introduction</h2>
