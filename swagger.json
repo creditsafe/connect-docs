@@ -1,6 +1,10 @@
 openapi: 3.0.1
 info:
   title: Creditsafe Connect (Swagger Beta)
+  x-logo:
+    url: "https://connect-portal.creditsafe.com/static/media/connect-api-logo.46d15d9b.png"
+    backgroundColor: "#FFFFFF"
+    altText: "Connect Logo"
   description: |-
     <h2>Introduction</h2>
     - Creditsafe Connect is a REST API that provides access to the [Creditsafe Global Company Database](https://www.creditsafe.com/gb/en/more/about/our-data.html) allowing you to qualify/onboard your prospects, make quick informed decisions on suppliers and monitor your existing customers.
@@ -30,9 +34,14 @@ tags:
   description: Endpoints to Search for People/Directors and order Director Reports.
 - name: Decision Engine
   description: Decision Engine
+- name: Images
+  description: Endpoint to order official Company Image Documents
+- name: Offline Reports
+  description: Endpoint to Order a Fresh Investigation 
 paths:
   /authenticate:
     post:
+      security: []
       tags:
       - Authentication
       description: Endpoint to generate a Bearer/JWT Authentication Token. When calling
@@ -4796,3 +4805,10 @@ components:
     callRefObject:
       type: string
       description: Call Reference
+  securitySchemes:
+      bearerAuth:            
+        type: http
+        scheme: bearer
+        bearerFormat: JWT
+security:
+  - bearerAuth: []                 
