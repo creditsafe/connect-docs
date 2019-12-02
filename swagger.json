@@ -1,21 +1,25 @@
 openapi: 3.0.1
 info:
   title: Creditsafe Connect (Swagger Beta)
-  description: |-
+  description:
     <h2>Introduction</h2>
-    - Creditsafe Connect is a REST API that provides access to the [Creditsafe Global Company Database](https://www.creditsafe.com/gb/en/more/about/our-data.html) allowing you to qualify/onboard your prospects, make quick informed decisions on suppliers and monitor your existing customers.
-
-    <h2> Quick Start </h2>
-    - To start your Creditsafe Connect integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.
-    - Using a REST API client construct an `/Authenticate` POST request and enter your username & password (case-sensitive) into the POST body.
-    - A successful response will return a string value known as the authentication (Bearer/JWT) token.
-    - Use the authentication token as the value in an Authorization header on all other Creditsafe Connect calls as proof of you authenticity.
+    Creditsafe Connect is a REST API that provides access to the <a href="https://www.creditsafe.com/gb/en/more/about/our-data.html">Creditsafe Global Company Database</a> allowing you to qualify/onboard your prospects, make quick informed decisions on suppliers and monitor your existing customers.
+    
+    <h2>Quick Start</h2>
+    To start your Creditsafe Connect integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>
+    
+     Using a REST API client construct an `/Authenticate` POST request and enter your username & password (case-sensitive) into the POST body.</br></br>
+    A successful response will return a string value known as the `authentication token` (Bearer/JWT).</br></br>
+  
+    Use the `authentication token` as the value in an `Authorization` header on all other Creditsafe Connect calls as proof of you authenticity.
+    
 
     <h2>Resources</h2>
-    - [Postman](https://www.getpostman.com/collections/3aa74cc7318e44aeb96d) collection of the most common example calls to Creditsafe Connect.
-    - [Connect Portal](https://connect-portal.creditsafe.com) A Front End Demo Site. Use this as a quick easy way to validate your username & password, and form requests.
-
-    <form action="https://www.creditsafe.com/gb/en/forms/free-trial-form.html?cta=view-documenation-api" method="get" target="_blank"> <br> <button type="submit"><b>Try the API Now</b></button>
+    <ul>
+    <li><a href="https://creditsafe.github.io/connect-docs/swagger.html">Swagger File</a>
+    <li><a href="https://www.getpostman.com/collections/3aa74cc7318e44aeb96d">Postman Collection</a> of the most common example calls to Creditsafe Connect.</li>
+    <li><a href="https://connect-portal.creditsafe.com"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password, and form requests.</li>
+    </ul>
   version: "1.0"
 servers:
 - url: https://connect.creditsafe.com/v1
@@ -3572,18 +3576,19 @@ paths:
     get:
       tags:
       - Companies
-      description: Returns additional parameters/metadata required for operations
+      description: Endpoint to return mandatory parameters or metadata associated with specific country Company Report requests. To add a custom data parameter, add a Parameter with the key=value pair in the format customData=key::allowedValue 
+        I.e. Suppling `DE` as a country code will return a list of reasons for requesting a DE Credit Report (which is a legal requirement to supply with each Credit Report request in Germany). This will provide a list of allowedValues to enter into the mandatory Parameter `customData` = `de_reason_code::allowedValue`
+      operationId: Custom Report Parameters
       parameters:
       - name: template
         in: query
-        description: Report template that will be used for retrieval. Full report
-          by default.
+        description: Report template (currently unncessary to provide.)       
         schema:
           type: string
           default: full
       - name: country
         in: path
-        description: country code the custom data relates to.
+        description: An ISO/Alpha-2 country code to display any special mandatory parameters when ordering a Credit Report in that territory. 
         required: true
         schema:
           type: string
