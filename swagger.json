@@ -1,53 +1,60 @@
-openapi: 3.0.1
+openapi: 3.0.2
 info:
   title: Creditsafe Connect (Swagger Beta)
   description:
     <h2>Introduction</h2>
-    Creditsafe Connect is a REST API that provides access to the <a href="https://www.creditsafe.com/gb/en/more/about/our-data.html">Creditsafe Global Company Database</a> allowing you to qualify/onboard your prospects, make quick informed decisions on suppliers and monitor your existing customers.
+    Creditsafe Connect is a REST API that provides access to the <a href="https://www.creditsafe.com/gb/en/more/about/our-data.html">Creditsafe Global Company Database</a> allowing you to qualify/onboard your prospects, make quick informed decisions on suppliers and control your master data.
     
     <h2>Quick Start</h2>
     To start your Creditsafe Connect integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>
     
      Using a REST API client construct an `/Authenticate` POST request and enter your username & password (case-sensitive) into the POST body.</br></br>
-    A successful response will return a string value known as the `authentication token` (Bearer/JWT).</br></br>
+    A successful response will return an  `authentication token` (Bearer/JWT).</br></br>
   
     Use the `authentication token` as the value in an `Authorization` header on all other Creditsafe Connect calls as proof of you authenticity.
     
-
     <h2>Resources</h2>
     <ul>
-    <li><a href="https://creditsafe.github.io/connect-docs/swagger.html">Swagger File</a>
+    <li><a href="https://creditsafe.github.io/connect-docs/swagger.html">Swagger File</a> Raw JSON.
     <li><a href="https://www.getpostman.com/collections/3aa74cc7318e44aeb96d">Postman Collection</a> of the most common example calls to Creditsafe Connect.</li>
     <li><a href="https://connect-portal.creditsafe.com"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password, and form requests.</li>
+    <li><a href="https://creditsafe.freshdesk.com/en/support/solutions/categories/7000007071/folders/7000018640"> Help Articles</a> Additional help resources including FAQs, Data Dictionaries and Feature Availability.  
     </ul>
   version: "1.0"
+
 servers:
-- url: https://connect.creditsafe.com/v1
+  - url: https://{environment}.creditsafe.com/v1
+    variables:
+      environment:
+        default: connect    # Production server
+        enum:
+          - connect           # Production server
+          - connect.sandbox   # Sandbox server
+    description: Connect
 tags:
 - name: Authentication
-  description: Initial call to generate Authentication token
+  description: "Endpoint to generate a Bearer JWT (Authentication Token). It is mandatory to include this token under the Header  `Authorization` When calling all other endpoints as proof
+        of authenticity. Tokens persist for 1 hour after being issued and can exist concurrently."
 - name: Companies
-  description: Endpoints to Search for Companies and order Company Credit Reports.
-- name: Monitoring Companies
-  description: Monitoring
+  description: "Endpoints to search for Companies in the Creditsafe Global Company Database. When a company is found you can use the Connect Id to order their Company Credit Report. The Company Credit Report is a JSON object comprising of key business/financial data points such as Credit Score & Limit, Industry Code, Directors, Balance Sheet and Negative Information. A full list of Company data points can be found in the Data Matrix, in the help resources. "
 - name: People/Directors
-  description: Endpoints to Search for People/Directors and order Director Reports.
-- name: Decision Engine
-  description: Decision Engine
+  description: "Endpoints to find People/Directors and order an in-depth Director Report. A Director Report will contain a person's Active and Previous Directorships, where available. This endpoint is not advised to get a list of directors for a specifc Company. Instead, order a Company Credit Report using the `/companies/{id}` endpoint, looking at the `directors` section in the response."
 - name: Images
-  description: Endpoint to order official Company Image Documents
-- name: Offline Reports
-  description: Endpoint to Order a Fresh Investigation 
+  description: "Endpoints to order official Company Image Documents from original sources. Filings including Annual Account Statements, Annual Returns, Liquidations and Changes of Registered Information can be downloaded as PDFs, and are typically used as a hard copy indicating a proof of audit."
+- name: Fresh Investigations
+  description: "Endpoints to manage Fresh Investigation requests. With the need for accurate data, you can check on any company that is not available within our instant online database by placing a Fresh Investigation (Offline Order). Depending on the market, the information we obtain will vary. Using official sources and registries we are able to quickly answer questions about a company’s stability and financial health. Where official information is not available we will conduct a direct interview with the business."
+- name: Global Monitoring
+  description: Endpoints to Monitor Changes to Company Information
+- name: Decision Engine
+  description: Endpoints to run credit decisions on Companies.
+  
 paths:
   /authenticate:
     post:
       security: []
       tags:
       - Authentication
-      description: Endpoint to generate a Bearer/JWT Authentication Token. When calling
-        other endpoints, include this token under the Header  `Authorization` as proof
-        of authenticity (Bearer security scehema is also accepted). Tokens persist
-        for 1 hour after being issued and can exist concurrently.
+      description: "Enter your username and password into the request schema to generate an Authorisation Token"
       operationId: Generate Authentication Token
       requestBody:
         content:
@@ -94,9 +101,10 @@ paths:
     get:
       tags:
       - Companies
-      description: Endpoint to search for Companies based on supplied Search Criteria.
+      description: Endpoint to search for Companies based on the provided Search Criteria. To get the most relevant results, it is recommended to use a unique identifer such as `regNo` where available. If a unique identiifer is not available, use a combination of the companies registered `postCode` and `name` for the next best hit rate.
       operationId: Company Search
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: countries
         in: query
         description: A Comma-separated list of country codes to search for Companies
@@ -243,13 +251,6 @@ paths:
         description: Call Reference
         schema:
           type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
-        required: true
-        schema:
-          type: string
       responses:
         200:
           description: ""
@@ -297,7 +298,9 @@ paths:
       tags:
       - Companies
       operationId: Company Credit Report
+      description: "Provide a Company's Connect Id to order their Company Credit Report."
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: language
         in: query
         description: Report Language - The JSON structure of the Report is language
@@ -334,19 +337,13 @@ paths:
         required: true
         schema:
           type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
-        required: true
-        schema:
-          type: string
       responses:
         200:
           description: ""
           content:
             application/json:
               schema:
+                oneOf: 
                 $ref: '#/components/schemas/gbCompanyReportExampleResponse'
           x-amf-mediaType: application/json
           x-amf-responsePayloads:
@@ -383,11 +380,6 @@ paths:
                 example:
                   message: 'Resource not found '
           x-amf-mediaType: application/json
-    x-amf-displayName: Company Report
-    x-amf-description: This endpoint orders a Credit Report for a Company by its Connect
-      Id. </br> The Company Credit Report is a JSON object comprising of key business/financial
-      data points, including its Credit Score & Limit. A full list of Company data
-      points can be found in the Data Dictionaries.
   /companies/searchcriteria:
     get:
       tags:
@@ -396,18 +388,12 @@ paths:
         a provided list of countries.
       operationId: Company Search Criteria
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: countries
         in: query
         description: A comma separated list of ISO/Alpha 2 format country codes, or
           singular country Code. e.g. US,GB will return the common searchable Company
           fields in the United States and Great Britain.
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
-        required: true
         schema:
           type: string
       responses:
@@ -486,6 +472,7 @@ paths:
       - Companies
       operationId: Company Report JSON Schema
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: section
         in: query
         description: Use CompanyReportResponse for the Company Credit Report JSON
@@ -525,13 +512,7 @@ paths:
         - Company Report, Director Report, Offline Reports and Monitoring.
       operationId: Countries In Subscription
       parameters:
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
-        required: true
-        schema:
-          type: string
+      - $ref: '#/components/parameters/authHeader'
       responses:
         200:
           description: ""
@@ -612,13 +593,10 @@ paths:
     get:
       tags:
       - People/Directors
-      description: Endpoint to get Directors based on a search criteria. This endpoint
-        is designed to find a Person/Director to order a Creditsafe Director Report.
-        This isn't recommended to find a Company by director. To list the Directors
-        of a Company, it is recommended to use the `/companies/{id}` endpoint, looking
-        at the `directors` section in the response.
+      description: Endpoint to find Directors based on search criteria to order a Creditsafe Director Report.
       operationId: People/Director Search
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: countries
         in: query
         description: A comma-separated list of countries to search for People with
@@ -699,13 +677,6 @@ paths:
         description: Call Reference
         schema:
           type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
-        required: true
-        schema:
-          type: string
       responses:
         200:
           description: ""
@@ -755,6 +726,7 @@ paths:
       - People/Directors
       operationId: Director Report
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: language
         in: query
         description: Report Language - The JSON structure of the Report is language
@@ -776,13 +748,6 @@ paths:
         schema:
           pattern: ^[a-zA-Z]{2}([0-9]{1,3})?[-]{1}[a-zA-Z0-9$]+$
           type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
-        required: true
-        schema:
-          type: string
       responses:
         200:
           description: ""
@@ -796,17 +761,6 @@ paths:
                 type: object
                 example:
                   message: Bad request
-          x-amf-mediaType: application/json
-        403:
-          description: ""
-          content:
-            application/json:
-              schema:
-                type: object
-                additionalProperties:
-                  type: object
-                example:
-                  error: 'Policy 456183: The Authorization header has invalid format'
           x-amf-mediaType: application/json
         404:
           description: ""
@@ -829,18 +783,12 @@ paths:
         a provided list of countries.
       operationId: People/Director Search Criteria
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: countries
         in: query
         description: A comma separated list of ISO/Alpha 2 format country codes, or
           singular country Code. e.g. US,GB will return the common searchable People/Director
           fields in the United States and Great Britain.
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
-        required: true
         schema:
           type: string
       responses:
@@ -978,112 +926,58 @@ paths:
                   message: 'Resource not found '
           x-amf-mediaType: application/json
     x-amf-description: a request for people searchcriteria
-  /monitoring/user/details:
+  /reportcustomdata/{country}:
     get:
       tags:
-      - Monitoring Companies
-      description: Get User details
+      - Companies
+      description: Endpoint to return mandatory parameters or metadata associated with specific country Company Report requests. To add a custom data parameter, add a Parameter with the key=value pair in the format customData=key::allowedValue 
+        I.e. Suppling `DE` as a country code will return a list of reasons for requesting a DE Credit Report (which is a legal requirement to supply with each Credit Report request in Germany). This will provide a list of allowedValues to enter into the mandatory Parameter `customData` = `de_reason_code::allowedValue`
+      operationId: Custom Report Parameters
       parameters:
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
-        required: true
+      - $ref: '#/components/parameters/authHeader'
+      - name: template
+        in: query
+        description: Report template (currently unncessary to provide.)       
         schema:
           type: string
-      responses:
-        200:
-          description: ""
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  countryCode: JP
-                  createdDate: 2018-11-02T07:44:49
-                  csCustomerId: 100306
-                  csUserId: 100424
-                  isAutoTracker: false
-                  languageCode: EN
-                  lastAccessDate: 2018-11-02T07:44:49
-                  modifiedDate: 2018-11-02T07:44:49
-                  contractEndDate: ""
-                  userId: 130
-          x-amf-mediaType: application/json
-    x-amf-description: Returns User Object
-  /monitoring/companies/{id}/events:
-    get:
-      tags:
-      - Monitoring Companies
-      description: Collection of events based on the connect id and which are received
-        from each    country , optionally filtered
-      parameters:
-      - name: startDate
-        in: query
-        schema:
-          type: string
-          format: date-time
-      - name: endDate
-        in: query
-        schema:
-          type: string
-          format: date-time
-      - name: page
-        in: query
-        description: Starting page number (indexed from 0)
-        schema:
-          type: integer
-          default: 0
-      - name: pageSize
-        in: query
-        description: Number of items to return per Page (max 1000)
-        schema:
-          type: integer
-          default: 50
-      - name: id
+          default: full
+      - name: country
         in: path
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
+        description: An ISO/Alpha-2 country code to display any special mandatory parameters when ordering a Credit Report in that territory. 
         required: true
         schema:
           type: string
       responses:
         200:
           description: ""
-          headers:
-            X-Total-Count:
-              description: Total number of matching records
-              schema:
-                type: integer
-            Link:
-              description: Link headers (see https://tools.ietf.org/html/rfc5988#page-6)
-              schema:
-                type: string
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  totalCount: 1
-                  paging:
-                    size: 50
-                    last: 0
-                  data:
-                  - eventId: 46768998
-                    companyId: DE01994341
-                    portfolioId: 19425
-                    ruleName: COMPANY_NAME_CHANGED
-                    localEventCode: COMPANY_NAME_CHANGED
-                    globalEventCode: NC
-                    newValue: 'new company name '
-                    oldValue: previous company name
-                    eventDate: 2018-10-05T14:00:00
-                    createdDate: 2018-12-24T12:31:06
+                  customData:
+                  - key: de_reason_code
+                    optional: false
+                    allowedValues:
+                    - "1"
+                    - "2"
+                    - "3"
+                    - "4"
+                    - "5"
+                    - "6"
+                    - "7"
+                    - "8"
+                    description: |-
+                      DE report retrieval reason code:
+                      1 - Credit Decisioning
+                      2 - Credit Assessment - Future business connection (with credit risk)
+                      3 - Credit Assessment - Existing business connection (with credit risk)
+                      4 - Realisation check receivables collection
+                      5 - Purchase Contract - Intention of signature of purchase contract (with credit risk)
+                      6 - Goods Credit Insurance (with credit risk)
+                      7 - Contract - Intention of signature of leasing or rent contract (with credit risk)
+                      8 - Insurance Contract - Intention of signature of a insurance contract (with credit risk)
+                  country: DE
           x-amf-mediaType: application/json
         400:
           description: ""
@@ -1110,45 +1004,146 @@ paths:
               schema:
                 type: object
                 example:
-                  message: 'Event resource not found '
+                  message: 'Resource not found '
           x-amf-mediaType: application/json
-    x-amf-description: A collection of events
-  /monitoring/eventRules:
+    x-amf-displayName: Report Request Data
+    x-amf-description: A set of available/required company report custom data key/value
+      pairs.
+  /images/companies:
     get:
+      security: []
       tags:
-      - Monitoring Companies
-      description: Get all eventRules, optionally filtered
+      - Images
+      description: Returns what Images are available for a given Company Connect Id.
+      operationId: "Company Image Documents"
       parameters:
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
-        required: true
+      - $ref: '#/components/parameters/authHeader'
+      - name:  Id
+        in: query
+        description: Company Connect Id.
+        schema:
+          type: string
+      - name: olderThan
+        in: query
+        description: Returns Images older than this date. Use with newerThan parameter.
+        schema:
+          type: string
+      - name: newerThan
+        in: query
+        description: Returns Images newer than this date. Use with olderThan parameter.
         schema:
           type: string
       responses:
         200:
           description: ""
-          headers:
-            X-Total-Count:
-              description: Total number of matching records
+          content:
+            application/json:
               schema:
-                type: integer
+                $ref: '#/components/schemas/listCompanyImages'
+          x-amf-mediaType: application/json
+          x-amf-responsePayloads:
+          - mediaType: text/html
+            schema: {}
+          - mediaType: application/pdf
+            schema: {}
+          - mediaType: text/pdf
+            schema: {}
+        401:
+          description: ""
           content:
             application/json:
               schema:
                 type: object
                 example:
-                - isActive: 0
-                  ruleCode: 101
-                  ruleCountryCode: XX
-                  ruleType: 4
-                  ruleTypeName: Rating band change - 3 input
-                  name: International Rating  |Reduce by {0} Band(s) OR Less than
-                    Band {1}
-                  param0: "1"
-                  param1: A
+                  message: 
           x-amf-mediaType: application/json
+        404:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Resource not found
+          x-amf-mediaType: application/json
+          x-codegen-request-body-name: generated
+      x-amf-displayName: Company Images.
+      x-amf-description: Gets Images for a given Company         
+  /images/companies/types:
+    get:
+      security: []
+      tags:
+      - Images
+      description: Returns the type of Image that can be returned by for additional meta data.
+      operationId: "Image Document Category Types"
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - name:  countries
+        in: query
+        description: Filter Images by country.
+        schema:
+          type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gbImageTypesResponse'
+          x-amf-mediaType: application/json
+          x-amf-responsePayloads:
+          - mediaType: text/html
+            schema: {}
+          - mediaType: application/pdf
+            schema: {}
+          - mediaType: text/pdf
+            schema: {}
+        401:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 
+          x-amf-mediaType: application/json
+        404:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Resource not found
+          x-amf-mediaType: application/json
+          x-codegen-request-body-name: generated
+      x-amf-displayName: List Image Types
+      x-amf-description:
+  /images/{imageId}:
+    get:
+      tags:
+      - Images
+      description: Endpoint to order an Image Document by Image ID.
+      operationId: Company Image
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - name: imageId
+        in: path
+        description: Image ID retrieved from `images/companies`
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Image object as a binary stream.
+          x-amf-mediaType: application/json
+          x-amf-responsePayloads:
+          - mediaType: text/html
+            schema: {}
+          - mediaType: application/pdf
+            schema: {}
+          - mediaType: text/pdf
+            schema: {}
         400:
           description: ""
           content:
@@ -1167,6 +1162,266 @@ paths:
                 example:
                   message: Access forbidden
           x-amf-mediaType: application/json
+        404:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Resource not found '
+          x-amf-mediaType: application/json
+  /freshInvestigations:
+    post:
+      tags:
+      - Fresh Investigations
+      description: "Places an order for a Fresh Investigation (Offline Report). Providing as much detail as   possible about the Company, our team will use official sources and registries to quickly answer questions about a company’s stability and financial health. Fresh Investigations take 5.5 days on average to complete."
+      operationId: Request Fresh Investigation
+      parameters: 
+      - $ref: '#/components/parameters/authHeader'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createFreshInvestigationRequest'
+      responses:
+        400:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Bad request
+          x-amf-mediaType: application/json
+        403:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Access forbidden
+          x-amf-mediaType: application/json
+        404:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Resource not found '
+    get:
+      security: []
+      tags:
+        - Fresh Investigations
+      operationId: "List Fresh Investigations"
+      parameters: 
+      - $ref: '#/components/parameters/authHeader'
+      - name:  Id
+        in: query
+        description: Company Connect Id.
+        schema:
+          type: string
+      description: "Returns a list of historic and ongoing Fresh Investigations." 
+      responses:
+          200:
+            description: ""
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/listFreshInvestigationResponse'
+          400:
+            description: ""
+            content:
+              application/json:
+                schema:
+                  type: object
+                  example:
+                    message: Bad request
+            x-amf-mediaType: application/json
+          403:
+            description: ""
+            content:
+              application/json:
+                schema:
+                  type: object
+                  example:
+                    message: Access forbidden
+            x-amf-mediaType: application/json
+          404:
+            description: ""
+            content:
+              application/json:
+                schema:
+                  type: object
+                  example:
+                    message: 'Resource not found '
+            x-amf-mediaType: application/json
+  /freshInvestigations/{orderId}: 
+    delete:
+        tags: 
+        - Fresh Investigations
+        operationId: Delete Pending Fresh Invesitgation
+        description: "Delete pending Fresh Investigation Orders"
+        parameters:
+        - $ref: '#/components/parameters/authHeader'
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+        responses:
+          200:
+            description: ""
+            content:
+              application/json:
+                schema:
+                  type: object
+                  example:
+                    message: 'Delete request has been made successfully on FreshInvestigation OrderId :{orderId}'
+                             
+            x-amf-mediaType: application/json
+          400:
+            description: ""
+            content:
+              application/json:
+                schema:
+                  type: object
+                  example:
+                    message: Bad request
+            x-amf-mediaType: application/json
+          403:
+            description: ""
+            content:
+              application/json:
+                schema:
+                  type: object
+                  example:
+                    message: Access forbidden
+            x-amf-mediaType: application/json
+    put:  
+      tags:
+      - Fresh Investigations
+      description: Edit Fresh Investigation
+      operationId: Edit Pending Fresh Investigation
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'FreshInvestigation OrderId: {orderId} is being updated'
+        400:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Bad request
+          x-amf-mediaType: application/json
+        403:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Access forbidden
+          x-amf-mediaType: application/json
+        404:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Portfolio not found
+          x-amf-mediaType: application/json
+  /monitoring/user/details:
+    get:
+      tags:
+      - Global Monitoring
+      description: Endpoint to return all user details relating to the Global Monitoring product.
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      responses:
+        200:
+          description: "An array object containing the user's details."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/userDetails'
+          x-amf-mediaType: application/json
+    x-amf-description: Returns User details Object
+  /monitoring/companies/{id}/events:
+    get:
+      tags:
+      - Global Monitoring
+      description: Endpoint to return a collection of `events` for the given company, optionally filtered on the supplied search criteria. Event information will only be returned if the company exists in at least one of your `portfolios`. 
+      parameters:
+      - $ref: '#/components/parameters/startDate'
+      - $ref: '#/components/parameters/endDate'
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/pageSize'
+      - name: id
+        in: path
+        description: The Connect Id of the company that you wish to retrieve events for.
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/authHeader'
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/companyEventsResponse'
+          x-amf-mediaType: application/json
+        400:
+          $ref: '#/components/responses/BadRequest'
+        403:
+          $ref: '#/components/responses/AccessForbidden'
+        404:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Event resource not found '
+          x-amf-mediaType: application/json
+    x-amf-description: A collection of notification events
+  /monitoring/eventRules:
+    get:
+      tags:
+      - Global Monitoring
+      description: Get all available notification event rules. Notification event rules allow you to control which events you wish to monitor for the `companies` contained within a given `portfolio`.
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/eventRulesResponse'
+          x-amf-mediaType: application/json
+        400:
+          $ref: '#/components/responses/BadRequest'
+        403:
+          $ref: '#/components/responses/AccessForbidden'
         404:
           description: ""
           content:
@@ -1180,65 +1435,30 @@ paths:
   /monitoring/eventRules/{countryCode}:
     get:
       tags:
-      - Monitoring Companies
-      description: Get all eventRules, optionally filtered
+      - Global Monitoring
+      description: Get all available notification event rules for the given `countryCode`. Notification event rules allow you to control which events you wish to monitor for the `companies` contained within a given `portfolio`.
       parameters:
       - name: countryCode
         in: path
-        description: Country code to show events for
+        description: ISO/Alpha 2 format country code for which notification event rules will be retured.
         required: true
         schema:
           maxLength: 2
           minLength: 2
           type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
-        required: true
-        schema:
-          type: string
+      - $ref: '#/components/parameters/authHeader'
       responses:
         200:
           description: ""
-          headers:
-            X-Total-Count:
-              description: Total number of matching records
-              schema:
-                type: integer
           content:
             application/json:
               schema:
-                type: object
-                example:
-                - isActive: 0
-                  ruleCode: 101
-                  ruleCountryCode: XX
-                  ruleType: 4
-                  ruleTypeName: Rating band change - 3 input
-                  name: International Rating  |Reduce by {0} Band(s) OR Less than
-                    Band {1}
-                  param0: "1"
-                  param1: A
+                $ref: '#/components/schemas/eventRulesResponse'
           x-amf-mediaType: application/json
         400:
-          description: ""
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Bad request
-          x-amf-mediaType: application/json
+          $ref: '#/components/responses/BadRequest'
         403:
-          description: ""
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Access forbidden
-          x-amf-mediaType: application/json
+          $ref: '#/components/responses/AccessForbidden'
         404:
           description: ""
           content:
@@ -1252,98 +1472,28 @@ paths:
   /monitoring/notificationEvents:
     get:
       tags:
-      - Monitoring Companies
-      description: Get all notificationEvents, optionally filtered
+      - Global Monitoring
+      description: Get all notification events generated for companies monitored in your portfolios, based on the notification rules enabled. The notification events returned will be filtered based upon the supplied search criteria.
       parameters:
-      - name: sortBy
-        in: query
-        description: Sort results by this column. Null values of sort column are listed
-          after non-nulls.
-        required: true
-        schema:
-          type: string
-          default: companyName
-          enum:
-          - companyName
-          - countryCode
-          - eventId
-          - eventDate
-      - name: page
-        in: query
-        description: Starting page number (indexed from 0)
-        schema:
-          type: integer
-          default: 0
-      - name: pageSize
-        in: query
-        description: Number of items to return per Page (max 1000)
-        schema:
-          type: integer
-          default: 50
       - name: searchQuery
         in: query
         description: Return notificationEvents that match the given value
         schema:
           type: string
-      - name: sortDir
-        in: query
-        schema:
-          type: string
-          default: asc
-          enum:
-          - asc
-          - desc
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
-        required: true
-        schema:
-          type: string
+      - $ref: '#/components/parameters/sortBy'
+      - $ref: '#/components/parameters/sortDir'
+      - $ref: '#/components/parameters/startDate'
+      - $ref: '#/components/parameters/endDate'
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/pageSize'
+      - $ref: '#/components/parameters/authHeader'
       responses:
         200:
           description: ""
-          headers:
-            X-Total-Count:
-              description: Total number of matching records
-              schema:
-                type: integer
-            Link:
-              description: Link headers (see https://tools.ietf.org/html/rfc5988#page-6)
-              schema:
-                type: string
           content:
             application/json:
               schema:
-                type: object
-                additionalProperties:
-                  type: object
-          x-amf-mediaType: application/json
-          x-amf-responsePayloads:
-          - mediaType: appplication/json
-            schema:
-              example:
-                totalCount: 4
-                paging:
-                  size: 50
-                  last: 0
-                data:
-                - company:
-                    id: DE-0-DE01994341
-                    safeNumber: DE01994341
-                    name: Bank Bau KG
-                    countryCode: DE
-                    portfolioId: 19425
-                    portfolioName: TestData
-                  eventId: 46768998
-                  eventDate: ""
-                  newValue: 'new company name '
-                  oldValue: previous company name
-                  createdDate: ""
-                  notificationEventId: 755394
-                  ruleCode: 104
-                  ruleName: Company Name
-                  ruleText: Some text about the rule
+                $ref: '#/components/schemas/notificationEventsResponse'
         400:
           description: ""
           content:
@@ -1382,9 +1532,10 @@ paths:
   /monitoring/portfolios:
     get:
       tags:
-      - Monitoring Companies
-      description: Get all portfolios, optionally filtered
+      - Global Monitoring
+      description: Endpoint to get all Portfolios based on the supplied Search Criteria.
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: searchQuery
         in: query
         description: Return portfolios that match the given value
@@ -1392,23 +1543,16 @@ paths:
           type: string
       - name: page
         in: query
-        description: Starting page number (indexed from 0)
+        description: Starting page number (indexed from 0).
         schema:
           type: integer
           default: 0
       - name: pageSize
         in: query
-        description: Number of items to return per Page (max 1000)
+        description: Number of items to return per Page (max 1000).
         schema:
           type: integer
           default: 50
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
-        required: true
-        schema:
-          type: string
       responses:
         200:
           description: ""
@@ -1434,7 +1578,7 @@ paths:
                     portfolios:
                     - portfolioId: 20195
                       name: Connect Portfolio
-                      isDefault: false
+                      isDefault: true
                       isSharedPortfolio: 0
                     sharedPortfolios: []
           x-amf-mediaType: application/json
@@ -1467,23 +1611,12 @@ paths:
           x-amf-mediaType: application/json
     post:
       tags:
-      - Monitoring Companies
-      description: Create a new Portfolio
+      - Global Monitoring
+      description: Endpoint to create a new Portfolio based on the supplied criteria. A portfolio can contain any number of `companies` that you wish to monitor changes to.
       parameters:
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
-        required: true
-        schema:
-          type: string
+      - $ref: '#/components/parameters/authHeader'
       requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              example: toDo
-        required: false
+        $ref: '#/components/requestBodies/PortfolioRequest'
       responses:
         200:
           description: ""
@@ -1493,8 +1626,8 @@ paths:
                 type: object
                 example:
                   portfolioId: 20398
-                  name: Connect Portfolio
-                  isDefault: false
+                  name: My New Portfolio
+                  isDefault: true
           x-amf-mediaType: application/json
         400:
           description: ""
@@ -1528,18 +1661,12 @@ paths:
   /monitoring/portfolios/{portfolioId}:
     get:
       tags:
-      - Monitoring Companies
+      - Global Monitoring
       description: Get the portfolio with portfolioId = portfolioId}
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
         in: path
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
         required: true
         schema:
           type: string
@@ -1586,18 +1713,12 @@ paths:
           x-amf-mediaType: application/json
     delete:
       tags:
-      - Monitoring Companies
+      - Global Monitoring
       description: Delete the portfolio with portfolioId
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
         in: path
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
         required: true
         schema:
           type: string
@@ -1640,18 +1761,12 @@ paths:
           x-amf-mediaType: application/json
     patch:
       tags:
-      - Monitoring Companies
+      - Global Monitoring
       description: Update Portfolio details
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
         in: path
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
         required: true
         schema:
           type: string
@@ -1698,19 +1813,13 @@ paths:
   /monitoring/portfolios/{portfolioId}/countries:
     get:
       tags:
-      - Monitoring Companies
+      - Global Monitoring
       description: Get a list of distinct countries of companies monitored with in
         a portfolio
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
         in: path
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
         required: true
         schema:
           type: string
@@ -1762,62 +1871,28 @@ paths:
   /monitoring/portfolios/{portfolioId}/eventRules:
     get:
       tags:
-      - Monitoring Companies
-      description: Get all eventRules, optionally filtered
+      - Global Monitoring
+      description: Get all notification `eventRules` for the given `portfolioId`. Notification event rules allow you to control which events you wish to monitor for the `companies` contained within the given `portfolio`.
       parameters:
       - name: portfolioId
         in: path
+        description: The unique identifier for the portfolio that you wish to retrieve notification event rules for, obtained from `/portfolios`.
         required: true
         schema:
           type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
-        required: true
-        schema:
-          type: string
+      - $ref: '#/components/parameters/authHeader'
       responses:
         200:
-          description: ""
-          headers:
-            X-Total-Count:
-              description: Total number of matching records
-              schema:
-                type: integer
+          description: "An array of `eventRules` for the given `portfolioId`."
           content:
             application/json:
               schema:
-                type: object
-                example:
-                - isActive: 0
-                  ruleCode: 101
-                  ruleCountryCode: XX
-                  ruleType: 4
-                  ruleTypeName: Rating band change - 3 input
-                  name: International Rating  |Reduce by {0} Band(s) OR Less than
-                    Band {1}
-                  param0: "1"
-                  param1: A
+                $ref: '#/components/schemas/eventRulesResponse'
           x-amf-mediaType: application/json
         400:
-          description: ""
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Bad request
-          x-amf-mediaType: application/json
+          $ref: '#/components/responses/BadRequest'
         403:
-          description: ""
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Access forbidden
-          x-amf-mediaType: application/json
+          $ref: '#/components/responses/AccessForbidden'
         404:
           description: ""
           content:
@@ -1831,9 +1906,10 @@ paths:
   /monitoring/portfolios/{portfolioId}/eventRules/{countryCode}:
     get:
       tags:
-      - Monitoring Companies
+      - Global Monitoring
       description: Get all eventRules, optionally filtered
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
         in: path
         required: true
@@ -1846,13 +1922,6 @@ paths:
         schema:
           maxLength: 2
           minLength: 2
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
-        required: true
-        schema:
           type: string
       responses:
         200:
@@ -1906,9 +1975,10 @@ paths:
           x-amf-mediaType: application/json
     put:
       tags:
-      - Monitoring Companies
+      - Global Monitoring
       description: Update eventRules
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
         in: path
         required: true
@@ -1921,13 +1991,6 @@ paths:
         schema:
           maxLength: 2
           minLength: 2
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
-        required: true
-        schema:
           type: string
       requestBody:
         content:
@@ -2025,18 +2088,12 @@ paths:
   /monitoring/portfolios/{portfolioId}/eventRules/setDefault:
     put:
       tags:
-      - Monitoring Companies
+      - Global Monitoring
       description: Update (set) event rules to default based on the portfolio id
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
         in: path
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
         required: true
         schema:
           type: string
@@ -2075,18 +2132,12 @@ paths:
   /monitoring/portfolios/{portfolioId}/import:
     post:
       tags:
-      - Monitoring Companies
+      - Global Monitoring
       description: Import companies in to a portfolio
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
         in: path
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
         required: true
         schema:
           type: string
@@ -2139,19 +2190,13 @@ paths:
   /monitoring/portfolios/{portfolioId}/sync:
     post:
       tags:
-      - Monitoring Companies
+      - Global Monitoring
       description: Delete companies from portfolio and update new companies from CSV
         file
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
         in: path
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
         required: true
         schema:
           type: string
@@ -2205,18 +2250,12 @@ paths:
   /monitoring/portfolios/{portfolioId}/riskSummary:
     get:
       tags:
-      - Monitoring Companies
+      - Global Monitoring
       description: Get current portfolio risk summary information
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
         in: path
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
         required: true
         schema:
           type: string
@@ -2271,10 +2310,11 @@ paths:
   /monitoring/portfolios/{portfolioId}/notificationEvents:
     get:
       tags:
-      - Monitoring Companies
+      - Global Monitoring
       description: Get all notificationEvents based on the portfolio id , optionally
         filtered
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: searchQuery
         in: query
         description: Return notificationEvents that match the given value
@@ -2316,13 +2356,6 @@ paths:
           - textValueEn
       - name: portfolioId
         in: path
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
         required: true
         schema:
           type: string
@@ -2405,9 +2438,10 @@ paths:
   /monitoring/portfolios/{portfolioId}/companies:
     get:
       tags:
-      - Monitoring Companies
+      - Global Monitoring
       description: Get all companies, optionally filtered
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: searchQuery
         in: query
         description: Return companies that match the given value
@@ -2438,13 +2472,6 @@ paths:
           default: false
       - name: portfolioId
         in: path
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
         required: true
         schema:
           type: string
@@ -2519,18 +2546,12 @@ paths:
           type: string | nil
     post:
       tags:
-      - Monitoring Companies
+      - Global Monitoring
       description: Add new company to portfolio
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
         in: path
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
         required: true
         schema:
           type: string
@@ -2587,9 +2608,10 @@ paths:
   /monitoring/portfolios/{portfolioId}/companies/copy:
     post:
       tags:
-      - Monitoring Companies
+      - Global Monitoring
       description: Copy companies from one portfolio to single (or) multiple portfolios.
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: copyAll
         in: query
         description: When CopyAll queryparameter is False, portfolios and companies
@@ -2601,13 +2623,6 @@ paths:
           default: false
       - name: portfolioId
         in: path
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
         required: true
         schema:
           type: string
@@ -2678,9 +2693,10 @@ paths:
   /monitoring/portfolios/{portfolioId}/companies/remove:
     post:
       tags:
-      - Monitoring Companies
+      - Global Monitoring
       description: Move companies from one portfolio to single (or) multiple portfolios.
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: removeAll
         in: query
         description: When RemoveAll queryparameter is False, portfolios and companies
@@ -2692,13 +2708,6 @@ paths:
           default: false
       - name: portfolioId
         in: path
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
         required: true
         schema:
           type: string
@@ -2769,9 +2778,10 @@ paths:
   /monitoring/portfolios/{portfolioId}/companies/clear:
     patch:
       tags:
-      - Monitoring Companies
+      - Global Monitoring
       description: Delete companies from current portfolio
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: clearAll
         in: query
         description: When ClearAll queryparameter is False,Companies List needs to
@@ -2782,13 +2792,6 @@ paths:
           default: false
       - name: portfolioId
         in: path
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
         required: true
         schema:
           type: string
@@ -2847,12 +2850,13 @@ paths:
   /monitoring/portfolios/{portfolioId}/companies/{id}:
     get:
       tags:
-      - Monitoring Companies
+      - Global Monitoring
       description: |
         Get the company
         with companyId =
         {companyId}
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
         in: path
         required: true
@@ -2860,13 +2864,6 @@ paths:
           type: string
       - name: id
         in: path
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
         required: true
         schema:
           type: string
@@ -2922,9 +2919,10 @@ paths:
           x-amf-mediaType: application/json
     delete:
       tags:
-      - Monitoring Companies
+      - Global Monitoring
       description: Delete a Company
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
         in: path
         required: true
@@ -2932,13 +2930,6 @@ paths:
           type: string
       - name: id
         in: path
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
         required: true
         schema:
           type: string
@@ -2981,7 +2972,7 @@ paths:
           x-amf-mediaType: application/json
     patch:
       tags:
-      - Monitoring Companies
+      - Global Monitoring
       description: Updates a Company
       parameters:
       - name: portfolioId
@@ -2994,13 +2985,7 @@ paths:
         required: true
         schema:
           type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
-        required: true
-        schema:
-          type: string
+      -  $ref: '#/components/parameters/authHeader'
       requestBody:
         content:
           application/json:
@@ -3044,10 +3029,11 @@ paths:
   /monitoring/portfolios/{portfolioId}/companies/{id}/notificationEvents:
     get:
       tags:
-      - Monitoring Companies
+      - Global Monitoring
       description: List of notification events based on the connect id , optionally
         filtered
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: searchQuery
         in: query
         description: Return notificationEvents that match the given value
@@ -3093,13 +3079,6 @@ paths:
           type: string
       - name: id
         in: path
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
         required: true
         schema:
           type: string
@@ -3182,18 +3161,12 @@ paths:
   /monitoring/portfolios/{portfolioId}/sharingPermissions:
     get:
       tags:
-      - Monitoring Companies
+      - Global Monitoring
       description: Retrieve user permissions within the customer for portfolio Id
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
         in: path
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
         required: true
         schema:
           type: string
@@ -3244,19 +3217,13 @@ paths:
           x-amf-mediaType: application/json
     patch:
       tags:
-      - Monitoring Companies
+      - Global Monitoring
       description: Update/Create user permissions within the customer for portfolio
         Id
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
         in: path
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
         required: true
         schema:
           type: string
@@ -3323,6 +3290,7 @@ paths:
       description: Get Decision(s) for the company based on the Provenir Decision
         flow
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: companyId
         in: query
         description: the id of the company we want a decision on
@@ -3343,13 +3311,6 @@ paths:
       - name: provenirId
         in: path
         description: the identifier of the decision flow we want to call.
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
         required: true
         schema:
           type: string
@@ -3402,6 +3363,7 @@ paths:
       description: Send a Decision(s) for the company based on the Provenir Decision
         flow
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: companyId
         in: query
         description: the id of the company we want a decision on
@@ -3422,13 +3384,6 @@ paths:
       - name: provenirId
         in: path
         description: the identifier of the decision flow we want to call.
-        required: true
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
         required: true
         schema:
           type: string
@@ -3496,6 +3451,7 @@ paths:
         User ID.
       operationId: Get Decision Trees
       parameters:
+      - $ref: '#/components/parameters/authHeader'
       - name: type
         in: query
         description: Filter the list of available decision trees by the provided tree
@@ -3527,13 +3483,6 @@ paths:
       - name: callRef
         in: query
         description: Call Reference
-        schema:
-          type: string
-      - name: Authorization
-        in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
-        required: true
         schema:
           type: string
       responses:
@@ -3572,66 +3521,78 @@ paths:
                   message: Resource not found.
           x-amf-mediaType: application/json
     x-amf-description: Returns a List of GUID's and Friendly Name for particular UserId
-  /reportcustomdata/{country}:
-    get:
-      tags:
-      - Companies
-      description: Endpoint to return mandatory parameters or metadata associated with specific country Company Report requests. To add a custom data parameter, add a Parameter with the key=value pair in the format customData=key::allowedValue 
-        I.e. Suppling `DE` as a country code will return a list of reasons for requesting a DE Credit Report (which is a legal requirement to supply with each Credit Report request in Germany). This will provide a list of allowedValues to enter into the mandatory Parameter `customData` = `de_reason_code::allowedValue`
-      operationId: Custom Report Parameters
-      parameters:
-      - name: template
-        in: query
-        description: Report template (currently unncessary to provide.)       
-        schema:
-          type: string
-          default: full
-      - name: country
-        in: path
-        description: An ISO/Alpha-2 country code to display any special mandatory parameters when ordering a Credit Report in that territory. 
-        required: true
-        schema:
-          type: string
-      - name: Authorization
+          
+          
+components:
+   parameters:
+      authHeader:
+        name: Authorization
         in: header
-        description: Authentication Token obtained from /authenticate. Can be expressed
-          in the format "bearer tokenValue" or "tokenValue" alone."
+        description: Bearer JWT (Authentication Token) generated from the /authenticate endpoint.
         required: true
         schema:
           type: string
-      responses:
-        200:
-          description: ""
+      startDate:
+        name: startDate
+        in: query
+        description: The start date on which results are filtered.
+        schema:
+          type: string
+          format: date-time
+      endDate:
+        name: endDate
+        in: query
+        description: The end date on which results are filtered.
+        schema:
+          type: string
+          format: date-time
+      page:
+        name: page
+        in: query
+        description: Starting page number (indexed from 0)
+        schema:
+          type: integer
+          default: 0
+      pageSize:
+        name: pageSize
+        in: query
+        description: Number of items to return per Page (max 1000)
+        schema:
+          type: integer
+          default: 50
+      sortBy:
+        name: sortBy
+        in: query
+        description: Sort results by this column. Null values of sort column are listed
+          after non-nulls.
+        schema:
+          type: string
+          default: companyName
+          enum:
+          - companyName
+          - countryCode
+          - eventId
+          - eventDate
+      sortDir:
+        name: sortDir
+        in: query
+        description: The direction that you wish to sort results by.
+        schema:
+          type: string
+          default: asc
+          enum:
+          - asc
+          - desc
+   requestBodies:
+        PortfolioRequest:
+          description: A JSON object containing portfolio information.
+          required: true
           content:
             application/json:
               schema:
-                type: object
-                example:
-                  customData:
-                  - key: de_reason_code
-                    optional: false
-                    allowedValues:
-                    - "1"
-                    - "2"
-                    - "3"
-                    - "4"
-                    - "5"
-                    - "6"
-                    - "7"
-                    - "8"
-                    description: |-
-                      DE report retrieval reason code:
-                      1 - Credit Decisioning
-                      2 - Credit Assessment - Future business connection (with credit risk)
-                      3 - Credit Assessment - Existing business connection (with credit risk)
-                      4 - Realisation check receivables collection
-                      5 - Purchase Contract - Intention of signature of purchase contract (with credit risk)
-                      6 - Goods Credit Insurance (with credit risk)
-                      7 - Contract - Intention of signature of leasing or rent contract (with credit risk)
-                      8 - Insurance Contract - Intention of signature of a insurance contract (with credit risk)
-                  country: DE
-          x-amf-mediaType: application/json
-        400:
+                $ref: '#/components/schemas/portfolioRequest'
+   responses:
+        BadRequest:
           description: ""
           content:
             application/json:
@@ -3640,459 +3601,478 @@ paths:
                 example:
                   message: Bad request
           x-amf-mediaType: application/json
-        403:
-          description: ""
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Access forbidden
-          x-amf-mediaType: application/json
-        404:
-          description: ""
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: 'Resource not found '
-          x-amf-mediaType: application/json
-    x-amf-displayName: Report Request Data
-    x-amf-description: A set of available/required company report custom data key/value
-      pairs.
-components:
-  schemas:
-    authenticationRequest:
-      type: object
-      properties:
-        username:
-          type: string
-        password:
-          type: string
-      example:
-        username: username@domain.com
-        password: dfjsdfdn
-    authenticationSuccessResponse:
-      type: object
-      properties:
-        token:
-          type: string
-      example:
-        token: eyJraWQiOiJEbUZkQXVITDNKS1hMZFpBcXdTREx2S01tOE5qeE1lXC94eDg3a0Y1ZDR3VT0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiI0Mjk1ZDIwOC1jZjlkLTRhMzYtYjcxMi0yN2VmODQzYWEzZTUiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tXC9ldS13ZXN0LTFfcUNmOURsUVhmIiwiY29nbml0bzp1c2VybmFtZSI6ImNvbm5lY3R1c2VyMzhAbWFpbGluYXRvci5jb20iLCJjdXN0b206Y3NVc2VySWQiOiIxMDAwMDE3Mzc4IiwiYXVkIjoiNXY1ZXJjaHJhdHRiMnFlZDQ2dDJ2OGJ0ZmUiLCJjdXN0b206Y3NVc2VyQ291bnRyeUNvZGUiOiJHQiIsImV2ZW50X2lkIjoiZjY5NTA4NTctMDUwOC0xMWU5LWIxYTYtMjM5ZmMxZWMwMzBlIiwidG9rZW5fdXNlIjoiaWQiLCJjdXN0b206Y3NVc2VyTGFuZ3VhZ2VDb2RlIjoiZW4iLCJhdXRoX3RpbWUiOjE1NDUzODcxNjYsImV4cCI6MTU0NTM5MDc2NiwiaWF0IjoxNTQ1Mzg3MTY2LCJlbWFpbCI6ImNvbm5lY3R1c2VyMzhAbWFpbGluYXRvci5jb20ifQ.YhD6Nr2798pe8Ct1djygKtR7pibzzeHGgWpnduaaKMf468cJyEPH_A7qpcGWDeur0NuYUQvNCAbmtSj_uQWkajOgjwJE3Mt0URVsDDvtdYt3ggRZl6-mByQAcP50HDUxH0SGNLnUeYhAkVbZqoc4PQme-WXwBsGAg2x_kWKRsicfmVfnXE67BDZ06mceC1WpPA72Kg6O-AWcPe5yIC3JpV2N1HWjuPym2fZGv13Rl1gCWSO0NACE069zT6pqePbBr5QWddf-GE6AI0lISmLyF_mTC0NYpGL_k5nl6H-K2mi6e-QcCcfz8eIQHGDFi_icPCXMAtS2WV5lTFw20loQdw
-    companySearchSuccessResult:
-      type: object
-      properties:
-        totalSize:
-          type: number
-        companies:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              country:
-                type: string
-              regNo:
-                type: string
-              vatNo:
-                type: object
-                properties: {}
-              safeNo:
-                type: string
-              name:
-                type: string
-              status:
-                type: string
-              officeType:
-                type: string
-              type:
-                type: string
-              statusDescription:
-                type: string
-              activityCode:
-                type: string
-              tradingNames:
-                type: object
-                properties: {}
-              address:
-                type: object
-                properties:
-                  simpleValue:
-                    type: string
-                  street:
-                    type: string
-                  city:
-                    type: string
-                  postCode:
-                    type: string
-                  province:
-                    type: string
-              dateOfLatestChange:
-                type: object
-                properties: {}
-              dateOfLatestCAccounts:
-                type: object
-                properties: {}
-      example:
-        totalSize: 10780
-        companies:
-        - id: GB001-1-3031798
-          country: GB
-          safeNo: UK10731246
-          name: BANKS
-          address:
-            simpleValue: KIMBOLTON ROAD, BOLNHURST, BEDFORD, BEDFORDSHIRE, MK44 2ES
-            street: BOLNHURST
-            city: BEDFORD
-            postalCode: MK44 2ES
-          status: Active
-          type: NonLtd
-          dateOfLatestChange: 2009-03-31T23:00:00.000Z
-        - id: GB001-0-04348058
-          country: GB
-          regNo: 4348058.0
-          safeNo: UK03996906
-          name: BANK LTD
-          address:
-            simpleValue: HESKETH HOUSE 43-45 PORTMAN SQUARE, 43-45 PORTMAN SQUARE,
-              LONDON, Greater London, W1H 6HN
-            street: 43-45 PORTMAN SQUARE
-            city: LONDON
-            postalCode: W1H 6HN
-          status: Active
-          type: Ltd
-          dateOfLatestAccounts: 2016-01-31T00:00:00.000000Z
-          dateOfLatestChange: 2018-07-04T15:43:14.000Z
-          activityCode: "9999"
-    peopleSearchSuccessResult:
-      type: object
-      properties:
-        totalSize:
-          type: integer
-        directors:
-          type: array
-          items:
-            type: object
-            properties:
-              peopleId:
-                type: string
-              firstName:
-                type: string
-              lastName:
-                type: string
-              country:
-                type: string
-              company:
-                type: object
-                properties:
-                  id:
-                    type: string
-                  companyName:
-                    type: string
-                  companyNumber:
-                    type: string
-                  type:
-                    type: string
-                  regNo:
-                    type: string
-              address:
-                type: object
-                properties:
-                  simpleValue:
-                    type: string
-                  houseNo:
-                    type: string
-                  city:
-                    type: string
-                  postCode:
-                    type: string
-              status:
-                type: string
-              dateOfLatestChange:
-                type: string
-              dateOfBirth:
-                type: string
-              localDirectorNumber:
-                type: string
-      example:
-        totalSize: 1
-        directors:
-          peopleId: GB-913399851
-          firstName: Matthew James
-          lastName: Debbage
-          country: GB
-          status: current
-          dateOfLatestChange: 2019-10-10T00:51:27.000Z
-          dateOfBirth: 1972-11-18T00:00:00.000000Z
-          localDirectorNumber: UK913399851
-    monitoringportfoliosportfolioId_emails:
-      required:
-      - emailAddress
-      type: object
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        emailAddress:
-          type: string
-      example: '{"firstName":"Bob","lastName":"Smith","emailAddress":"bob.smith@adomain.com"}'
-    monitoringportfolios_emails:
-      type: object
-      properties:
-        firstName:
-          type: object
-          x-amf-union:
-          - type: string
-          - type: null
-        lastName:
-          type: object
-          x-amf-union:
-          - type: string
-          - type: null
-        emailAddress:
-          type: object
-          x-amf-union:
-          - type: string
-          - type: null
-      example: '{"firstName":"Bob","lastName":"Smith","emailAddress":"bob.smith@adomain.com"}'
-    gbCompanyReportExampleResponse:
-      type: object
-      properties:
-        orderId:
-          type: string
-        companyId:
-          type: string
-        dateOfOrder:
-          type: string
-        language:
-          type: string
-        userId:
-          type: string
-        report:
-          type: object
-          properties:
-            companyId:
-              type: string
-            language:
-              type: string
-            companySummary:
+        AccessForbidden:
+            description: ""
+            content:
+              application/json:
+                schema:
+                  type: object
+                  example:
+                    message: Access forbidden
+            x-amf-mediaType: application/json
+
+   schemas:
+      authenticationRequest:
+        type: object
+        properties:
+          username:
+            type: string
+          password:
+            type: string
+        example:
+          username: username@domain.com
+          password: dfjsdfdn_23oqf235;fsa
+      authenticationSuccessResponse:
+        type: object
+        properties:
+          token:
+            type: string
+        example:
+          token: eyJraWQiOiJEbUZkQXVITDNKS1hMZFpBcXdTREx2S01tOE5qeE1lXC94eDg3a0Y1ZDR3VT0iLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiI0Mjk1ZDIwOC1jZjlkLTRhMzYtYjcxMi0yN2VmODQzYWEzZTUiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tXC9ldS13ZXN0LTFfcUNmOURsUVhmIiwiY29nbml0bzp1c2VybmFtZSI6ImNvbm5lY3R1c2VyMzhAbWFpbGluYXRvci5jb20iLCJjdXN0b206Y3NVc2VySWQiOiIxMDAwMDE3Mzc4IiwiYXVkIjoiNXY1ZXJjaHJhdHRiMnFlZDQ2dDJ2OGJ0ZmUiLCJjdXN0b206Y3NVc2VyQ291bnRyeUNvZGUiOiJHQiIsImV2ZW50X2lkIjoiZjY5NTA4NTctMDUwOC0xMWU5LWIxYTYtMjM5ZmMxZWMwMzBlIiwidG9rZW5fdXNlIjoiaWQiLCJjdXN0b206Y3NVc2VyTGFuZ3VhZ2VDb2RlIjoiZW4iLCJhdXRoX3RpbWUiOjE1NDUzODcxNjYsImV4cCI6MTU0NTM5MDc2NiwiaWF0IjoxNTQ1Mzg3MTY2LCJlbWFpbCI6ImNvbm5lY3R1c2VyMzhAbWFpbGluYXRvci5jb20ifQ.YhD6Nr2798pe8Ct1djygKtR7pibzzeHGgWpnduaaKMf468cJyEPH_A7qpcGWDeur0NuYUQvNCAbmtSj_uQWkajOgjwJE3Mt0URVsDDvtdYt3ggRZl6-mByQAcP50HDUxH0SGNLnUeYhAkVbZqoc4PQme-WXwBsGAg2x_kWKRsicfmVfnXE67BDZ06mceC1WpPA72Kg6O-AWcPe5yIC3JpV2N1HWjuPym2fZGv13Rl1gCWSO0NACE069zT6pqePbBr5QWddf-GE6AI0lISmLyF_mTC0NYpGL_k5nl6H-K2mi6e-QcCcfz8eIQHGDFi_icPCXMAtS2WV5lTFw20loQdw
+      companySearchSuccessResult:
+        type: object
+        properties:
+          totalSize:
+            type: number
+          companies:
+            type: array
+            items:
               type: object
               properties:
-                businessName:
+                id:
                   type: string
                 country:
                   type: string
-                companyNumber:
+                regNo:
                   type: string
-                companyRegistrationNumber:
+                vatNo:
+                  type: object
+                  properties: {}
+                safeNo:
                   type: string
-                mainActivity:
+                name:
+                  type: string
+                status:
+                  type: string
+                officeType:
+                  type: string
+                type:
+                  type: string
+                statusDescription:
+                  type: string
+                activityCode:
+                  type: string
+                tradingNames:
+                  type: object
+                  properties: {}
+                address:
                   type: object
                   properties:
-                    code:
+                    simpleValue:
                       type: string
-                    description:
+                    street:
                       type: string
-                    classification:
+                    city:
                       type: string
-                companyStatus:
+                    postCode:
+                      type: string
+                    province:
+                      type: string
+                dateOfLatestChange:
                   type: object
-                  properties:
-                    status:
-                      type: string
-                    description:
-                      type: string
-                latestTurnoverFigure:
+                  properties: {}
+                dateOfLatestCAccounts:
                   type: object
-                  properties:
-                    currency:
-                      type: string
-                    value:
-                      type: number
-                latestShareholdersEquityFigure:
-                  type: object
-                  properties:
-                    currency:
-                      type: string
-                    value:
-                      type: number
-                creditRating:
-                  type: object
-                  properties:
-                    commonValue:
-                      type: string
-                    commonDescription:
-                      type: string
-                    creditLimit:
-                      required:
-                      - currency
-                      - value
-                      type: object
-                      properties:
-                        currency:
-                          type: string
-                        value:
-                          type: string
-                    providerValue:
-                      type: object
-                      properties:
-                        maxValue:
-                          type: string
-                        minValue:
-                          type: string
-                        value:
-                          type: string
-                    providerDescription:
-                      type: string
-            companyIdentification:
+                  properties: {}
+        example:
+          totalSize: 10780
+          companies:
+          - id: GB001-1-3031798
+            country: GB
+            safeNo: UK10731246
+            name: BANKS
+            address:
+              simpleValue: KIMBOLTON ROAD, BOLNHURST, BEDFORD, BEDFORDSHIRE, MK44 2ES
+              street: BOLNHURST
+              city: BEDFORD
+              postalCode: MK44 2ES
+            status: Active
+            type: NonLtd
+            dateOfLatestChange: 2009-03-31T23:00:00.000Z
+          - id: GB001-0-04348058
+            country: GB
+            regNo: 4348058.0
+            safeNo: UK03996906
+            name: BANK LTD
+            address:
+              simpleValue: HESKETH HOUSE 43-45 PORTMAN SQUARE, 43-45 PORTMAN SQUARE,
+                LONDON, Greater London, W1H 6HN
+              street: 43-45 PORTMAN SQUARE
+              city: LONDON
+              postalCode: W1H 6HN
+            status: Active
+            type: Ltd
+            dateOfLatestAccounts: 2016-01-31T00:00:00.000000Z
+            dateOfLatestChange: 2018-07-04T15:43:14.000Z
+            activityCode: "9999"
+      peopleSearchSuccessResult:
+        type: object
+        properties:
+          totalSize:
+            type: integer
+          directors:
+            type: array
+            items:
               type: object
               properties:
-                basicInformation:
+                peopleId:
+                  type: string
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                country:
+                  type: string
+                company:
                   type: object
                   properties:
-                    businessName:
+                    id:
                       type: string
-                    registeredCompanyName:
+                    companyName:
                       type: string
-                    companyRegistrationNumber:
+                    companyNumber:
+                      type: string
+                    type:
+                      type: string
+                    regNo:
+                      type: string
+                address:
+                  type: object
+                  properties:
+                    simpleValue:
+                      type: string
+                    houseNo:
+                      type: string
+                    city:
+                      type: string
+                    postCode:
+                      type: string
+                status:
+                  type: string
+                dateOfLatestChange:
+                  type: string
+                dateOfBirth:
+                  type: string
+                localDirectorNumber:
+                  type: string
+        example:
+          totalSize: 1
+          directors:
+            peopleId: GB-913399851
+            firstName: Matthew James
+            lastName: Debbage
+            country: GB
+            status: current
+            dateOfLatestChange: 2019-10-10T00:51:27.000Z
+            dateOfBirth: 1972-11-18T00:00:00.000000Z
+            localDirectorNumber: UK913399851
+      gbImageTypesResponse:
+        type: object
+        properties:
+          country:
+            type: string
+          availableTypes:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                imageType:
+                  type: string
+                description:
+                  type: string
+                availableFormats:
+                  type: array
+                  items:
+                    type: string
+      listCompanyImages:
+          type: object
+          properties:
+           totalSize:
+            type: integer
+           data:
+            type: array
+            items:
+              type: object
+              properties:
+                imageId:
+                  type: string
+                company:
+                  type: object
+                  properties:
+                    id:
                       type: string
                     country:
                       type: string
-                    companyRegistrationDate:
+                    localId:
                       type: string
-                    legalForm:
-                      type: object
-                      properties:
-                        description:
-                          type: string
-                    companyStatus:
-                      type: object
-                      properties:
-                        status:
-                          type: string
-                        description:
-                          type: string
-                    principalActivity:
-                      type: object
-                      properties:
-                        description:
-                          type: string
-                        classification:
-                          type: string
-                    contactAddress:
-                      type: object
-                      properties:
-                        type:
-                          type: string
-                        simpleValue:
-                          type: string
-                        postalCode:
-                          type: string
-                activityClassifications:
-                  type: array
-                  items:
+                    name:
+                      type: string
+                document:
+                  type: object
+                  properties:
+                    imageType:
+                      type: string
+                    imageCode:
+                      type: string
+                    description:
+                      type: string
+                format:
+                  type: string
+                source:
+                  type: string
+                filingDate:
+                  type: string
+                uploadDate:
+                  type: string
+                accountingDate:
+                  type: string
+                language:
+                  type: string
+                comments:
+                  type: string
+                status:
+                  type: string
+                localProperties:
+                  type: object
+                  properties:
+                    accountRefNumber:
+                      type: string
+      gbCompanyReportExampleResponse:
+        type: object
+        properties:
+          orderId:
+            type: string
+          companyId:
+            type: string
+          dateOfOrder:
+            type: string
+          language:
+            type: string
+          userId:
+            type: string
+          report:
+            type: object
+            properties:
+              companyId:
+                type: string
+              language:
+                type: string
+              companySummary:
+                type: object
+                properties:
+                  businessName:
+                    type: string
+                  country:
+                    type: string
+                  companyNumber:
+                    type: string
+                  companyRegistrationNumber:
+                    type: string
+                  mainActivity:
                     type: object
                     properties:
+                      code:
+                        type: string
+                      description:
+                        type: string
                       classification:
                         type: string
-                      activities:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            code:
-                              type: string
-                            description:
-                              type: string
-                previousNames:
-                  type: array
-                  items:
+                  companyStatus:
                     type: object
                     properties:
-                      name:
+                      status:
                         type: string
-                      dateChanged:
+                      description:
                         type: string
-            creditScore:
-              type: object
-              properties:
-                currentCreditRating:
-                  type: object
-                  properties:
-                    commonValue:
-                      type: string
-                    commonDescription:
-                      type: string
-                    creditLimit:
+                  latestTurnoverFigure:
+                    type: object
+                    properties:
+                      currency:
+                        type: string
+                      value:
+                        type: number
+                  latestShareholdersEquityFigure:
+                    type: object
+                    properties:
+                      currency:
+                        type: string
+                      value:
+                        type: number
+                  creditRating:
+                    type: object
+                    properties:
+                      commonValue:
+                        type: string
+                      commonDescription:
+                        type: string
+                      creditLimit:
+                        required:
+                        - currency
+                        - value
+                        type: object
+                        properties:
+                          currency:
+                            type: string
+                          value:
+                            type: string
+                      providerValue:
+                        type: object
+                        properties:
+                          maxValue:
+                            type: string
+                          minValue:
+                            type: string
+                          value:
+                            type: string
+                      providerDescription:
+                        type: string
+              companyIdentification:
+                type: object
+                properties:
+                  basicInformation:
+                    type: object
+                    properties:
+                      businessName:
+                        type: string
+                      registeredCompanyName:
+                        type: string
+                      companyRegistrationNumber:
+                        type: string
+                      country:
+                        type: string
+                      companyRegistrationDate:
+                        type: string
+                      legalForm:
+                        type: object
+                        properties:
+                          description:
+                            type: string
+                      companyStatus:
+                        type: object
+                        properties:
+                          status:
+                            type: string
+                          description:
+                            type: string
+                      principalActivity:
+                        type: object
+                        properties:
+                          description:
+                            type: string
+                          classification:
+                            type: string
+                      contactAddress:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                          simpleValue:
+                            type: string
+                          postalCode:
+                            type: string
+                  activityClassifications:
+                    type: array
+                    items:
                       type: object
                       properties:
-                        currency:
+                        classification:
                           type: string
-                        value:
-                          type: string
-                    providerValue:
+                        activities:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              code:
+                                type: string
+                              description:
+                                type: string
+                  previousNames:
+                    type: array
+                    items:
                       type: object
                       properties:
-                        maxValue:
+                        name:
                           type: string
-                        minValue:
+                        dateChanged:
                           type: string
-                        value:
-                          type: string
-                    providerDescription:
-                      type: string
-                currentContractLimit:
-                  type: object
-                  properties:
-                    currency:
-                      type: string
-                    value:
-                      type: number
-                previousCreditRating:
-                  type: object
-                  properties:
-                    commonValue:
-                      type: string
-                    commonDescription:
-                      type: string
-                    creditLimit:
-                      type: object
-                      properties:
-                        currency:
-                          type: string
-                        value:
-                          type: string
-                    providerValue:
-                      type: object
-                      properties:
-                        maxValue:
-                          type: string
-                        minValue:
-                          type: string
-                        value:
-                          type: string
-                    providerDescription:
-                      type: string
-                latestRatingChangeDate:
-                  type: string
-            contactInformation:
-              type: object
-              properties:
-                mainAddress:
-                  type: object
-                  properties:
-                    type:
-                      type: string
-                    simpleValue:
-                      type: string
-                    postalCode:
-                      type: string
-                otherAddresses:
-                  type: array
-                  items:
+              creditScore:
+                type: object
+                properties:
+                  currentCreditRating:
+                    type: object
+                    properties:
+                      commonValue:
+                        type: string
+                      commonDescription:
+                        type: string
+                      creditLimit:
+                        type: object
+                        properties:
+                          currency:
+                            type: string
+                          value:
+                            type: string
+                      providerValue:
+                        type: object
+                        properties:
+                          maxValue:
+                            type: string
+                          minValue:
+                            type: string
+                          value:
+                            type: string
+                      providerDescription:
+                        type: string
+                  currentContractLimit:
+                    type: object
+                    properties:
+                      currency:
+                        type: string
+                      value:
+                        type: number
+                  previousCreditRating:
+                    type: object
+                    properties:
+                      commonValue:
+                        type: string
+                      commonDescription:
+                        type: string
+                      creditLimit:
+                        type: object
+                        properties:
+                          currency:
+                            type: string
+                          value:
+                            type: string
+                      providerValue:
+                        type: object
+                        properties:
+                          maxValue:
+                            type: string
+                          minValue:
+                            type: string
+                          value:
+                            type: string
+                      providerDescription:
+                        type: string
+                  latestRatingChangeDate:
+                    type: string
+              contactInformation:
+                type: object
+                properties:
+                  mainAddress:
                     type: object
                     properties:
                       type:
@@ -4101,712 +4081,1091 @@ components:
                         type: string
                       postalCode:
                         type: string
-                      telephone:
-                        type: string
-                websites:
-                  type: array
-                  items:
-                    type: string
-            shareCapitalStructure:
-              type: object
-              properties:
-                issuedShareCapital:
-                  type: object
-                  properties:
-                    currency:
-                      type: string
-                    value:
-                      type: number
-                numberOfSharesIssued:
-                  type: number
-                shareHolders:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                      shareholderType:
-                        type: string
-                      shareType:
-                        type: string
-                      currency:
-                        type: string
-                      totalNumberOfSharesOwned:
-                        type: number
-                      percentSharesHeld:
-                        type: number
-            directors:
-              type: object
-              properties:
-                currentDirectors:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                      name:
-                        type: string
-                      title:
-                        type: string
-                      firstName:
-                        type: string
-                      surname:
-                        type: string
-                      address:
-                        type: object
-                        properties:
-                          simpleValue:
-                            type: string
-                          postalCode:
-                            type: string
-                      gender:
-                        type: string
-                      dateOfBirth:
-                        type: string
-                      directorType:
-                        type: string
-                      positions:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            dateAppointed:
-                              type: string
-                            positionName:
-                              type: string
-                previousDirectors:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      id:
-                        type: string
-                      name:
-                        type: string
-                      gender:
-                        type: string
-                      directorType:
-                        type: string
-                      positions:
-                        type: array
-                        items:
-                          type: string
-            otherInformation:
-              type: object
-              properties:
-                advisors:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      auditorName:
-                        type: string
-                employeesInformation:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      year:
-                        type: number
-                      numberOfEmployees:
-                        type: string
-            groupStructure:
-              type: object
-              properties:
-                subsidiaryCompanies:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      country:
-                        type: string
-                      id:
-                        type: string
-                      safeNumber:
-                        type: string
-                      name:
-                        type: string
-                      type:
-                        type: string
-                      status:
-                        type: string
-                      registrationNumber:
-                        type: string
-            extendedGroupStructure:
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: string
-                  country:
-                    type: string
-                  safeNumber:
-                    type: string
-                  companyName:
-                    type: string
-                  registeredNumber:
-                    type: string
-                  latestAnnualAccounts:
-                    type: string
-                  level:
-                    type: number
-                  status:
-                    type: string
-            financialStatements:
-              type: array
-              items:
-                type: object
-                properties:
-                  type:
-                    type: string
-                  yearEndDate:
-                    type: string
-                  numberOfWeeks:
-                    type: number
-                  currency:
-                    type: string
-                  consolidatedAccounts:
-                    type: boolean
-                  profitAndLoss:
-                    type: object
-                    properties:
-                      revenue:
-                        type: number
-                      operatingCosts:
-                        type: number
-                      operatingProfit:
-                        type: number
-                      wagesAndSalaries:
-                        type: number
-                      pensionCosts:
-                        type: number
-                      depreciation:
-                        type: number
-                      amortisation:
-                        type: number
-                      financialExpenses:
-                        type: number
-                      profitBeforeTax:
-                        type: number
-                      tax:
-                        type: number
-                      profitAfterTax:
-                        type: number
-                      dividends:
-                        type: number
-                      minorityInterests:
-                        type: number
-                      otherAppropriations:
-                        type: number
-                      retainedProfit:
-                        type: number
-                  balanceSheet:
-                    type: object
-                    properties:
-                      totalTangibleAssets:
-                        type: number
-                      totalIntangibleAssets:
-                        type: number
-                      totalOtherFixedAssets:
-                        type: number
-                      totalFixedAssets:
-                        type: number
-                      totalInventories:
-                        type: number
-                      tradeReceivables:
-                        type: number
-                      miscellaneousReceivables:
-                        type: number
-                      totalReceivables:
-                        type: number
-                      cash:
-                        type: number
-                      otherCurrentAssets:
-                        type: number
-                      totalCurrentAssets:
-                        type: number
-                      totalAssets:
-                        type: number
-                      tradePayables:
-                        type: number
-                      bankLiabilities:
-                        type: number
-                      otherLoansOrFinance:
-                        type: number
-                      miscellaneousLiabilities:
-                        type: number
-                      totalCurrentLiabilities:
-                        type: number
-                      bankLiabilitiesDueAfter1Year:
-                        type: number
-                      otherLoansOrFinanceDueAfter1Year:
-                        type: number
-                      miscellaneousLiabilitiesDueAfter1Year:
-                        type: number
-                      totalLongTermLiabilities:
-                        type: number
-                      totalLiabilities:
-                        type: number
-                      calledUpShareCapital:
-                        type: number
-                      revenueReserves:
-                        type: number
-                      otherReserves:
-                        type: number
-                      totalShareholdersEquity:
-                        type: number
-                  otherFinancials:
-                    type: object
-                    properties:
-                      contingentLiabilities:
-                        type: string
-                      workingCapital:
-                        type: number
-                      netWorth:
-                        type: number
-                  ratios:
-                    type: object
-                    properties:
-                      preTaxProfitMargin:
-                        type: number
-                      returnOnCapitalEmployed:
-                        type: number
-                      returnOnTotalAssetsEmployed:
-                        type: number
-                      returnOnNetAssetsEmployed:
-                        type: number
-                      salesOrNetWorkingCapital:
-                        type: number
-                      stockTurnoverRatio:
-                        type: number
-                      debtorDays:
-                        type: number
-                      creditorDays:
-                        type: number
-                      currentRatio:
-                        type: number
-                      liquidityRatioOrAcidTest:
-                        type: number
-                      currentDebtRatio:
-                        type: number
-                      gearing:
-                        type: number
-                      equityInPercentage:
-                        type: number
-                      totalDebtRatio:
-                        type: number
-            localFinancialStatements:
-              type: array
-              items:
-                type: object
-                properties:
-                  type:
-                    type: string
-                  yearEndDate:
-                    type: string
-                  numberOfWeeks:
-                    type: number
-                  currency:
-                    type: string
-                  consolidatedAccounts:
-                    type: boolean
-                  auditQualification:
-                    type: string
-                  profitAndLoss:
-                    type: object
-                    properties:
-                      turnover:
-                        type: number
-                      costOfSales:
-                        type: number
-                      grossProfit:
-                        type: number
-                      depreciation:
-                        type: number
-                      auditFees:
-                        type: number
-                      wagesAndSalaries:
-                        type: number
-                      directorsRemuneration:
-                        type: number
-                      operatingProfit:
-                        type: number
-                      interestExpense:
-                        type: number
-                      profitBeforeTax:
-                        type: number
-                      taxation:
-                        type: number
-                      profitAfterTax:
-                        type: number
-                      dividends:
-                        type: number
-                      retainedProfit:
-                        type: number
-                  balanceSheet:
-                    type: object
-                    properties:
-                      tangibleAssets:
-                        type: number
-                      intangibleAssets:
-                        type: number
-                      totalFixedAssets:
-                        type: number
-                      stock:
-                        type: number
-                      tradeDebtors:
-                        type: number
-                      otherDebtors:
-                        type: number
-                      cash:
-                        type: number
-                      miscCurrentAssets:
-                        type: number
-                      totalCurrentAssets:
-                        type: number
-                      totalAssets:
-                        type: number
-                      tradeCreditors:
-                        type: number
-                      bankBorrowingsCurrent:
-                        type: number
-                      otherShortTermFinance:
-                        type: number
-                      miscCurrentLiabilities:
-                        type: number
-                      totalCurrentLiabilities:
-                        type: number
-                      otherLongTermFinance:
-                        type: number
-                      totalLongTermLiabilities:
-                        type: number
-                      totalLiabilities:
-                        type: number
-                      netAssets:
-                        type: number
-                      issuedShareCapital:
-                        type: number
-                      revaluationReserve:
-                        type: number
-                      revenueReserves:
-                        type: number
-                      otherReserves:
-                        type: number
-                      totalShareholdersEquity:
-                        type: number
-                  cashFlow:
-                    type: object
-                    properties:
-                      netCashFlowFromOperations:
-                        type: number
-                      netCashFlowBeforeFinancing:
-                        type: number
-                      netCashFlowFromFinancing:
-                        type: number
-                      increaseInCash:
-                        type: number
-                  otherFinancials:
-                    type: object
-                    properties:
-                      contingentLiabilities:
-                        type: boolean
-                      bankOverdraftAndLTL:
-                        type: number
-                      workingCapital:
-                        type: number
-                      capitalEmployed:
-                        type: number
-                      netWorth:
-                        type: number
-                  ratios:
-                    type: object
-                    properties:
-                      preTaxProfitMargin:
-                        type: number
-                      returnOnCapitalEmployed:
-                        type: number
-                      returnOnTotalAssetsEmployed:
-                        type: number
-                      returnOnNetAssetsEmployed:
-                        type: number
-                      salesOrNetWorkingCapital:
-                        type: number
-                      stocKTurnoverRatio:
-                        type: number
-                      debtorDays:
-                        type: number
-                      creditorDays:
-                        type: number
-                      currentRatio:
-                        type: number
-                      liquidityRatioOrAcidTest:
-                        type: number
-                      currentDebtRatio:
-                        type: number
-                      gearing:
-                        type: number
-                      equityInPercentage:
-                        type: number
-                      totalDebtRatio:
-                        type: number
-            paymentData:
-              type: object
-              properties:
-                paymentsOnFile:
-                  type: number
-                paymentsOnTime:
-                  type: number
-                paymentsPaidLate:
-                  type: number
-                paymentsSentLegal:
-                  type: number
-                paymentsStillOwingLate:
-                  type: number
-                paymentsPaid0to30Days:
-                  type: number
-                highestInvoiceValueOutstandingLate:
-                  type: number
-                paymentsPaid90DaysplusLate:
-                  type: number
-                totalBalanceStillOwingLate:
-                  type: number
-                dbt:
-                  type: number
-                paymentsPaid61to90Days:
-                  type: number
-                totalBalanceStillOwing:
-                  type: number
-                payments31to60DaysLate:
-                  type: number
-                payments61to90DaysLate:
-                  type: number
-                highestInvoiceValueOutstanding:
-                  type: number
-                paymentsStillOwing:
-                  type: number
-                paymentsWithinTerms:
-                  type: number
-                payments0to30Dayslate:
-                  type: number
-                averageInvoiceValue:
-                  type: number
-                paymentsPaid31to60Days:
-                  type: number
-                paymentsPaid90Daysplus:
-                  type: number
-                totalInvoiceValues:
-                  type: number
-                paymentTrend:
-                  type: string
-                industryDBT:
-                  type: number
-            negativeInformation:
-              type: object
-              properties:
-                ccjSummary:
-                  type: object
-                  properties:
-                    exactRegistered:
-                      type: number
-                    possibleRegistered:
-                      type: number
-                countyCourtJudgements:
-                  type: object
-                  properties:
-                    registered:
+                  otherAddresses:
+                    type: array
+                    items:
                       type: object
                       properties:
-                        exact:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              ccjDate:
-                                type: string
-                              court:
-                                type: string
-                              ccjAmount:
-                                type: number
-                              caseNumber:
-                                type: string
-                              ccjStatus:
-                                type: string
-                              incomingRecordDetails:
-                                type: string
-                        possible:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              ccjDate:
-                                type: string
-                              court:
-                                type: string
-                              ccjAmount:
-                                type: number
-                              caseNumber:
-                                type: string
-                              ccjStatus:
-                                type: string
-            additionalInformation:
-              type: object
-              properties:
-                companyHistory:
-                  type: array
-                  items:
+                        type:
+                          type: string
+                        simpleValue:
+                          type: string
+                        postalCode:
+                          type: string
+                        telephone:
+                          type: string
+                  websites:
+                    type: array
+                    items:
+                      type: string
+              shareCapitalStructure:
+                type: object
+                properties:
+                  issuedShareCapital:
                     type: object
                     properties:
-                      date:
+                      currency:
                         type: string
-                      description:
-                        type: string
-                mortgageSummary:
+                      value:
+                        type: number
+                  numberOfSharesIssued:
+                    type: number
+                  shareHolders:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        shareholderType:
+                          type: string
+                        shareType:
+                          type: string
+                        currency:
+                          type: string
+                        totalNumberOfSharesOwned:
+                          type: number
+                        percentSharesHeld:
+                          type: number
+              directors:
+                type: object
+                properties:
+                  currentDirectors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        title:
+                          type: string
+                        firstName:
+                          type: string
+                        surname:
+                          type: string
+                        address:
+                          type: object
+                          properties:
+                            simpleValue:
+                              type: string
+                            postalCode:
+                              type: string
+                        gender:
+                          type: string
+                        dateOfBirth:
+                          type: string
+                        directorType:
+                          type: string
+                        positions:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              dateAppointed:
+                                type: string
+                              positionName:
+                                type: string
+                  previousDirectors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        gender:
+                          type: string
+                        directorType:
+                          type: string
+                        positions:
+                          type: array
+                          items:
+                            type: string
+              otherInformation:
+                type: object
+                properties:
+                  advisors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        auditorName:
+                          type: string
+                  employeesInformation:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        year:
+                          type: number
+                        numberOfEmployees:
+                          type: string
+              groupStructure:
+                type: object
+                properties:
+                  subsidiaryCompanies:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        country:
+                          type: string
+                        id:
+                          type: string
+                        safeNumber:
+                          type: string
+                        name:
+                          type: string
+                        type:
+                          type: string
+                        status:
+                          type: string
+                        registrationNumber:
+                          type: string
+              extendedGroupStructure:
+                type: array
+                items:
                   type: object
                   properties:
-                    outstanding:
+                    id:
+                      type: string
+                    country:
+                      type: string
+                    safeNumber:
+                      type: string
+                    companyName:
+                      type: string
+                    registeredNumber:
+                      type: string
+                    latestAnnualAccounts:
+                      type: string
+                    level:
                       type: number
-                    satisfied:
+                    status:
+                      type: string
+              financialStatements:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                    yearEndDate:
+                      type: string
+                    numberOfWeeks:
                       type: number
-                mortgageDetails:
-                  type: array
-                  items:
+                    currency:
+                      type: string
+                    consolidatedAccounts:
+                      type: boolean
+                    profitAndLoss:
+                      type: object
+                      properties:
+                        revenue:
+                          type: number
+                        operatingCosts:
+                          type: number
+                        operatingProfit:
+                          type: number
+                        wagesAndSalaries:
+                          type: number
+                        pensionCosts:
+                          type: number
+                        depreciation:
+                          type: number
+                        amortisation:
+                          type: number
+                        financialExpenses:
+                          type: number
+                        profitBeforeTax:
+                          type: number
+                        tax:
+                          type: number
+                        profitAfterTax:
+                          type: number
+                        dividends:
+                          type: number
+                        minorityInterests:
+                          type: number
+                        otherAppropriations:
+                          type: number
+                        retainedProfit:
+                          type: number
+                    balanceSheet:
+                      type: object
+                      properties:
+                        totalTangibleAssets:
+                          type: number
+                        totalIntangibleAssets:
+                          type: number
+                        totalOtherFixedAssets:
+                          type: number
+                        totalFixedAssets:
+                          type: number
+                        totalInventories:
+                          type: number
+                        tradeReceivables:
+                          type: number
+                        miscellaneousReceivables:
+                          type: number
+                        totalReceivables:
+                          type: number
+                        cash:
+                          type: number
+                        otherCurrentAssets:
+                          type: number
+                        totalCurrentAssets:
+                          type: number
+                        totalAssets:
+                          type: number
+                        tradePayables:
+                          type: number
+                        bankLiabilities:
+                          type: number
+                        otherLoansOrFinance:
+                          type: number
+                        miscellaneousLiabilities:
+                          type: number
+                        totalCurrentLiabilities:
+                          type: number
+                        bankLiabilitiesDueAfter1Year:
+                          type: number
+                        otherLoansOrFinanceDueAfter1Year:
+                          type: number
+                        miscellaneousLiabilitiesDueAfter1Year:
+                          type: number
+                        totalLongTermLiabilities:
+                          type: number
+                        totalLiabilities:
+                          type: number
+                        calledUpShareCapital:
+                          type: number
+                        revenueReserves:
+                          type: number
+                        otherReserves:
+                          type: number
+                        totalShareholdersEquity:
+                          type: number
+                    otherFinancials:
+                      type: object
+                      properties:
+                        contingentLiabilities:
+                          type: string
+                        workingCapital:
+                          type: number
+                        netWorth:
+                          type: number
+                    ratios:
+                      type: object
+                      properties:
+                        preTaxProfitMargin:
+                          type: number
+                        returnOnCapitalEmployed:
+                          type: number
+                        returnOnTotalAssetsEmployed:
+                          type: number
+                        returnOnNetAssetsEmployed:
+                          type: number
+                        salesOrNetWorkingCapital:
+                          type: number
+                        stockTurnoverRatio:
+                          type: number
+                        debtorDays:
+                          type: number
+                        creditorDays:
+                          type: number
+                        currentRatio:
+                          type: number
+                        liquidityRatioOrAcidTest:
+                          type: number
+                        currentDebtRatio:
+                          type: number
+                        gearing:
+                          type: number
+                        equityInPercentage:
+                          type: number
+                        totalDebtRatio:
+                          type: number
+              localFinancialStatements:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                    yearEndDate:
+                      type: string
+                    numberOfWeeks:
+                      type: number
+                    currency:
+                      type: string
+                    consolidatedAccounts:
+                      type: boolean
+                    auditQualification:
+                      type: string
+                    profitAndLoss:
+                      type: object
+                      properties:
+                        turnover:
+                          type: number
+                        costOfSales:
+                          type: number
+                        grossProfit:
+                          type: number
+                        depreciation:
+                          type: number
+                        auditFees:
+                          type: number
+                        wagesAndSalaries:
+                          type: number
+                        directorsRemuneration:
+                          type: number
+                        operatingProfit:
+                          type: number
+                        interestExpense:
+                          type: number
+                        profitBeforeTax:
+                          type: number
+                        taxation:
+                          type: number
+                        profitAfterTax:
+                          type: number
+                        dividends:
+                          type: number
+                        retainedProfit:
+                          type: number
+                    balanceSheet:
+                      type: object
+                      properties:
+                        tangibleAssets:
+                          type: number
+                        intangibleAssets:
+                          type: number
+                        totalFixedAssets:
+                          type: number
+                        stock:
+                          type: number
+                        tradeDebtors:
+                          type: number
+                        otherDebtors:
+                          type: number
+                        cash:
+                          type: number
+                        miscCurrentAssets:
+                          type: number
+                        totalCurrentAssets:
+                          type: number
+                        totalAssets:
+                          type: number
+                        tradeCreditors:
+                          type: number
+                        bankBorrowingsCurrent:
+                          type: number
+                        otherShortTermFinance:
+                          type: number
+                        miscCurrentLiabilities:
+                          type: number
+                        totalCurrentLiabilities:
+                          type: number
+                        otherLongTermFinance:
+                          type: number
+                        totalLongTermLiabilities:
+                          type: number
+                        totalLiabilities:
+                          type: number
+                        netAssets:
+                          type: number
+                        issuedShareCapital:
+                          type: number
+                        revaluationReserve:
+                          type: number
+                        revenueReserves:
+                          type: number
+                        otherReserves:
+                          type: number
+                        totalShareholdersEquity:
+                          type: number
+                    cashFlow:
+                      type: object
+                      properties:
+                        netCashFlowFromOperations:
+                          type: number
+                        netCashFlowBeforeFinancing:
+                          type: number
+                        netCashFlowFromFinancing:
+                          type: number
+                        increaseInCash:
+                          type: number
+                    otherFinancials:
+                      type: object
+                      properties:
+                        contingentLiabilities:
+                          type: boolean
+                        bankOverdraftAndLTL:
+                          type: number
+                        workingCapital:
+                          type: number
+                        capitalEmployed:
+                          type: number
+                        netWorth:
+                          type: number
+                    ratios:
+                      type: object
+                      properties:
+                        preTaxProfitMargin:
+                          type: number
+                        returnOnCapitalEmployed:
+                          type: number
+                        returnOnTotalAssetsEmployed:
+                          type: number
+                        returnOnNetAssetsEmployed:
+                          type: number
+                        salesOrNetWorkingCapital:
+                          type: number
+                        stocKTurnoverRatio:
+                          type: number
+                        debtorDays:
+                          type: number
+                        creditorDays:
+                          type: number
+                        currentRatio:
+                          type: number
+                        liquidityRatioOrAcidTest:
+                          type: number
+                        currentDebtRatio:
+                          type: number
+                        gearing:
+                          type: number
+                        equityInPercentage:
+                          type: number
+                        totalDebtRatio:
+                          type: number
+              paymentData:
+                type: object
+                properties:
+                  paymentsOnFile:
+                    type: number
+                  paymentsOnTime:
+                    type: number
+                  paymentsPaidLate:
+                    type: number
+                  paymentsSentLegal:
+                    type: number
+                  paymentsStillOwingLate:
+                    type: number
+                  paymentsPaid0to30Days:
+                    type: number
+                  highestInvoiceValueOutstandingLate:
+                    type: number
+                  paymentsPaid90DaysplusLate:
+                    type: number
+                  totalBalanceStillOwingLate:
+                    type: number
+                  dbt:
+                    type: number
+                  paymentsPaid61to90Days:
+                    type: number
+                  totalBalanceStillOwing:
+                    type: number
+                  payments31to60DaysLate:
+                    type: number
+                  payments61to90DaysLate:
+                    type: number
+                  highestInvoiceValueOutstanding:
+                    type: number
+                  paymentsStillOwing:
+                    type: number
+                  paymentsWithinTerms:
+                    type: number
+                  payments0to30Dayslate:
+                    type: number
+                  averageInvoiceValue:
+                    type: number
+                  paymentsPaid31to60Days:
+                    type: number
+                  paymentsPaid90Daysplus:
+                    type: number
+                  totalInvoiceValues:
+                    type: number
+                  paymentTrend:
+                    type: string
+                  industryDBT:
+                    type: number
+              negativeInformation:
+                type: object
+                properties:
+                  ccjSummary:
                     type: object
                     properties:
-                      mortgageType:
-                        type: string
-                      dateChargeCreated:
-                        type: string
-                      dateChargeRegistered:
-                        type: string
-                      status:
-                        type: string
-                      personsEntitled:
-                        type: string
-                      amountSecured:
-                        type: string
-                      details:
-                        type: string
-                commentaries:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      commentaryText:
-                        type: string
-                      positiveNegative:
-                        type: string
-                ratingHistory:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      date:
-                        type: string
-                      companyValue:
+                      exactRegistered:
                         type: number
-                      ratingDescription:
-                        type: string
-                creditLimitHistory:
-                  type: array
-                  items:
+                      possibleRegistered:
+                        type: number
+                  countyCourtJudgements:
                     type: object
                     properties:
-                      date:
-                        type: string
-                      companyValue:
+                      registered:
                         type: object
                         properties:
-                          currency:
-                            type: string
-                          value:
-                            type: number
-                badDebtDetails:
-                  type: array
-                  items:
+                          exact:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                ccjDate:
+                                  type: string
+                                court:
+                                  type: string
+                                ccjAmount:
+                                  type: number
+                                caseNumber:
+                                  type: string
+                                ccjStatus:
+                                  type: string
+                                incomingRecordDetails:
+                                  type: string
+                          possible:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                ccjDate:
+                                  type: string
+                                court:
+                                  type: string
+                                ccjAmount:
+                                  type: number
+                                caseNumber:
+                                  type: string
+                                ccjStatus:
+                                  type: string
+              additionalInformation:
+                type: object
+                properties:
+                  companyHistory:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                        description:
+                          type: string
+                  mortgageSummary:
                     type: object
                     properties:
-                      statementDate:
-                        type: string
-                      registrationNumber:
-                        type: string
-                      companyName:
-                        type: string
-                      amount:
-                        type: object
-                        properties:
-                          currency:
-                            type: string
-                          value:
-                            type: number
-      example:
-        GB:
-          orderId: N/A
-          companyId: GB-0-03836192
-          dateOfOrder: 2019-10-23T16:39:07.116Z
-          language: en
-          userId: "100000000"
-          report:
-            companyId: GB001-0-03836192
-            language: EN
-            companySummary:
-              businessName: CREDITSAFE BUSINESS SOLUTIONS LIMITED
-              country: GB
-              companyNumber: UK03490298
-              companyRegistrationNumber: 3836192.0
-              mainActivity:
-                code: "7487"
-                description: Other business activities
-                classification: SIC03
-              companyStatus:
-                status: Active
-                description: Active - Accounts Filed
-              latestTurnoverFigure:
-                value: 45245000
-              latestShareholdersEquityFigure:
-                value: 11269000
-              creditRating:
-                commonValue: B
-                commonDescription: Low Risk
-                creditLimit:
-                  currency: GBP
-                  value: "785000"
-                providerValue:
-                  maxValue: "100"
-                  minValue: "1"
-                  value: "55"
-                providerDescription: Low Risk
-    guidSuccessResponse:
-      type: object
-      properties:
-        GUIDList:
-          type: array
-          items:
+                      outstanding:
+                        type: number
+                      satisfied:
+                        type: number
+                  mortgageDetails:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        mortgageType:
+                          type: string
+                        dateChargeCreated:
+                          type: string
+                        dateChargeRegistered:
+                          type: string
+                        status:
+                          type: string
+                        personsEntitled:
+                          type: string
+                        amountSecured:
+                          type: string
+                        details:
+                          type: string
+                  commentaries:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        commentaryText:
+                          type: string
+                        positiveNegative:
+                          type: string
+                  ratingHistory:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                        companyValue:
+                          type: number
+                        ratingDescription:
+                          type: string
+                  creditLimitHistory:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                        companyValue:
+                          type: object
+                          properties:
+                            currency:
+                              type: string
+                            value:
+                              type: number
+                  badDebtDetails:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        statementDate:
+                          type: string
+                        registrationNumber:
+                          type: string
+                        companyName:
+                          type: string
+                        amount:
+                          type: object
+                          properties:
+                            currency:
+                              type: string
+                            value:
+                              type: number
+        example:
+          GB:
+            orderId: N/A
+            companyId: GB-0-03836192
+            dateOfOrder: 2019-10-23T16:39:07.116Z
+            language: en
+            userId: "100000000"
+            report:
+              companyId: GB001-0-03836192
+              language: EN
+              companySummary:
+                businessName: CREDITSAFE BUSINESS SOLUTIONS LIMITED
+                country: GB
+                companyNumber: UK03490298
+                companyRegistrationNumber: 3836192.0
+                mainActivity:
+                  code: "7487"
+                  description: Other business activities
+                  classification: SIC03
+                companyStatus:
+                  status: Active
+                  description: Active - Accounts Filed
+                latestTurnoverFigure:
+                  value: 45245000
+                latestShareholdersEquityFigure:
+                  value: 11269000
+                creditRating:
+                  commonValue: B
+                  commonDescription: Low Risk
+                  creditLimit:
+                    currency: GBP
+                    value: "785000"
+                  providerValue:
+                    maxValue: "100"
+                    minValue: "1"
+                    value: "55"
+                  providerDescription: Low Risk
+      createFreshInvestigationRequest:
+          type: object
+          properties:
+            consent:
+              type: boolean
+            contactInfo:
+              type: object
+              properties:
+                name:
+                  type: string
+                emailAddress:
+                  type: string
+                telephoneNumber:
+                  type: string
+                company:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    number:
+                      type: string
+            chargeReference:
+              type: string
+            searchCriteria:
+              type: object
+              properties:
+                name:
+                  type: string
+                additionalInfo:
+                  type: string
+                telephoneNumber:
+                  type: string
+                address:
+                  type: object
+                  properties:
+                    simple:
+                      type: string
+                    postcode:
+                      type: string
+                    city:
+                      type: string
+                regNo:
+                  type: string
+                vatNo:
+                  type: string
+                countryCode:
+                  type: string
+      listFreshInvestigationResponse:
+        type: object
+        properties:
+          totalCount:
+            type: integer
+          orders:
+            type: array
+            items:
+              type: object
+              properties:
+                orderID:
+                  type: integer
+                userID:
+                  type: string
+                creationDate:
+                  type: string
+                lastStatusChangeDate:
+                  type: string
+                transactionID:
+                  type: integer
+                chargeReference:
+                  type: string
+                contactDetails:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    emailAddress:
+                      type: string
+                    telephoneNumber:
+                      type: string
+                status:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                    description:
+                      type: string
+                consent:
+                  type: boolean
+                searchCriteria:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    vatNo:
+                      type: string
+                    regNo:
+                      type: string
+                    additionalInfo:
+                      type: string
+                    address:
+                      type: object
+                      properties:
+                        simple:
+                          type: string
+                        city:
+                          type: string
+                        postcode:
+                          type: string
+                    countryCode:
+                      type: string
+      paging:
+        type: object
+        description: Paging parameters.
+        properties:
+          size:
+            type: number
+            description: The maximum number of results returned per page.
+            example: 10
+          prev:
+            type: number
+            description: The page number of the previous page, null if there is no previous page available.
+            example: 0
+          next:
+            type: number
+            description: The page number of the next page, null if there is no next page available.
+            example: 2
+          last:
+            type: number
+            description: The page number of the last page.
+            example: 3
+      userDetails:
+        type: object
+        properties:
+          countryCode:
+            type: string
+            example: "US"
+            description: The ISO/Alpha 2 format country code for the user's country.
+          createdDate:
+            type: string
+            format: date-time
+            example: "2020-01-01T00:00:00"
+            description: The date that the Global Monitoring user account was created.
+          csCustomerId:
+            type: number
+            example: 101662701
+            description: The unique identifier for the user's customer account, used across the Creditsafe product suite.
+          csUserId:
+            type: number
+            example: 101445010
+            description: The unique identifier for the user's account, used across the Creditsafe product suite.
+          isAutoTracker:
+            type: boolean
+            example: false
+            description: If auto-tracker is enabled, any companies that you pull a credit report for are automatically added to the portfolio that you have selected as default.
+          languageCode:
+            type: string
+            example: "en"
+            description: The language code for the user's preferred language.
+          lastAccessDate:
+            type: string
+            format: date-time
+            example: "2020-02-01T14:30:00"
+            description: The date the the user last accessed the Global Monitoring product.
+          modifiedDate:
+            type: string
+            format: date-time
+            example: "2020-02-01T14:30:00"
+            description: The date that the user's details were last modified.
+          contractEndDate:
+            type: string
+            format: date-time
+            example: "2021-01-01T00:00:00"
+            description: The date that the user's contract is currently set to expire. From this date onward, the user will be unable to access to Global Monitoring product.
+          userId:
+            type: number
+            example: 10804
+            description: The internal identifier used to reference the user's account through the Global Monitoring product.
+      company:
+        type: object
+        properties: 
+          id:
+            type: string
+            description: The Connect Id of the company that triggered the `notificationEvent`. A Connect Id is the primary Company identifier that is used to uniquely identify all companies across Creditsafe's Universe and Partner Network.
+            example: "US-X-US22384484"
+          safeNumber:
+            type: string
+            description: The Safe Number (Creditsafe's identifier on all Companies owned in the Creditsafe Universe) of the company that triggered the `notificationEvent`.
+            example: "US22384484"
+          name:
+            type: string
+            description: The name of the company that triggered the `notificationEvent`.
+            example: "GOOGLE LLC"
+          countryCode:
+            type: string
+            description: ISO/Alpha 2 format country code of the company that triggered the `notificationEvent`.
+            example: "US"
+          portfolioId:
+            type: number
+            description: The portfolio Id of the portfolio that contains the company that triggered the `notificationEvent`.
+            example: 589960
+          portfolioName:
+            type: string
+            description: The name of the portfolio that contains the company that triggered the `notificationEvent`.
+            example: "Default"
+      event:
+        type: object
+        properties:
+          eventId:
+            type: number
+            description: The unique identifier for the event.
+            example: 192873729
+          companyId:
+            type: number
+            description: The Safe Number (Creditsafe's identifier on all Companies owned in the Creditsafe Universe) of the company that triggered the event.
+            example: "UK00004371"
+          portfolioId:
+            type: number
+            description: The portfolio Id of the portfolio that contains the company that you requested event information for.
+            example: 589960
+          ruleName:
+            type: string
+            description: A short description of the company event.
+            example: "Credit Limit Change"
+          localEventCode:
+            type: string
+            description: The local event code for the event.
+            example: "CL"
+          globalEventCode:
+            type: string
+            description: The global event code that has been mapped to the local event.
+            example: "CL"
+          newValue:
+            type: string
+            description: Some events contain an `oldValue` and `newValue` (e.g. a change in Credit Limit).
+            example: 7050000
+          oldValue:
+            type: string
+            description: Some events contain an `oldValue` and `newValue` (e.g. a change in Credit Limit).
+            example: 6100000
+          eventDate:
+            type: string
+            format: date-time
+            description: The date that the event occured.
+            example: "2019-03-14T22:21:50"
+          createdDate:
+            type: string
+            format: date-time
+            description: The date that the event was created in the Creditsafe database.
+            example: "2019-03-14T22:21:50"
+      notificationEvent:
+        type: object
+        properties:
+          company:
+            $ref: '#/components/schemas/company'
+          eventId:
+            type: number
+            description: The unique identifier of the event that triggered the generation of the `notificationEvent`. This identifier is consistent across all portfolios in the Global Monitoring product.
+            example: 426992366
+          eventDate:
+            type: string
+            format: date-time
+            description: The date that the event occured.
+            example: "2019-12-06T08:23:37"
+          newValue:
+            type: string
+            description: Some events contain an `oldValue` and `newValue` (e.g. a change in Credit Limit).
+            example: "1600 AMPHITHEATRE PARKWAY, MOUNTAIN VIEW, CA, 94043-1351"
+          oldValue:
+            type: string
+            description: Some events contain an `oldValue` and `newValue` (e.g. a change in Credit Limit).
+            example: "1604 AMPHITHEATRE PARKWAY, MOUNTAIN VIEW, CA, 94043-1351"
+          notificationEventId:
+            type: number
+            description: The unique identifier for the `notificationEvent`. This identifier is tied to a specific `eventId` and `portfolioId`.
+            example: 51861887
+          ruleCode:
+            type: number
+            description: The unique identifier for the `ruleCode` that triggered the generation of the `notificationEvent`.
+            example: 105
+          ruleName:
+            type: string
+            description: The name of the notification event rule that triggered the generation of the `notificationEvent`.
+            example: "Address"
+      companyEventsResponse:
+        type: object
+        properties:
+          totalCount:
+            type: number
+            description: The total number of events returned for the given company.
+            example: 36
+          data:
+            type: array
+            items:
+              $ref: '#/components/schemas/event'
+          paging:
+            $ref: '#/components/schemas/paging'
+      notificationEventsResponse:
+        type: object
+        properties:
+          totalCount:
+            type: number
+            description: The total number of events returned for the given company.
+            example: 36
+          data:
+            type: array
+            items:
+              $ref: '#/components/schemas/notificationEvent'
+          paging:
+            $ref: '#/components/schemas/paging'
+      portfolioRequest:
+        type: object
+        properties:
+          name:
+            type: string
+          isDefault:
+            type: boolean
+          emails:
             type: object
             properties:
-              friendlyName:
+              firstName:
                 type: string
-              GUID:
+              lastName: 
                 type: string
-              type:
+              emailAddress:
                 type: string
-              serviceLine:
-                type: string
-      example:
-        GUIDList:
-        - friendlyName: Check and Decide Demo Tree
-          GUID: repoObj_0ed6a4aa_16e17d977e9_07ffb16e17d977e9
-          type: Credit Approval
-          serviceLine: dec_eng_cas
-        - friendlyName: Connect Demo Tree
-          GUID: repoObj_684c5516_16633e53575_07ffa16633e53575
-          type: Demo
-    callRefObject:
-      type: string
-      description: Call Reference
-  securitySchemes:
+          emailSubject:
+            type: string
+          emailLanguage:
+            type: string
+          frequency:
+            type: string
+        example:
+          name: "My New Portfolio"
+          isDefault: "true"
+        required:
+          - name
+          - isDefault
+      eventRulesResponse:
+        type: object
+        properties:
+          isActive:
+            type: boolean
+            description: Shows whether the notification event rule has been enabled for the given portfolio.
+            example: 0
+          ruleCode:
+            type: number
+            description: The unique identifier for the notification event rule.
+            example: 101
+          ruleCountryCode:
+            type: string
+            description: The ISO/Alpha 2 format country code for the notification event rule. "XX" is used for global rules that apply to companies from all countries.
+            example: "XX"
+          ruleType:
+            type: number
+            description: The unique identifier of the `ruleType` for the notification event rule.
+            example: 4
+          ruleTypeName:
+            type: string
+            description: A short description of the `ruleType` for the notification event rule.
+            example: "Rating band change - 3 input"
+          name:
+            type: string
+            description: The name for the notification event rule.
+            example: "International Rating | Reduce by {0} Band(s) OR Less than Band {1}"
+          param0:
+            type: string
+            description: Some notification event rules may include input parameters used to tailor the notifications generated to your preference.
+            example: "1"
+          param1:
+            type: string
+            description: Some notification event rules may include input parameters used to tailor the notifications generated to your preference.
+            example: "A"
+      guidSuccessResponse:
+          type: object
+          properties:
+            GUIDList:
+              type: array
+              items:
+                type: object
+                properties:
+                  friendlyName:
+                    type: string
+                  GUID:
+                    type: string
+                  type:
+                    type: string
+                  serviceLine:
+                    type: string
+          example:
+            GUIDList:
+            - friendlyName: Check and Decide Demo Tree
+              GUID: repoObj_0ed6a4aa_16e17d977e9_07ffb16e17d977e9
+              type: Credit Approval
+              serviceLine: dec_eng_cas
+            - friendlyName: Connect Demo Tree
+              GUID: repoObj_684c5516_16633e53575_07ffa16633e53575
+              type: Demo
+   securitySchemes:
       bearerAuth:            
         type: http
         scheme: bearer
