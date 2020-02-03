@@ -1,6 +1,6 @@
 openapi: 3.0.2
 info:
-  title: Creditsafe Connect (Swagger Beta)
+  title: Creditsafe Connect OpenAPI Documentation
   description:
     <h2>Introduction</h2>
     Creditsafe Connect is a REST API that provides access to the <a href="https://www.creditsafe.com/gb/en/more/about/our-data.html">Creditsafe Global Company Database</a> allowing you to qualify/onboard your prospects, make quick informed decisions on suppliers and control your master data.
@@ -8,33 +8,26 @@ info:
     <h2>Quick Start</h2>
     To start your Creditsafe Connect integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>
     
-     Using a REST API client construct an `/Authenticate` POST request and enter your username & password (case-sensitive) into the POST body.</br></br>
-    A successful response will return an  `authentication token` (Bearer/JWT).</br></br>
+    Using a REST API client construct an `/authenticate` POST request and enter your username & password (case-sensitive) into the POST body. A successful response will return an  `authentication token`.</br></br>
   
-    Use the `authentication token` as the value in an `Authorization` header on all other Creditsafe Connect calls as proof of you authenticity.
+    Use the `authentication token` in an `Authorization` header on all other Creditsafe Connect calls as proof of your authenticity.
     
     <h2>Resources</h2>
     <ul>
-    <li><a href="https://creditsafe.github.io/connect-docs/swagger.html">Swagger File</a> Raw JSON.
+    <li><a href="https://creditsafe.github.io/connect-docs/swagger.html">OpenAPI</a> specification JSON.
     <li><a href="https://www.getpostman.com/collections/3aa74cc7318e44aeb96d">Postman Collection</a> of the most common example calls to Creditsafe Connect.</li>
-    <li><a href="https://connect-portal.creditsafe.com"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password, and form requests.</li>
+    <li><a href="https://connect-portal.creditsafe.com"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password and form requests.</li>
     <li><a href="https://creditsafe.freshdesk.com/en/support/solutions/categories/7000007071/folders/7000018640"> Help Articles</a> Additional help resources including FAQs, Data Dictionaries and Feature Availability.  
     </ul>
   version: "1.0"
 
 servers:
-  - url: https://{environment}.creditsafe.com/v1
-    variables:
-      environment:
-        default: connect    # Production server
-        enum:
-          - connect           # Production server
-          - connect.sandbox   # Sandbox server
-    description: Connect
+  - url: https://connect.creditsafe.com/v1
+
 tags:
 - name: Authentication
   description: "Endpoint to generate a Bearer JWT (Authentication Token). It is mandatory to include this token under the Header  `Authorization` When calling all other endpoints as proof
-        of authenticity. Tokens persist for 1 hour after being issued and can exist concurrently."
+        of authenticity. Tokens can exist concurrently and persist for 1 hour from its issued time."
 - name: Companies
   description: "Endpoints to search for Companies in the Creditsafe Global Company Database. When a company is found you can use the Connect Id to order their Company Credit Report. The Company Credit Report is a JSON object comprising of key business/financial data points such as Credit Score & Limit, Industry Code, Directors, Balance Sheet and Negative Information. A full list of Company data points can be found in the Data Matrix, in the help resources. "
 - name: People/Directors
@@ -44,17 +37,16 @@ tags:
 - name: Fresh Investigations
   description: "Endpoints to manage Fresh Investigation requests. With the need for accurate data, you can check on any company that is not available within our instant online database by placing a Fresh Investigation (Offline Order). Depending on the market, the information we obtain will vary. Using official sources and registries we are able to quickly answer questions about a company’s stability and financial health. Where official information is not available we will conduct a direct interview with the business."
 - name: Global Monitoring
-  description: Endpoints to Monitor Changes to Company Information
+  description: Endpoints to Monitor changes to Company Information. Company changes can be retrived by creating a Porfolio (a collection of companies) and configuring the `eventRules` (the criteria in which to trigger a change, e.g. company name changes, limit changes) on the portfolio. When a company in your Portfolio changes to satisfy an eventRule, a `notificationEvent` will be raised to inform you of the nature of the change. See <a href="https://www.creditsafe.com/gb/en/credit-risk/credit-reports/company-credit-reports/company-monitoring.html"> here</a> for Creditsafe's Global Monitoring capabilities.
 - name: Decision Engine
-  description: Endpoints to run credit decisions on Companies.
-  
+  description: Endpoints to run bespoke credit decisions on Companies. You can find more information on the Decision Engine <a href="https://www.creditsafe.com/us/en/enterprise/integrations/decision-engine.html"> here</a>
 paths:
   /authenticate:
     post:
       security: []
       tags:
       - Authentication
-      description: "Enter your username and password into the request schema to generate an Authorisation Token"
+      description: "Enter your username and password into the request schema to generate an Authorization Token"
       operationId: Generate Authentication Token
       requestBody:
         content:
@@ -292,7 +284,7 @@ paths:
                     type: Information
           x-amf-mediaType: application/json
     x-amf-displayName: Companies
-    x-amf-description: Endpoint to search for Companies based on supplied Search Criteria.
+    x-amf-description: Endpoint to search for Companies based on the provided Search Criteria.
   /companies/{id}:
     get:
       tags:
@@ -1353,6 +1345,7 @@ paths:
       tags:
       - Global Monitoring
       description: Endpoint to return all user details relating to the Global Monitoring product.
+      operationId: "Monitoring user details"
       parameters:
       - $ref: '#/components/parameters/authHeader'
       responses:
@@ -1368,7 +1361,8 @@ paths:
     get:
       tags:
       - Global Monitoring
-      description: Endpoint to return a collection of `events` for the given company, optionally filtered on the supplied search criteria. Event information will only be returned if the company exists in at least one of your `portfolios`. 
+      description: Endpoint to return a collection of `events` for the given company, optionally filtered on the supplied search criteria. Event information will only be returned if the company exists in at least one of your `portfolios`.
+      operationId: "Company events"
       parameters:
       - $ref: '#/components/parameters/startDate'
       - $ref: '#/components/parameters/endDate'
@@ -1408,6 +1402,7 @@ paths:
       tags:
       - Global Monitoring
       description: Get all available notification event rules. Notification event rules allow you to control which events you wish to monitor for the `companies` contained within a given `portfolio`.
+      operationId: "All eventRules"
       parameters:
       - $ref: '#/components/parameters/authHeader'
       responses:
@@ -1437,6 +1432,7 @@ paths:
       tags:
       - Global Monitoring
       description: Get all available notification event rules for the given `countryCode`. Notification event rules allow you to control which events you wish to monitor for the `companies` contained within a given `portfolio`.
+      operationId: "Filtered eventRules"
       parameters:
       - name: countryCode
         in: path
@@ -1474,6 +1470,7 @@ paths:
       tags:
       - Global Monitoring
       description: Get all notification events generated for companies monitored in your portfolios, based on the notification rules enabled. The notification events returned will be filtered based upon the supplied search criteria.
+      operationId: "Notification Events"
       parameters:
       - name: searchQuery
         in: query
@@ -1534,6 +1531,7 @@ paths:
       tags:
       - Global Monitoring
       description: Endpoint to get all Portfolios based on the supplied Search Criteria.
+      operationId: List of Portfolios
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name: searchQuery
@@ -1663,6 +1661,7 @@ paths:
       tags:
       - Global Monitoring
       description: Get the portfolio with portfolioId = portfolioId}
+      operationId: Retrieve Portfolio by Id
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
@@ -1763,6 +1762,7 @@ paths:
       tags:
       - Global Monitoring
       description: Update Portfolio details
+      operationId: Update Portfolio details
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
@@ -1814,8 +1814,9 @@ paths:
     get:
       tags:
       - Global Monitoring
-      description: Get a list of distinct countries of companies monitored with in
-        a portfolio
+      description: Get a list of distinct countries of companies monitored within
+        a portfolio.
+      operationId: List countries of monitored companies
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
@@ -1873,6 +1874,7 @@ paths:
       tags:
       - Global Monitoring
       description: Get all notification `eventRules` for the given `portfolioId`. Notification event rules allow you to control which events you wish to monitor for the `companies` contained within the given `portfolio`.
+      operationId: List Portfolio eventRules
       parameters:
       - name: portfolioId
         in: path
@@ -1908,6 +1910,7 @@ paths:
       tags:
       - Global Monitoring
       description: Get all eventRules, optionally filtered
+      operationId: Get filtered portfolio eventRules
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
@@ -2090,6 +2093,7 @@ paths:
       tags:
       - Global Monitoring
       description: Update (set) event rules to default based on the portfolio id
+      operationId: Reset portfolio eventRules
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
@@ -2193,6 +2197,7 @@ paths:
       - Global Monitoring
       description: Delete companies from portfolio and update new companies from CSV
         file
+      operationId: Sync portfolio to CSV
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
@@ -2252,6 +2257,7 @@ paths:
       tags:
       - Global Monitoring
       description: Get current portfolio risk summary information
+      operationId: Portoflio Risk Summary
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
@@ -2312,6 +2318,7 @@ paths:
       tags:
       - Global Monitoring
       description: Get all notificationEvents based on the portfolio id , optionally
+      operationId: portfolio notificationEvents
         filtered
       parameters:
       - $ref: '#/components/parameters/authHeader'
@@ -2440,6 +2447,7 @@ paths:
       tags:
       - Global Monitoring
       description: Get all companies, optionally filtered
+      operationId: companies in a portfolio
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name: searchQuery
@@ -2610,6 +2618,7 @@ paths:
       tags:
       - Global Monitoring
       description: Copy companies from one portfolio to single (or) multiple portfolios.
+      operationId: Copy Portfolio Companies
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name: copyAll
@@ -2695,6 +2704,7 @@ paths:
       tags:
       - Global Monitoring
       description: Move companies from one portfolio to single (or) multiple portfolios.
+      operationId: Move companies to portfolio
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name: removeAll
@@ -2851,6 +2861,7 @@ paths:
     get:
       tags:
       - Global Monitoring
+      operationId: Monitored company from a portfolio
       description: |
         Get the company
         with companyId =
@@ -3030,6 +3041,7 @@ paths:
     get:
       tags:
       - Global Monitoring
+      operationId: Specific company notificationEvents
       description: List of notification events based on the connect id , optionally
         filtered
       parameters:
@@ -3162,6 +3174,7 @@ paths:
     get:
       tags:
       - Global Monitoring
+      operationId: Portfolio user permissions
       description: Retrieve user permissions within the customer for portfolio Id
       parameters:
       - $ref: '#/components/parameters/authHeader'
@@ -3283,173 +3296,12 @@ paths:
           x-amf-mediaType: application/json
       x-codegen-request-body-name: generated
     x-amf-description: Sharing Portfolio permissions to other users within the customer
-  /decisionEngine/{provenirId}:
-    get:
-      tags:
-      - Decision Engine
-      description: Get Decision(s) for the company based on the Provenir Decision
-        flow
-      parameters:
-      - $ref: '#/components/parameters/authHeader'
-      - name: companyId
-        in: query
-        description: the id of the company we want a decision on
-        required: true
-        schema:
-          type: string
-      - name: originationId
-        in: query
-        description: the origin id of the company we want a decision on.Only upto
-          100 characters are allowed.Rest will be truncated.
-        schema:
-          type: string
-      - name: callRef
-        in: query
-        description: Call Reference
-        schema:
-          type: string
-      - name: provenirId
-        in: path
-        description: the identifier of the decision flow we want to call.
-        required: true
-        schema:
-          type: string
-      responses:
-        200:
-          description: ""
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  Decision: Cred Lim D
-                  Audits:
-                  - description: BANK OF AMERICA CORPORATION
-                    RuleName: Company Name
-                  - description: "87.0"
-                    RuleName: Credit Rating
-                  originationId: 123456_@
-          x-amf-mediaType: application/json
-        400:
-          description: ""
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Bad request
-          x-amf-mediaType: application/json
-        403:
-          description: ""
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Access forbidden
-          x-amf-mediaType: application/json
-        404:
-          description: ""
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: 'Resource not found '
-          x-amf-mediaType: application/json
-    post:
-      tags:
-      - Decision Engine
-      description: Send a Decision(s) for the company based on the Provenir Decision
-        flow
-      parameters:
-      - $ref: '#/components/parameters/authHeader'
-      - name: companyId
-        in: query
-        description: the id of the company we want a decision on
-        required: true
-        schema:
-          type: string
-      - name: originationId
-        in: query
-        description: the origin id of the company we want a decision on.Only upto
-          100 characters are allowed.Rest will be truncated.
-        schema:
-          type: string
-      - name: callRef
-        in: query
-        description: Call Reference
-        schema:
-          type: string
-      - name: provenirId
-        in: path
-        description: the identifier of the decision flow we want to call.
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              example:
-                accountId: "123456"
-                companyName: Test Company
-                contact: Joe Bloggs
-        required: false
-      responses:
-        200:
-          description: ""
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  Decision: Cred Lim D
-                  Audits:
-                  - description: BANK OF AMERICA CORPORATION
-                    RuleName: Company Name
-                  - description: "87.0"
-                    RuleName: Credit Rating
-                  originationId: 123456_@
-          x-amf-mediaType: application/json
-        400:
-          description: ""
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Bad request
-          x-amf-mediaType: application/json
-        403:
-          description: ""
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Access forbidden
-          x-amf-mediaType: application/json
-        404:
-          description: ""
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: 'Resource not found '
-          x-amf-mediaType: application/json
-      x-codegen-request-body-name: generated
-    x-amf-description: Returns a Decision(s) for the company based on the Provenir
-      Decision flow
   /decisionEngine/GUID:
     get:
       tags:
       - Decision Engine
-      description: Endpoint to gets a list of available decision trees for the given
-        User ID.
-      operationId: Get Decision Trees
+      description: List available decision trees available.
+      operationId: List Decision Trees
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name: type
@@ -3521,8 +3373,91 @@ paths:
                   message: Resource not found.
           x-amf-mediaType: application/json
     x-amf-description: Returns a List of GUID's and Friendly Name for particular UserId
-          
-          
+  /decisionEngine/{provenirId}:
+    post:
+      tags:
+      - Decision Engine
+      description: Calls a Decision Tree with the provided parameters to return a Decision.
+      operationId: Run Decision Tree
+      parameters:
+      - $ref: '#/components/parameters/authHeader'
+      - name: companyId
+        in: query
+        description: the connectId of the company to be evaluated in the  deicison tree.
+        required: true
+        schema:
+          type: string
+      - name: originationId
+        in: query
+        description: the origin id of the company we want a decision on. Only up to
+          100 characters are allowed, the rest will be truncated.
+        schema:
+          type: string
+      - name: callRef
+        in: query
+        description: Call Reference
+        schema:
+          type: string
+      - name: provenirId
+        in: path
+        description: Decision Tree GUID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                accountId: "123456"
+                companyName: Test Company
+                contact: Joe Bloggs
+        required: false
+      responses:
+        200:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  Decision: Cred Lim D
+                  Audits:
+                  - description: BANK OF AMERICA CORPORATION
+                    RuleName: Company Name
+                  - description: "87.0"
+                    RuleName: Credit Rating
+                  originationId: 123456_@
+          x-amf-mediaType: application/json
+        400:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Bad request
+          x-amf-mediaType: application/json
+        403:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Access forbidden
+          x-amf-mediaType: application/json
+        404:
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Resource not found '
+          x-amf-mediaType: application/json
+      x-codegen-request-body-name: generated      
 components:
    parameters:
       authHeader:
