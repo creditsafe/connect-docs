@@ -17,7 +17,7 @@ info:
     <li><a href="https://creditsafe.github.io/connect-docs/swagger.html">OpenAPI</a> specification JSON.
     <li><a href="https://www.getpostman.com/collections/3aa74cc7318e44aeb96d">Postman Collection</a> of the most common example calls to Creditsafe Connect.</li>
     <li><a href="https://connect-portal.creditsafe.com"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password and form requests.</li>
-    <li><a href="https://creditsafe.freshdesk.com/en/support/solutions/categories/7000007071/folders/7000018640"> Help Articles</a> Additional help resources including FAQs, Data Dictionaries and Feature Availability.  
+    <li><a href="https://creditsafe.freshdesk.com/en/support/solutions/categories/7000007071/folders/7000018640"> Help Articles</a>  including FAQs, Data Dictionaries and a Feature Availability Matrix.  
     </ul>
   version: "1.0"
 
@@ -29,11 +29,11 @@ tags:
   description: "Endpoint to generate a Bearer JWT (Authentication Token). It is mandatory to include this token under the Header  `Authorization` When calling all other endpoints as proof
         of authenticity. Tokens can exist concurrently and persist for 1 hour from its issued time."
 - name: Companies
-  description: "Endpoints to search for Companies in the Creditsafe Global Company Database. When a company is found you can use the Connect Id to order their Company Credit Report. The Company Credit Report is a JSON object comprising of key business/financial data points such as Credit Score & Limit, Industry Code, Directors, Balance Sheet and Negative Information. A full list of Company data points can be found in the Data Matrix, in the help resources. "
+  description: "Endpoints to search for Companies in the Creditsafe Global Company Database. When a company is found you can use the `connectId` to order their Company Credit Report. The Company Credit Report is a JSON object comprising of key business and financial data points such as Credit Score & Limit, Industry Code, Directors, Balance Sheet and Negative Information. A full list of Company data points can be found in the Data Matrix, in the help resources. "
 - name: People/Directors
-  description: "Endpoints to find People/Directors and order an in-depth Director Report. A Director Report will contain a person's Active and Previous Directorships, where available. This endpoint is not advised to get a list of directors for a specifc Company. Instead, order a Company Credit Report using the `/companies/{id}` endpoint, looking at the `directors` section in the response."
+  description: "Endpoints to find People/Directors and order Director Reports. A Director Report will contain a person's registered information and Active & Previous Directorships, where available. This endpoint is not advised to get a list of directors for a specifc Company. Instead, order a Company Credit Report using the `/companies/{id}` endpoint, and use  the `directors` section in the response."
 - name: Images
-  description: "Endpoints to order official Company Image Documents from original sources. Filings including Annual Account Statements, Annual Returns, Liquidations and Changes of Registered Information can be downloaded as PDFs, and are typically used as a hard copy indicating a proof of audit."
+  description: "Endpoints to order official Company Image Documents from original sources. Company Filings such as Annual Account Statements, Annual Returns, Liquidations and Changes of Registered Information can be downloaded as PDFs, and are typically used as a resource in extended company auditing/compliance."
 - name: Fresh Investigations
   description: "Endpoints to manage Fresh Investigation requests. With the need for accurate data, you can check on any company that is not available within our instant online database by placing a Fresh Investigation (Offline Order). Depending on the market, the information we obtain will vary. Using official sources and registries we are able to quickly answer questions about a company’s stability and financial health. Where official information is not available we will conduct a direct interview with the business."
 - name: Global Monitoring
@@ -116,11 +116,11 @@ paths:
           default: en
       - name: id
         in: query
-        description: Connect Id - The primary Company identifier that is used to uniquely
+        description: connectId - The primary Company identifier that is used to uniquely
           identify all companies across Creditsafe''s Universe and Partner Network.
           This is returned on all Company Search Results. Use this field to use in
           other operations such as Ordering Company Credit Report by Id, and Adding
-          Company to Monitoing Portfolio. </br></br> [Searching by Connect ID is a
+          Company to Monitoing Portfolio. </br></br> [Searching by connectID is a
           slightly redundant operation (can be used as a fast-lookup to Search Result
           fields) as the purpose of Search is to obtain this identifier].
         schema:
@@ -290,7 +290,7 @@ paths:
       tags:
       - Companies
       operationId: Company Credit Report
-      description: "Provide a Company's Connect Id to order their Company Credit Report."
+      description: "Orders a Company's Credit Report by connectId."
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name: language
@@ -323,7 +323,7 @@ paths:
           type: string
       - name: id
         in: path
-        description: The Connect Id (optionally Safe Number where available) of the
+        description: The connectId (optionally Safe Number where available) of the
           Company required to order their Credit Report. Obtained from `/companies`
           search results.
         required: true
@@ -600,7 +600,7 @@ paths:
           type: string
       - name: id
         in: query
-        description: Connect Id - The primary Company identifier that is used to uniquely
+        description: connectId - The primary Company identifier that is used to uniquely
           identify all companies across Creditsafe's Universe and Partner Network.
         schema:
           type: string
@@ -1006,13 +1006,13 @@ paths:
       security: []
       tags:
       - Images
-      description: Returns what Images are available for a given Company Connect Id.
+      description: Returns the available Images for a given Company connectId.
       operationId: "Company Image Documents"
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name:  Id
         in: query
-        description: Company Connect Id.
+        description: The company's connectId.
         schema:
           type: string
       - name: olderThan
@@ -1212,7 +1212,7 @@ paths:
       - $ref: '#/components/parameters/authHeader'
       - name:  Id
         in: query
-        description: Company Connect Id.
+        description: Company connectId.
         schema:
           type: string
       description: "Returns a list of historic and ongoing Fresh Investigations." 
@@ -1255,7 +1255,7 @@ paths:
         tags: 
         - Fresh Investigations
         operationId: Delete Pending Fresh Invesitgation
-        description: "Delete pending Fresh Investigation Orders"
+        description: "Delete pending Fresh Investigation orders"
         parameters:
         - $ref: '#/components/parameters/authHeader'
         - name: orderId
@@ -1295,8 +1295,8 @@ paths:
     put:  
       tags:
       - Fresh Investigations
-      description: Edit Fresh Investigation
-      operationId: Edit Pending Fresh Investigation
+      description: Edit pending Fresh Investigation orders
+      operationId: Edit pending Fresh Investigation
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name: orderId
@@ -1370,7 +1370,7 @@ paths:
       - $ref: '#/components/parameters/pageSize'
       - name: id
         in: path
-        description: The Connect Id of the company that you wish to retrieve events for.
+        description: The connectId of the company that you wish to retrieve events for.
         required: true
         schema:
           type: string
@@ -1531,7 +1531,7 @@ paths:
       tags:
       - Global Monitoring
       description: Endpoint to get all Portfolios based on the supplied Search Criteria.
-      operationId: List of Portfolios
+      operationId: List Portfolios
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name: searchQuery
@@ -1611,6 +1611,7 @@ paths:
       tags:
       - Global Monitoring
       description: Endpoint to create a new Portfolio based on the supplied criteria. A portfolio can contain any number of `companies` that you wish to monitor changes to.
+      operationId: Create Portfolio
       parameters:
       - $ref: '#/components/parameters/authHeader'
       requestBody:
@@ -3042,7 +3043,7 @@ paths:
       tags:
       - Global Monitoring
       operationId: Specific company notificationEvents
-      description: List of notification events based on the connect id , optionally
+      description: List of notification events based on the connectId , optionally
         filtered
       parameters:
       - $ref: '#/components/parameters/authHeader'
@@ -4885,7 +4886,7 @@ components:
         properties: 
           id:
             type: string
-            description: The Connect Id of the company that triggered the `notificationEvent`. A Connect Id is the primary Company identifier that is used to uniquely identify all companies across Creditsafe's Universe and Partner Network.
+            description: The connectId of the company that triggered the `notificationEvent`. A connectId is the primary Company identifier that is used to uniquely identify all companies across Creditsafe's Universe and Partner Network.
             example: "US-X-US22384484"
           safeNumber:
             type: string
