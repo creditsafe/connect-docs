@@ -6,7 +6,7 @@ info:
     Creditsafe Connect is a REST API that provides access to the <a href="https://www.creditsafe.com/gb/en/more/about/our-data.html">Creditsafe Global Company Database</a> allowing you to qualify/onboard your prospects, make quick informed decisions on suppliers and control your master data.
     
     <h2>Quick Start</h2>
-    To start your Creditsafe Connect integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>
+    To start your Creditsafe Connect API integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>
     
     Using a REST API client construct an `/authenticate` POST request and enter your username & password (case-sensitive) into the POST body. A successful response will return an  `authentication token`.</br></br>
   
