@@ -3,8 +3,7 @@ info:
   title: Creditsafe Connect OpenAPI Documentation
   description:
     <h2>Introduction</h2>
-    Creditsafe Connect is a REST API that provides access to the <a href="https://www.creditsafe.com/gb/en/more/about/our-data.html">Creditsafe Global Company Database</a> allowing you to qualify/onboard your prospects, make quick informed decisions on suppliers and control your master data.
-    
+    Creditsafe Connect is a REST API that provides access to the <a href="https://www.creditsafe.com/gb/en/more/about/our-data.html">Creditsafe Global Company Database</a> allowing you to control your master data, utlise up-to-date Business and Director information to enhance your onboarding and qualification processes, and get alerts when your customer's and supplier's Credit Report changes.
     <h2>Quick Start</h2>
     To start your Creditsafe Connect API integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>
     
@@ -14,7 +13,7 @@ info:
     
     <h2>Resources</h2>
     <ul>
-    <li><a href="https://creditsafe.github.io/connect-docs/swagger.html">OpenAPI</a> specification JSON.
+    <li><a href="https://creditsafe.github.io/connect-docs/swagger.html">OpenAPI</a> specification.
     <li><a href="https://www.getpostman.com/collections/3aa74cc7318e44aeb96d">Postman Collection</a> of the most common example calls to Creditsafe Connect.</li>
     <li><a href="https://connect-portal.creditsafe.com"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password and form requests.</li>
     <li><a href="https://creditsafe.freshdesk.com/en/support/solutions/categories/7000007071/folders/7000018640"> Help Articles</a>  including FAQs, Data Dictionaries and a Feature Availability Matrix.  
@@ -99,6 +98,7 @@ paths:
       - $ref: '#/components/parameters/authHeader'
       - name: countries
         in: query
+        example: GB
         description: A Comma-separated list of country codes to search for Companies
           in. The list takes ISO/Alpha 2 format country codes. For example US,GB represents
           searching for Companies in the United States and Great Britain.
@@ -327,6 +327,7 @@ paths:
           Company required to order their Credit Report. Obtained from `/companies`
           search results.
         required: true
+        example: GB-0-03836192
         schema:
           type: string
       responses:
