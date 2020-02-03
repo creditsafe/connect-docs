@@ -1532,7 +1532,7 @@ paths:
       tags:
       - Global Monitoring
       description: Endpoint to get all Portfolios based on the supplied Search Criteria.
-      operationId: List Portfolios
+      operationId: List all portfolios
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name: searchQuery
@@ -1612,7 +1612,7 @@ paths:
       tags:
       - Global Monitoring
       description: Endpoint to create a new Portfolio based on the supplied criteria. A portfolio can contain any number of `companies` that you wish to monitor changes to.
-      operationId: Create Portfolio
+      operationId: Create monitoring portfolio
       parameters:
       - $ref: '#/components/parameters/authHeader'
       requestBody:
@@ -1663,7 +1663,7 @@ paths:
       tags:
       - Global Monitoring
       description: Get the portfolio with portfolioId = portfolioId}
-      operationId: Retrieve Portfolio by Id
+      operationId: Retrieve portfolio by Id
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
@@ -1764,7 +1764,7 @@ paths:
       tags:
       - Global Monitoring
       description: Update Portfolio details
-      operationId: Update Portfolio details
+      operationId: Update portfolio details
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
@@ -1876,7 +1876,7 @@ paths:
       tags:
       - Global Monitoring
       description: Get all notification `eventRules` for the given `portfolioId`. Notification event rules allow you to control which events you wish to monitor for the `companies` contained within the given `portfolio`.
-      operationId: List Portfolio eventRules
+      operationId: List portfolio eventRules
       parameters:
       - name: portfolioId
         in: path
@@ -2139,7 +2139,7 @@ paths:
     post:
       tags:
       - Global Monitoring
-      description: Import companies in to a portfolio
+      description: Import companies into a portfolio
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
@@ -2199,7 +2199,7 @@ paths:
       - Global Monitoring
       description: Delete companies from portfolio and update new companies from CSV
         file
-      operationId: Sync portfolio to CSV
+      operationId: Sync portfolio companies to CSV records
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name: portfolioId
@@ -2320,7 +2320,7 @@ paths:
       tags:
       - Global Monitoring
       description: Get all notificationEvents based on the portfolio id , optionally
-      operationId: portfolio notificationEvents
+      operationId: list notificationEvents in a portfolio
         filtered
       parameters:
       - $ref: '#/components/parameters/authHeader'
@@ -2449,7 +2449,7 @@ paths:
       tags:
       - Global Monitoring
       description: Get all companies, optionally filtered
-      operationId: companies in a portfolio
+      operationId: List filtered companies in a portfolio
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name: searchQuery
@@ -2620,7 +2620,7 @@ paths:
       tags:
       - Global Monitoring
       description: Copy companies from one portfolio to single (or) multiple portfolios.
-      operationId: Copy Portfolio Companies
+      operationId: Copy compaies to another portfolio 
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name: copyAll
@@ -2642,7 +2642,7 @@ paths:
           application/json:
             schema:
               type: object
-              x-amf-examples:
+              example:
                 CopyAllFalse:
                   portfolios:
                   - 196854
@@ -2706,7 +2706,7 @@ paths:
       tags:
       - Global Monitoring
       description: Move companies from one portfolio to single (or) multiple portfolios.
-      operationId: Move companies to portfolio
+      operationId: Moves (cuts) companies from one portfolio to another
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name: removeAll
@@ -2728,7 +2728,7 @@ paths:
           application/json:
             schema:
               type: object
-              x-amf-examples:
+              example:
                 RemoveAllFalse:
                   portfolios:
                   - 196854
@@ -2792,6 +2792,7 @@ paths:
       tags:
       - Global Monitoring
       description: Delete companies from current portfolio
+      operationId: Clear companies from a portfolio
       parameters:
       - $ref: '#/components/parameters/authHeader'
       - name: clearAll
@@ -2812,7 +2813,7 @@ paths:
           application/json:
             schema:
               type: object
-              x-amf-examples:
+              example:
                 ClearAllFalse:
                   companies:
                   - BE-X-733313367
@@ -2858,7 +2859,6 @@ paths:
                   message: Portfolios not found
           x-amf-mediaType: application/json
       x-codegen-request-body-name: generated
-    x-amf-description: delete companies from current portfolio.
   /monitoring/portfolios/{portfolioId}/companies/{id}:
     get:
       tags:
@@ -2986,7 +2986,8 @@ paths:
     patch:
       tags:
       - Global Monitoring
-      description: Updates a Company
+      description: Updates a company in a portfolio.
+      operationId: Update Portfolio Company 
       parameters:
       - name: portfolioId
         in: path
@@ -3001,11 +3002,13 @@ paths:
       -  $ref: '#/components/parameters/authHeader'
       requestBody:
         content:
-          application/json:
-            schema:
-              type: object
-              example: toDo
-        required: false
+         application/json:
+          schema:
+            type: object
+            example: 
+              personalReference: "personal reference"
+              freeText: "Some useful text"
+              personalLimit: "40"
       responses:
         204:
           description: ""
@@ -3043,7 +3046,7 @@ paths:
     get:
       tags:
       - Global Monitoring
-      operationId: Specific company notificationEvents
+      operationId: List company specific notificationEvents
       description: List of notification events based on the connectId , optionally
         filtered
       parameters:
@@ -3234,6 +3237,7 @@ paths:
       tags:
       - Global Monitoring
       description: Update/Create user permissions within the customer for portfolio
+      operationId: Share portfolio
         Id
       parameters:
       - $ref: '#/components/parameters/authHeader'
