@@ -38,6 +38,10 @@
     {
       "name": "Decision Engine",
       "description": "Endpoints to run bespoke credit decisions on Companies. You can find more information on the Decision Engine <a href=\"https://www.creditsafe.com/us/en/enterprise/integrations/decision-engine.html\"> here</a>"
+    },
+    {
+      "name": "Compliance Beta",
+      "description": "The focus on screening clients and third parties is increasing. International regulators are demanding that firms improve their ongoing sanctions screening process. LexisNexis World Compliance data through Connect allows customers to mitigate risk around Anti-Bribery and Corruption under local and international regulations such as the UK Bribery Act, by enabling users to screen their third party agents, suppliers or employees against watch lists.  With LexisNexis World Compliance through Creditsafe Connect, compliance is easy, efficient and cost-effective, even as the regulatory mountain grows. </br></br> Please be aware endpoints under this resource are marked as temporary/beta and may be changed/renamed with less notice than normal."
     }
   ],
   "paths": {
@@ -5220,6 +5224,309 @@
         },
         "x-codegen-request-body-name": "generated"
       }
+    },
+    "/compliancetemp/companies/searchcriteria": {
+      "get": {
+        "tags": [
+          "Compliance Beta"
+        ],
+        "operationId": "Company Compliance Search Criteria",
+        "description": "Returns the search parameters available to use when making a compliance search request against any `predefined Search`.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "criteriaSets": [
+                      {
+                        "name": {
+                          "required": true
+                        },
+                        "address": {
+                          "street": {
+                            "required": false
+                          },
+                          "houseNumber": {
+                            "required": false
+                          },
+                          "city": {
+                            "required": false
+                          },
+                          "postCode": {
+                            "required": false
+                          },
+                          "province": {
+                            "required": false
+                          }
+                        },
+                        "phoneNo": {
+                          "required": false
+                        },
+                        "predefinedSearchName": {
+                          "required": false
+                        },
+                        "countries": {
+                          "required": false
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "x-amf-mediaType": "application/json"
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Bad request"
+                  }
+                }
+              }
+            },
+            "x-amf-mediaType": "application/json"
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Access forbidden"
+                  }
+                }
+              }
+            },
+            "x-amf-mediaType": "application/json"
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Resource not found "
+                  }
+                }
+              }
+            },
+            "x-amf-mediaType": "application/json"
+          }
+        }
+      }
+    },
+    "/compliancetemp/companies/predefinedSearches": {
+      "get": {
+        "tags": [
+          "Compliance Beta"
+        ],
+        "description": "This endpoint returns the list of all available company `predefined Search` types. A `predefined Search` is defined by the compliance watchlist to be be screened, the confidence in matches returned by your search and the entity type (company or person). They are set at 5% increments between 75-100% match confidence. For example - Searching against the `predefined Search` `c-Sanct-95` will look to match your search criteria against the Company Sanctions watchlist and return anything with 95% match confidence.",
+        "operationId": "List of Pre-Defined Searches",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/compliancePreDefinedSearches"
+                }
+              }
+            },
+            "x-amf-mediaType": "application/json"
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Bad request"
+                  }
+                }
+              }
+            },
+            "x-amf-mediaType": "application/json"
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Access forbidden"
+                  }
+                }
+              }
+            },
+            "x-amf-mediaType": "application/json"
+          }
+        }
+      }
+    },
+    "/compliancetemp/companies/{predefinedSearch}": {
+      "get": {
+        "tags": [
+          "Compliance Beta"
+        ],
+        "description": "Searches the provided `Predefined search` list with your search criteria. Results returned here indicate potential matches (depending on the predefined Search used).",
+        "operationId": "Compliance Company Search",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "name": "countries",
+            "in": "query",
+            "example": "GB",
+            "description": "A Comma-separated list of country codes to search for Companies in. The list takes ISO/Alpha 2 format country codes. For example US,GB represents searching for Companies in the United States and Great Britain.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "predefinedSearch",
+            "in": "path",
+            "required": true,
+            "description": "the predefined search that the search will be made against. See the `/predefinedSearches` endpoint",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "c-100-fullFile",
+                "c-95-fullFile",
+                "c-90-fullFile",
+                "c-85-fullFile",
+                "c-80-fullFile",
+                "c-75-fullFile",
+                "c-100-Sanct",
+                "c-95-Sanct",
+                "c-90-Sanct",
+                "c-85-Sanct",
+                "c-80-Sanct",
+                "c-75-Sanct"
+              ]
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Entity Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "street",
+            "in": "query",
+            "description": "Address part identifier - Street of the entity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "houseNo",
+            "in": "query",
+            "description": "Address part identifier - House/Building Number of the entity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "Address part identifier - City of the entity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "postCode",
+            "in": "query",
+            "description": "Address part identifier - Postcode/Zip Code of the entity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "province",
+            "in": "query",
+            "description": "Address part identifier - Province/State of the entity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "phoneNo",
+            "in": "query",
+            "description": "Phone Number of the entity.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/complianceSearchResult"
+                }
+              }
+            },
+            "x-amf-mediaType": "application/json"
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Bad request"
+                  }
+                }
+              }
+            },
+            "x-amf-mediaType": "application/json"
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Access forbidden"
+                  }
+                }
+              }
+            },
+            "x-amf-mediaType": "application/json"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -7652,6 +7959,469 @@
               "type": "Demo"
             }
           ]
+        }
+      },
+      "complianceSearchResult": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "properties": {
+              "body": {
+                "type": "object",
+                "properties": {
+                  "searchResult": {
+                    "type": "object",
+                    "properties": {
+                      "records": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "record": {
+                              "type": "integer"
+                            },
+                            "recordDetails": {
+                              "type": "object",
+                              "properties": {
+                                "acceptListID": {
+                                  "type": "integer"
+                                },
+                                "addedToAcceptList": {
+                                  "type": "boolean"
+                                },
+                                "division": {
+                                  "type": "string"
+                                },
+                                "dppa": {
+                                  "type": "string"
+                                },
+                                "eftType": {
+                                  "type": "string"
+                                },
+                                "entityType": {
+                                  "type": "string"
+                                },
+                                "gender": {
+                                  "type": "string"
+                                },
+                                "glb": {
+                                  "type": "integer"
+                                },
+                                "iDs": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "number": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                },
+                                "lastUpdatedDate": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "object",
+                                  "properties": {
+                                    "full": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "recordState": {
+                                  "type": "object",
+                                  "properties": {
+                                    "addedToAcceptList": {
+                                      "type": "boolean"
+                                    },
+                                    "alertState": {
+                                      "type": "string"
+                                    },
+                                    "assignedTo": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "assignmentType": {
+                                      "type": "string"
+                                    },
+                                    "division": {
+                                      "type": "string"
+                                    },
+                                    "history": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "date": {
+                                            "type": "string"
+                                          },
+                                          "event": {
+                                            "type": "string"
+                                          },
+                                          "note": {
+                                            "type": "string"
+                                          },
+                                          "user": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "matchStates": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "matchID": {
+                                            "type": "integer"
+                                          },
+                                          "type": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "searchDate": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "resultID": {
+                              "type": "integer"
+                            },
+                            "runID": {
+                              "type": "integer"
+                            },
+                            "watchlist": {
+                              "type": "object",
+                              "properties": {
+                                "matches": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "acceptListID": {
+                                        "type": "integer"
+                                      },
+                                      "addedToAcceptList": {
+                                        "type": "boolean"
+                                      },
+                                      "addressName": {
+                                        "type": "boolean"
+                                      },
+                                      "autoFalsePositive": {
+                                        "type": "boolean"
+                                      },
+                                      "bestAddressIsPartial": {
+                                        "type": "boolean"
+                                      },
+                                      "bestCountryScore": {
+                                        "type": "integer"
+                                      },
+                                      "bestCountryType": {
+                                        "type": "string"
+                                      },
+                                      "bestDOBIsPartial": {
+                                        "type": "boolean"
+                                      },
+                                      "bestName": {
+                                        "type": "string"
+                                      },
+                                      "bestNameScore": {
+                                        "type": "integer"
+                                      },
+                                      "checkSum": {
+                                        "type": "integer"
+                                      },
+                                      "conflicts": {
+                                        "type": "object",
+                                        "properties": {
+                                          "addressConflict": {
+                                            "type": "boolean"
+                                          },
+                                          "citizenshipConflict": {
+                                            "type": "boolean"
+                                          },
+                                          "countryConflict": {
+                                            "type": "boolean"
+                                          },
+                                          "dobConflict": {
+                                            "type": "boolean"
+                                          },
+                                          "entityTypeConflict": {
+                                            "type": "boolean"
+                                          },
+                                          "genderConflict": {
+                                            "type": "boolean"
+                                          },
+                                          "idConflict": {
+                                            "type": "boolean"
+                                          },
+                                          "phoneConflict": {
+                                            "type": "boolean"
+                                          }
+                                        }
+                                      },
+                                      "entityDetails": {
+                                        "type": "object",
+                                        "properties": {
+                                          "additionalInfo": {
+                                            "type": "array",
+                                            "items": {
+                                              "type": "object",
+                                              "properties": {
+                                                "comments": {
+                                                  "type": "string"
+                                                },
+                                                "id": {
+                                                  "type": "integer"
+                                                },
+                                                "type": {
+                                                  "type": "string"
+                                                },
+                                                "value": {
+                                                  "type": "string"
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "addresses": {
+                                            "type": "array",
+                                            "items": {
+                                              "type": "object",
+                                              "properties": {
+                                                "city": {
+                                                  "type": "string"
+                                                },
+                                                "country": {
+                                                  "type": "string"
+                                                },
+                                                "id": {
+                                                  "type": "integer"
+                                                },
+                                                "postalCode": {
+                                                  "type": "string"
+                                                },
+                                                "street1": {
+                                                  "type": "string"
+                                                },
+                                                "type": {
+                                                  "type": "string"
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "akAs": {
+                                            "type": "array",
+                                            "items": {
+                                              "type": "object",
+                                              "properties": {
+                                                "category": {
+                                                  "type": "string"
+                                                },
+                                                "id": {
+                                                  "type": "integer"
+                                                },
+                                                "name": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "full": {
+                                                      "type": "string"
+                                                    }
+                                                  }
+                                                },
+                                                "type": {
+                                                  "type": "string"
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "comments": {
+                                            "type": "string"
+                                          },
+                                          "dateListed": {
+                                            "type": "string"
+                                          },
+                                          "entityType": {
+                                            "type": "string"
+                                          },
+                                          "iDs": {
+                                            "type": "array",
+                                            "items": {
+                                              "type": "object",
+                                              "properties": {
+                                                "id": {
+                                                  "type": "integer"
+                                                },
+                                                "number": {
+                                                  "type": "string"
+                                                },
+                                                "type": {
+                                                  "type": "string"
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "listReferenceNumber": {
+                                            "type": "string"
+                                          },
+                                          "name": {
+                                            "type": "object",
+                                            "properties": {
+                                              "full": {
+                                                "type": "string"
+                                              }
+                                            }
+                                          },
+                                          "reasonListed": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      },
+                                      "entityName": {
+                                        "type": "string"
+                                      },
+                                      "entityScore": {
+                                        "type": "integer"
+                                      },
+                                      "entityUniqueID": {
+                                        "type": "string"
+                                      },
+                                      "falsePositive": {
+                                        "type": "boolean"
+                                      },
+                                      "file": {
+                                        "type": "object",
+                                        "properties": {
+                                          "build": {
+                                            "type": "string"
+                                          },
+                                          "custom": {
+                                            "type": "boolean"
+                                          },
+                                          "id": {
+                                            "type": "integer"
+                                          },
+                                          "name": {
+                                            "type": "string"
+                                          },
+                                          "published": {
+                                            "type": "string"
+                                          },
+                                          "type": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      },
+                                      "gatewayOFACScreeningIndicatorMatch": {
+                                        "type": "boolean"
+                                      },
+                                      "id": {
+                                        "type": "integer"
+                                      },
+                                      "matchReAlert": {
+                                        "type": "boolean"
+                                      },
+                                      "previousResultID": {
+                                        "type": "integer"
+                                      },
+                                      "reasonListed": {
+                                        "type": "string"
+                                      },
+                                      "resultDate": {
+                                        "type": "string"
+                                      },
+                                      "secondaryOFACScreeningIndicatorMatch": {
+                                        "type": "boolean"
+                                      },
+                                      "trueMatch": {
+                                        "type": "boolean"
+                                      }
+                                    }
+                                  }
+                                },
+                                "status": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "searchEngineVersion": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "compliancePreDefinedSearches": {
+        "type": "object",
+        "properties": {
+          "totalSize": {
+            "type": "integer",
+            "example": [
+              3
+            ]
+          },
+          "predefinedSearches": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "example": {
+                "description": "Searches the Full LexisNexis Compliance File with 100 confidence",
+                "name": "c-100-fullFile",
+                "productName": "LexisNexis",
+                "categoryName": "full",
+                "confidence": 100
+              },
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": [
+                    "c-100-fullFile"
+                  ]
+                },
+                "categoryName": {
+                  "type": "string",
+                  "example": [
+                    "full"
+                  ]
+                },
+                "productName": {
+                  "type": "string",
+                  "example": [
+                    "LexisNexis"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "example": [
+                    "Searches the Full LexisNexis Compliance File with 100 confidence"
+                  ]
+                },
+                "confidence": {
+                  "type": "integer",
+                  "example": [
+                    100
+                  ]
+                }
+              }
+            }
+          }
         }
       }
     },
