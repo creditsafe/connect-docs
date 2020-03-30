@@ -5225,13 +5225,13 @@
         "x-codegen-request-body-name": "generated"
       }
     },
-    "/compliancetemp/companies/searchcriteria": {
+    "/compliancetemp/companies/searchCriteria": {
       "get": {
         "tags": [
           "Compliance Beta"
         ],
         "operationId": "Company Compliance Search Criteria",
-        "description": "Returns the search parameters available to use when making a compliance search request against any `predefined Search`.",
+        "description": "Returns the search parameters available to use when making a compliance search request against any Company `predefined Search`.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authHeader"
@@ -5335,7 +5335,7 @@
           "Compliance Beta"
         ],
         "description": "This endpoint returns the list of all available company `predefined Search` types. A `predefined Search` is defined by the compliance watchlist to be be screened, the confidence in matches returned by your search and the entity type (company or person). They are set at 5% increments between 75-100% match confidence. For example - Searching against the `predefined Search` `c-Sanct-95` will look to match your search criteria against the Company Sanctions watchlist and return anything with 95% match confidence.",
-        "operationId": "List of Pre-Defined Searches",
+        "operationId": "List of Companies Pre-Defined Searches",
         "parameters": [
           {
             "$ref": "#/components/parameters/authHeader"
@@ -5424,6 +5424,309 @@
                 "c-85-Sanct",
                 "c-80-Sanct",
                 "c-75-Sanct"
+              ]
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Entity Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "street",
+            "in": "query",
+            "description": "Address part identifier - Street of the entity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "houseNo",
+            "in": "query",
+            "description": "Address part identifier - House/Building Number of the entity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "Address part identifier - City of the entity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "postCode",
+            "in": "query",
+            "description": "Address part identifier - Postcode/Zip Code of the entity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "province",
+            "in": "query",
+            "description": "Address part identifier - Province/State of the entity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "phoneNo",
+            "in": "query",
+            "description": "Phone Number of the entity.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/complianceSearchResult"
+                }
+              }
+            },
+            "x-amf-mediaType": "application/json"
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Bad request"
+                  }
+                }
+              }
+            },
+            "x-amf-mediaType": "application/json"
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Access forbidden"
+                  }
+                }
+              }
+            },
+            "x-amf-mediaType": "application/json"
+          }
+        }
+      }
+    },
+    "/compliancetemp/people/searchCriteria": {
+      "get": {
+        "tags": [
+          "Compliance Beta"
+        ],
+        "operationId": "Individuals Compliance Search Criteria",
+        "description": "Returns the search parameters available to use when making a compliance search request against any Individual/Person `predefined Search`.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "criteriaSets": [
+                      {
+                        "name": {
+                          "required": true
+                        },
+                        "address": {
+                          "street": {
+                            "required": false
+                          },
+                          "houseNumber": {
+                            "required": false
+                          },
+                          "city": {
+                            "required": false
+                          },
+                          "postCode": {
+                            "required": false
+                          },
+                          "province": {
+                            "required": false
+                          }
+                        },
+                        "phoneNo": {
+                          "required": false
+                        },
+                        "predefinedSearchName": {
+                          "required": false
+                        },
+                        "countries": {
+                          "required": false
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            },
+            "x-amf-mediaType": "application/json"
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Bad request"
+                  }
+                }
+              }
+            },
+            "x-amf-mediaType": "application/json"
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Access forbidden"
+                  }
+                }
+              }
+            },
+            "x-amf-mediaType": "application/json"
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Resource not found "
+                  }
+                }
+              }
+            },
+            "x-amf-mediaType": "application/json"
+          }
+        }
+      }
+    },
+    "/compliancetemp/people/predefinedSearches": {
+      "get": {
+        "tags": [
+          "Compliance Beta"
+        ],
+        "description": "This endpoint returns the list of all available company `predefined Search` types. A `predefined Search` is defined by the compliance watchlist to be be screened, the confidence in matches returned by your search and the entity type (company or person). They are set at 5% increments between 75-100% match confidence. For example - Searching against the `predefined Search` `p-Sanct-95` will look to match your search criteria against the Individuals/Person Sanctions watchlist and return anything with 95% match confidence.",
+        "operationId": "List of Individuals Pre-Defined Searches",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authHeader"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/compliancePreDefinedSearches"
+                }
+              }
+            },
+            "x-amf-mediaType": "application/json"
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Bad request"
+                  }
+                }
+              }
+            },
+            "x-amf-mediaType": "application/json"
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Access forbidden"
+                  }
+                }
+              }
+            },
+            "x-amf-mediaType": "application/json"
+          }
+        }
+      }
+    },
+    "/compliancetemp/people/{predefinedSearch}": {
+      "get": {
+        "tags": [
+          "Compliance Beta"
+        ],
+        "description": "Searches the provided `Predefined search` list with your search criteria. Results returned here indicate potential matches (depending on the predefined Search used).",
+        "operationId": "Compliance Individuals Search",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authHeader"
+          },
+          {
+            "name": "countries",
+            "in": "query",
+            "example": "GB",
+            "description": "A Comma-separated list of country codes to search for Individuals in. The list takes ISO/Alpha 2 format country codes. For example US,GB represents searching for Companies in the United States and Great Britain.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "predefinedSearch",
+            "in": "path",
+            "required": true,
+            "description": "the predefined search that the search will be made against. See the `/predefinedSearches` endpoint",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "p-100-fullFile",
+                "p-95-fullFile",
+                "p-90-fullFile",
+                "p-85-fullFile",
+                "p-80-fullFile",
+                "p-75-fullFile",
+                "p-100-Sanct",
+                "p-95-Sanct",
+                "p-90-Sanct",
+                "p-85-Sanct",
+                "p-80-Sanct",
+                "p-75-Sanct"
               ]
             }
           },
