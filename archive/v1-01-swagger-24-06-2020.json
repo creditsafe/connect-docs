@@ -115,7 +115,7 @@
         "tags": [
           "Companies"
         ],
-        "description": "Endpoint to search for Companies based on the provided Search Criteria. To get the most relevant results, it is recommended to use a unique identifier such as `regNo` where available. If a unique identifier is not available, use a combination of the companies registered `postCode` and `name` for the next best hit rate.",
+        "description": "Endpoint to search for Companies based on the provided Search Criteria. To get the most relevant results, it is recommended to use a unique identifer such as `regNo` where available. If a unique identiifer is not available, use a combination of the companies registered `postCode` and `name` for the next best hit rate.",
         "operationId": "Company Search",
         "parameters": [
           {
@@ -144,7 +144,7 @@
           {
             "name": "id",
             "in": "query",
-            "description": "connectId - The primary Company identifier that is used to uniquely identify all companies across Creditsafes Universe and Partner Network. This is returned on all Company Search Results. Use this field to use in other operations such as Ordering Company Credit Report by Id, and Adding Company to Monitoing Portfolio. </br></br> [Searching by connectID is a slightly redundant operation (can be used as a fast-lookup to Search Result fields) as the purpose of Search is to obtain this identifier].",
+            "description": "connectId - The primary Company identifier that is used to uniquely identify all companies across Creditsafe''s Universe and Partner Network. This is returned on all Company Search Results. Use this field to use in other operations such as Ordering Company Credit Report by Id, and Adding Company to Monitoing Portfolio. </br></br> [Searching by connectID is a slightly redundant operation (can be used as a fast-lookup to Search Result fields) as the purpose of Search is to obtain this identifier].",
             "schema": {
               "type": "string"
             }
@@ -711,10 +711,81 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/accessCountriesResponse"
+                  "type": "object",
+                  "example": {
+                    "countryAccess": [
+                      {
+                        "Creditsafe Connect Online Reports": [
+                          {
+                            "countryName": "Italy",
+                            "countryIso2": "IT",
+                            "used": 243
+                          },
+                          {
+                            "countryName": "Belgium",
+                            "countryIso2": "BE",
+                            "used": 76
+                          },
+                          {
+                            "countryName": "United Kingdom of Great Britain and Northern Ireland",
+                            "countryIso2": "GB",
+                            "used": 46
+                          },
+                          {
+                            "countryName": "Denmark",
+                            "countryIso2": "DK",
+                            "used": 5
+                          },
+                          {
+                            "countryName": "Australia",
+                            "countryIso2": "AU",
+                            "used": 2
+                          },
+                          {
+                            "countryName": "Indonesia",
+                            "countryIso2": "ID",
+                            "used": 0
+                          },
+                          {
+                            "countryName": "Sweden",
+                            "countryIso2": "SE",
+                            "used": 10
+                          },
+                          {
+                            "countryName": "United States of America",
+                            "countryIso2": "US",
+                            "used": 15
+                          },
+                          {
+                            "countryName": "Afghanistan",
+                            "countryIso2": "AF",
+                            "used": 0
+                          },
+                          {
+                            "countryName": "Yemen",
+                            "countryIso2": "YE",
+                            "used": 0
+                          },
+                          {
+                            "countryName": "Czech Republic",
+                            "countryIso2": "CZ",
+                            "used": 0
+                          }
+                        ]
+                      },
+                      {
+                        "Creditsafe Connect Offline Reports": []
+                      },
+                      {
+                        "Creditsafe Connect Monitoring": []
+                      }
+                    ],
+                    "correlationId": "1a5379d0-f923-11e8-bb11-023a939a59f2"
+                  }
                 }
               }
-            }
+            },
+            "x-amf-mediaType": "application/json"
           },
           "400": {
             "description": "",
@@ -963,13 +1034,8 @@
         "responses": {
           "200": {
             "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/gbPeopleReportReponse"
-                }
-              }
-            }
+            "content": {},
+            "x-amf-mediaType": "application/json"
           },
           "400": {
             "description": "",
@@ -1478,7 +1544,7 @@
         "tags": [
           "Fresh Investigations"
         ],
-        "description": "Places an order for a Fresh Investigation (Offline Report). Providing as much detail as possible about the Company, our team will use official sources and registries to quickly answer questions about a company’s stability and financial health. Fresh Investigations take 5.5 days on average to complete.",
+        "description": "Places an order for a Fresh Investigation (Offline Report). Providing as much detail as   possible about the Company, our team will use official sources and registries to quickly answer questions about a company’s stability and financial health. Fresh Investigations take 5.5 days on average to complete.",
         "operationId": "Request Fresh Investigation",
         "parameters": [
           {
@@ -1542,134 +1608,25 @@
         }
       },
       "get": {
+        "security": [],
         "tags": [
           "Fresh Investigations"
         ],
-        "operationId": "List Submitted Fresh Investigations",
+        "operationId": "List Fresh Investigations",
         "parameters": [
           {
             "$ref": "#/components/parameters/authHeader"
           },
           {
-            "$ref": "#/components/parameters/page"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "name": "transactionId",
+            "name": "Id",
             "in": "query",
-            "description": "Fresh Investigation Identifier used internally and with our data partners.",
+            "description": "Company connectId.",
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "name": "reportCreatedAfter",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Returns Fresh Investigations processed after this date",
-            "example": "2020-01-01T11:23:56Z"
-          },
-          {
-            "name": "reportCreatedBefore",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Returns ordered Fresh Investigations that were processed before this date",
-            "example": "2020-01-01T11:23:56Z"
-          },
-          {
-            "name": "createdBefore",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Returns Fresh Investigations created before this date"
-          },
-          {
-            "name": "createdSince",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Returns ordered Fresh Investigations created after this date"
-          },
-          {
-            "name": "lookUpOrderBy",
-            "description": "Use to search for your Fresh Investigations by either the returned Company Details in the `GET` `freshInvestigations/{orderId}` endpoint or your supplied Search Criteria in the `POST` `/freshInvestigations` endpoint",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "CompanyDetails",
-                "SearchCriteria"
-              ]
-            }
-          },
-          {
-            "name": "companyDetailsCountry",
-            "in": "query",
-            "description": "Looks for your returned Fresh Investigations where the returned Company Country is named this. Use with lookUpOrderBy=CompanyDetails",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "companyDetailsName",
-            "in": "query",
-            "description": "Looks for your returned Fresh Investigations where the returned Company Name is named this. Use with lookUpOrderBy=CompanyDetails",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "searchCriteriaCountry",
-            "in": "query",
-            "description": "Looks for your returned Fresh Investigations where your submitted Search Criteria Company Country is this. Use with lookUpOrderBy=searchCriteria",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "searchCriteriaName",
-            "in": "query",
-            "description": "Looks for your Fresh Investigations where your submitted Search Criteria Company Name is this. Use with lookUpOrderBy=searchCriteria",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "sortBy",
-            "in": "query",
-            "description": "Sorts  returned Fresh Investigations by this field",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "creationDate",
-                "lastStatusChangeDate",
-                "orderID",
-                "status"
-              ]
-            }
-          },
-          {
-            "name": "sortDir",
-            "in": "query",
-            "description": "Sorts returned Fresh Investigations by this direction",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "desc",
-                "asc"
-              ]
             }
           }
         ],
-        "description": "Returns a list of your submitted Fresh Investigation Orders.",
+        "description": "Returns a list of historic and ongoing Fresh Investigations.",
         "responses": {
           "200": {
             "description": "",
@@ -1746,15 +1703,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "sections",
-            "in": "query",
-            "description": "Specify a value to return a single section, or multiple-comma separated sections of the completed Fresh Investigation. Leave null to return the full report. Available sections; - companyIdentification - creditScore - contactInformation - directors - otherInformation - groupStructure - extendedGroupStructure - financialStatements - negativeInformation - additionalInformation - directorships - localFinancialStatements - paymentData - companySummary - alternateSummary",
-            "schema": {
-              "type": "string"
-            },
-            "example": "companyIdentification,creditScore"
           }
         ],
         "responses": {
@@ -2025,14 +1973,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "anyOf": [
-                    {
-                      "$ref": "#/components/schemas/bankMatchValidate"
-                    },
-                    {
-                      "$ref": "#/components/schemas/bankMatchVerify"
-                    }
-                  ]
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/bankMatchValidate"
+                      },
+                      {
+                        "$ref": "#/components/schemas/bankMatchVerify"
+                      }
+                    ]
+                  }
                 }
               }
             },
@@ -2537,52 +2488,7 @@
           }
         ],
         "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "isDefault": {
-                    "type": "boolean"
-                  },
-                  "emails": {
-                    "type": "object",
-                    "properties": {
-                      "firstName": {
-                        "type": "string"
-                      },
-                      "lastName": {
-                        "type": "string"
-                      },
-                      "emailAddress": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "emailSubject": {
-                    "type": "string"
-                  },
-                  "emailLanguage": {
-                    "type": "string"
-                  },
-                  "frequency": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "name"
-                ]
-              },
-              "example": {
-                "name": "My New Portfolio",
-                "isDefault": "true"
-              }
-            }
-          },
-          "required": true
+          "$ref": "#/components/requestBodies/PortfolioRequest"
         },
         "responses": {
           "200": {
@@ -2653,7 +2559,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Get the portfolio with portfolioId",
+        "description": "Get the portfolio with portfolioId = portfolioId}",
         "operationId": "Retrieve portfolio by Id",
         "parameters": [
           {
@@ -2663,7 +2569,6 @@
             "name": "portfolioId",
             "in": "path",
             "required": true,
-            "description": "The unique identifier for the portfolio that you wish to retrieve, obtained from `/portfolios`.",
             "schema": {
               "type": "string"
             }
@@ -2748,7 +2653,6 @@
             "name": "portfolioId",
             "in": "path",
             "required": true,
-            "description": "The unique identifier of the portfolio that you wish to delete, obtained from `/portfolios`.",
             "schema": {
               "type": "string"
             }
@@ -2817,7 +2721,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Update Portfolio details such as Name, email reciepients, language and subject line.",
+        "description": "Update Portfolio details",
         "operationId": "Update portfolio details",
         "parameters": [
           {
@@ -2827,7 +2731,6 @@
             "name": "portfolioId",
             "in": "path",
             "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
             "schema": {
               "type": "string"
             }
@@ -2838,43 +2741,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {
-                  "name": {
-                    "type": "string"
-                  },
-                  "emails": {
-                    "type": "array",
-                    "items": {
-                      "properties": {
-                        "firstName": {
-                          "type": "string"
-                        },
-                        "lastName": {
-                          "type": "string"
-                        },
-                        "emailAddress": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  },
-                  "emailLanguage": {
-                    "type": "string"
-                  },
-                  "emailSubject": {
-                    "type": "string"
-                  }
-                },
-                "example": {
-                  "name": "New portofolio Name",
-                  "emails": [
-                    {
-                      "firstName": "John",
-                      "lastName": "Smith",
-                      "emailAddress": "john.smith@creditsafe.com"
-                    }
-                  ]
-                }
+                "example": "toDo"
               }
             }
           },
@@ -2937,7 +2804,6 @@
             "name": "portfolioId",
             "in": "path",
             "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
             "schema": {
               "type": "string"
             }
@@ -3083,7 +2949,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Get all eventRules, optionally filtered by country code",
+        "description": "Get all eventRules, optionally filtered",
         "operationId": "Get filtered portfolio eventRules",
         "parameters": [
           {
@@ -3093,7 +2959,6 @@
             "name": "portfolioId",
             "in": "path",
             "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
             "schema": {
               "type": "string"
             }
@@ -3101,7 +2966,7 @@
           {
             "name": "countryCode",
             "in": "path",
-            "description": "Country code to show events for.",
+            "description": "Country code to show events for",
             "required": true,
             "schema": {
               "maxLength": 2,
@@ -3192,7 +3057,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Update eventRules for a portfolio",
+        "description": "Update eventRules",
         "parameters": [
           {
             "$ref": "#/components/parameters/authHeader"
@@ -3201,7 +3066,6 @@
             "name": "portfolioId",
             "in": "path",
             "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
             "schema": {
               "type": "string"
             }
@@ -3222,75 +3086,96 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "ruleCode": {
-                      "type": "string"
-                    },
-                    "isActive": {
-                      "type": "string"
-                    },
-                    "param0": {
-                      "type": "string"
-                    },
-                    "param1": {
-                      "type": "string"
-                    },
-                    "param2...": {
-                      "type": "string"
-                    }
+                "type": "object",
+                "example": [
+                  {
+                    "ruleCode": 1801,
+                    "ruleCountryCode": "GB",
+                    "isActive": 1,
+                    "param0": "15"
                   },
-                  "required": [
-                    "ruleCode",
-                    "isActive"
-                  ],
-                  "example": [
-                    {
-                      "ruleCode": 1801,
-                      "isActive": 1,
-                      "param0": "15"
-                    },
-                    {
-                      "ruleCode": 1802,
-                      "isActive": 1,
-                      "param0": "10"
-                    },
-                    {
-                      "ruleCode": 1815,
-                      "isActive": 0
-                    },
-                    {
-                      "ruleCode": 1803,
-                      "isActive": 1
-                    },
-                    {
-                      "ruleCode": 1804,
-                      "isActive": 1
-                    },
-                    {
-                      "ruleCode": 1814,
-                      "isActive": 0
-                    },
-                    {
-                      "ruleCode": 1805,
-                      "isActive": 1
-                    },
-                    {
-                      "ruleCode": 1806,
-                      "isActive": 1
-                    },
-                    {
-                      "ruleCode": 1807,
-                      "isActive": 1
-                    },
-                    {
-                      "ruleCode": 1808,
-                      "isActive": 1
-                    }
-                  ]
-                }
+                  {
+                    "ruleCode": 1802,
+                    "ruleCountryCode": "GB",
+                    "isActive": 1,
+                    "param0": "10"
+                  },
+                  {
+                    "ruleCode": 1815,
+                    "ruleCountryCode": "GB",
+                    "isActive": 0
+                  },
+                  {
+                    "ruleCode": 1803,
+                    "ruleCountryCode": "GB",
+                    "isActive": 1
+                  },
+                  {
+                    "ruleCode": 1804,
+                    "ruleCountryCode": "GB",
+                    "isActive": 1
+                  },
+                  {
+                    "ruleCode": 1814,
+                    "ruleCountryCode": "GB",
+                    "isActive": 0
+                  },
+                  {
+                    "ruleCode": 1805,
+                    "ruleCountryCode": "GB",
+                    "isActive": 1
+                  },
+                  {
+                    "ruleCode": 1806,
+                    "ruleCountryCode": "GB",
+                    "isActive": 1
+                  },
+                  {
+                    "ruleCode": 1807,
+                    "ruleCountryCode": "GB",
+                    "isActive": 1
+                  },
+                  {
+                    "ruleCode": 1808,
+                    "ruleCountryCode": "GB",
+                    "isActive": 1
+                  },
+                  {
+                    "ruleCode": 1809,
+                    "ruleCountryCode": "GB",
+                    "isActive": 1
+                  },
+                  {
+                    "ruleCode": 1810,
+                    "ruleCountryCode": "GB",
+                    "isActive": 1
+                  },
+                  {
+                    "ruleCode": 1811,
+                    "ruleCountryCode": "GB",
+                    "isActive": 1
+                  },
+                  {
+                    "ruleCode": 1812,
+                    "ruleCountryCode": "GB",
+                    "isActive": 1
+                  },
+                  {
+                    "ruleCode": 1813,
+                    "ruleCountryCode": "GB",
+                    "isActive": 1
+                  },
+                  {
+                    "ruleCode": 3053,
+                    "ruleCountryCode": "GB",
+                    "isActive": 0
+                  },
+                  {
+                    "ruleCode": 3054,
+                    "ruleCountryCode": "GB",
+                    "isActive": 0
+                  }
+                ]
               }
             }
           },
@@ -3353,8 +3238,8 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Update a portofolios event rules to default state. In Connect, default state means all rules are turned off.",
-        "operationId": "Reset portfolio eventRules to default values",
+        "description": "Update (set) event rules to default based on the portfolio id",
+        "operationId": "Reset portfolio eventRules",
         "parameters": [
           {
             "$ref": "#/components/parameters/authHeader"
@@ -3363,7 +3248,6 @@
             "name": "portfolioId",
             "in": "path",
             "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
             "schema": {
               "type": "string"
             }
@@ -3426,7 +3310,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Import companies into a portfolio using .csv, .xls or .xlsx file. Additionally provide an email address to get notified when the import process is done.",
+        "description": "Import companies into a portfolio",
         "parameters": [
           {
             "$ref": "#/components/parameters/authHeader"
@@ -3435,7 +3319,6 @@
             "name": "portfolioId",
             "in": "path",
             "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
             "schema": {
               "type": "string"
             }
@@ -3446,25 +3329,11 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {
-                  "importCsv": {
-                    "type": "string"
-                  },
-                  "email": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "importCsv"
-                ],
-                "example": {
-                  "importCsv": "FILE_PATH",
-                  "email": "john.smith@creditsafe.com"
-                }
+                "example": "toDo"
               }
             }
           },
-          "required": true
+          "required": false
         },
         "responses": {
           "200": {
@@ -3543,7 +3412,6 @@
             "name": "portfolioId",
             "in": "path",
             "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
             "schema": {
               "type": "string"
             }
@@ -3554,25 +3422,11 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {
-                  "importCsv": {
-                    "type": "string"
-                  },
-                  "email": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "importCsv"
-                ],
-                "example": {
-                  "importCsv": "FILE_PATH",
-                  "email": "john.smith@creditsafe.com"
-                }
+                "example": "toDo"
               }
             }
           },
-          "required": true
+          "required": false
         },
         "responses": {
           "200": {
@@ -3651,7 +3505,6 @@
             "name": "portfolioId",
             "in": "path",
             "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
             "schema": {
               "type": "string"
             }
@@ -3734,7 +3587,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Get all notificationEvents based on the portfolio id, optionally filter with query parameters",
+        "description": "Get all notificationEvents based on the portfolio id , optionally",
         "operationId": "list notificationEvents in a portfolio filtered",
         "parameters": [
           {
@@ -3799,7 +3652,6 @@
             "name": "portfolioId",
             "in": "path",
             "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
             "schema": {
               "type": "string"
             }
@@ -3918,123 +3770,12 @@
         }
       }
     },
-    "/monitoring/portfolios/{portfolioId}/notificationEvents/{notificationEventId}": {
-      "patch": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "Set a `true` or `false` flag on isProcessed for a given event",
-        "operationId": "Update isProcessed flag on an notification event",
-        "parameters": [
-          {
-            "name": "portfolioId",
-            "in": "path",
-            "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "notificationEventId",
-            "in": "path",
-            "required": true,
-            "description": "A unique notification event ID.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "$ref": "#/components/parameters/authHeader"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "isProcessed": {
-                    "type": "boolean"
-                  }
-                },
-                "example": {
-                  "isProcessed": true
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "correlationId": "2b685810-ac93-11ea-b8ab-02c128ba7438",
-                    "data": {
-                      "message": "Update successful"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/responses/BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/responses/InvalidToken"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/responses/AccessForbidden"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "NotificationEventId resource not found"
-                  }
-                }
-              }
-            },
-            "x-amf-mediaType": "application/json"
-          }
-        }
-      }
-    },
     "/monitoring/portfolios/{portfolioId}/companies": {
       "get": {
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Get all companies from a specific portfolio based on the portfolio id, optionally filter with query parameters",
+        "description": "Get all companies, optionally filtered",
         "operationId": "List filtered companies in a portfolio",
         "parameters": [
           {
@@ -4087,7 +3828,6 @@
             "name": "portfolioId",
             "in": "path",
             "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
             "schema": {
               "type": "string"
             }
@@ -4210,7 +3950,6 @@
             "name": "portfolioId",
             "in": "path",
             "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
             "schema": {
               "type": "string"
             }
@@ -4221,26 +3960,8 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "string",
-                    "description": "The company Safe Number or Connect ID"
-                  },
-                  "personalReference": {
-                    "type": "string"
-                  },
-                  "freeText": {
-                    "type": "string"
-                  },
-                  "personalLimit": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "id"
-                ],
                 "example": {
-                  "id": "GB-0-12345678",
+                  "id": "GB-0-123456789",
                   "personalReference": "Some text",
                   "freeText": "Some useful test",
                   "personalLimit": "40"
@@ -4319,7 +4040,7 @@
           "Global Monitoring"
         ],
         "description": "Copy companies from one portfolio to single (or) multiple portfolios.",
-        "operationId": "Copy companies from one to another portfolio(s)",
+        "operationId": "Copy companies to another portfolio",
         "parameters": [
           {
             "$ref": "#/components/parameters/authHeader"
@@ -4337,7 +4058,6 @@
             "name": "portfolioId",
             "in": "path",
             "required": true,
-            "description": "The unique identifier of the portfolio you want to copy companies from, obtained from `/portfolios`.",
             "schema": {
               "type": "string"
             }
@@ -4348,28 +4068,8 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {
-                  "portfolios": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "description": "Comma separated portfolioId(s)"
-                    }
-                  },
-                  "companies": {
-                    "type": "array",
-                    "items": {
-                      "properties": {
-                        "id": {
-                          "type": "string",
-                          "description": "Company Safe Number or Connect ID. Not required when copyAll query parameter is set to true."
-                        }
-                      }
-                    }
-                  }
-                },
                 "example": {
-                  "copyAll=False query parameter": {
+                  "CopyAllFalse": {
                     "portfolios": [
                       196854,
                       197369
@@ -4386,7 +4086,7 @@
                       }
                     ]
                   },
-                  "copyAll=True query parameter": {
+                  "CopyAllTrue": {
                     "portfolios": [
                       196854,
                       197369
@@ -4397,7 +4097,7 @@
               }
             }
           },
-          "required": true
+          "required": false
         },
         "responses": {
           "200": {
@@ -4470,7 +4170,7 @@
           "Global Monitoring"
         ],
         "description": "Move companies from one portfolio to single (or) multiple portfolios.",
-        "operationId": "Move companies from one to another portfolio(s)",
+        "operationId": "Moves companies from one portfolio to another",
         "parameters": [
           {
             "$ref": "#/components/parameters/authHeader"
@@ -4488,7 +4188,6 @@
             "name": "portfolioId",
             "in": "path",
             "required": true,
-            "description": "The unique identifier of the portfolio you want to move companies from, obtained from `/portfolios`.",
             "schema": {
               "type": "string"
             }
@@ -4499,28 +4198,8 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {
-                  "portfolios": {
-                    "type": "array",
-                    "items": {
-                      "type": "string",
-                      "description": "Comma separated portfolioId(s)"
-                    }
-                  },
-                  "companies": {
-                    "type": "array",
-                    "items": {
-                      "properties": {
-                        "id": {
-                          "type": "string",
-                          "description": "Company Safe Number or Connect ID. Not required when removeAll query parameter is set to true."
-                        }
-                      }
-                    }
-                  }
-                },
                 "example": {
-                  "removeAll=False query parameter": {
+                  "RemoveAllFalse": {
                     "portfolios": [
                       196854,
                       197369
@@ -4537,7 +4216,7 @@
                       }
                     ]
                   },
-                  "removeAll=True query parameter": {
+                  "RemoveAllTrue": {
                     "portfolios": [
                       196854,
                       197369
@@ -4639,7 +4318,6 @@
             "name": "portfolioId",
             "in": "path",
             "required": true,
-            "description": "The unique identifier of the portfolio you want to delete companies from, obtained from `/portfolios`.",
             "schema": {
               "type": "string"
             }
@@ -4650,27 +4328,14 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {
-                  "companies": {
-                    "type": "array",
-                    "items": {
-                      "properties": {
-                        "id": {
-                          "type": "string",
-                          "description": "Company Safe Number or Connect ID. Not required when removeAll query parameter is set to true."
-                        }
-                      }
-                    }
-                  }
-                },
                 "example": {
-                  "clearAll=False query parameter": {
+                  "ClearAllFalse": {
                     "companies": [
                       "BE-X-733313367",
                       "BE-X-868222848"
                     ]
                   },
-                  "clearAll=True query parameter": {
+                  "ClearAllTrue": {
                     "companies": []
                   }
                 }
@@ -4747,8 +4412,8 @@
         "tags": [
           "Global Monitoring"
         ],
-        "operationId": "Get a monitored company from a portfolio",
-        "description": "Get a company from a portofolio using a company id",
+        "operationId": "Monitored company from a portfolio",
+        "description": "Get the company\nwith companyId =\n{companyId}\n",
         "parameters": [
           {
             "$ref": "#/components/parameters/authHeader"
@@ -4757,7 +4422,6 @@
             "name": "portfolioId",
             "in": "path",
             "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
             "schema": {
               "type": "string"
             }
@@ -4766,7 +4430,6 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "description": "A company Safe Number or Connect ID.",
             "schema": {
               "type": "string"
             }
@@ -4860,7 +4523,6 @@
             "name": "portfolioId",
             "in": "path",
             "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
             "schema": {
               "type": "string"
             }
@@ -4869,7 +4531,6 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "description": "A company Safe Number or Connect ID.",
             "schema": {
               "type": "string"
             }
@@ -4883,13 +4544,7 @@
                 "schema": {
                   "type": "object",
                   "example": {
-                    "messageId": "f7759260-ab12-11ea-8982-02443ac4bd52",
-                    "userId": 18275,
-                    "csUserId": 2425534,
-                    "processingMs": 70,
-                    "data": {
-                      "message": "Company deleted successfully from the portfolio."
-                    }
+                    "message": "Company removed"
                   }
                 }
               }
@@ -4948,14 +4603,13 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Updates the company details in a specified portfolio",
-        "operationId": "Update company details in a portfolio",
+        "description": "Updates a company in a portfolio.",
+        "operationId": "Update Portfolio Company",
         "parameters": [
           {
             "name": "portfolioId",
             "in": "path",
             "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
             "schema": {
               "type": "string"
             }
@@ -4964,7 +4618,6 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "description": "A company Safe Number or Connect ID.",
             "schema": {
               "type": "string"
             }
@@ -4978,22 +4631,6 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {
-                  "personalReference": {
-                    "type": "string"
-                  },
-                  "freeText": {
-                    "type": "string"
-                  },
-                  "personalLimit": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "personalReference",
-                  "freeText",
-                  "personalLimit"
-                ],
                 "example": {
                   "personalReference": "personal reference",
                   "freeText": "Some useful text",
@@ -5061,7 +4698,7 @@
           "Global Monitoring"
         ],
         "operationId": "List company specific notificationEvents",
-        "description": "List of notification events based on the company id,optionally filtered with query parameters",
+        "description": "List of notification events based on the connectId , optionally filtered",
         "parameters": [
           {
             "$ref": "#/components/parameters/authHeader"
@@ -5105,21 +4742,10 @@
             }
           },
           {
-            "name": "isProcessed",
-            "in": "query",
-            "description": "A flag that can be set to `true` boolean value to mark it as an event that has beebn actioned.",
-            "schema": {
-              "type": "boolean",
-              "enum": [
-                true,
-                false
-              ]
-            }
-          },
-          {
             "name": "sortBy",
             "in": "query",
             "description": "Sort results by this column. Null values of sort column are listed after non-nulls.",
+            "required": true,
             "schema": {
               "type": "string",
               "default": "companyName",
@@ -5135,7 +4761,6 @@
             "name": "portfolioId",
             "in": "path",
             "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
             "schema": {
               "type": "string"
             }
@@ -5144,7 +4769,6 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "description": "A company Safe Number or Connect ID.",
             "schema": {
               "type": "string"
             }
@@ -5172,8 +4796,13 @@
                 "schema": {
                   "type": "object",
                   "example": {
-                    "corellationId": "6b9acf70-ac8f-11ea-ad08-063b23bc4bc6",
                     "totalCount": 24,
+                    "paging": {
+                      "size": 2,
+                      "prev": 1,
+                      "next": 1,
+                      "last": 11
+                    },
                     "data": [
                       {
                         "company": {
@@ -5190,14 +4819,9 @@
                         "oldValue": "21name",
                         "createdDate": "",
                         "notificationEventId": 754983,
-                        "noitificationId": null,
-                        "processedDate": null,
                         "ruleCode": 104,
                         "ruleName": "Company Name",
-                        "summary": null,
-                        "ruleText": "Some text about the rule",
-                        "localEventCode": "CL",
-                        "isProcessed": false
+                        "ruleText": "Some text about the rule"
                       }
                     ]
                   }
@@ -5269,7 +4893,7 @@
           "Global Monitoring"
         ],
         "operationId": "Portfolio user permissions",
-        "description": "Retrieve user permissions within the customer for a portfolio",
+        "description": "Retrieve user permissions within the customer for portfolio Id",
         "parameters": [
           {
             "$ref": "#/components/parameters/authHeader"
@@ -5278,7 +4902,6 @@
             "name": "portfolioId",
             "in": "path",
             "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
             "schema": {
               "type": "string"
             }
@@ -5372,7 +4995,6 @@
             "name": "portfolioId",
             "in": "path",
             "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
             "schema": {
               "type": "string"
             }
@@ -5383,27 +5005,6 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "properties": {
-                  "revokeAll": {
-                    "type": "string",
-                    "description": "If set to \"true\", all user permissions will be revoked for the portfolio. By default set to \"false\"."
-                  },
-                  "companies": {
-                    "type": "array",
-                    "items": {
-                      "properties": {
-                        "csUserId": {
-                          "type": "string",
-                          "description": "A creditsafe user id."
-                        },
-                        "permissions": {
-                          "type": "string",
-                          "description": "Comma separated permissions. \"View\" permission gets automatically added to the user if \"Add\", \"Edit\", \"Remove\" permissions are set."
-                        }
-                      }
-                    }
-                  }
-                },
                 "example": {
                   "revokeAll": "false",
                   "userPermissions": [
@@ -6613,8 +6214,7 @@
         "type": "object",
         "properties": {
           "token": {
-            "type": "string",
-            "description": "Authentication Token"
+            "type": "string"
           }
         },
         "example": {
@@ -6893,513 +6493,6 @@
             "dateOfLatestChange": "2019-10-10T00:51:27.000Z",
             "dateOfBirth": "1972-11-18T00:00:00.000Z",
             "localDirectorNumber": "UK913399851"
-          }
-        }
-      },
-      "gbPeopleReportReponse": {
-        "type": "object",
-        "properties": {
-          "correlationId": {
-            "type": "string"
-          },
-          "orderId": {
-            "type": "string"
-          },
-          "directorId": {
-            "type": "string"
-          },
-          "dateOfOrder": {
-            "type": "string"
-          },
-          "language": {
-            "type": "string"
-          },
-          "userId": {
-            "type": "string"
-          },
-          "report": {
-            "type": "object",
-            "properties": {
-              "directorId": {
-                "type": "string"
-              },
-              "directorSummary": {
-                "type": "object",
-                "properties": {
-                  "currentAppointments": {
-                    "type": "integer"
-                  },
-                  "inactiveAppointments": {
-                    "type": "integer"
-                  },
-                  "previousAppointments": {
-                    "type": "integer"
-                  }
-                }
-              },
-              "directorDetails": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "string"
-                  },
-                  "idType": {
-                    "type": "string"
-                  },
-                  "name": {
-                    "type": "string"
-                  },
-                  "title": {
-                    "type": "string"
-                  },
-                  "firstName": {
-                    "type": "string"
-                  },
-                  "middleName": {
-                    "type": "string"
-                  },
-                  "surname": {
-                    "type": "string"
-                  },
-                  "address": {
-                    "type": "object",
-                    "properties": {
-                      "type": {
-                        "type": "string"
-                      },
-                      "simpleValue": {
-                        "type": "string"
-                      },
-                      "street": {
-                        "type": "string"
-                      },
-                      "city": {
-                        "type": "string"
-                      },
-                      "postalCode": {
-                        "type": "string"
-                      }
-                    }
-                  },
-                  "gender": {
-                    "type": "string"
-                  },
-                  "dateOfBirth": {
-                    "type": "string"
-                  },
-                  "country": {
-                    "type": "string"
-                  },
-                  "directorType": {
-                    "type": "string"
-                  },
-                  "positions": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "dateAppointed": {
-                          "type": "string"
-                        },
-                        "positionName": {
-                          "type": "string"
-                        }
-                      }
-                    }
-                  },
-                  "additionalData": {
-                    "type": "object",
-                    "properties": {
-                      "disqualified": {
-                        "type": "boolean"
-                      },
-                      "disqualifiedException": {
-                        "type": "boolean"
-                      }
-                    }
-                  }
-                }
-              },
-              "otherAddresses": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string"
-                    },
-                    "simpleValue": {
-                      "type": "string"
-                    },
-                    "street": {
-                      "type": "string"
-                    },
-                    "city": {
-                      "type": "string"
-                    },
-                    "postalCode": {
-                      "type": "string"
-                    },
-                    "province": {
-                      "type": "string"
-                    },
-                    "country": {
-                      "type": "string"
-                    }
-                  }
-                }
-              },
-              "directorships": {
-                "type": "object",
-                "properties": {
-                  "current": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "companyName": {
-                          "type": "string"
-                        },
-                        "companyNumber": {
-                          "type": "string"
-                        },
-                        "companyRegistrationNumber": {
-                          "type": "string"
-                        },
-                        "status": {
-                          "type": "string"
-                        },
-                        "position": {
-                          "type": "object",
-                          "properties": {
-                            "dateAppointed": {
-                              "type": "string"
-                            },
-                            "positionName": {
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "companyRegistrationDate": {
-                          "type": "string"
-                        },
-                        "legalCount": {
-                          "type": "integer"
-                        },
-                        "creditScore": {
-                          "type": "object",
-                          "properties": {
-                            "currentCreditRating": {
-                              "type": "object",
-                              "properties": {
-                                "commonValue": {
-                                  "type": "string"
-                                },
-                                "commonDescription": {
-                                  "type": "string"
-                                },
-                                "creditLimit": {
-                                  "type": "object",
-                                  "properties": {
-                                    "currency": {
-                                      "type": "string"
-                                    },
-                                    "value": {
-                                      "type": "string"
-                                    }
-                                  }
-                                },
-                                "providerValue": {
-                                  "type": "object",
-                                  "properties": {
-                                    "maxValue": {
-                                      "type": "string"
-                                    },
-                                    "minValue": {
-                                      "type": "string"
-                                    },
-                                    "value": {
-                                      "type": "string"
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "additionalData": {
-                          "type": "object",
-                          "properties": {
-                            "occupation": {
-                              "type": "string"
-                            },
-                            "statusDescription": {
-                              "type": "string"
-                            },
-                            "gearing": {
-                              "type": "number"
-                            }
-                          }
-                        },
-                        "latestTurnoverFigure": {
-                          "type": "object",
-                          "properties": {
-                            "currency": {
-                              "type": "string"
-                            },
-                            "value": {
-                              "type": "number"
-                            }
-                          }
-                        },
-                        "netWorth": {
-                          "type": "object",
-                          "properties": {
-                            "currency": {
-                              "type": "string"
-                            },
-                            "value": {
-                              "type": "number"
-                            }
-                          }
-                        },
-                        "legalAmount": {
-                          "type": "object",
-                          "properties": {
-                            "currency": {
-                              "type": "string"
-                            },
-                            "value": {
-                              "type": "number"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "inactive": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "companyName": {
-                          "type": "string"
-                        },
-                        "companyNumber": {
-                          "type": "string"
-                        },
-                        "companyRegistrationNumber": {
-                          "type": "string"
-                        },
-                        "status": {
-                          "type": "string"
-                        },
-                        "position": {
-                          "type": "object",
-                          "properties": {
-                            "resignationDate": {
-                              "type": "string"
-                            },
-                            "dateAppointed": {
-                              "type": "string"
-                            },
-                            "positionName": {
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "companyRegistrationDate": {
-                          "type": "string"
-                        },
-                        "netWorth": {
-                          "type": "object",
-                          "properties": {
-                            "currency": {
-                              "type": "string"
-                            },
-                            "value": {
-                              "type": "number"
-                            }
-                          }
-                        },
-                        "legalCount": {
-                          "type": "integer"
-                        },
-                        "creditScore": {
-                          "type": "object",
-                          "properties": {
-                            "currentCreditRating": {
-                              "type": "object",
-                              "properties": {
-                                "commonValue": {
-                                  "type": "string"
-                                },
-                                "commonDescription": {
-                                  "type": "string"
-                                },
-                                "creditLimit": {
-                                  "type": "object",
-                                  "properties": {
-                                    "currency": {
-                                      "type": "string"
-                                    },
-                                    "value": {
-                                      "type": "string"
-                                    }
-                                  }
-                                },
-                                "providerValue": {
-                                  "type": "object",
-                                  "properties": {
-                                    "maxValue": {
-                                      "type": "string"
-                                    },
-                                    "minValue": {
-                                      "type": "string"
-                                    },
-                                    "value": {
-                                      "type": "string"
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "additionalData": {
-                          "type": "object",
-                          "properties": {
-                            "occupation": {
-                              "type": "string"
-                            },
-                            "statusDescription": {
-                              "type": "string"
-                            },
-                            "gearing": {
-                              "type": "number"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "previous": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "companyName": {
-                          "type": "string"
-                        },
-                        "companyRegistrationNumber": {
-                          "type": "string"
-                        },
-                        "status": {
-                          "type": "string"
-                        },
-                        "position": {
-                          "type": "object",
-                          "properties": {
-                            "resignationDate": {
-                              "type": "string"
-                            },
-                            "dateAppointed": {
-                              "type": "string"
-                            },
-                            "positionName": {
-                              "type": "string"
-                            }
-                          }
-                        },
-                        "companyRegistrationDate": {
-                          "type": "string"
-                        },
-                        "latestTurnoverFigure": {
-                          "type": "object",
-                          "properties": {
-                            "currency": {
-                              "type": "string"
-                            },
-                            "value": {
-                              "type": "number"
-                            }
-                          }
-                        },
-                        "netWorth": {
-                          "type": "object",
-                          "properties": {
-                            "currency": {
-                              "type": "string"
-                            },
-                            "value": {
-                              "type": "number"
-                            }
-                          }
-                        },
-                        "legalCount": {
-                          "type": "integer"
-                        },
-                        "creditScore": {
-                          "type": "object",
-                          "properties": {
-                            "currentCreditRating": {
-                              "type": "object",
-                              "properties": {
-                                "commonValue": {
-                                  "type": "string"
-                                },
-                                "commonDescription": {
-                                  "type": "string"
-                                },
-                                "creditLimit": {
-                                  "type": "object",
-                                  "properties": {
-                                    "currency": {
-                                      "type": "string"
-                                    },
-                                    "value": {
-                                      "type": "string"
-                                    }
-                                  }
-                                },
-                                "providerValue": {
-                                  "type": "object",
-                                  "properties": {
-                                    "maxValue": {
-                                      "type": "string"
-                                    },
-                                    "minValue": {
-                                      "type": "string"
-                                    },
-                                    "value": {
-                                      "type": "string"
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "additionalData": {
-                          "type": "object",
-                          "properties": {
-                            "occupation": {
-                              "type": "string"
-                            },
-                            "statusDescription": {
-                              "type": "string"
-                            },
-                            "gearing": {
-                              "type": "number"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
           }
         }
       },
@@ -9196,228 +8289,6 @@
           },
           "transactionID": {
             "type": "integer"
-          }
-        }
-      },
-      "accessCountriesResponse": {
-        "type": "object",
-        "properties": {
-          "correlationId": {
-            "type": "string"
-          },
-          "countryAccess": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "creditsafeConnectOnlineReports": {
-                  "type": "array",
-                  "description": "Country usage for Company Reports service",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "countryName": {
-                        "type": "string"
-                      },
-                      "templateName": {
-                        "type": "string",
-                        "description": "Company Report template. Full reports are default"
-                      },
-                      "countryIso2": {
-                        "type": "string"
-                      },
-                      "startDate": {
-                        "type": "string",
-                        "description": "Date of when the service was enabled"
-                      },
-                      "expireDate": {
-                        "type": "string",
-                        "description": "Date of when the service will expire"
-                      },
-                      "paid": {
-                        "type": "integer",
-                        "description": "Measure of total usage available in the service"
-                      },
-                      "used": {
-                        "type": "integer",
-                        "description": "Service usage"
-                      }
-                    }
-                  }
-                },
-                "creditsafeConnectOfflineReports": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "countryIso2": {
-                        "type": "string"
-                      },
-                      "startDate": {
-                        "type": "string",
-                        "description": "Date of when the service was enabled"
-                      },
-                      "expireDate": {
-                        "type": "string",
-                        "description": "Date of when the service will expire"
-                      },
-                      "paid": {
-                        "type": "integer",
-                        "description": "Measure of total usage available in the service"
-                      },
-                      "used": {
-                        "type": "integer",
-                        "description": "Service usage"
-                      }
-                    }
-                  }
-                },
-                "creditsafeConnectMonitoring": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "startDate": {
-                        "type": "string",
-                        "description": "Date of when the service was enabled"
-                      },
-                      "expireDate": {
-                        "type": "string",
-                        "description": "Date of when the service will expire"
-                      },
-                      "paid": {
-                        "type": "integer",
-                        "description": "Measure of total usage available in the service"
-                      },
-                      "used": {
-                        "type": "integer",
-                        "description": "Service usage"
-                      }
-                    }
-                  }
-                },
-                "creditsafeConnectDirectorReports": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "countryName": {
-                        "type": "string"
-                      },
-                      "countryIso2": {
-                        "type": "string"
-                      },
-                      "startDate": {
-                        "type": "string",
-                        "description": "Date of when the service was enabled"
-                      },
-                      "expireDate": {
-                        "type": "string",
-                        "description": "Date of when the service will expire"
-                      },
-                      "paid": {
-                        "type": "integer",
-                        "description": "Measure of total usage available in the service"
-                      },
-                      "used": {
-                        "type": "integer",
-                        "description": "Service usage"
-                      }
-                    }
-                  }
-                },
-                "creditsafeConnectImageDocuments": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "countryIso2": {
-                        "type": "string"
-                      },
-                      "startDate": {
-                        "type": "string",
-                        "description": "Date of when the service was enabled"
-                      },
-                      "expireDate": {
-                        "type": "string",
-                        "description": "Date of when the service will expire"
-                      },
-                      "paid": {
-                        "type": "integer",
-                        "description": "Measure of total usage available in the service"
-                      },
-                      "used": {
-                        "type": "integer",
-                        "description": "Service usage"
-                      }
-                    }
-                  }
-                },
-                "creditsafeConnectBankValidation": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "startDate": {
-                        "type": "string",
-                        "description": "Date of when the service was enabled"
-                      },
-                      "expireDate": {
-                        "type": "string",
-                        "description": "Date of when the service will expire"
-                      },
-                      "paid": {
-                        "type": "integer",
-                        "description": "Measure of total usage available in the service"
-                      },
-                      "used": {
-                        "type": "integer",
-                        "description": "Service usage"
-                      }
-                    }
-                  }
-                },
-                "creditsafeConnectBankVerification": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "startDate": {
-                        "type": "string",
-                        "description": "Date of when the service was enabled"
-                      },
-                      "expireDate": {
-                        "type": "string",
-                        "description": "Date of when the service will expire"
-                      },
-                      "paid": {
-                        "type": "integer",
-                        "description": "Measure of total usage available in the service"
-                      },
-                      "used": {
-                        "type": "integer",
-                        "description": "Service usage"
-                      }
-                    }
-                  }
-                }
-              }
-            }
           }
         }
       },
