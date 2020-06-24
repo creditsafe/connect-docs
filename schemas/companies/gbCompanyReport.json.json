@@ -1,0 +1,4540 @@
+  {
+    "title": "CompanyReportResponse",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+      "chargeReference": {
+        "type": "string"
+      },
+      "failedSections": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {}
+        }
+      },
+      "report": {
+        "type": "object",
+        "properties": {
+          "companyId": {
+            "type": "string"
+          },
+          "language": {
+            "type": "language",
+            "required": "true"
+          },
+          "companySummary": {
+            "type": "object",
+            "properties": {
+              "businessName": {
+                "required": true,
+                "type": "string"
+              },
+              "country": {
+                "required": true,
+                "type": "countrycode",
+                "required": "true"
+              },
+              "companyNumber": {
+                "type": "string"
+              },
+              "companyRegistrationNumber": {
+                "type": "string"
+              },
+              "mainActivity": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  },
+                  "industrySector": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "classification": {
+                    "type": "string"
+                  }
+                }
+              },
+              "companyStatus": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "enum": [
+                      "Active",
+                      "NonActive",
+                      "Pending",
+                      "Other"
+                    ],
+                    "required": "true"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                }
+              },
+              "latestTurnoverFigure": {
+                "type": "object",
+                "properties": {}
+              },
+              "latestShareholdersEquityFigure": {
+                "type": "object",
+                "properties": {}
+              },
+              "creditRating": {
+                "required": true,
+                "type": "object",
+                "properties": {
+                  "commonValue": {
+                    "enum": [
+                      "A",
+                      "B",
+                      "C",
+                      "D",
+                      "E"
+                    ],
+                    "required": "true"
+                  },
+                  "commonDescription": {
+                    "type": "string"
+                  },
+                  "creditLimit": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "providerValue": {
+                    "type": "object",
+                    "properties": {
+                      "maxValue": {
+                        "type": "string"
+                      },
+                      "minValue": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "providerDescription": {
+                    "type": "string"
+                  },
+                  "pod": {
+                    "type": "number"
+                  },
+                  "assessment": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "companyIdentification": {
+            "type": "object",
+            "properties": {
+              "basicInformation": {
+                "required": true,
+                "type": "object",
+                "properties": {
+                  "businessName": {
+                    "required": true,
+                    "type": "string"
+                  },
+                  "registeredCompanyName": {
+                    "required": true,
+                    "type": "string"
+                  },
+                  "companyRegistrationNumber": {
+                    "type": "string"
+                  },
+                  "country": {
+                    "required": true,
+                    "type": "countrycode",
+                    "required": "true"
+                  },
+                  "vatRegistrationNumber": {
+                    "type": "string"
+                  },
+                  "vatRegistrationDate": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "companyRegistrationDate": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "operationsStartDate": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "commercialCourt": {
+                    "type": "string"
+                  },
+                  "legalForm": {
+                    "type": "object",
+                    "properties": {
+                      "commonCode": {
+                        "type": "string"
+                      },
+                      "providerCode": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "ownershipType": {
+                    "type": "string"
+                  },
+                  "companyStatus": {
+                    "type": "object",
+                    "properties": {
+                      "status": {
+                        "enum": [
+                          "Active",
+                          "NonActive",
+                          "Pending",
+                          "Other"
+                        ],
+                        "required": "true"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "principalActivity": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "string"
+                      },
+                      "industrySector": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "classification": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "contactAddress": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "simpleValue": {
+                        "type": "string"
+                      },
+                      "street": {
+                        "type": "string"
+                      },
+                      "houseNumber": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "type": "string"
+                      },
+                      "province": {
+                        "type": "string"
+                      },
+                      "telephone": {
+                        "type": "string"
+                      },
+                      "directMarketingOptOut": {
+                        "type": "boolean"
+                      },
+                      "directMarketingOptIn": {
+                        "type": "boolean"
+                      },
+                      "country": {
+                        "type": "countrycode"
+                      }
+                    }
+                  }
+                }
+              },
+              "activityClassifications": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "classification": {
+                      "required": true,
+                      "type": "string"
+                    },
+                    "activities": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "string"
+                          },
+                          "description": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "previousNames": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "required": true,
+                      "type": "string"
+                    },
+                    "dateChanged": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  }
+                }
+              },
+              "previousLegalForms": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "legalForm": {
+                      "required": true,
+                      "type": "object",
+                      "properties": {
+                        "commonCode": {
+                          "type": "string"
+                        },
+                        "providerCode": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "dateChanged": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "creditScore": {
+            "type": "object",
+            "properties": {
+              "currentCreditRating": {
+                "required": true,
+                "type": "object",
+                "properties": {
+                  "commonValue": {
+                    "enum": [
+                      "A",
+                      "B",
+                      "C",
+                      "D",
+                      "E"
+                    ],
+                    "required": "true"
+                  },
+                  "commonDescription": {
+                    "type": "string"
+                  },
+                  "creditLimit": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "providerValue": {
+                    "type": "object",
+                    "properties": {
+                      "maxValue": {
+                        "type": "string"
+                      },
+                      "minValue": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "providerDescription": {
+                    "type": "string"
+                  },
+                  "pod": {
+                    "type": "number"
+                  },
+                  "assessment": {
+                    "type": "string"
+                  }
+                }
+              },
+              "currentContractLimit": {
+                "type": "object",
+                "properties": {}
+              },
+              "previousCreditRating": {
+                "type": "object",
+                "properties": {
+                  "commonValue": {
+                    "enum": [
+                      "A",
+                      "B",
+                      "C",
+                      "D",
+                      "E"
+                    ],
+                    "required": "true"
+                  },
+                  "commonDescription": {
+                    "type": "string"
+                  },
+                  "creditLimit": {
+                    "type": "object",
+                    "properties": {}
+                  },
+                  "providerValue": {
+                    "type": "object",
+                    "properties": {
+                      "maxValue": {
+                        "type": "string"
+                      },
+                      "minValue": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "providerDescription": {
+                    "type": "string"
+                  },
+                  "pod": {
+                    "type": "number"
+                  },
+                  "assessment": {
+                    "type": "string"
+                  }
+                }
+              },
+              "latestRatingChangeDate": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          },
+          "contactInformation": {
+            "type": "object",
+            "properties": {
+              "mainAddress": {
+                "required": true,
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string"
+                  },
+                  "simpleValue": {
+                    "type": "string"
+                  },
+                  "street": {
+                    "type": "string"
+                  },
+                  "houseNumber": {
+                    "type": "string"
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "postalCode": {
+                    "type": "string"
+                  },
+                  "province": {
+                    "type": "string"
+                  },
+                  "telephone": {
+                    "type": "string"
+                  },
+                  "directMarketingOptOut": {
+                    "type": "boolean"
+                  },
+                  "directMarketingOptIn": {
+                    "type": "boolean"
+                  },
+                  "country": {
+                    "type": "countrycode"
+                  }
+                }
+              },
+              "otherAddresses": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    },
+                    "simpleValue": {
+                      "type": "string"
+                    },
+                    "street": {
+                      "type": "string"
+                    },
+                    "houseNumber": {
+                      "type": "string"
+                    },
+                    "city": {
+                      "type": "string"
+                    },
+                    "postalCode": {
+                      "type": "string"
+                    },
+                    "province": {
+                      "type": "string"
+                    },
+                    "telephone": {
+                      "type": "string"
+                    },
+                    "directMarketingOptOut": {
+                      "type": "boolean"
+                    },
+                    "directMarketingOptIn": {
+                      "type": "boolean"
+                    },
+                    "country": {
+                      "type": "countrycode"
+                    }
+                  }
+                }
+              },
+              "previousAddresses": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    },
+                    "simpleValue": {
+                      "type": "string"
+                    },
+                    "street": {
+                      "type": "string"
+                    },
+                    "houseNumber": {
+                      "type": "string"
+                    },
+                    "city": {
+                      "type": "string"
+                    },
+                    "postalCode": {
+                      "type": "string"
+                    },
+                    "province": {
+                      "type": "string"
+                    },
+                    "telephone": {
+                      "type": "string"
+                    },
+                    "directMarketingOptOut": {
+                      "type": "boolean"
+                    },
+                    "directMarketingOptIn": {
+                      "type": "boolean"
+                    },
+                    "country": {
+                      "type": "countrycode"
+                    }
+                  }
+                }
+              },
+              "emailAddresses": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {}
+                }
+              },
+              "websites": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            }
+          },
+          "shareCapitalStructure": {
+            "type": "object",
+            "properties": {
+              "nominalShareCapital": {
+                "type": "object",
+                "properties": {}
+              },
+              "issuedShareCapital": {
+                "type": "object",
+                "properties": {}
+              },
+              "shareCapitalCurrency": {
+                "type": "string"
+              },
+              "numberOfSharesIssued": {
+                "type": "int64"
+              },
+              "shareHolders": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "idType": {
+                      "enum": [
+                        "Other",
+                        "SafeNumber",
+                        "RegistrationNumber",
+                        "VATNumber",
+                        "TaxID",
+                        "PersonNumber",
+                        "ExternalID",
+                        "InternalID"
+                      ]
+                    },
+                    "name": {
+                      "required": true,
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "firstNames": {
+                      "type": "string"
+                    },
+                    "firstName": {
+                      "type": "string"
+                    },
+                    "middleName": {
+                      "type": "string"
+                    },
+                    "surname": {
+                      "type": "string"
+                    },
+                    "address": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "simpleValue": {
+                          "type": "string"
+                        },
+                        "street": {
+                          "type": "string"
+                        },
+                        "houseNumber": {
+                          "type": "string"
+                        },
+                        "city": {
+                          "type": "string"
+                        },
+                        "postalCode": {
+                          "type": "string"
+                        },
+                        "province": {
+                          "type": "string"
+                        },
+                        "telephone": {
+                          "type": "string"
+                        },
+                        "directMarketingOptOut": {
+                          "type": "boolean"
+                        },
+                        "directMarketingOptIn": {
+                          "type": "boolean"
+                        },
+                        "country": {
+                          "type": "countrycode"
+                        }
+                      }
+                    },
+                    "shareholderType": {
+                      "enum": [
+                        "Other",
+                        "Person",
+                        "Company"
+                      ],
+                      "required": "true"
+                    },
+                    "shareType": {
+                      "type": "string"
+                    },
+                    "currency": {
+                      "type": "currency"
+                    },
+                    "totalValueOfSharesOwned": {
+                      "type": "number"
+                    },
+                    "totalNumberOfSharesOwned": {
+                      "type": "uint64"
+                    },
+                    "percentSharesHeld": {
+                      "type": "double"
+                    },
+                    "startDate": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "endDate": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "hasNegativeInfo": {
+                      "type": "boolean"
+                    },
+                    "shareClasses": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "shareType": {
+                            "type": "string"
+                          },
+                          "currency": {
+                            "type": "currency"
+                          },
+                          "valuePerShare": {
+                            "type": "number"
+                          },
+                          "jointlyOwned": {
+                            "type": "boolean"
+                          },
+                          "numberOfSharesOwned": {
+                            "type": "uint64"
+                          },
+                          "valueOfSharesOwned": {
+                            "type": "double"
+                          },
+                          "additionalData": {
+                            "type": "object",
+                            "properties": {
+                              "percentSharesHeld": {
+                                "type": "number"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "directors": {
+            "type": "object",
+            "properties": {
+              "currentDirectors": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "idType": {
+                      "enum": [
+                        "Other",
+                        "SafeNumber",
+                        "RegistrationNumber",
+                        "VATNumber",
+                        "TaxID",
+                        "PersonNumber",
+                        "ExternalID",
+                        "InternalID"
+                      ]
+                    },
+                    "name": {
+                      "required": true,
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "firstNames": {
+                      "type": "string"
+                    },
+                    "firstName": {
+                      "type": "string"
+                    },
+                    "middleName": {
+                      "type": "string"
+                    },
+                    "surname": {
+                      "type": "string"
+                    },
+                    "address": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "simpleValue": {
+                          "type": "string"
+                        },
+                        "street": {
+                          "type": "string"
+                        },
+                        "houseNumber": {
+                          "type": "string"
+                        },
+                        "city": {
+                          "type": "string"
+                        },
+                        "postalCode": {
+                          "type": "string"
+                        },
+                        "province": {
+                          "type": "string"
+                        },
+                        "telephone": {
+                          "type": "string"
+                        },
+                        "directMarketingOptOut": {
+                          "type": "boolean"
+                        },
+                        "directMarketingOptIn": {
+                          "type": "boolean"
+                        },
+                        "country": {
+                          "type": "countrycode"
+                        }
+                      }
+                    },
+                    "gender": {
+                      "enum": [
+                        "Unknown",
+                        "Male",
+                        "Female",
+                        "NotApplicable"
+                      ],
+                      "required": "true"
+                    },
+                    "birthName": {
+                      "type": "string"
+                    },
+                    "dateOfBirth": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "placeOfBirth": {
+                      "type": "string"
+                    },
+                    "nationality": {
+                      "type": "string"
+                    },
+                    "countryOfResidence": {
+                      "type": "string"
+                    },
+                    "country": {
+                      "type": "countrycode"
+                    },
+                    "directorType": {
+                      "enum": [
+                        "Other",
+                        "Person",
+                        "Company"
+                      ],
+                      "required": "true"
+                    },
+                    "positions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "dateAppointed": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "commonCode": {
+                            "type": "string"
+                          },
+                          "providerCode": {
+                            "type": "string"
+                          },
+                          "positionName": {
+                            "type": "string"
+                          },
+                          "authority": {
+                            "type": "string"
+                          },
+                          "apptDurationType": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "hasNegativeInfo": {
+                      "type": "boolean"
+                    },
+                    "additionalData": {
+                      "type": "object",
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "honours": {
+                              "type": "string"
+                            },
+                            "presentAppointments": {
+                              "type": "integer"
+                            },
+                            "disqualified": {
+                              "type": "boolean"
+                            },
+                            "disqualificationStartDate": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "disqualificationEndDate": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "sectionOfAct": {
+                              "type": "string"
+                            },
+                            "disqualifiedException": {
+                              "type": "boolean"
+                            },
+                            "disqualifiedExceptions": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "companyName": {
+                                    "type": "string"
+                                  },
+                                  "companyRegistrationNumber": {
+                                    "type": "string"
+                                  },
+                                  "position": {
+                                    "type": "string"
+                                  },
+                                  "status": {
+                                    "type": "string"
+                                  },
+                                  "endDate": {
+                                    "type": "string",
+                                    "format": "date-time"
+                                  }
+                                }
+                              }
+                            },
+                            "eircode": {
+                              "type": "string"
+                            },
+                            "occupation": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "presentAppointments": {
+                              "type": "integer"
+                            },
+                            "previousAppointments": {
+                              "type": "integer"
+                            },
+                            "dissolvedAppointments": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              },
+              "previousDirectors": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "resignationDate": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "idType": {
+                      "enum": [
+                        "Other",
+                        "SafeNumber",
+                        "RegistrationNumber",
+                        "VATNumber",
+                        "TaxID",
+                        "PersonNumber",
+                        "ExternalID",
+                        "InternalID"
+                      ]
+                    },
+                    "name": {
+                      "required": true,
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "firstNames": {
+                      "type": "string"
+                    },
+                    "firstName": {
+                      "type": "string"
+                    },
+                    "middleName": {
+                      "type": "string"
+                    },
+                    "surname": {
+                      "type": "string"
+                    },
+                    "address": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "simpleValue": {
+                          "type": "string"
+                        },
+                        "street": {
+                          "type": "string"
+                        },
+                        "houseNumber": {
+                          "type": "string"
+                        },
+                        "city": {
+                          "type": "string"
+                        },
+                        "postalCode": {
+                          "type": "string"
+                        },
+                        "province": {
+                          "type": "string"
+                        },
+                        "telephone": {
+                          "type": "string"
+                        },
+                        "directMarketingOptOut": {
+                          "type": "boolean"
+                        },
+                        "directMarketingOptIn": {
+                          "type": "boolean"
+                        },
+                        "country": {
+                          "type": "countrycode"
+                        }
+                      }
+                    },
+                    "gender": {
+                      "enum": [
+                        "Unknown",
+                        "Male",
+                        "Female",
+                        "NotApplicable"
+                      ],
+                      "required": "true"
+                    },
+                    "birthName": {
+                      "type": "string"
+                    },
+                    "dateOfBirth": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "placeOfBirth": {
+                      "type": "string"
+                    },
+                    "nationality": {
+                      "type": "string"
+                    },
+                    "countryOfResidence": {
+                      "type": "string"
+                    },
+                    "country": {
+                      "type": "countrycode"
+                    },
+                    "directorType": {
+                      "enum": [
+                        "Other",
+                        "Person",
+                        "Company"
+                      ],
+                      "required": "true"
+                    },
+                    "positions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "dateAppointed": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "commonCode": {
+                            "type": "string"
+                          },
+                          "providerCode": {
+                            "type": "string"
+                          },
+                          "positionName": {
+                            "type": "string"
+                          },
+                          "authority": {
+                            "type": "string"
+                          },
+                          "apptDurationType": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "hasNegativeInfo": {
+                      "type": "boolean"
+                    },
+                    "additionalData": {
+                      "type": "object",
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "honours": {
+                              "type": "string"
+                            },
+                            "presentAppointments": {
+                              "type": "integer"
+                            },
+                            "disqualified": {
+                              "type": "boolean"
+                            },
+                            "disqualificationStartDate": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "disqualificationEndDate": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "sectionOfAct": {
+                              "type": "string"
+                            },
+                            "disqualifiedException": {
+                              "type": "boolean"
+                            },
+                            "disqualifiedExceptions": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "companyName": {
+                                    "type": "string"
+                                  },
+                                  "companyRegistrationNumber": {
+                                    "type": "string"
+                                  },
+                                  "position": {
+                                    "type": "string"
+                                  },
+                                  "status": {
+                                    "type": "string"
+                                  },
+                                  "endDate": {
+                                    "type": "string",
+                                    "format": "date-time"
+                                  }
+                                }
+                              }
+                            },
+                            "eircode": {
+                              "type": "string"
+                            },
+                            "occupation": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "presentAppointments": {
+                              "type": "integer"
+                            },
+                            "previousAppointments": {
+                              "type": "integer"
+                            },
+                            "dissolvedAppointments": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "directorsExtra": {
+            "type": "object",
+            "properties": {
+              "currentDirectors": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "idType": {
+                      "enum": [
+                        "Other",
+                        "SafeNumber",
+                        "RegistrationNumber",
+                        "VATNumber",
+                        "TaxID",
+                        "PersonNumber",
+                        "ExternalID",
+                        "InternalID"
+                      ]
+                    },
+                    "name": {
+                      "required": true,
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "firstNames": {
+                      "type": "string"
+                    },
+                    "firstName": {
+                      "type": "string"
+                    },
+                    "middleName": {
+                      "type": "string"
+                    },
+                    "surname": {
+                      "type": "string"
+                    },
+                    "address": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "simpleValue": {
+                          "type": "string"
+                        },
+                        "street": {
+                          "type": "string"
+                        },
+                        "houseNumber": {
+                          "type": "string"
+                        },
+                        "city": {
+                          "type": "string"
+                        },
+                        "postalCode": {
+                          "type": "string"
+                        },
+                        "province": {
+                          "type": "string"
+                        },
+                        "telephone": {
+                          "type": "string"
+                        },
+                        "directMarketingOptOut": {
+                          "type": "boolean"
+                        },
+                        "directMarketingOptIn": {
+                          "type": "boolean"
+                        },
+                        "country": {
+                          "type": "countrycode"
+                        }
+                      }
+                    },
+                    "gender": {
+                      "enum": [
+                        "Unknown",
+                        "Male",
+                        "Female",
+                        "NotApplicable"
+                      ],
+                      "required": "true"
+                    },
+                    "birthName": {
+                      "type": "string"
+                    },
+                    "dateOfBirth": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "placeOfBirth": {
+                      "type": "string"
+                    },
+                    "nationality": {
+                      "type": "string"
+                    },
+                    "countryOfResidence": {
+                      "type": "string"
+                    },
+                    "country": {
+                      "type": "countrycode"
+                    },
+                    "directorType": {
+                      "enum": [
+                        "Other",
+                        "Person",
+                        "Company"
+                      ],
+                      "required": "true"
+                    },
+                    "positions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "dateAppointed": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "commonCode": {
+                            "type": "string"
+                          },
+                          "providerCode": {
+                            "type": "string"
+                          },
+                          "positionName": {
+                            "type": "string"
+                          },
+                          "authority": {
+                            "type": "string"
+                          },
+                          "apptDurationType": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "hasNegativeInfo": {
+                      "type": "boolean"
+                    },
+                    "additionalData": {
+                      "type": "object",
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "honours": {
+                              "type": "string"
+                            },
+                            "presentAppointments": {
+                              "type": "integer"
+                            },
+                            "disqualified": {
+                              "type": "boolean"
+                            },
+                            "disqualificationStartDate": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "disqualificationEndDate": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "sectionOfAct": {
+                              "type": "string"
+                            },
+                            "disqualifiedException": {
+                              "type": "boolean"
+                            },
+                            "disqualifiedExceptions": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "companyName": {
+                                    "type": "string"
+                                  },
+                                  "companyRegistrationNumber": {
+                                    "type": "string"
+                                  },
+                                  "position": {
+                                    "type": "string"
+                                  },
+                                  "status": {
+                                    "type": "string"
+                                  },
+                                  "endDate": {
+                                    "type": "string",
+                                    "format": "date-time"
+                                  }
+                                }
+                              }
+                            },
+                            "eircode": {
+                              "type": "string"
+                            },
+                            "occupation": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "presentAppointments": {
+                              "type": "integer"
+                            },
+                            "previousAppointments": {
+                              "type": "integer"
+                            },
+                            "dissolvedAppointments": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              },
+              "previousDirectors": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "resignationDate": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "idType": {
+                      "enum": [
+                        "Other",
+                        "SafeNumber",
+                        "RegistrationNumber",
+                        "VATNumber",
+                        "TaxID",
+                        "PersonNumber",
+                        "ExternalID",
+                        "InternalID"
+                      ]
+                    },
+                    "name": {
+                      "required": true,
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "firstNames": {
+                      "type": "string"
+                    },
+                    "firstName": {
+                      "type": "string"
+                    },
+                    "middleName": {
+                      "type": "string"
+                    },
+                    "surname": {
+                      "type": "string"
+                    },
+                    "address": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "simpleValue": {
+                          "type": "string"
+                        },
+                        "street": {
+                          "type": "string"
+                        },
+                        "houseNumber": {
+                          "type": "string"
+                        },
+                        "city": {
+                          "type": "string"
+                        },
+                        "postalCode": {
+                          "type": "string"
+                        },
+                        "province": {
+                          "type": "string"
+                        },
+                        "telephone": {
+                          "type": "string"
+                        },
+                        "directMarketingOptOut": {
+                          "type": "boolean"
+                        },
+                        "directMarketingOptIn": {
+                          "type": "boolean"
+                        },
+                        "country": {
+                          "type": "countrycode"
+                        }
+                      }
+                    },
+                    "gender": {
+                      "enum": [
+                        "Unknown",
+                        "Male",
+                        "Female",
+                        "NotApplicable"
+                      ],
+                      "required": "true"
+                    },
+                    "birthName": {
+                      "type": "string"
+                    },
+                    "dateOfBirth": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "placeOfBirth": {
+                      "type": "string"
+                    },
+                    "nationality": {
+                      "type": "string"
+                    },
+                    "countryOfResidence": {
+                      "type": "string"
+                    },
+                    "country": {
+                      "type": "countrycode"
+                    },
+                    "directorType": {
+                      "enum": [
+                        "Other",
+                        "Person",
+                        "Company"
+                      ],
+                      "required": "true"
+                    },
+                    "positions": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "dateAppointed": {
+                            "type": "string",
+                            "format": "date-time"
+                          },
+                          "commonCode": {
+                            "type": "string"
+                          },
+                          "providerCode": {
+                            "type": "string"
+                          },
+                          "positionName": {
+                            "type": "string"
+                          },
+                          "authority": {
+                            "type": "string"
+                          },
+                          "apptDurationType": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "hasNegativeInfo": {
+                      "type": "boolean"
+                    },
+                    "additionalData": {
+                      "type": "object",
+                      "oneOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "honours": {
+                              "type": "string"
+                            },
+                            "presentAppointments": {
+                              "type": "integer"
+                            },
+                            "disqualified": {
+                              "type": "boolean"
+                            },
+                            "disqualificationStartDate": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "disqualificationEndDate": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "sectionOfAct": {
+                              "type": "string"
+                            },
+                            "disqualifiedException": {
+                              "type": "boolean"
+                            },
+                            "disqualifiedExceptions": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "companyName": {
+                                    "type": "string"
+                                  },
+                                  "companyRegistrationNumber": {
+                                    "type": "string"
+                                  },
+                                  "position": {
+                                    "type": "string"
+                                  },
+                                  "status": {
+                                    "type": "string"
+                                  },
+                                  "endDate": {
+                                    "type": "string",
+                                    "format": "date-time"
+                                  }
+                                }
+                              }
+                            },
+                            "eircode": {
+                              "type": "string"
+                            },
+                            "occupation": {
+                              "type": "string"
+                            }
+                          }
+                        },
+                        {
+                          "type": "object",
+                          "properties": {
+                            "presentAppointments": {
+                              "type": "integer"
+                            },
+                            "previousAppointments": {
+                              "type": "integer"
+                            },
+                            "dissolvedAppointments": {
+                              "type": "integer"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "directorships": {
+            "type": "object",
+            "properties": {
+              "currentDirectorships": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "initials": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "position": {
+                      "type": "object",
+                      "properties": {
+                        "resignationDate": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "dateAppointed": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "commonCode": {
+                          "type": "string"
+                        },
+                        "providerCode": {
+                          "type": "string"
+                        },
+                        "positionName": {
+                          "type": "string"
+                        },
+                        "authority": {
+                          "type": "string"
+                        },
+                        "apptDurationType": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "registrationNumber": {
+                      "type": "string"
+                    },
+                    "companyName": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "enum": [
+                            "Active",
+                            "NonActive",
+                            "Pending",
+                            "Other"
+                          ],
+                          "required": "true"
+                        },
+                        "description": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "previousDirectorships": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "initials": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "position": {
+                      "type": "object",
+                      "properties": {
+                        "resignationDate": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "dateAppointed": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "commonCode": {
+                          "type": "string"
+                        },
+                        "providerCode": {
+                          "type": "string"
+                        },
+                        "positionName": {
+                          "type": "string"
+                        },
+                        "authority": {
+                          "type": "string"
+                        },
+                        "apptDurationType": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "registrationNumber": {
+                      "type": "string"
+                    },
+                    "companyName": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "enum": [
+                            "Active",
+                            "NonActive",
+                            "Pending",
+                            "Other"
+                          ],
+                          "required": "true"
+                        },
+                        "description": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "otherInformation": {
+            "type": "object",
+            "properties": {
+              "bankers": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "required": true,
+                      "type": "string"
+                    },
+                    "address": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "simpleValue": {
+                          "type": "string"
+                        },
+                        "street": {
+                          "type": "string"
+                        },
+                        "houseNumber": {
+                          "type": "string"
+                        },
+                        "city": {
+                          "type": "string"
+                        },
+                        "postalCode": {
+                          "type": "string"
+                        },
+                        "province": {
+                          "type": "string"
+                        },
+                        "telephone": {
+                          "type": "string"
+                        },
+                        "directMarketingOptOut": {
+                          "type": "boolean"
+                        },
+                        "directMarketingOptIn": {
+                          "type": "boolean"
+                        },
+                        "country": {
+                          "type": "countrycode"
+                        }
+                      }
+                    },
+                    "bankCode": {
+                      "type": "string"
+                    },
+                    "bic": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "advisors": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "auditorName": {
+                      "type": "string"
+                    },
+                    "solicitorName": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "employeesInformation": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "year": {
+                      "type": "uint16"
+                    },
+                    "numberOfEmployees": {
+                      "required": true,
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "groupStructure": {
+            "type": "object",
+            "properties": {
+              "ultimateParent": {
+                "type": "object",
+                "properties": {
+                  "country": {
+                    "type": "countrycode"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "safeNumber": {
+                    "type": "string"
+                  },
+                  "idType": {
+                    "enum": [
+                      "Other",
+                      "SafeNumber",
+                      "RegistrationNumber",
+                      "VATNumber",
+                      "TaxID",
+                      "PersonNumber",
+                      "ExternalID",
+                      "InternalID"
+                    ]
+                  },
+                  "name": {
+                    "required": true,
+                    "type": "string"
+                  },
+                  "type": {
+                    "enum": [
+                      "NotSet",
+                      "Ltd",
+                      "NonLtd"
+                    ],
+                    "required": "true"
+                  },
+                  "officeType": {
+                    "enum": [
+                      "Registered",
+                      "Trading",
+                      "HeadOffice",
+                      "Branch",
+                      "Subsidiary",
+                      "Franchise",
+                      "Franchisor",
+                      "SingleOffice"
+                    ]
+                  },
+                  "status": {
+                    "enum": [
+                      "Active",
+                      "NonActive",
+                      "Pending",
+                      "Other"
+                    ]
+                  },
+                  "registrationNumber": {
+                    "type": "string"
+                  },
+                  "vatNumber": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "simpleValue": {
+                        "type": "string"
+                      },
+                      "street": {
+                        "type": "string"
+                      },
+                      "houseNumber": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "type": "string"
+                      },
+                      "province": {
+                        "type": "string"
+                      },
+                      "telephone": {
+                        "type": "string"
+                      },
+                      "directMarketingOptOut": {
+                        "type": "boolean"
+                      },
+                      "directMarketingOptIn": {
+                        "type": "boolean"
+                      },
+                      "country": {
+                        "type": "countrycode"
+                      }
+                    }
+                  },
+                  "activity": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "string"
+                      },
+                      "industrySector": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "classification": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "legalForm": {
+                    "type": "string"
+                  }
+                }
+              },
+              "immediateParent": {
+                "type": "object",
+                "properties": {
+                  "country": {
+                    "type": "countrycode"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "safeNumber": {
+                    "type": "string"
+                  },
+                  "idType": {
+                    "enum": [
+                      "Other",
+                      "SafeNumber",
+                      "RegistrationNumber",
+                      "VATNumber",
+                      "TaxID",
+                      "PersonNumber",
+                      "ExternalID",
+                      "InternalID"
+                    ]
+                  },
+                  "name": {
+                    "required": true,
+                    "type": "string"
+                  },
+                  "type": {
+                    "enum": [
+                      "NotSet",
+                      "Ltd",
+                      "NonLtd"
+                    ],
+                    "required": "true"
+                  },
+                  "officeType": {
+                    "enum": [
+                      "Registered",
+                      "Trading",
+                      "HeadOffice",
+                      "Branch",
+                      "Subsidiary",
+                      "Franchise",
+                      "Franchisor",
+                      "SingleOffice"
+                    ]
+                  },
+                  "status": {
+                    "enum": [
+                      "Active",
+                      "NonActive",
+                      "Pending",
+                      "Other"
+                    ]
+                  },
+                  "registrationNumber": {
+                    "type": "string"
+                  },
+                  "vatNumber": {
+                    "type": "string"
+                  },
+                  "address": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string"
+                      },
+                      "simpleValue": {
+                        "type": "string"
+                      },
+                      "street": {
+                        "type": "string"
+                      },
+                      "houseNumber": {
+                        "type": "string"
+                      },
+                      "city": {
+                        "type": "string"
+                      },
+                      "postalCode": {
+                        "type": "string"
+                      },
+                      "province": {
+                        "type": "string"
+                      },
+                      "telephone": {
+                        "type": "string"
+                      },
+                      "directMarketingOptOut": {
+                        "type": "boolean"
+                      },
+                      "directMarketingOptIn": {
+                        "type": "boolean"
+                      },
+                      "country": {
+                        "type": "countrycode"
+                      }
+                    }
+                  },
+                  "activity": {
+                    "type": "object",
+                    "properties": {
+                      "code": {
+                        "type": "string"
+                      },
+                      "industrySector": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "classification": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "legalForm": {
+                    "type": "string"
+                  }
+                }
+              },
+              "subsidiaryCompanies": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "country": {
+                      "type": "countrycode"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "safeNumber": {
+                      "type": "string"
+                    },
+                    "idType": {
+                      "enum": [
+                        "Other",
+                        "SafeNumber",
+                        "RegistrationNumber",
+                        "VATNumber",
+                        "TaxID",
+                        "PersonNumber",
+                        "ExternalID",
+                        "InternalID"
+                      ]
+                    },
+                    "name": {
+                      "required": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "enum": [
+                        "NotSet",
+                        "Ltd",
+                        "NonLtd"
+                      ],
+                      "required": "true"
+                    },
+                    "officeType": {
+                      "enum": [
+                        "Registered",
+                        "Trading",
+                        "HeadOffice",
+                        "Branch",
+                        "Subsidiary",
+                        "Franchise",
+                        "Franchisor",
+                        "SingleOffice"
+                      ]
+                    },
+                    "status": {
+                      "enum": [
+                        "Active",
+                        "NonActive",
+                        "Pending",
+                        "Other"
+                      ]
+                    },
+                    "registrationNumber": {
+                      "type": "string"
+                    },
+                    "vatNumber": {
+                      "type": "string"
+                    },
+                    "address": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "simpleValue": {
+                          "type": "string"
+                        },
+                        "street": {
+                          "type": "string"
+                        },
+                        "houseNumber": {
+                          "type": "string"
+                        },
+                        "city": {
+                          "type": "string"
+                        },
+                        "postalCode": {
+                          "type": "string"
+                        },
+                        "province": {
+                          "type": "string"
+                        },
+                        "telephone": {
+                          "type": "string"
+                        },
+                        "directMarketingOptOut": {
+                          "type": "boolean"
+                        },
+                        "directMarketingOptIn": {
+                          "type": "boolean"
+                        },
+                        "country": {
+                          "type": "countrycode"
+                        }
+                      }
+                    },
+                    "activity": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "industrySector": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "classification": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "legalForm": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "affiliatedCompanies": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "country": {
+                      "type": "countrycode"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "safeNumber": {
+                      "type": "string"
+                    },
+                    "idType": {
+                      "enum": [
+                        "Other",
+                        "SafeNumber",
+                        "RegistrationNumber",
+                        "VATNumber",
+                        "TaxID",
+                        "PersonNumber",
+                        "ExternalID",
+                        "InternalID"
+                      ]
+                    },
+                    "name": {
+                      "required": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "enum": [
+                        "NotSet",
+                        "Ltd",
+                        "NonLtd"
+                      ],
+                      "required": "true"
+                    },
+                    "officeType": {
+                      "enum": [
+                        "Registered",
+                        "Trading",
+                        "HeadOffice",
+                        "Branch",
+                        "Subsidiary",
+                        "Franchise",
+                        "Franchisor",
+                        "SingleOffice"
+                      ]
+                    },
+                    "status": {
+                      "enum": [
+                        "Active",
+                        "NonActive",
+                        "Pending",
+                        "Other"
+                      ]
+                    },
+                    "registrationNumber": {
+                      "type": "string"
+                    },
+                    "vatNumber": {
+                      "type": "string"
+                    },
+                    "address": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string"
+                        },
+                        "simpleValue": {
+                          "type": "string"
+                        },
+                        "street": {
+                          "type": "string"
+                        },
+                        "houseNumber": {
+                          "type": "string"
+                        },
+                        "city": {
+                          "type": "string"
+                        },
+                        "postalCode": {
+                          "type": "string"
+                        },
+                        "province": {
+                          "type": "string"
+                        },
+                        "telephone": {
+                          "type": "string"
+                        },
+                        "directMarketingOptOut": {
+                          "type": "boolean"
+                        },
+                        "directMarketingOptIn": {
+                          "type": "boolean"
+                        },
+                        "country": {
+                          "type": "countrycode"
+                        }
+                      }
+                    },
+                    "activity": {
+                      "type": "object",
+                      "properties": {
+                        "code": {
+                          "type": "string"
+                        },
+                        "industrySector": {
+                          "type": "string"
+                        },
+                        "description": {
+                          "type": "string"
+                        },
+                        "classification": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "legalForm": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "extendedGroupStructure": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "safeNumber": {
+                  "type": "string"
+                },
+                "idType": {
+                  "enum": [
+                    "Other",
+                    "SafeNumber",
+                    "RegistrationNumber",
+                    "VATNumber",
+                    "TaxID",
+                    "PersonNumber",
+                    "ExternalID",
+                    "InternalID"
+                  ]
+                },
+                "companyName": {
+                  "type": "string"
+                },
+                "registeredNumber": {
+                  "type": "string"
+                },
+                "latestAnnualAccounts": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "level": {
+                  "type": "integer",
+                  "required": "true"
+                },
+                "percentOfOwnership": {
+                  "type": "number"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "commonRatingBand": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "extendedGroupStructureExtra": {
+            "type": "object",
+            "properties": {
+              "groupStructure": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "country": {
+                      "type": "string"
+                    },
+                    "safeNumber": {
+                      "type": "string"
+                    },
+                    "companyName": {
+                      "type": "string"
+                    },
+                    "registeredNumber": {
+                      "type": "string"
+                    },
+                    "latestAnnualAccounts": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "consolidatedAccounts": {
+                      "type": "boolean"
+                    },
+                    "latestTurnoverValue": {
+                      "type": "number"
+                    },
+                    "level": {
+                      "type": "integer"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "providerValue": {
+                      "type": "string"
+                    },
+                    "creditLimit": {
+                      "type": "object",
+                      "properties": {}
+                    },
+                    "dbt": {
+                      "type": "number"
+                    },
+                    "percentOfOwnership": {
+                      "type": "number"
+                    },
+                    "legalCount": {
+                      "type": "integer"
+                    },
+                    "legalAmount": {
+                      "type": "object",
+                      "properties": {
+                        "currency": {
+                          "type": "string"
+                        },
+                        "value": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "financialStatements": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "yearEndDate": {
+                  "required": true,
+                  "type": "string",
+                  "required": "true",
+                  "format": "date-time"
+                },
+                "numberOfWeeks": {
+                  "type": "uinteger"
+                },
+                "currency": {
+                  "required": true,
+                  "type": "currency",
+                  "required": "true"
+                },
+                "consolidatedAccounts": {
+                  "type": "boolean"
+                },
+                "profitAndLoss": {
+                  "type": "object",
+                  "properties": {
+                    "revenue": {
+                      "type": "number"
+                    },
+                    "operatingCosts": {
+                      "type": "number"
+                    },
+                    "operatingProfit": {
+                      "type": "number"
+                    },
+                    "wagesAndSalaries": {
+                      "type": "number"
+                    },
+                    "pensionCosts": {
+                      "type": "number"
+                    },
+                    "depreciation": {
+                      "type": "number"
+                    },
+                    "amortisation": {
+                      "type": "number"
+                    },
+                    "financialIncome": {
+                      "type": "number"
+                    },
+                    "financialExpenses": {
+                      "type": "number"
+                    },
+                    "extraordinaryIncome": {
+                      "type": "number"
+                    },
+                    "extraordinaryCosts": {
+                      "type": "number"
+                    },
+                    "profitBeforeTax": {
+                      "type": "number"
+                    },
+                    "tax": {
+                      "type": "number"
+                    },
+                    "profitAfterTax": {
+                      "type": "number"
+                    },
+                    "dividends": {
+                      "type": "number"
+                    },
+                    "minorityInterests": {
+                      "type": "number"
+                    },
+                    "otherAppropriations": {
+                      "type": "number"
+                    },
+                    "retainedProfit": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "balanceSheet": {
+                  "type": "object",
+                  "properties": {
+                    "landAndBuildings": {
+                      "type": "number"
+                    },
+                    "plantAndMachinery": {
+                      "type": "number"
+                    },
+                    "otherTangibleAssets": {
+                      "type": "number"
+                    },
+                    "totalTangibleAssets": {
+                      "type": "number"
+                    },
+                    "goodwill": {
+                      "type": "number"
+                    },
+                    "otherIntangibleAssets": {
+                      "type": "number"
+                    },
+                    "totalIntangibleAssets": {
+                      "type": "number"
+                    },
+                    "investments": {
+                      "type": "number"
+                    },
+                    "loansToGroup": {
+                      "type": "number"
+                    },
+                    "otherLoans": {
+                      "type": "number"
+                    },
+                    "miscellaneousFixedAssets": {
+                      "type": "number"
+                    },
+                    "totalOtherFixedAssets": {
+                      "type": "number"
+                    },
+                    "totalFixedAssets": {
+                      "type": "number"
+                    },
+                    "rawMaterials": {
+                      "type": "number"
+                    },
+                    "workInProgress": {
+                      "type": "number"
+                    },
+                    "finishedGoods": {
+                      "type": "number"
+                    },
+                    "otherInventories": {
+                      "type": "number"
+                    },
+                    "totalInventories": {
+                      "type": "number"
+                    },
+                    "tradeReceivables": {
+                      "type": "number"
+                    },
+                    "groupReceivables": {
+                      "type": "number"
+                    },
+                    "receivablesDueAfter1Year": {
+                      "type": "number"
+                    },
+                    "miscellaneousReceivables": {
+                      "type": "number"
+                    },
+                    "totalReceivables": {
+                      "type": "number"
+                    },
+                    "cash": {
+                      "type": "number"
+                    },
+                    "otherCurrentAssets": {
+                      "type": "number"
+                    },
+                    "totalCurrentAssets": {
+                      "type": "number"
+                    },
+                    "totalAssets": {
+                      "type": "number"
+                    },
+                    "tradePayables": {
+                      "type": "number"
+                    },
+                    "bankLiabilities": {
+                      "type": "number"
+                    },
+                    "otherLoansOrFinance": {
+                      "type": "number"
+                    },
+                    "groupPayables": {
+                      "type": "number"
+                    },
+                    "miscellaneousLiabilities": {
+                      "type": "number"
+                    },
+                    "totalCurrentLiabilities": {
+                      "type": "number"
+                    },
+                    "tradePayablesDueAfter1Year": {
+                      "type": "number"
+                    },
+                    "bankLiabilitiesDueAfter1Year": {
+                      "type": "number"
+                    },
+                    "otherLoansOrFinanceDueAfter1Year": {
+                      "type": "number"
+                    },
+                    "groupPayablesDueAfter1Year": {
+                      "type": "number"
+                    },
+                    "miscellaneousLiabilitiesDueAfter1Year": {
+                      "type": "number"
+                    },
+                    "totalLongTermLiabilities": {
+                      "type": "number"
+                    },
+                    "totalLiabilities": {
+                      "type": "number"
+                    },
+                    "calledUpShareCapital": {
+                      "type": "number"
+                    },
+                    "sharePremium": {
+                      "type": "number"
+                    },
+                    "revenueReserves": {
+                      "type": "number"
+                    },
+                    "otherReserves": {
+                      "type": "number"
+                    },
+                    "totalShareholdersEquity": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "otherFinancials": {
+                  "type": "object",
+                  "properties": {
+                    "contingentLiabilities": {
+                      "type": "string"
+                    },
+                    "workingCapital": {
+                      "type": "number"
+                    },
+                    "netWorth": {
+                      "type": "number"
+                    }
+                  }
+                },
+                "ratios": {
+                  "type": "object",
+                  "properties": {
+                    "preTaxProfitMargin": {
+                      "type": "number"
+                    },
+                    "returnOnCapitalEmployed": {
+                      "type": "number"
+                    },
+                    "returnOnTotalAssetsEmployed": {
+                      "type": "number"
+                    },
+                    "returnOnNetAssetsEmployed": {
+                      "type": "number"
+                    },
+                    "salesOrNetWorkingCapital": {
+                      "type": "number"
+                    },
+                    "stockTurnoverRatio": {
+                      "type": "number"
+                    },
+                    "debtorDays": {
+                      "type": "number"
+                    },
+                    "creditorDays": {
+                      "type": "number"
+                    },
+                    "currentRatio": {
+                      "type": "number"
+                    },
+                    "liquidityRatioOrAcidTest": {
+                      "type": "number"
+                    },
+                    "currentDebtRatio": {
+                      "type": "number"
+                    },
+                    "gearing": {
+                      "type": "number"
+                    },
+                    "equityInPercentage": {
+                      "type": "number"
+                    },
+                    "totalDebtRatio": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "localFinancialStatements": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "yearEndDate": {
+                  "required": true,
+                  "type": "string",
+                  "required": "true",
+                  "format": "date-time"
+                },
+                "numberOfWeeks": {
+                  "type": "uinteger"
+                },
+                "currency": {
+                  "required": true,
+                  "type": "currency",
+                  "required": "true"
+                },
+                "consolidatedAccounts": {
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "paymentData": {
+            "type": "object",
+            "properties": {
+              "paymentsOnFile": {
+                "type": "integer"
+              },
+              "paymentsOnTime": {
+                "type": "integer"
+              },
+              "paymentsPaidLate": {
+                "type": "integer"
+              },
+              "paymentsSentLegal": {
+                "type": "integer"
+              },
+              "paymentsStillOwingLate": {
+                "type": "integer"
+              },
+              "paymentsPaid0to30Days": {
+                "type": "integer"
+              },
+              "highestInvoiceValueOutstandingLate": {
+                "type": "number"
+              },
+              "paymentsPaid90DaysplusLate": {
+                "type": "integer"
+              },
+              "totalBalanceStillOwingLate": {
+                "type": "number"
+              },
+              "dbt": {
+                "type": "number"
+              },
+              "paymentsPaid61to90Days": {
+                "type": "integer"
+              },
+              "totalBalanceStillOwing": {
+                "type": "number"
+              },
+              "payments31to60DaysLate": {
+                "type": "integer"
+              },
+              "payments61to90DaysLate": {
+                "type": "integer"
+              },
+              "highestInvoiceValueOutstanding": {
+                "type": "number"
+              },
+              "paymentsStillOwing": {
+                "type": "integer"
+              },
+              "paymentsWithinTerms": {
+                "type": "integer"
+              },
+              "payments0to30Dayslate": {
+                "type": "integer"
+              },
+              "averageInvoiceValue": {
+                "type": "number"
+              },
+              "paymentsPaid31to60Days": {
+                "type": "integer"
+              },
+              "paymentsPaid90Daysplus": {
+                "type": "integer"
+              },
+              "totalInvoiceValues": {
+                "type": "number"
+              },
+              "weightedDBT": {
+                "type": "integer"
+              },
+              "paymentTrend": {
+                "type": "string"
+              },
+              "industryDBT": {
+                "type": "integer"
+              },
+              "amountsDBTWithTrend": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "month": {
+                      "type": "integer",
+                      "required": "true"
+                    },
+                    "dBTValue": {
+                      "type": "integer"
+                    },
+                    "dBTTrend": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              },
+              "numberOfInvoicesPaidWithinTerms": {
+                "type": "integer"
+              },
+              "numberOfInvoicesPaid1To30Days": {
+                "type": "integer"
+              },
+              "numberOfInvoicesPaid31To60Days": {
+                "type": "integer"
+              },
+              "numberOfInvoicesPaid61to90Days": {
+                "type": "integer"
+              },
+              "numberOfInvoicesPaid91PlusDays": {
+                "type": "integer"
+              },
+              "numberOfInvoicesOutstandingWithinTerms": {
+                "type": "integer"
+              },
+              "numberOfInvoicesOutstanding1to30Days": {
+                "type": "integer"
+              },
+              "numberOfInvoicesOutstanding31to60Days": {
+                "type": "integer"
+              },
+              "numberOfInvoicesOutstanding61to90Days": {
+                "type": "integer"
+              },
+              "numberOfInvoicesOutstanding91PlusDays": {
+                "type": "integer"
+              }
+            }
+          },
+          "negativeInformation": {
+            "type": "object",
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "countyCourtJudgements": {
+                    "type": "object",
+                    "properties": {
+                      "registered": {
+                        "type": "object",
+                        "properties": {
+                          "exact": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "cCJDate": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "court": {
+                                  "type": "string"
+                                },
+                                "cCJAmount": {
+                                  "type": "number"
+                                },
+                                "caseNumber": {
+                                  "type": "string"
+                                },
+                                "currency": {
+                                  "type": "currency"
+                                },
+                                "cCJStatus": {
+                                  "type": "string"
+                                },
+                                "cCJPaidDate": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "incomingRecordDetails": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "possibleName": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "cCJDate": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "court": {
+                                  "type": "string"
+                                },
+                                "cCJAmount": {
+                                  "type": "number"
+                                },
+                                "caseNumber": {
+                                  "type": "string"
+                                },
+                                "currency": {
+                                  "type": "currency"
+                                },
+                                "cCJStatus": {
+                                  "type": "string"
+                                },
+                                "cCJPaidDate": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "incomingRecordDetails": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "possibleAddress": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "cCJDate": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "court": {
+                                  "type": "string"
+                                },
+                                "cCJAmount": {
+                                  "type": "number"
+                                },
+                                "caseNumber": {
+                                  "type": "string"
+                                },
+                                "currency": {
+                                  "type": "currency"
+                                },
+                                "cCJStatus": {
+                                  "type": "string"
+                                },
+                                "cCJPaidDate": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "incomingRecordDetails": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "bankruptcies": {
+                    "type": "object",
+                    "properties": {
+                      "exact": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "occupation": {
+                              "type": "string"
+                            },
+                            "court": {
+                              "type": "string"
+                            },
+                            "caseNumber": {
+                              "type": "string"
+                            },
+                            "gazetteNoticeNumber": {
+                              "type": "string"
+                            },
+                            "petitionDate": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "bankruptcyDate": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "petitionType": {
+                              "type": "string"
+                            },
+                            "alternateAddress1": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                },
+                                "simpleValue": {
+                                  "type": "string"
+                                },
+                                "street": {
+                                  "type": "string"
+                                },
+                                "houseNumber": {
+                                  "type": "string"
+                                },
+                                "city": {
+                                  "type": "string"
+                                },
+                                "postalCode": {
+                                  "type": "string"
+                                },
+                                "province": {
+                                  "type": "string"
+                                },
+                                "telephone": {
+                                  "type": "string"
+                                },
+                                "directMarketingOptOut": {
+                                  "type": "boolean"
+                                },
+                                "directMarketingOptIn": {
+                                  "type": "boolean"
+                                },
+                                "country": {
+                                  "type": "countrycode"
+                                }
+                              }
+                            },
+                            "alternateName1": {
+                              "type": "string"
+                            },
+                            "alternateName2": {
+                              "type": "string"
+                            },
+                            "alternateName3": {
+                              "type": "string"
+                            },
+                            "businessName1": {
+                              "type": "string"
+                            },
+                            "businessName2": {
+                              "type": "string"
+                            },
+                            "businessName3": {
+                              "type": "string"
+                            },
+                            "alternateAddress2": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                },
+                                "simpleValue": {
+                                  "type": "string"
+                                },
+                                "street": {
+                                  "type": "string"
+                                },
+                                "houseNumber": {
+                                  "type": "string"
+                                },
+                                "city": {
+                                  "type": "string"
+                                },
+                                "postalCode": {
+                                  "type": "string"
+                                },
+                                "province": {
+                                  "type": "string"
+                                },
+                                "telephone": {
+                                  "type": "string"
+                                },
+                                "directMarketingOptOut": {
+                                  "type": "boolean"
+                                },
+                                "directMarketingOptIn": {
+                                  "type": "boolean"
+                                },
+                                "country": {
+                                  "type": "countrycode"
+                                }
+                              }
+                            },
+                            "alternateAddress3": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                },
+                                "simpleValue": {
+                                  "type": "string"
+                                },
+                                "street": {
+                                  "type": "string"
+                                },
+                                "houseNumber": {
+                                  "type": "string"
+                                },
+                                "city": {
+                                  "type": "string"
+                                },
+                                "postalCode": {
+                                  "type": "string"
+                                },
+                                "province": {
+                                  "type": "string"
+                                },
+                                "telephone": {
+                                  "type": "string"
+                                },
+                                "directMarketingOptOut": {
+                                  "type": "boolean"
+                                },
+                                "directMarketingOptIn": {
+                                  "type": "boolean"
+                                },
+                                "country": {
+                                  "type": "countrycode"
+                                }
+                              }
+                            },
+                            "alternateAddress4": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                },
+                                "simpleValue": {
+                                  "type": "string"
+                                },
+                                "street": {
+                                  "type": "string"
+                                },
+                                "houseNumber": {
+                                  "type": "string"
+                                },
+                                "city": {
+                                  "type": "string"
+                                },
+                                "postalCode": {
+                                  "type": "string"
+                                },
+                                "province": {
+                                  "type": "string"
+                                },
+                                "telephone": {
+                                  "type": "string"
+                                },
+                                "directMarketingOptOut": {
+                                  "type": "boolean"
+                                },
+                                "directMarketingOptIn": {
+                                  "type": "boolean"
+                                },
+                                "country": {
+                                  "type": "countrycode"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "possibleName": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "occupation": {
+                              "type": "string"
+                            },
+                            "court": {
+                              "type": "string"
+                            },
+                            "caseNumber": {
+                              "type": "string"
+                            },
+                            "gazetteNoticeNumber": {
+                              "type": "string"
+                            },
+                            "petitionDate": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "bankruptcyDate": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "petitionType": {
+                              "type": "string"
+                            },
+                            "alternateAddress1": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                },
+                                "simpleValue": {
+                                  "type": "string"
+                                },
+                                "street": {
+                                  "type": "string"
+                                },
+                                "houseNumber": {
+                                  "type": "string"
+                                },
+                                "city": {
+                                  "type": "string"
+                                },
+                                "postalCode": {
+                                  "type": "string"
+                                },
+                                "province": {
+                                  "type": "string"
+                                },
+                                "telephone": {
+                                  "type": "string"
+                                },
+                                "directMarketingOptOut": {
+                                  "type": "boolean"
+                                },
+                                "directMarketingOptIn": {
+                                  "type": "boolean"
+                                },
+                                "country": {
+                                  "type": "countrycode"
+                                }
+                              }
+                            },
+                            "alternateName1": {
+                              "type": "string"
+                            },
+                            "alternateName2": {
+                              "type": "string"
+                            },
+                            "alternateName3": {
+                              "type": "string"
+                            },
+                            "businessName1": {
+                              "type": "string"
+                            },
+                            "businessName2": {
+                              "type": "string"
+                            },
+                            "businessName3": {
+                              "type": "string"
+                            },
+                            "alternateAddress2": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                },
+                                "simpleValue": {
+                                  "type": "string"
+                                },
+                                "street": {
+                                  "type": "string"
+                                },
+                                "houseNumber": {
+                                  "type": "string"
+                                },
+                                "city": {
+                                  "type": "string"
+                                },
+                                "postalCode": {
+                                  "type": "string"
+                                },
+                                "province": {
+                                  "type": "string"
+                                },
+                                "telephone": {
+                                  "type": "string"
+                                },
+                                "directMarketingOptOut": {
+                                  "type": "boolean"
+                                },
+                                "directMarketingOptIn": {
+                                  "type": "boolean"
+                                },
+                                "country": {
+                                  "type": "countrycode"
+                                }
+                              }
+                            },
+                            "alternateAddress3": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                },
+                                "simpleValue": {
+                                  "type": "string"
+                                },
+                                "street": {
+                                  "type": "string"
+                                },
+                                "houseNumber": {
+                                  "type": "string"
+                                },
+                                "city": {
+                                  "type": "string"
+                                },
+                                "postalCode": {
+                                  "type": "string"
+                                },
+                                "province": {
+                                  "type": "string"
+                                },
+                                "telephone": {
+                                  "type": "string"
+                                },
+                                "directMarketingOptOut": {
+                                  "type": "boolean"
+                                },
+                                "directMarketingOptIn": {
+                                  "type": "boolean"
+                                },
+                                "country": {
+                                  "type": "countrycode"
+                                }
+                              }
+                            },
+                            "alternateAddress4": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                },
+                                "simpleValue": {
+                                  "type": "string"
+                                },
+                                "street": {
+                                  "type": "string"
+                                },
+                                "houseNumber": {
+                                  "type": "string"
+                                },
+                                "city": {
+                                  "type": "string"
+                                },
+                                "postalCode": {
+                                  "type": "string"
+                                },
+                                "province": {
+                                  "type": "string"
+                                },
+                                "telephone": {
+                                  "type": "string"
+                                },
+                                "directMarketingOptOut": {
+                                  "type": "boolean"
+                                },
+                                "directMarketingOptIn": {
+                                  "type": "boolean"
+                                },
+                                "country": {
+                                  "type": "countrycode"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "possibleAddress": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "occupation": {
+                              "type": "string"
+                            },
+                            "court": {
+                              "type": "string"
+                            },
+                            "caseNumber": {
+                              "type": "string"
+                            },
+                            "gazetteNoticeNumber": {
+                              "type": "string"
+                            },
+                            "petitionDate": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "bankruptcyDate": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "petitionType": {
+                              "type": "string"
+                            },
+                            "alternateAddress1": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                },
+                                "simpleValue": {
+                                  "type": "string"
+                                },
+                                "street": {
+                                  "type": "string"
+                                },
+                                "houseNumber": {
+                                  "type": "string"
+                                },
+                                "city": {
+                                  "type": "string"
+                                },
+                                "postalCode": {
+                                  "type": "string"
+                                },
+                                "province": {
+                                  "type": "string"
+                                },
+                                "telephone": {
+                                  "type": "string"
+                                },
+                                "directMarketingOptOut": {
+                                  "type": "boolean"
+                                },
+                                "directMarketingOptIn": {
+                                  "type": "boolean"
+                                },
+                                "country": {
+                                  "type": "countrycode"
+                                }
+                              }
+                            },
+                            "alternateName1": {
+                              "type": "string"
+                            },
+                            "alternateName2": {
+                              "type": "string"
+                            },
+                            "alternateName3": {
+                              "type": "string"
+                            },
+                            "businessName1": {
+                              "type": "string"
+                            },
+                            "businessName2": {
+                              "type": "string"
+                            },
+                            "businessName3": {
+                              "type": "string"
+                            },
+                            "alternateAddress2": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                },
+                                "simpleValue": {
+                                  "type": "string"
+                                },
+                                "street": {
+                                  "type": "string"
+                                },
+                                "houseNumber": {
+                                  "type": "string"
+                                },
+                                "city": {
+                                  "type": "string"
+                                },
+                                "postalCode": {
+                                  "type": "string"
+                                },
+                                "province": {
+                                  "type": "string"
+                                },
+                                "telephone": {
+                                  "type": "string"
+                                },
+                                "directMarketingOptOut": {
+                                  "type": "boolean"
+                                },
+                                "directMarketingOptIn": {
+                                  "type": "boolean"
+                                },
+                                "country": {
+                                  "type": "countrycode"
+                                }
+                              }
+                            },
+                            "alternateAddress3": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                },
+                                "simpleValue": {
+                                  "type": "string"
+                                },
+                                "street": {
+                                  "type": "string"
+                                },
+                                "houseNumber": {
+                                  "type": "string"
+                                },
+                                "city": {
+                                  "type": "string"
+                                },
+                                "postalCode": {
+                                  "type": "string"
+                                },
+                                "province": {
+                                  "type": "string"
+                                },
+                                "telephone": {
+                                  "type": "string"
+                                },
+                                "directMarketingOptOut": {
+                                  "type": "boolean"
+                                },
+                                "directMarketingOptIn": {
+                                  "type": "boolean"
+                                },
+                                "country": {
+                                  "type": "countrycode"
+                                }
+                              }
+                            },
+                            "alternateAddress4": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                },
+                                "simpleValue": {
+                                  "type": "string"
+                                },
+                                "street": {
+                                  "type": "string"
+                                },
+                                "houseNumber": {
+                                  "type": "string"
+                                },
+                                "city": {
+                                  "type": "string"
+                                },
+                                "postalCode": {
+                                  "type": "string"
+                                },
+                                "province": {
+                                  "type": "string"
+                                },
+                                "telephone": {
+                                  "type": "string"
+                                },
+                                "directMarketingOptOut": {
+                                  "type": "boolean"
+                                },
+                                "directMarketingOptIn": {
+                                  "type": "boolean"
+                                },
+                                "country": {
+                                  "type": "countrycode"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "cCJSummary": {
+                    "type": "object",
+                    "properties": {
+                      "exactRegistered": {
+                        "type": "integer",
+                        "required": "true"
+                      },
+                      "possibleRegistered": {
+                        "type": "integer",
+                        "required": "true"
+                      }
+                    }
+                  },
+                  "countyCourtJudgements": {
+                    "type": "object",
+                    "properties": {
+                      "registered": {
+                        "type": "object",
+                        "properties": {
+                          "exact": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "cCJDate": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "court": {
+                                  "type": "string"
+                                },
+                                "cCJAmount": {
+                                  "type": "number"
+                                },
+                                "caseNumber": {
+                                  "type": "string"
+                                },
+                                "currency": {
+                                  "type": "currency"
+                                },
+                                "cCJStatus": {
+                                  "type": "string"
+                                },
+                                "cCJPaidDate": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "incomingRecordDetails": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "possible": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "cCJDate": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "court": {
+                                  "type": "string"
+                                },
+                                "cCJAmount": {
+                                  "type": "number"
+                                },
+                                "caseNumber": {
+                                  "type": "string"
+                                },
+                                "currency": {
+                                  "type": "currency"
+                                },
+                                "cCJStatus": {
+                                  "type": "string"
+                                },
+                                "cCJPaidDate": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "incomingRecordDetails": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "unregistered": {
+                        "type": "object",
+                        "properties": {
+                          "exact": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "cCJDate": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "court": {
+                                  "type": "string"
+                                },
+                                "cCJAmount": {
+                                  "type": "number"
+                                },
+                                "caseNumber": {
+                                  "type": "string"
+                                },
+                                "currency": {
+                                  "type": "currency"
+                                },
+                                "cCJStatus": {
+                                  "type": "string"
+                                },
+                                "cCJPaidDate": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "incomingRecordDetails": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "possible": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "cCJDate": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "court": {
+                                  "type": "string"
+                                },
+                                "cCJAmount": {
+                                  "type": "number"
+                                },
+                                "caseNumber": {
+                                  "type": "string"
+                                },
+                                "currency": {
+                                  "type": "currency"
+                                },
+                                "cCJStatus": {
+                                  "type": "string"
+                                },
+                                "cCJPaidDate": {
+                                  "type": "string",
+                                  "format": "date-time"
+                                },
+                                "incomingRecordDetails": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "additionalInformation": {
+            "type": "object",
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "miscellaneous": {
+                    "type": "object",
+                    "properties": {
+                      "negativeRating": {
+                        "type": "integer"
+                      },
+                      "premisesType": {
+                        "type": "string"
+                      },
+                      "firstKnownToCreditsafe": {
+                        "type": "string"
+                      },
+                      "faxNumber": {
+                        "type": "string"
+                      },
+                      "fps": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "commentaries": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "commentaryText": {
+                          "type": "string"
+                        },
+                        "impact": {
+                          "type": "string"
+                        },
+                        "positiveOrNegative": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "probabilityOfDefault": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "score": {
+                          "type": "string"
+                        },
+                        "pod": {
+                          "type": "string"
+                        },
+                        "odds": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "eventHistory": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "date": {
+                          "type": "string",
+                          "required": "true",
+                          "format": "date-time"
+                        },
+                        "description": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "limitHistory": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "date": {
+                          "type": "string",
+                          "required": "true",
+                          "format": "date-time"
+                        },
+                        "creditLimitValue": {
+                          "type": "number"
+                        }
+                      }
+                    }
+                  },
+                  "ratingHistory": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "date": {
+                          "type": "string",
+                          "required": "true",
+                          "format": "date-time"
+                        },
+                        "companyValue": {
+                          "type": "integer"
+                        },
+                        "description": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "miscellaneous": {
+                    "type": "object",
+                    "properties": {
+                      "faxNumber": {
+                        "type": "string"
+                      },
+                      "negativeRating": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "statusHistory": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "date": {
+                          "type": "string",
+                          "required": "true",
+                          "format": "date-time"
+                        },
+                        "description": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "companyHistory": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "date": {
+                          "type": "string",
+                          "required": "true",
+                          "format": "date-time"
+                        },
+                        "description": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "mortgageSummary": {
+                    "type": "object",
+                    "properties": {
+                      "outstanding": {
+                        "type": "integer"
+                      },
+                      "satisfied": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "mortgageDetails": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "mortgageType": {
+                          "type": "string"
+                        },
+                        "dateChargeCreated": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "dateChargeRegistered": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "dateChargeSatisfied": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "personsEntitled": {
+                          "type": "string"
+                        },
+                        "amountSecured": {
+                          "type": "string"
+                        },
+                        "details": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "commentaries": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "commentaryText": {
+                          "type": "string"
+                        },
+                        "positiveNegative": {
+                          "type": "string"
+                        },
+                        "positiveOrNegative": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "personsWithSignificantControl": {
+                    "type": "object",
+                    "properties": {
+                      "activePSC": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "title": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "personType": {
+                              "enum": [
+                                "Other",
+                                "Person",
+                                "Company"
+                              ]
+                            },
+                            "address": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                },
+                                "simpleValue": {
+                                  "type": "string"
+                                },
+                                "street": {
+                                  "type": "string"
+                                },
+                                "houseNumber": {
+                                  "type": "string"
+                                },
+                                "city": {
+                                  "type": "string"
+                                },
+                                "postalCode": {
+                                  "type": "string"
+                                },
+                                "province": {
+                                  "type": "string"
+                                },
+                                "telephone": {
+                                  "type": "string"
+                                },
+                                "directMarketingOptOut": {
+                                  "type": "boolean"
+                                },
+                                "directMarketingOptIn": {
+                                  "type": "boolean"
+                                },
+                                "country": {
+                                  "type": "countrycode"
+                                }
+                              }
+                            },
+                            "country": {
+                              "type": "string"
+                            },
+                            "dateOfBirth": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "kind": {
+                              "type": "string"
+                            },
+                            "countryOfRegistration": {
+                              "type": "string"
+                            },
+                            "countryOfResidence": {
+                              "type": "string"
+                            },
+                            "nationality": {
+                              "type": "string"
+                            },
+                            "placeRegistered": {
+                              "type": "string"
+                            },
+                            "natureOfControl": {
+                              "type": "string"
+                            },
+                            "notifiedOn": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "ceasedOn": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "governingLaw": {
+                              "type": "string"
+                            },
+                            "legalForm": {
+                              "type": "string"
+                            },
+                            "registrationNumber": {
+                              "type": "string"
+                            },
+                            "statement": {
+                              "type": "object",
+                              "properties": {
+                                "code": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "insertDate": {
+                              "type": "string",
+                              "format": "date-time"
+                            }
+                          }
+                        }
+                      },
+                      "ceasedPSC": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "title": {
+                              "type": "string"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "personType": {
+                              "enum": [
+                                "Other",
+                                "Person",
+                                "Company"
+                              ]
+                            },
+                            "address": {
+                              "type": "object",
+                              "properties": {
+                                "type": {
+                                  "type": "string"
+                                },
+                                "simpleValue": {
+                                  "type": "string"
+                                },
+                                "street": {
+                                  "type": "string"
+                                },
+                                "houseNumber": {
+                                  "type": "string"
+                                },
+                                "city": {
+                                  "type": "string"
+                                },
+                                "postalCode": {
+                                  "type": "string"
+                                },
+                                "province": {
+                                  "type": "string"
+                                },
+                                "telephone": {
+                                  "type": "string"
+                                },
+                                "directMarketingOptOut": {
+                                  "type": "boolean"
+                                },
+                                "directMarketingOptIn": {
+                                  "type": "boolean"
+                                },
+                                "country": {
+                                  "type": "countrycode"
+                                }
+                              }
+                            },
+                            "country": {
+                              "type": "string"
+                            },
+                            "dateOfBirth": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "kind": {
+                              "type": "string"
+                            },
+                            "countryOfRegistration": {
+                              "type": "string"
+                            },
+                            "countryOfResidence": {
+                              "type": "string"
+                            },
+                            "nationality": {
+                              "type": "string"
+                            },
+                            "placeRegistered": {
+                              "type": "string"
+                            },
+                            "natureOfControl": {
+                              "type": "string"
+                            },
+                            "notifiedOn": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "ceasedOn": {
+                              "type": "string",
+                              "format": "date-time"
+                            },
+                            "governingLaw": {
+                              "type": "string"
+                            },
+                            "legalForm": {
+                              "type": "string"
+                            },
+                            "registrationNumber": {
+                              "type": "string"
+                            },
+                            "statement": {
+                              "type": "object",
+                              "properties": {
+                                "code": {
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "insertDate": {
+                              "type": "string",
+                              "format": "date-time"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "ratingHistory": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "date": {
+                          "type": "string",
+                          "required": "true",
+                          "format": "date-time"
+                        },
+                        "companyValue": {
+                          "type": "integer"
+                        },
+                        "ratingDescription": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "creditLimitHistory": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "date": {
+                          "type": "string",
+                          "required": "true",
+                          "format": "date-time"
+                        },
+                        "companyValue": {
+                          "type": "object",
+                          "properties": {}
+                        }
+                      }
+                    }
+                  },
+                  "creditorDetails": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "statementDate": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "registrationNumber": {
+                          "type": "string"
+                        },
+                        "companyName": {
+                          "type": "string"
+                        },
+                        "address": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string"
+                            },
+                            "simpleValue": {
+                              "type": "string"
+                            },
+                            "street": {
+                              "type": "string"
+                            },
+                            "houseNumber": {
+                              "type": "string"
+                            },
+                            "city": {
+                              "type": "string"
+                            },
+                            "postalCode": {
+                              "type": "string"
+                            },
+                            "province": {
+                              "type": "string"
+                            },
+                            "telephone": {
+                              "type": "string"
+                            },
+                            "directMarketingOptOut": {
+                              "type": "boolean"
+                            },
+                            "directMarketingOptIn": {
+                              "type": "boolean"
+                            },
+                            "country": {
+                              "type": "countrycode"
+                            }
+                          }
+                        },
+                        "amount": {
+                          "type": "object",
+                          "properties": {}
+                        }
+                      }
+                    }
+                  },
+                  "badDebtDetails": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "statementDate": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "registrationNumber": {
+                          "type": "string"
+                        },
+                        "companyName": {
+                          "type": "string"
+                        },
+                        "address": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string"
+                            },
+                            "simpleValue": {
+                              "type": "string"
+                            },
+                            "street": {
+                              "type": "string"
+                            },
+                            "houseNumber": {
+                              "type": "string"
+                            },
+                            "city": {
+                              "type": "string"
+                            },
+                            "postalCode": {
+                              "type": "string"
+                            },
+                            "province": {
+                              "type": "string"
+                            },
+                            "telephone": {
+                              "type": "string"
+                            },
+                            "directMarketingOptOut": {
+                              "type": "boolean"
+                            },
+                            "directMarketingOptIn": {
+                              "type": "boolean"
+                            },
+                            "country": {
+                              "type": "countrycode"
+                            }
+                          }
+                        },
+                        "amount": {
+                          "type": "object",
+                          "properties": {}
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "messages": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "enum": [
+                "Information",
+                "Warning",
+                "Error"
+              ],
+              "required": "true"
+            },
+            "code": {
+              "type": "messagecode",
+              "required": "true"
+            },
+            "text": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "performanceLog": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  }
+    "title": "MessageCode",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "enum": [
+      "NoResults",
+      "TooManyResults",
+      "ReportUnavailable",
+      "ReportUnavailableDueToLegal",
+      "ReportUnavailableOnline",
+      "LegalNotice",
+      "InvalidCredentials",
+      "AccessRestricted",
+      "AccessLimitsNearing",
+      "InsufficientCustomerData",
+      "ReportboxAlmostFull",
+      "ReportboxFull",
+      "InvalidRequestXml",
+      "InvalidOperationParameters",
+      "OperationNotSupported",
+      "InvalidCustomData",
+      "ChangeNotification",
+      "TemporarySystemProblem",
+      "EndpointShutdown",
+      "UnexpectedInternalError",
+      "Other",
+      "DataServiceAccessProblems",
+      "DataServiceInvalidResponse"
+    ]
+  }
