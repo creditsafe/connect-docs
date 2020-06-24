@@ -1495,6 +1495,16 @@
           }
         },
         "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/submittedFreshInvestigationRepsonse"
+                }
+              }
+            }
+          },
           "400": {
             "description": "",
             "content": {
@@ -9196,6 +9206,25 @@
           },
           "transactionID": {
             "type": "integer"
+          }
+        }
+      },
+      "submittedFreshInvestigationRepsonse": {
+        "type": "object",
+        "properties": {
+          "correlationId": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "orderID": {
+            "type": "string",
+            "description": "Fresh Investigation Unique Identifier"
+          },
+          "transactionID": {
+            "type": "string",
+            "description": "Fresh Investigation Internal Identifier"
           }
         }
       },
