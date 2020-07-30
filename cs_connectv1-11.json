@@ -498,7 +498,7 @@
     },
     "/companies/searchcriteria": {
       "get": {
-        "operationId": "CompanyS Search Criteria",
+        "operationId": "Company Search Criteria",
         "tags": [
           "Companies"
         ],
@@ -8076,13 +8076,6 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Creditsafe.GlobalData.Message"
-            }
-          },
-          "performanceLog": {
-            "type": "string",
-            "additionalProperties": {
-              "type": "integer",
-              "format": "int64"
             }
           }
         }
