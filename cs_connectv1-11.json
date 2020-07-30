@@ -3,7 +3,7 @@
   "info": {
     "title": "Connect",
     "version": "1.1",
-    "description": "Creditsafe Connect is a REST API that provides access to the <a href=\"https://www.creditsafe.com/gb/en/more/about/our-data.html\">Creditsafe Global Company Database</a> allowing you to control your master data, utlise up-to-date Business and Director information to enhance your onboarding and qualification processes, and get alerts when your customer's and supplier's Credit Report changes. <h2>Quick Start</h2> To start your Creditsafe Connect API integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>\nUsing a REST API client construct an `/authenticate` POST request and enter your username & password (case-sensitive) into the POST body. A successful response will return an  `authentication token`.</br></br>\nUse the `authentication token` in an `Authorization` header on all other Creditsafe Connect calls as proof of your authenticity.\n\n<h2>Environments</h2><h3>Production baseurl:</h3>`https://connect.creditsafe.com/v1`<h3>Sandbox baseurl:</h3> `https://connect.sandbox.creditsafe.com/v1`<h2>Resources</h2> <ul> <li><a href=\"https://creditsafe.github.io/connect-docs/cs_connectv1_11_swagger\">OpenAPI</a> specification.<li><a href=\"https://github.com/creditsafe/connect-docs/tree/master/archive\">OpenAPI</a> specification archive. <li><a href=\"https://www.getpostman.com/collections/3aa74cc7318e44aeb96d\">Postman Collection</a> of the most common example calls to Creditsafe Connect.</li> <li><a href=\"https://connect-portal.creditsafe.com\"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password and form requests.</li> <li><a href=\"https://creditsafe.freshdesk.com/en/support/solutions/categories/7000007071/folders/7000018640\"> Help Articles</a>  including FAQs, Data Dictionaries and a Feature Availability Matrix.  </ul>"
+    "description": "Creditsafe Connect is a REST API that provides access to the <a href=\"https://www.creditsafe.com/gb/en/more/about/our-data.html\">Creditsafe Global Company Database</a> allowing you to control your master data, utlise up-to-date Business and Director information to enhance your onboarding and qualification processes, and get alerts when your customer's and supplier's Credit Report changes. <h2>Quick Start</h2> To start your Creditsafe Connect API integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>\nUsing a REST API client construct an `/authenticate` POST request and enter your username & password (case-sensitive) into the POST body. A successful response will return an  `authentication token`.</br></br>\nUse the `authentication token` in an `Authorization` header on all other Creditsafe Connect calls as proof of your authenticity.\n\n<h2>Environments</h2><h3>Production baseurl:</h3>https://connect.creditsafe.com/v1<h3>Sandbox baseurl:</h3> https://connect.sandbox.creditsafe.com/v1<h2>Resources</h2> <ul> <li><a href=\"https://creditsafe.github.io/connect-docs/swagger.html\">OpenAPI</a> specification.<li><a href=\"https://github.com/creditsafe/connect-docs/tree/master/archive\">OpenAPI</a> specification archive. <li><a href=\"https://www.getpostman.com/collections/3aa74cc7318e44aeb96d\">Postman Collection</a> of the most common example calls to Creditsafe Connect.</li> <li><a href=\"https://connect-portal.creditsafe.com\"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password and form requests.</li> <li><a href=\"https://creditsafe.freshdesk.com/en/support/solutions/categories/7000007071/folders/7000018640\"> Help Articles</a>  including FAQs, Data Dictionaries and a Feature Availability Matrix.  </ul>"
   },
   "tags": [
     {
@@ -50,6 +50,7 @@
   "paths": {
     "/authenticate": {
       "post": {
+        "operationId": "Authenticate",
         "security": [],
         "tags": [
           "Authentication"
@@ -349,7 +350,7 @@
     },
     "/companies/{connectId}": {
       "get": {
-        "operationId": "CompanyCreditReport",
+        "operationId": "Company Credit Report",
         "tags": [
           "Companies"
         ],
@@ -451,6 +452,7 @@
     },
     "/access/countries": {
       "get": {
+        "operationId": "Subscription Details",
         "tags": [
           "Authentication"
         ],
@@ -496,11 +498,11 @@
     },
     "/companies/searchcriteria": {
       "get": {
+        "operationId": "CompanyS Search Criteria",
         "tags": [
           "Companies"
         ],
         "description": "Returns the set of available Company Search parameters/fields for a provided list of countries.",
-        "operationId": "Company Search Criteria",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4248,6 +4250,7 @@
     },
     "/localSolutions/GB/bankmatch": {
       "get": {
+        "operationId": "Bank Match",
         "tags": [
           "Local Solutions"
         ],
@@ -4873,6 +4876,7 @@
     },
     "/companies/schema/{countryCode}": {
       "get": {
+        "operationId": "Report Schema",
         "tags": [
           "Misc"
         ],
