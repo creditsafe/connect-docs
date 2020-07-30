@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Connect",
+    "title": "Creditsafe Connect",
     "version": "1.1",
-    "description": "Creditsafe Connect is a REST API that provides access to the <a href=\"https://www.creditsafe.com/gb/en/more/about/our-data.html\">Creditsafe Global Company Database</a> allowing you to control your master data, utlise up-to-date Business and Director information to enhance your onboarding and qualification processes, and get alerts when your customer's and supplier's Credit Report changes. <h2>Quick Start</h2> To start your Creditsafe Connect API integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>\nUsing a REST API client construct an `/authenticate` POST request and enter your username & password (case-sensitive) into the POST body. A successful response will return an  `authentication token`.</br></br>\nUse the `authentication token` in an `Authorization` header on all other Creditsafe Connect calls as proof of your authenticity.\n\n<h2>Environments</h2><h3>Production baseurl:</h3>https://connect.creditsafe.com/v1<h3>Sandbox baseurl:</h3> https://connect.sandbox.creditsafe.com/v1<h2>Resources</h2> <ul> <li><a href=\"https://creditsafe.github.io/connect-docs/swagger.html\">OpenAPI</a> specification.<li><a href=\"https://github.com/creditsafe/connect-docs/tree/master/archive\">OpenAPI</a> specification archive. <li><a href=\"https://www.getpostman.com/collections/3aa74cc7318e44aeb96d\">Postman Collection</a> of the most common example calls to Creditsafe Connect.</li> <li><a href=\"https://connect-portal.creditsafe.com\"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password and form requests.</li> <li><a href=\"https://creditsafe.freshdesk.com/en/support/solutions/categories/7000007071/folders/7000018640\"> Help Articles</a>  including FAQs, Data Dictionaries and a Feature Availability Matrix.  </ul>"
+    "description": "Creditsafe Connect is a REST API that provides access to the <a href=\"https://www.creditsafe.com/gb/en/more/about/our-data.html\">Creditsafe Global Company Database</a> allowing you to control your master data, utlise up-to-date Business and Director information to enhance your onboarding and qualification processes, and get alerts when your customer's and supplier's Credit Report changes. <h2>Quick Start</h2> To start your Creditsafe Connect API integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>\nUsing a REST API client construct an `/authenticate` POST request and enter your username & password (case-sensitive) into the POST body. A successful response will return an  `authentication token`.</br></br>\nUse the `authentication token` in an `Authorization` header on all other Creditsafe Connect calls as proof of your authenticity.\n\n<h2>Environments</h2><h2>Production baseurl:</h2> `https://connect.creditsafe.com/v1` <h2>Sandbox baseurl:</h3> `https://connect.sandbox.creditsafe.com/v1` <h2>Resources</h2> <ul> <li><a href=\"https://creditsafe.github.io/connect-docs/swagger.html\">OpenAPI</a> specification.<li><a href=\"https://github.com/creditsafe/connect-docs/tree/master/archive\">OpenAPI</a> specification archive. <li><a href=\"https://www.getpostman.com/collections/3aa74cc7318e44aeb96d\">Postman Collection</a> of the most common example calls to Creditsafe Connect.</li> <li><a href=\"https://connect-portal.creditsafe.com\"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password and form requests.</li> <li><a href=\"https://creditsafe.freshdesk.com/en/support/solutions/categories/7000007071/folders/7000018640\"> Help Articles</a>  including FAQs, Data Dictionaries and a Feature Availability Matrix.  </ul>"
   },
   "tags": [
     {
@@ -12,7 +12,7 @@
     },
     {
       "name": "Companies",
-      "description": "Endpoints to search for Companies in the Creditsafe Global Company Database. When a company is found you can use the `connectId` to order their Company Credit Report. The Company Credit Report is a JSON object comprising of key business and financial data points such as Credit Score & Limit, Industry Code, Directors, Balance Sheet and Negative Information. A full list of Company data points can be found in the Data Matrix, in the help resources. "
+      "description": "Endpoints to search for Companies in the Creditsafe Global Company Database. Companies are uniquely idenitifed by the `connectId` - the identifer used to order a Company Credit Report. The Company Credit Report is a JSON object comprising of key business and financial data points such as Credit Score & Limit, Industry Code, Directors, Balance Sheet and Negative Information. A full list of Company data points can be found in the Data Matrix, in the help resources. "
     },
     {
       "name": "People/Directors",
@@ -20,7 +20,7 @@
     },
     {
       "name": "Images",
-      "description": "Endpoints to order official Company Image Documents from original sources. Company Filings such as Annual Account Statements, Annual Returns, Liquidations and Changes of Registered Information can be downloaded as PDFs, and are typically used as a resource in extended company auditing/compliance."
+      "description": "Endpoints to order official Company Image/Filing Documents from source. Company Filings such as Annual Account Statements, Annual Returns, Liquidations and Changes of Registered Information can be downloaded as PDFs, and are typically used as a resource in extended company auditing/compliance."
     },
     {
       "name": "Fresh Investigations",
@@ -983,7 +983,7 @@
     },
     "/freshinvestigations": {
       "post": {
-        "operationId": "Createinvestigation",
+        "operationId": "Create Investigation",
         "tags": [
           "Fresh Investigations"
         ],
@@ -1036,7 +1036,7 @@
         }
       },
       "get": {
-        "operationId": "GetInvestigations",
+        "operationId": "Get Investigations",
         "tags": [
           "Fresh Investigations"
         ],
@@ -1191,7 +1191,7 @@
     },
     "/freshinvestigations/{orderId}": {
       "get": {
-        "operationId": "RetrieveInvestigation",
+        "operationId": "Retrieve Investigation",
         "tags": [
           "Fresh Investigations"
         ],
