@@ -12,11 +12,11 @@
     },
     {
       "name": "Companies",
-      "description": "Endpoints to search for Companies in the Creditsafe Global Company Database. Companies are uniquely idenitifed by the `connectId` - the identifer used to order a Company Credit Report. The Company Credit Report is a JSON object comprising of key business and financial data points such as Credit Score & Limit, Industry Code, Directors, Balance Sheet and Negative Information. A full list of Company data points can be found in the Data Matrix, in the help resources. "
+      "description": "Endpoints to search for Companies in the Creditsafe Global Company Database. Companies are uniquely idenitifed by the `connectId` - the identifier used to order a Company Credit Report. The Company Credit Report is a JSON object comprising of key business and financial data points such as Credit Score & Limit, Industry Code, Directors, Balance Sheet and Negative Information. A full list of Company data points can be found in the Data Matrix, in the help resources. "
     },
     {
       "name": "People/Directors",
-      "description": "Endpoints to find People/Directors and order Director Reports. A Director Report will contain a person's registered information and Active & Previous Directorships, where available. This endpoint is not advised to get a list of directors for a specifc Company. Instead, order a Company Credit Report using the `/companies/{id}` endpoint, and use  the `directors` section in the response."
+      "description": "Endpoints to find People/Directors and order Director Reports. A Director Report will contain a person's registered information and Active & Previous Directorships, where available. This endpoint is not advised to get a list of directors for a specific Company. Instead, order a Company Credit Report using the `/companies/{id}` endpoint, and use  the `directors` section in the response."
     },
     {
       "name": "Images",
@@ -28,11 +28,11 @@
     },
     {
       "name": "Global Monitoring",
-      "description": "Endpoints to Monitor changes to Company Information. Company changes can be retrived by creating a Porfolio (a collection of companies) and configuring the `eventRules` (the criteria in which to trigger a change, e.g. company name changes, limit changes) on the portfolio. When a company in your Portfolio changes to satisfy an eventRule, a `notificationEvent` will be raised to inform you of the nature of the change. See <a href=\"https://www.creditsafe.com/gb/en/credit-risk/credit-reports/company-credit-reports/company-monitoring.html\"> here</a> for Creditsafe's Global Monitoring capabilities."
+      "description": "Endpoints to Monitor changes to Company Information. Company changes can be retrieved by creating a Portfolio (a collection of companies) and configuring the `eventRules` (the criteria in which to trigger a change, e.g. company name changes, limit changes) on the portfolio. When a company in your Portfolio changes to satisfy an eventRule, a `notificationEvent` will be raised to inform you of the nature of the change. See <a href=\"https://www.creditsafe.com/gb/en/credit-risk/credit-reports/company-credit-reports/company-monitoring.html\"> here</a> for Creditsafe's Global Monitoring capabilities."
     },
     {
       "name": "Decision Engine",
-      "description": "Endpoints to access pre-configured decision trees to automate credit decisions. Decision Engine can help you save time and money across your company by automating time consuming processes which drain your companyâ€™s resources. This can free you and your staff to spend more time to work on achieving your business goals.</br></br>A full audit trail of previous decisions is maintained for user access and decisions in a pending state can be manually approved or declined."
+      "description": "Endpoints to access pre-configured decision trees to automate credit decisions. Decision Engine can help you save time and money across your company by automating time consuming processes which drain your company’s resources. This can free you and your staff to spend more time to work on achieving your business goals.</br></br>A full audit trail of previous decisions is maintained for user access and decisions in a pending state can be manually approved or declined."
     },
     {
       "name": "Compliance Beta",
@@ -135,7 +135,7 @@
           {
             "name": "id",
             "in": "query",
-            "description": "connectId - The primary Company identifier that is used to uniquely identify all companies across Creditsafes Universe and Partner Network. This is returned on all Company Search Results. Use this field to use in other operations such as Ordering Company Credit Report by Id, and Adding Company to Monitoing Portfolio.",
+            "description": "connectId - The primary Company identifier that is used to uniquely identify all companies across Creditsafes Universe and Partner Network. This is returned on all Company Search Results. Use this field to use in other operations such as Ordering Company Credit Report by Id, and Adding Company to Monitoring Portfolio.",
             "schema": {
               "type": "string",
               "nullable": true,
@@ -244,7 +244,7 @@
           {
             "name": "postCode",
             "in": "query",
-            "description": "Address part identifier - Postcode/Zip Code of the Company. Can be provided partially to extend to a region with a * as a wildcard. I.e. CF* can represnt all postcodes starting with CF.",
+            "description": "Address part identifier - Postcode/Zip Code of the Company. Can be provided partially to extend to a region with a * as a wildcard. I.e. CF* can represent all postcodes starting with CF.",
             "schema": {
               "type": "string",
               "nullable": true
@@ -1855,7 +1855,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Update Portfolio details such as Name, email reciepients, language and subject line.",
+        "description": "Update Portfolio details such as Name, email recipients, language and subject line.",
         "operationId": "Update Portfolio Details",
         "parameters": [
           {
@@ -2271,7 +2271,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Update a portofolios event rules to default state. In Connect, default state means all rules are turned off.",
+        "description": "Update a portfolios event rules to default state. In Connect, default state means all rules are turned off.",
         "operationId": "Set Portfolio Default Rules",
         "parameters": [
           {
@@ -2814,7 +2814,7 @@
           "Global Monitoring"
         ],
         "description": "Copy companies from one portfolio to single (or) multiple portfolios.",
-        "operationId": "Copy Companies Bewtween Portfolios",
+        "operationId": "Copy Companies Between Portfolios",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4030,7 +4030,7 @@
         "tags": [
           "Decision Engine"
         ],
-        "description": "Returns a log of all previously ran decisionsl that the user has permission to access, optionally filtered.",
+        "description": "Returns a log of all previously ran decisions that the user has permission to access, optionally filtered.",
         "operationId": "Decision History",
         "parameters": [
           {
@@ -4254,7 +4254,7 @@
         "tags": [
           "Local Solutions"
         ],
-        "description": "The Bank Verification tool allows customers to instantly verify that small and medium sized companies you are working with are providing correct bank details, to reduce fraud and avoid delays in your on boarding process. The bank data for these companies is provided to Creditsafe by various financial providers, including major banks. When you provides us with a company number and their bank details, we are able to perform instant checks to verify that those bank details are associated with that company and return - </br> â€¢ Match â€“ We have bank information on the company, and the data provided by the customer matches this company's records </br> â€¢ No Match â€“ We have bank information on the company, but the data provided does not match any of the company's records </br> â€¢ Data Unavailable â€“ We do not have bank information on the company.",
+        "description": "The Bank Verification tool allows customers to instantly verify that small and medium sized companies you are working with are providing correct bank details, to reduce fraud and avoid delays in your on boarding process. The bank data for these companies is provided to Creditsafe by various financial providers, including major banks. When you provides us with a company number and their bank details, we are able to perform instant checks to verify that those bank details are associated with that company and return - </br> • Match – We have bank information on the company, and the data provided by the customer matches this company's records </br> • No Match – We have bank information on the company, but the data provided does not match any of the company's records </br> • Data Unavailable – We do not have bank information on the company.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4320,7 +4320,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Indicates the check has been made succesfully and contains the result of the Verification/Validation. A 200 response alone does not immediately indicate the bank account is valid, only that the check was made in the correct format. Check the SCAN text and IBAN text fields for the result of the Check.",
+            "description": "Indicates the check has been made successfully and contains the result of the Verification/Validation. A 200 response alone does not immediately indicate the bank account is valid, only that the check was made in the correct format. Check the SCAN text and IBAN text fields for the result of the Check.",
             "content": {
               "application/json": {
                 "schema": {
@@ -4880,7 +4880,7 @@
         "tags": [
           "Misc"
         ],
-        "description": "Returns the Company Report JSON schema of the provied country. Largely redundant as the Company Report 200 response is defined as a superset of all country's JSON schemas and can be used for any country.",
+        "description": "Returns the Company Report JSON schema of the provided country. Largely redundant as the Company Report 200 response is defined as a superset of all country's JSON schemas and can be used for any country.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4944,7 +4944,7 @@
         "tags": [
           "Misc"
         ],
-        "description": "Returns the allowed values of the customData parameter, used in the GET Company Report and Director Report endpoints.  I.e. Suppling `DE` as a country code will return a list of reasons for requesting a DE Credit Report (a legal requirement to supply with each Credit Report request in Germany). This will provide a list of allowedValues to enter into the mandatory Parameter `customData` = `de_reason_code::allowedValue`",
+        "description": "Returns the allowed values of the customData parameter, used in the GET Company Report and Director Report endpoints.  I.e. Supplying `DE` as a country code will return a list of reasons for requesting a DE Credit Report (a legal requirement to supply with each Credit Report request in Germany). This will provide a list of allowedValues to enter into the mandatory Parameter `customData` = `de_reason_code::allowedValue`",
         "operationId": "Custom Report Parameters",
         "parameters": [
           {
