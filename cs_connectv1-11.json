@@ -8,11 +8,11 @@
   "tags": [
     {
       "name": "Authentication",
-      "description": "Endpoint to generate a Bearer JWT (Authentication Token). It is mandatory to include this token under the Header`Authorization` When calling all other endpoints as proof of authenticity. Tokens can exist concurrently and persist for 1 hour from its issued time."
+      "description": "Endpoint to generate a Bearer JWT (Authentication Token). It is mandatory to include this token under the Header `Authorization` When calling all other endpoints as proof of authenticity. Tokens can exist concurrently and persist for 1 hour from its issued time."
     },
     {
       "name": "Companies",
-      "description": "Endpoints to search for Companies in the Creditsafe Global Company Database. Companies are uniquely identified by the `connectId` - the identifier used to order a Company Credit Report. The Company Credit Report is a JSON object comprising of key business and financial data points such as Credit Score & Limit, Industry Code, Directors, Balance Sheet and Negative Information. A full list of Company data points can be found in the Data Matrix, in the help resources. "
+      "description": "Endpoints to search for Companies in the Creditsafe Global Company Database. Companies are uniquely identified by the `connectId` - the identifier used to order a Company Credit Report. The Company Credit Report is a JSON object comprising of key business and financial data points such as Credit Score & Limit, Industry Code, Directors, Balance Sheet and Negative Information. A full list of Company data points can be found in the Data Matrix, in the help resources."
     },
     {
       "name": "People/Directors",
@@ -2918,7 +2918,7 @@
           "Global Monitoring"
         ],
         "description": "Move companies from one portfolio to single (or) multiple portfolios. Removes the companies from the portfolio provided in the path parameter.",
-        "operationId": "Move Companies Bewtween Portfolios",
+        "operationId": "Move Companies Between Portfolios",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
