@@ -12,7 +12,7 @@
     },
     {
       "name": "Companies",
-      "description": "Endpoints to search for Companies in the Creditsafe Global Company Database. Companies are uniquely idenitifed by the `connectId` - the identifier used to order a Company Credit Report. The Company Credit Report is a JSON object comprising of key business and financial data points such as Credit Score & Limit, Industry Code, Directors, Balance Sheet and Negative Information. A full list of Company data points can be found in the Data Matrix, in the help resources. "
+      "description": "Endpoints to search for Companies in the Creditsafe Global Company Database. Companies are uniquely identified by the `connectId` - the identifier used to order a Company Credit Report. The Company Credit Report is a JSON object comprising of key business and financial data points such as Credit Score & Limit, Industry Code, Directors, Balance Sheet and Negative Information. A full list of Company data points can be found in the Data Matrix, in the help resources. "
     },
     {
       "name": "People/Directors",
@@ -32,7 +32,7 @@
     },
     {
       "name": "Decision Engine",
-      "description": "Endpoints to access pre-configured decision trees to automate credit decisions. Decision Engine can help you save time and money across your company by automating time consuming processes which drain your company’s resources. This can free you and your staff to spend more time to work on achieving your business goals.</br></br>A full audit trail of previous decisions is maintained for user access and decisions in a pending state can be manually approved or declined."
+      "description": "Endpoints to access pre-configured decision trees to automate credit decisions. Decision Engine can help you save time and money across your company by automating time consuming processes which drain your companyâ€™s resources. This can free you and your staff to spend more time to work on achieving your business goals.</br></br>A full audit trail of previous decisions is maintained for user access and decisions in a pending state can be manually approved or declined."
     },
     {
       "name": "Compliance Beta",
@@ -4254,7 +4254,7 @@
         "tags": [
           "Local Solutions"
         ],
-        "description": "The Bank Verification tool allows customers to instantly verify that small and medium sized companies you are working with are providing correct bank details, to reduce fraud and avoid delays in your on boarding process. The bank data for these companies is provided to Creditsafe by various financial providers, including major banks. When you provides us with a company number and their bank details, we are able to perform instant checks to verify that those bank details are associated with that company and return - </br> • Match – We have bank information on the company, and the data provided by the customer matches this company's records </br> • No Match – We have bank information on the company, but the data provided does not match any of the company's records </br> • Data Unavailable – We do not have bank information on the company.",
+        "description": "The Bank Verification tool allows customers to instantly verify that small and medium sized companies you are working with are providing correct bank details, to reduce fraud and avoid delays in your on boarding process. The bank data for these companies is provided to Creditsafe by various financial providers, including major banks. When you provides us with a company number and their bank details, we are able to perform instant checks to verify that those bank details are associated with that company and return - </br> â€¢ Match â€“ We have bank information on the company, and the data provided by the customer matches this company's records </br> â€¢ No Match â€“ We have bank information on the company, but the data provided does not match any of the company's records </br> â€¢ Data Unavailable â€“ We do not have bank information on the company.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
