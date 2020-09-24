@@ -40,7 +40,7 @@
     },
     {
       "name": "Decision Engine",
-      "description": "Endpoints to access pre-configured decision trees to automate credit decisions. Decision Engine can help you save time and money across your company by automating time consuming processes which drain your company’s resources. This can free you and your staff to spend more time to work on achieving your business goals.</br></br>A full audit trail of previous decisions is maintained for user access and decisions in a pending state can be manually approved or declined."
+      "description": "Endpoints to access pre-configured decision trees to automate credit decisions. Decision Engine can help you save time and money across your company by automating time consuming processes which drain your company's resources. This can free you and your staff to spend more time to work on achieving your business goals.</br></br>A full audit trail of previous decisions is maintained for user access and decisions in a pending state can be manually approved or declined."
     },
     {
       "name": "Protect",
