@@ -2,8 +2,8 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Creditsafe Connect",
-    "version": "1.2",
-    "description": "Creditsafe Connect is a REST API that provides access to the <a href=\"https://www.creditsafe.com/gb/en/more/about/our-data.html\">Creditsafe Global Company Database</a> allowing you to control your master data, utlise up-to-date Business and Director information to enhance your onboarding and qualification processes, and get alerts when your customer's and supplier's Credit Report changes. <h2>Quick Start</h2> To start your Creditsafe Connect API integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>By default, you will have been setup on our Sandbox environment.</br></br>\nUsing a REST API client construct an `/authenticate` POST request and enter your username & password (case-sensitive) into the POST body. A successful response will return an  `authentication token`.</br></br>\nUse the `authentication token` in an `Authorization` header on all other Creditsafe Connect calls as proof of your authenticity.\n\n<h2>Environments</h2>Production Environment baseurl: <code> https://connect.creditsafe.com/v1 </code> </br> Sandbox Test Environment baseurl:  <code>https://connect.sandbox.creditsafe.com/v1</code> <h2>Resources</h2> <ul> <li><a href=\"https://creditsafe.github.io/connect-docs/cs_connectv1-12.html\">OpenAPI</a> specification.<li><a href=\"https://github.com/creditsafe/connect-docs/tree/master/archive\">OpenAPI</a> specification archive. <li><a href=\"https://www.getpostman.com/collections/3aa74cc7318e44aeb96d\">Postman Collection</a> of the most common example calls to Creditsafe Connect.</li> <li><a href=\"https://connect-portal.creditsafe.com\"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password and form requests.</li> <li><a href=\"https://creditsafe.freshdesk.com/en/support/solutions/categories/7000007071/folders/7000018640\"> Help Articles</a>  including FAQs, Data Dictionaries and a Feature Availability Matrix.  </ul>"
+    "version": "1.1",
+    "description": "Creditsafe Connect is a REST API that provides access to the <a href=\"https://www.creditsafe.com/gb/en/more/about/our-data.html\">Creditsafe Global Company Database</a> allowing you to control your master data, utlise up-to-date Business and Director information to enhance your onboarding and qualification processes, and get alerts when your customer's and supplier's Credit Report changes. <h2>Quick Start</h2> To start your Creditsafe Connect API integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>By default, you will have been setup on our Sandbox environment.</br></br>\nUsing a REST API client construct an `/authenticate` POST request and enter your username & password (case-sensitive) into the POST body. A successful response will return an  `authentication token`.</br></br>\nUse the `authentication token` in an `Authorization` header on all other Creditsafe Connect calls as proof of your authenticity.\n\n<h2>Environments</h2>Production Environment baseurl: <code> https://connect.creditsafe.com/v1 </code> </br> Sandbox Test Environment baseurl:  <code>https://connect.sandbox.creditsafe.com/v1</code> <h2>Resources</h2> <ul> <li><a href=\"https://creditsafe.github.io/connect-docs/cs_connectv1-11.html\">OpenAPI</a> specification.<li><a href=\"https://github.com/creditsafe/connect-docs/tree/master/archive\">OpenAPI</a> specification archive. <li><a href=\"https://www.getpostman.com/collections/3aa74cc7318e44aeb96d\">Postman Collection</a> of the most common example calls to Creditsafe Connect.</li> <li><a href=\"https://connect-portal.creditsafe.com\"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password and form requests.</li> <li><a href=\"https://creditsafe.freshdesk.com/en/support/solutions/categories/7000007071/folders/7000018640\"> Help Articles</a>  including FAQs, Data Dictionaries and a Feature Availability Matrix.  </ul>"
   },
   "servers": [
     {
@@ -40,11 +40,11 @@
     },
     {
       "name": "Decision Engine",
-      "description": "Endpoints to access pre-configured decision trees to automate credit decisions. Decision Engine can help you save time and money across your company by automating time consuming processes which drain your company’s resources. This can free you and your staff to spend more time to work on achieving your business goals.</br></br>A full audit trail of previous decisions is maintained for user access and decisions in a pending state can be manually approved or declined."
+      "description": "Endpoints to access pre-configured decision trees to automate credit decisions. Decision Engine can help you save time and money across your company by automating time consuming processes which drain your companyâ€™s resources. This can free you and your staff to spend more time to work on achieving your business goals.</br></br>A full audit trail of previous decisions is maintained for user access and decisions in a pending state can be manually approved or declined."
     },
     {
-      "name": "Protect",
-      "description": "The focus on screening clients and third parties is increasing. International regulators are demanding that firms improve their ongoing sanctions screening process. LexisNexis World Compliance data through Connect allows customers to mitigate risk around Anti-Bribery and Corruption under local and international regulations such as the UK Bribery Act, by enabling users to screen their third party agents, suppliers or employees against watch lists.  With LexisNexis World Compliance through Creditsafe Connect, compliance is easy, efficient and cost-effective, even as the regulatory mountain grows."
+      "name": "Compliance Beta",
+      "description": "The focus on screening clients and third parties is increasing. International regulators are demanding that firms improve their ongoing sanctions screening process. LexisNexis World Compliance data through Connect allows customers to mitigate risk around Anti-Bribery and Corruption under local and international regulations such as the UK Bribery Act, by enabling users to screen their third party agents, suppliers or employees against watch lists.  With LexisNexis World Compliance through Creditsafe Connect, compliance is easy, efficient and cost-effective, even as the regulatory mountain grows. </br></br> Please be aware endpoints under this resource are marked as temporary/beta and may be changed/renamed with less notice than normal."
     },
     {
       "name": "Local Solutions",
@@ -991,7 +991,7 @@
     },
     "/freshinvestigations": {
       "post": {
-        "operationId": "Create FreshInvestigation",
+        "operationId": "Create Investigation",
         "tags": [
           "Fresh Investigations"
         ],
@@ -4256,1247 +4256,13 @@
         }
       }
     },
-    "/protect/Investigations": {
-      "post": {
-        "operationId": "Create Protect Investigation",
-        "description": "Creates an Investigation according to the provided Investigation criteria. Each result is potential match which is attributed a relevancy/match score between 1-100 and a high level reason for it’s inclusion in the World Compliance Database by looking at the Reason Listed and Comments to firstly ascertain whether the entry is a match for you search criteria and then utilise the data available for your own onboarding needs.",
-        "tags": [
-          "Protect"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateInvestigationQueryDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateInvestigationQueryDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateInvestigationQueryDto"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "201": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.InvestigationResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.InvestigationResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.InvestigationResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      },
-      "get": {
-        "operationId": "List all Protect Investigations",
-        "description": "Endpoint to return all investigations. Filter response by using query parameters. Use the alertsCount parameter to only return Investigations with alerts greater than the supplied value.",
-        "tags": [
-          "Protect"
-        ],
-        "parameters": [
-          {
-            "name": "scheduled",
-            "in": "query",
-            "schema": {
-              "type": "boolean",
-              "nullable": false
-            }
-          },
-          {
-            "name": "alertsCount",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "nullable": true
-            }
-          },
-          {
-            "name": "query.type",
-            "in": "query",
-            "schema": {
-              "$ref": "#/components/schemas/Connect.Protect.CreateInvestigationQueryDto"
-            }
-          },
-          {
-            "$ref": "#/components/parameters/page"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Investigation"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Investigation"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Investigation"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/protect/Investigations/{investigationId}": {
-      "get": {
-        "operationId": "Retrieve Protect Investigation by Id",
-        "description": "Endpoint to retrieve a specific Investigation by ID. Can also be used to retrieve the assoicated Scheduele Id that has been linked to the Investigation.",
-        "tags": [
-          "Protect"
-        ],
-        "parameters": [
-          {
-            "name": "investigationId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "guid",
-              "nullable": false
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.InvestigationResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.InvestigationResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.InvestigationResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/protect/Profiles": {
-      "get": {
-        "operationId": "List all Protect Profiles",
-        "description": "Returns all profiles or filtered with a matching profile name.",
-        "tags": [
-          "Protect"
-        ],
-        "parameters": [
-          {
-            "name": "name",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "$ref": "#/components/parameters/page"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Profile"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Profile"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Profile"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "operationId": "Create Protect Profile",
-        "description": "Creates a profile. Profiles can be used as an additional category to group related investigations together. For instance - You may want to investigate all  Branches, Directors and Shareholders of one business, and keep them in the same Profile.",
-        "tags": [
-          "Protect"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateProfileDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateProfileDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateProfileDto"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "201": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Profile"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Profile"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Profile"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/protect/Profiles/{profileId}": {
-      "get": {
-        "operationId": "Retrieve Protect Profile by ID",
-        "description": "Endpoint to retrieve a profile by Id",
-        "tags": [
-          "Protect"
-        ],
-        "parameters": [
-          {
-            "name": "profileId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "guid",
-              "nullable": false
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Profile"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Profile"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Profile"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "description": "Endpoint to change the name of a profile.",
-        "operationId": "Edit Protect Profile",
-        "tags": [
-          "Protect"
-        ],
-        "parameters": [
-          {
-            "name": "profileId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "guid",
-              "nullable": false
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateProfileDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateProfileDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateProfileDto"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Profile"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Profile"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Profile"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/protect/Profiles/{profileId}/investigations": {
-      "get": {
-        "operationId": "List Investigations of a Profile",
-        "description": "Endpoint to retrieve all Investigations associated with a specific Profile.",
-        "tags": [
-          "Protect"
-        ],
-        "parameters": [
-          {
-            "name": "profileId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "guid",
-              "nullable": false
-            }
-          },
-          {
-            "name": "query.type",
-            "in": "query",
-            "schema": {
-              "$ref": "#/components/schemas/Connect.Protect.CreateInvestigationQueryDto"
-            }
-          },
-          {
-            "$ref": "#/components/parameters/page"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Investigation"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Investigation"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Investigation"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/protect/Profiles/{profileId}/investigations/{investigationId}": {
-      "put": {
-        "operationId": "Add Investigation to Profile",
-        "description": "Adds an Invesitgation to a Profile",
-        "tags": [
-          "Protect"
-        ],
-        "parameters": [
-          {
-            "name": "profileId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "guid",
-              "nullable": false
-            }
-          },
-          {
-            "name": "investigationId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "guid",
-              "nullable": false
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "",
-            "content": {}
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/protect/Investigations/{investigationId}/file": {
-      "post": {
-        "operationId": "Create Protect Investigation PDF",
-        "description": "Creates a LexisNexis branded PDF that shows the full report for the selected entities. This report will include search criteria used, user, time/date stamp and full LexisNexis World Compliance Report. It is recommended to call this endpoint before adding InvestigationRecords to an Investigation, as only non-processed alerts populate the PDF.",
-        "tags": [
-          "Protect"
-        ],
-        "parameters": [
-          {
-            "name": "investigationId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "guid",
-              "nullable": false
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.GetInvestigationFileBodyDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.GetInvestigationFileBodyDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.GetInvestigationFileBodyDto"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.InvestigationFileResponse"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.InvestigationFileResponse"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.InvestigationFileResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/protect/Investigations/{investigationId}/records": {
-      "get": {
-        "operationId": "List Matches Per Investigation",
-        "description": "Endpoint to return all InvestigationRecords (matches) against an Investigation.",
-        "tags": [
-          "Protect"
-        ],
-        "parameters": [
-          {
-            "name": "investigationId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "$ref": "#/components/parameters/page"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Record"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Record"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Record"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "operationId": "Add Match To Investigation",
-        "description": "Endpoint to add InvestigationRecords to an Investigation. By adding InvestigationRecords you are confirming that the result is a match to your search criteria.",
-        "tags": [
-          "Protect"
-        ],
-        "parameters": [
-          {
-            "name": "investigationId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "guid",
-              "nullable": false
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateInvestigationRecordBody"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateInvestigationRecordBody"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateInvestigationRecordBody"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Record"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Record"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Record"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/protect/Schedules": {
-      "post": {
-        "operationId": "Create Protect Schedule",
-        "description": "Creates a Schedule. A Schedule has a 1:1 relationship with an Investigation. Investigations that are scheduled will automatically check for new re-screen your initial search criteria on a nightly basis allowing you to review any new alerts each day.",
-        "tags": [
-          "Protect"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateScheduleDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateScheduleDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateScheduleDto"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "201": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Schedule"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Schedule"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Schedule"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/protect/Schedules/{scheduleId}": {
-      "get": {
-        "operationId": "Retrieve Schedule By Id",
-        "description": "Endpoint to retrieve a specific Schedule by Id. A Schedule Id can be retrieved from the associated Investigation.",
-        "tags": [
-          "Protect"
-        ],
-        "parameters": [
-          {
-            "name": "scheduleId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "nullable": false
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Schedule"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Schedule"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Schedule"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "description": "Deletes a Schedule from an Investigation meaning entity will no longer be monitored on a nightly basis but record will still remain in the audit trail",
-        "tags": [
-          "Protect"
-        ],
-        "parameters": [
-          {
-            "name": "scheduleId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "nullable": false
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "",
-            "content": {}
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/protect/Audits": {
-      "get": {
-        "operationId": "Retrieve Protect Audit Log",
-        "description": "Returns logged interactions with Protect endpoints for audit purposes. Actions logged include creating an Investigation, InvestgiationRecord and Schedule.",
-        "tags": [
-          "Protect"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/page"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "name": "type",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true,
-              "enum": [
-                "alert.accepted",
-                "alert.rejected",
-                "alert.received",
-                "profile.added",
-                "profile.created",
-                "investigation.accepted",
-                "investigation.created",
-                "investigation.file_downloaded",
-                "schedule.created",
-                "schedule.removed"
-              ]
-            }
-          },
-          {
-            "name": "newerThan",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time",
-              "nullable": true
-            }
-          },
-          {
-            "name": "olderThan",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time",
-              "nullable": true
-            }
-          },
-          {
-            "name": "profileId",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "guid",
-              "nullable": true
-            }
-          },
-          {
-            "name": "order",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": false
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.AuditDto"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.AuditDto"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.AuditDto"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/protect/Audits/file": {
-      "post": {
-        "operationId": "Export Audit Log File",
-        "description": "Produces a collection a csv of Audit records.",
-        "tags": [
-          "Protect"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.AuditExportRequestDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.AuditExportRequestDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.AuditExportRequestDto"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.AuditsExportResponseDto"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.AuditsExportResponseDto"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.AuditsExportResponseDto"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/localSolutions/GB/bankmatch": {
       "get": {
         "operationId": "Bank Match",
         "tags": [
           "Local Solutions"
         ],
-        "description": "The Bank Verification tool allows customers to instantly verify that small and medium sized companies you are working with are providing correct bank details, to reduce fraud and avoid delays in your on boarding process. The bank data for these companies is provided to Creditsafe by various financial providers, including major banks. When you provides us with a company number and their bank details, we are able to perform instant checks to verify that those bank details are associated with that company and return - </br> • Match – We have bank information on the company, and the data provided by the customer matches this company's records </br> • No Match – We have bank information on the company, but the data provided does not match any of the company's records </br> • Data Unavailable – We do not have bank information on the company.",
+        "description": "The Bank Verification tool allows customers to instantly verify that small and medium sized companies you are working with are providing correct bank details, to reduce fraud and avoid delays in your on boarding process. The bank data for these companies is provided to Creditsafe by various financial providers, including major banks. When you provides us with a company number and their bank details, we are able to perform instant checks to verify that those bank details are associated with that company and return - </br> â€¢ Match â€“ We have bank information on the company, and the data provided by the customer matches this company's records </br> â€¢ No Match â€“ We have bank information on the company, but the data provided does not match any of the company's records </br> â€¢ Data Unavailable â€“ We do not have bank information on the company.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -5567,6 +4333,528 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.BankMatch.Result"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/compliancetemp/companies/searchCriteria": {
+      "get": {
+        "tags": [
+          "Compliance Beta"
+        ],
+        "operationId": "ComplianceCompanySearchCriteria",
+        "description": "Returns the search parameters available to use when making a compliance search request against any Company `predefined Search`.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "criteriaSets": [
+                      {
+                        "name": {
+                          "required": true
+                        },
+                        "address": {
+                          "street": {
+                            "required": false
+                          },
+                          "houseNumber": {
+                            "required": false
+                          },
+                          "city": {
+                            "required": false
+                          },
+                          "postCode": {
+                            "required": false
+                          },
+                          "province": {
+                            "required": false
+                          }
+                        },
+                        "phoneNo": {
+                          "required": false
+                        },
+                        "predefinedSearchName": {
+                          "required": false
+                        },
+                        "countries": null
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/compliancetemp/companies/predefinedSearches": {
+      "get": {
+        "tags": [
+          "Compliance Beta"
+        ],
+        "description": "This endpoint returns the list of all available company `predefined Search` types. A `predefined Search` is defined by the compliance watchlist to be be screened, the confidence in matches returned by your search and the entity type (company or person). They are set at 5% increments between 75-100% match confidence. For example - Searching against the `predefined Search` `c-Sanct-95` will look to match your search criteria against the Company Sanctions watchlist and return anything with 95% match confidence.",
+        "operationId": "CompanyPreDefinedSearches",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Compliance.PreDefinedSearches"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/compliancetemp/companies/{predefinedSearch}": {
+      "get": {
+        "tags": [
+          "Compliance Beta"
+        ],
+        "description": "Searches the provided `Predefined search` list with your search criteria. Results returned here indicate potential matches (depending on the predefined Search used).",
+        "operationId": "CompanyComplianceSearch",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "countries",
+            "in": "query",
+            "example": "GB",
+            "description": "A Comma-separated list of country codes to search for Companies in. The list takes ISO/Alpha 2 format country codes. For example US,GB represents searching for Companies in the United States and Great Britain.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "predefinedSearch",
+            "in": "path",
+            "required": true,
+            "description": "the predefined search that the search will be made against. See the `/predefinedSearches` endpoint",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "c-100-fullFile",
+                "c-95-fullFile",
+                "c-90-fullFile",
+                "c-85-fullFile",
+                "c-80-fullFile",
+                "c-75-fullFile",
+                "c-100-Sanct",
+                "c-95-Sanct",
+                "c-90-Sanct",
+                "c-85-Sanct",
+                "c-80-Sanct",
+                "c-75-Sanct"
+              ]
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Entity Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "street",
+            "in": "query",
+            "description": "Address part identifier - Street of the entity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "houseNo",
+            "in": "query",
+            "description": "Address part identifier - House/Building Number of the entity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "Address part identifier - City of the entity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "postCode",
+            "in": "query",
+            "description": "Address part identifier - Postcode/Zip Code of the entity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "province",
+            "in": "query",
+            "description": "Address part identifier - Province/State of the entity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "phoneNo",
+            "in": "query",
+            "description": "Phone Number of the entity.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Compliance.ComplianceSearchResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/compliancetemp/people/searchCriteria": {
+      "get": {
+        "tags": [
+          "Compliance Beta"
+        ],
+        "operationId": "IndividualComplianceSearchCriteria",
+        "description": "Returns the search parameters available to use when making a compliance search request against any Individual/Person `predefined Search`.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "criteriaSets": [
+                      {
+                        "name": {
+                          "required": true
+                        },
+                        "address": {
+                          "street": {
+                            "required": false
+                          },
+                          "houseNumber": {
+                            "required": false
+                          },
+                          "city": {
+                            "required": false
+                          },
+                          "postCode": {
+                            "required": false
+                          },
+                          "province": {
+                            "required": false
+                          }
+                        },
+                        "phoneNo": {
+                          "required": false
+                        },
+                        "predefinedSearchName": {
+                          "required": false
+                        },
+                        "countries": {
+                          "required": false
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/compliancetemp/people/predefinedSearches": {
+      "get": {
+        "tags": [
+          "Compliance Beta"
+        ],
+        "description": "This endpoint returns the list of all available company `predefined Search` types. A `predefined Search` is defined by the compliance watchlist to be be screened, the confidence in matches returned by your search and the entity type (company or person). They are set at 5% increments between 75-100% match confidence. For example - Searching against the `predefined Search` `p-Sanct-95` will look to match your search criteria against the Individuals/Person Sanctions watchlist and return anything with 95% match confidence.",
+        "operationId": "IndividualPreDefinedSearches",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Compliance.PreDefinedSearches"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/compliancetemp/people/{predefinedSearch}": {
+      "get": {
+        "tags": [
+          "Compliance Beta"
+        ],
+        "description": "Searches the provided `Predefined search` list with your search criteria. Results returned here indicate potential matches (depending on the predefined Search used).",
+        "operationId": "IndividualComplianceSearch",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "countries",
+            "in": "query",
+            "example": "GB",
+            "description": "A Comma-separated list of country codes to search for Individuals in. The list takes ISO/Alpha 2 format country codes. For example US,GB represents searching for Companies in the United States and Great Britain.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "predefinedSearch",
+            "in": "path",
+            "required": true,
+            "description": "the predefined search that the search will be made against. See the `/predefinedSearches` endpoint",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "p-100-fullFile",
+                "p-95-fullFile",
+                "p-90-fullFile",
+                "p-85-fullFile",
+                "p-80-fullFile",
+                "p-75-fullFile",
+                "p-100-Sanct",
+                "p-95-Sanct",
+                "p-90-Sanct",
+                "p-85-Sanct",
+                "p-80-Sanct",
+                "p-75-Sanct"
+              ]
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Entity Name",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "street",
+            "in": "query",
+            "description": "Address part identifier - Street of the entity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "houseNo",
+            "in": "query",
+            "description": "Address part identifier - House/Building Number of the entity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "Address part identifier - City of the entity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "postCode",
+            "in": "query",
+            "description": "Address part identifier - Postcode/Zip Code of the entity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "province",
+            "in": "query",
+            "description": "Address part identifier - Province/State of the entity.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "phoneNo",
+            "in": "query",
+            "description": "Phone Number of the entity.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Compliance.ComplianceSearchResult"
                 }
               }
             }
@@ -12007,627 +11295,466 @@
           }
         ]
       },
-      "Connect.Protect.AuditDto": {
-        "required": [
-          "createdAt",
-          "description",
-          "id",
-          "payload",
-          "type",
-          "userId"
-        ],
+      "Connect.Compliance.ComplianceSearchResult": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "guid"
-          },
-          "description": {
-            "type": "string"
-          },
-          "type": {
-            "type": "string"
-          },
-          "userId": {
-            "type": "string"
-          },
-          "payload": {
+          "data": {
             "type": "object",
-            "additionalProperties": {
-              "type": "object"
+            "properties": {
+              "body": {
+                "type": "object",
+                "properties": {
+                  "searchResult": {
+                    "type": "object",
+                    "properties": {
+                      "records": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "record": {
+                              "type": "integer"
+                            },
+                            "recordDetails": {
+                              "type": "object",
+                              "properties": {
+                                "acceptListID": {
+                                  "type": "integer"
+                                },
+                                "addedToAcceptList": {
+                                  "type": "boolean"
+                                },
+                                "division": {
+                                  "type": "string"
+                                },
+                                "dppa": {
+                                  "type": "string"
+                                },
+                                "eftType": {
+                                  "type": "string"
+                                },
+                                "entityType": {
+                                  "type": "string"
+                                },
+                                "gender": {
+                                  "type": "string"
+                                },
+                                "glb": {
+                                  "type": "integer"
+                                },
+                                "iDs": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "number": {
+                                        "type": "string"
+                                      },
+                                      "type": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  }
+                                },
+                                "lastUpdatedDate": {
+                                  "type": "string"
+                                },
+                                "name": {
+                                  "type": "object",
+                                  "properties": {
+                                    "full": {
+                                      "type": "string"
+                                    }
+                                  }
+                                },
+                                "recordState": {
+                                  "type": "object",
+                                  "properties": {
+                                    "addedToAcceptList": {
+                                      "type": "boolean"
+                                    },
+                                    "alertState": {
+                                      "type": "string"
+                                    },
+                                    "assignedTo": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "string"
+                                      }
+                                    },
+                                    "assignmentType": {
+                                      "type": "string"
+                                    },
+                                    "division": {
+                                      "type": "string"
+                                    },
+                                    "history": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "date": {
+                                            "type": "string"
+                                          },
+                                          "event": {
+                                            "type": "string"
+                                          },
+                                          "note": {
+                                            "type": "string"
+                                          },
+                                          "user": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "matchStates": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "matchID": {
+                                            "type": "integer"
+                                          },
+                                          "type": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "searchDate": {
+                                  "type": "string"
+                                }
+                              }
+                            },
+                            "resultID": {
+                              "type": "integer"
+                            },
+                            "runID": {
+                              "type": "integer"
+                            },
+                            "watchlist": {
+                              "type": "object",
+                              "properties": {
+                                "matches": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "acceptListID": {
+                                        "type": "integer"
+                                      },
+                                      "addedToAcceptList": {
+                                        "type": "boolean"
+                                      },
+                                      "addressName": {
+                                        "type": "boolean"
+                                      },
+                                      "autoFalsePositive": {
+                                        "type": "boolean"
+                                      },
+                                      "bestAddressIsPartial": {
+                                        "type": "boolean"
+                                      },
+                                      "bestCountryScore": {
+                                        "type": "integer"
+                                      },
+                                      "bestCountryType": {
+                                        "type": "string"
+                                      },
+                                      "bestDOBIsPartial": {
+                                        "type": "boolean"
+                                      },
+                                      "bestName": {
+                                        "type": "string"
+                                      },
+                                      "bestNameScore": {
+                                        "type": "integer"
+                                      },
+                                      "checkSum": {
+                                        "type": "integer"
+                                      },
+                                      "conflicts": {
+                                        "type": "object",
+                                        "properties": {
+                                          "addressConflict": {
+                                            "type": "boolean"
+                                          },
+                                          "citizenshipConflict": {
+                                            "type": "boolean"
+                                          },
+                                          "countryConflict": {
+                                            "type": "boolean"
+                                          },
+                                          "dobConflict": {
+                                            "type": "boolean"
+                                          },
+                                          "entityTypeConflict": {
+                                            "type": "boolean"
+                                          },
+                                          "genderConflict": {
+                                            "type": "boolean"
+                                          },
+                                          "idConflict": {
+                                            "type": "boolean"
+                                          },
+                                          "phoneConflict": {
+                                            "type": "boolean"
+                                          }
+                                        }
+                                      },
+                                      "entityDetails": {
+                                        "type": "object",
+                                        "properties": {
+                                          "additionalInfo": {
+                                            "type": "array",
+                                            "items": {
+                                              "type": "object",
+                                              "properties": {
+                                                "comments": {
+                                                  "type": "string"
+                                                },
+                                                "id": {
+                                                  "type": "integer"
+                                                },
+                                                "type": {
+                                                  "type": "string"
+                                                },
+                                                "value": {
+                                                  "type": "string"
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "addresses": {
+                                            "type": "array",
+                                            "items": {
+                                              "type": "object",
+                                              "properties": {
+                                                "city": {
+                                                  "type": "string"
+                                                },
+                                                "country": {
+                                                  "type": "string"
+                                                },
+                                                "id": {
+                                                  "type": "integer"
+                                                },
+                                                "postalCode": {
+                                                  "type": "string"
+                                                },
+                                                "street1": {
+                                                  "type": "string"
+                                                },
+                                                "type": {
+                                                  "type": "string"
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "akAs": {
+                                            "type": "array",
+                                            "items": {
+                                              "type": "object",
+                                              "properties": {
+                                                "category": {
+                                                  "type": "string"
+                                                },
+                                                "id": {
+                                                  "type": "integer"
+                                                },
+                                                "name": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "full": {
+                                                      "type": "string"
+                                                    }
+                                                  }
+                                                },
+                                                "type": {
+                                                  "type": "string"
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "comments": {
+                                            "type": "string"
+                                          },
+                                          "dateListed": {
+                                            "type": "string"
+                                          },
+                                          "entityType": {
+                                            "type": "string"
+                                          },
+                                          "iDs": {
+                                            "type": "array",
+                                            "items": {
+                                              "type": "object",
+                                              "properties": {
+                                                "id": {
+                                                  "type": "integer"
+                                                },
+                                                "number": {
+                                                  "type": "string"
+                                                },
+                                                "type": {
+                                                  "type": "string"
+                                                }
+                                              }
+                                            }
+                                          },
+                                          "listReferenceNumber": {
+                                            "type": "string"
+                                          },
+                                          "name": {
+                                            "type": "object",
+                                            "properties": {
+                                              "full": {
+                                                "type": "string"
+                                              }
+                                            }
+                                          },
+                                          "reasonListed": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      },
+                                      "entityName": {
+                                        "type": "string"
+                                      },
+                                      "entityScore": {
+                                        "type": "integer"
+                                      },
+                                      "entityUniqueID": {
+                                        "type": "string"
+                                      },
+                                      "falsePositive": {
+                                        "type": "boolean"
+                                      },
+                                      "file": {
+                                        "type": "object",
+                                        "properties": {
+                                          "build": {
+                                            "type": "string"
+                                          },
+                                          "custom": {
+                                            "type": "boolean"
+                                          },
+                                          "id": {
+                                            "type": "integer"
+                                          },
+                                          "name": {
+                                            "type": "string"
+                                          },
+                                          "published": {
+                                            "type": "string"
+                                          },
+                                          "type": {
+                                            "type": "string"
+                                          }
+                                        }
+                                      },
+                                      "gatewayOFACScreeningIndicatorMatch": {
+                                        "type": "boolean"
+                                      },
+                                      "id": {
+                                        "type": "integer"
+                                      },
+                                      "matchReAlert": {
+                                        "type": "boolean"
+                                      },
+                                      "previousResultID": {
+                                        "type": "integer"
+                                      },
+                                      "reasonListed": {
+                                        "type": "string"
+                                      },
+                                      "resultDate": {
+                                        "type": "string"
+                                      },
+                                      "secondaryOFACScreeningIndicatorMatch": {
+                                        "type": "boolean"
+                                      },
+                                      "trueMatch": {
+                                        "type": "boolean"
+                                      }
+                                    }
+                                  }
+                                },
+                                "status": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "searchEngineVersion": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
             }
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
           }
         }
       },
-      "Connect.Protect.AuditsExportResponseDto": {
-        "required": [
-          "location"
-        ],
+      "Connect.Compliance.PreDefinedSearches": {
         "type": "object",
         "properties": {
-          "location": {
-            "type": "string",
-            "format": "uri"
-          }
-        }
-      },
-      "Connect.Protect.AuditExportRequestDto": {
-        "required": [
-          "fileType"
-        ],
-        "type": "object",
-        "properties": {
-          "fileType": {
-            "type": "string",
-            "enum": [
-              "csv"
+          "totalSize": {
+            "type": "integer",
+            "example": [
+              3
             ]
           },
-          "auditType": {
-            "type": "string",
-            "enum": [
-              "alert.accepted",
-              "alert.rejected",
-              "alert.received",
-              "profile.added",
-              "profile.created",
-              "investigation.accepted",
-              "investigation.created",
-              "investigation.file_downloaded",
-              "schedule.created",
-              "schedule.removed"
-            ]
-          },
-          "keywordSearch": {
-            "type": "string"
-          },
-          "createdAtOrAfter": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "createdAtOrBefore": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "payload": {
-            "$ref": "#/components/schemas/Connect.Protect.AuditExportPayloadDto"
-          }
-        }
-      },
-      "Connect.Protect.AuditExportPayloadDto": {
-        "type": "object",
-        "properties": {
-          "profileId": {
-            "type": "string",
-            "format": "guid"
-          },
-          "investigationId": {
-            "type": "string",
-            "format": "guid"
-          }
-        }
-      },
-      "Connect.Protect.ProblemDetails": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          },
-          "status": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "detail": {
-            "type": "string"
-          },
-          "instance": {
-            "type": "string"
-          },
-          "extensions": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object"
-            }
-          }
-        }
-      },
-      "Connect.Protect.InvestigationResponse": {
-        "required": [
-          "createdAt",
-          "createdBy",
-          "id",
-          "results",
-          "searchCriteria"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "guid"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "createdBy": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "searchCriteria": {
-            "$ref": "#/components/schemas/Connect.Protect.InvestigationQuery"
-          },
-          "scheduleId": {
-            "type": "string",
-            "format": "guid"
-          },
-          "profileId": {
-            "type": "string",
-            "format": "guid"
-          },
-          "profileName": {
-            "type": "string"
-          },
-          "alertsCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "results": {
+          "predefinedSearches": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Connect.Protect.Record"
+              "type": "object",
+              "example": {
+                "description": "Searches the Full LexisNexis Compliance File with 100 confidence",
+                "name": "c-100-fullFile",
+                "productName": "LexisNexis",
+                "categoryName": "full",
+                "confidence": 100
+              },
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": [
+                    "c-100-fullFile"
+                  ]
+                },
+                "categoryName": {
+                  "type": "string",
+                  "example": [
+                    "full"
+                  ]
+                },
+                "productName": {
+                  "type": "string",
+                  "example": [
+                    "LexisNexis"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "example": [
+                    "Searches the Full LexisNexis Compliance File with 100 confidence"
+                  ]
+                },
+                "confidence": {
+                  "type": "integer",
+                  "example": [
+                    100
+                  ]
+                }
+              }
             }
-          }
-        }
-      },
-      "Connect.Protect.InvestigationQuery": {
-        "required": [
-          "type"
-        ],
-        "type": "object",
-        "nullable": true,
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/Connect.Protect.InvestigationType"
-          },
-          "name": {
-            "type": "string"
-          },
-          "houseNo": {
-            "type": "string"
-          },
-          "street": {
-            "type": "string"
-          },
-          "province": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "postCode": {
-            "type": "string"
-          },
-          "countryCode": {
-            "type": "string"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "middleName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "generation": {
-            "type": "string"
-          },
-          "dateOfBirth": {
-            "type": "string"
-          },
-          "nationalId": {
-            "type": "string"
-          },
-          "citizenship": {
-            "type": "string"
-          },
-          "phoneNo": {
-            "type": "string"
-          }
-        }
-      },
-      "Connect.Protect.InvestigationType": {
-        "type": "string",
-        "description": "",
-        "enum": [
-          "Business",
-          "Individual"
-        ]
-      },
-      "Connect.Protect.Record": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "entityId": {
-            "type": "string"
-          },
-          "matchScore": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "sourceDate": {
-            "type": "string"
-          },
-          "dateListed": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "fullName": {
-            "type": "string"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "middleName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "reasonListed": {
-            "type": "string"
-          },
-          "entityType": {
-            "type": "string"
-          },
-          "dateOfBirth": {
-            "type": "string"
-          },
-          "generation": {
-            "type": "string"
-          },
-          "gender": {
-            "type": "string"
-          },
-          "occupation": {
-            "type": "string"
-          },
-          "placeOfBirth": {
-            "type": "string"
-          },
-          "hasAdverseMedia": {
-            "type": "boolean"
-          },
-          "otherNames": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "addresses": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Connect.Protect.Address"
-            }
-          },
-          "comments": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "sources": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "Connect.Protect.Address": {
-        "type": "object",
-        "properties": {
-          "street": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "province": {
-            "type": "string"
-          },
-          "postalCode": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string"
-          }
-        }
-      },
-      "Connect.Protect.CreateInvestigationQueryDto": {
-        "required": [
-          "type"
-        ],
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "business",
-              "individual"
-            ]
-          },
-          "name": {
-            "type": "string"
-          },
-          "houseNo": {
-            "type": "string"
-          },
-          "street": {
-            "type": "string"
-          },
-          "province": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "postCode": {
-            "type": "string"
-          },
-          "countryCode": {
-            "type": "string"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "middleName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "generation": {
-            "type": "string"
-          },
-          "dateOfBirth": {
-            "type": "string"
-          },
-          "nationalId": {
-            "type": "string"
-          },
-          "citizenship": {
-            "type": "string"
-          },
-          "phoneNo": {
-            "type": "string"
-          }
-        }
-      },
-      "Connect.Protect.Investigation": {
-        "required": [
-          "alertCreatedAt",
-          "createdAt",
-          "customerId",
-          "id",
-          "query",
-          "userId"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "guid"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "customerId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "query": {
-            "$ref": "#/components/schemas/Connect.Protect.InvestigationQuery"
-          },
-          "scheduleId": {
-            "type": "string",
-            "format": "guid"
-          },
-          "scheduledOn": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "profileId": {
-            "type": "string",
-            "format": "guid"
-          },
-          "profileName": {
-            "type": "string"
-          },
-          "alertCreatedAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "alertsCount": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "Connect.Protect.InvestigationFileResponse": {
-        "required": [
-          "filePath"
-        ],
-        "type": "object",
-        "properties": {
-          "filePath": {
-            "type": "string"
-          }
-        }
-      },
-      "Connect.Protect.GetInvestigationFileBodyDto": {
-        "type": "object",
-        "properties": {
-          "recordIds": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        }
-      },
-      "Connect.Protect.CreateInvestigationRecordBody": {
-        "type": "object",
-        "properties": {
-          "recordIds": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        }
-      },
-      "Connect.Protect.Profile": {
-        "required": [
-          "createdAt",
-          "customerId",
-          "id",
-          "modifiedAt",
-          "name",
-          "userId"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "guid"
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "customerId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "type": "string"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "modifiedAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        }
-      },
-      "Connect.Protect.CreateProfileDto": {
-        "required": [
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          }
-        }
-      },
-      "Connect.Protect.Schedule": {
-        "required": [
-          "createdAt",
-          "customerId",
-          "frequency",
-          "id",
-          "investigation",
-          "investigationId",
-          "screeningThreshold",
-          "userId"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "guid"
-          },
-          "customerId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "investigationId": {
-            "type": "string",
-            "format": "guid"
-          },
-          "investigation": {
-            "$ref": "#/components/schemas/Connect.Protect.Investigation"
-          },
-          "frequency": {
-            "$ref": "#/components/schemas/Connect.Protect.AlertsFrequency"
-          },
-          "screeningThreshold": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "lastRun": {
-            "type": "string",
-            "format": "date-time"
-          }
-        }
-      },
-      "Connect.Protect.AlertsFrequency": {
-        "type": "string",
-        "description": "",
-        "enum": [
-          "Daily"
-        ]
-      },
-      "Connect.Protect.CreateScheduleDto": {
-        "required": [
-          "frequency"
-        ],
-        "type": "object",
-        "properties": {
-          "investigationId": {
-            "type": "string",
-            "format": "guid"
-          },
-          "frequency": {
-            "type": "string",
-            "enum": [
-              "daily"
-            ]
-          },
-          "screeningThreshold": {
-            "type": "integer",
-            "format": "int32"
           }
         }
       }
