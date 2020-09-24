@@ -4259,7 +4259,7 @@
     "/protect/Investigations": {
       "post": {
         "operationId": "Create Protect Investigation",
-        "description": "Creates an Investigation according to the provided Investigation criteria. Each result is potential match which is attributed a relevancy/match score between 1-100 and a high level reason for it’s inclusion in the World Compliance Database by looking at the Reason Listed and Comments to firstly ascertain whether the entry is a match for you search criteria and then utilise the data available for your own onboarding needs.",
+        "description": "Creates an Investigation according to the provided Investigation criteria. Each result is potential match which is attributed a relevancy/match score between 1-100 and a high level reason for it's inclusion in the World Compliance Database by looking at the Reason Listed and Comments to firstly ascertain whether the entry is a match for you search criteria and then utilise the data available for your own onboarding needs.",
         "tags": [
           "Protect"
         ],
@@ -5767,19 +5767,18 @@
       "page": {
         "name": "page",
         "in": "query",
-        "description": "Starting page number (indexed from 0)",
+        "description": "Starting page number.",
         "schema": {
           "type": "integer",
-          "default": 0
+          "default": 1
         }
       },
       "pageSize": {
         "name": "pageSize",
         "in": "query",
-        "description": "Number of items to return per Page (max 1000)",
+        "description": "Number of items to return per Page.",
         "schema": {
-          "type": "integer",
-          "default": 50
+          "type": "integer"
         }
       },
       "sortBy": {
