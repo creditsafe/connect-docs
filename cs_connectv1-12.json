@@ -4347,7 +4347,7 @@
         }
       },
       "get": {
-        "operationId": "List all Protect Investigations",
+        "operationId": "List All Protect Investigations",
         "description": "Endpoint to return all investigations. Filter response by using query parameters. Use the alertsCount parameter to only return Investigations with alerts greater than the supplied value.",
         "tags": [
           "Protect"
@@ -4419,7 +4419,7 @@
     },
     "/protect/Investigations/{investigationId}": {
       "get": {
-        "operationId": "Retrieve Protect Investigation by Id",
+        "operationId": "Retrieve Protect Investigation By Id",
         "description": "Endpoint to retrieve a specific Investigation by ID. Can also be used to retrieve the assoicated Scheduele Id that has been linked to the Investigation.",
         "tags": [
           "Protect"
@@ -4482,7 +4482,7 @@
     },
     "/protect/Profiles": {
       "get": {
-        "operationId": "List all Protect Profiles",
+        "operationId": "List All Protect Profiles",
         "description": "Returns all profiles or filtered with a matching profile name.",
         "tags": [
           "Protect"
@@ -4587,7 +4587,7 @@
     },
     "/protect/Profiles/{profileId}": {
       "get": {
-        "operationId": "Retrieve Protect Profile by ID",
+        "operationId": "Retrieve Protect Profile By ID",
         "description": "Endpoint to retrieve a profile by Id",
         "tags": [
           "Protect"
@@ -4731,7 +4731,7 @@
     },
     "/protect/Profiles/{profileId}/investigations": {
       "get": {
-        "operationId": "List Investigations of a Profile",
+        "operationId": "List Investigations In A Profile",
         "description": "Endpoint to retrieve all Investigations associated with a specific Profile.",
         "tags": [
           "Protect"
@@ -4816,7 +4816,7 @@
     },
     "/protect/Profiles/{profileId}/investigations/{investigationId}": {
       "put": {
-        "operationId": "Add Investigation to Profile",
+        "operationId": "Add Investigation To Profile",
         "description": "Adds an Invesitgation to a Profile",
         "tags": [
           "Protect"
