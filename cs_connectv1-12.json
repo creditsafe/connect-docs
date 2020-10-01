@@ -4256,26 +4256,21 @@
         }
       }
     },
-    "/protect/Investigations": {
+    "/protect/investigations": {
       "post": {
         "operationId": "Create Protect Investigation",
         "description": "Creates an Investigation according to the provided Investigation criteria. Each result is potential match which is attributed a relevancy/match score between 1-100 and a high level reason for it's inclusion in the World Compliance Database by looking at the Reason Listed and Comments to firstly ascertain whether the entry is a match for you search criteria and then utilise the data available for your own onboarding needs.",
         "tags": [
           "Protect"
         ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateInvestigationQueryDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateInvestigationQueryDto"
-              }
-            },
-            "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/Connect.Protect.CreateInvestigationQueryDto"
               }
@@ -4287,17 +4282,7 @@
           "201": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.InvestigationResponse"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.InvestigationResponse"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.InvestigationResponse"
                 }
@@ -4307,17 +4292,7 @@
           "400": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
@@ -4327,17 +4302,7 @@
           "default": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
@@ -4353,6 +4318,9 @@
           "Protect"
         ],
         "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
           {
             "name": "scheduled",
             "in": "query",
@@ -4388,23 +4356,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Investigation"
-                  }
-                }
-              },
               "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Investigation"
-                  }
-                }
-              },
-              "text/json": {
                 "schema": {
                   "type": "array",
                   "items": {
@@ -4417,7 +4369,7 @@
         }
       }
     },
-    "/protect/Investigations/{investigationId}": {
+    "/protect/investigations/{investigationId}": {
       "get": {
         "operationId": "Retrieve Protect Investigation By Id",
         "description": "Endpoint to retrieve a specific Investigation by ID. Can also be used to retrieve the assoicated Scheduele Id that has been linked to the Investigation.",
@@ -4425,6 +4377,9 @@
           "Protect"
         ],
         "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
           {
             "name": "investigationId",
             "in": "path",
@@ -4440,17 +4395,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.InvestigationResponse"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.InvestigationResponse"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.InvestigationResponse"
                 }
@@ -4460,17 +4405,7 @@
           "404": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
@@ -4480,7 +4415,7 @@
         }
       }
     },
-    "/protect/Profiles": {
+    "/protect/profiles": {
       "get": {
         "operationId": "List All Protect Profiles",
         "description": "Returns all profiles or filtered with a matching profile name.",
@@ -4488,6 +4423,9 @@
           "Protect"
         ],
         "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
           {
             "name": "name",
             "in": "query",
@@ -4507,23 +4445,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Profile"
-                  }
-                }
-              },
               "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Profile"
-                  }
-                }
-              },
-              "text/json": {
                 "schema": {
                   "type": "array",
                   "items": {
@@ -4536,6 +4458,11 @@
         }
       },
       "post": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          }
+        ],
         "operationId": "Create Protect Profile",
         "description": "Creates a profile. Profiles can be used as an additional category to group related investigations together. For instance - You may want to investigate all  Branches, Directors and Shareholders of one business, and keep them in the same Profile.",
         "tags": [
@@ -4547,16 +4474,6 @@
               "schema": {
                 "$ref": "#/components/schemas/Connect.Protect.CreateProfileDto"
               }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateProfileDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateProfileDto"
-              }
             }
           },
           "required": true
@@ -4565,17 +4482,7 @@
           "201": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Profile"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Profile"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.Profile"
                 }
@@ -4585,7 +4492,7 @@
         }
       }
     },
-    "/protect/Profiles/{profileId}": {
+    "/protect/profiles/{profileId}": {
       "get": {
         "operationId": "Retrieve Protect Profile By ID",
         "description": "Endpoint to retrieve a profile by Id",
@@ -4593,6 +4500,9 @@
           "Protect"
         ],
         "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
           {
             "name": "profileId",
             "in": "path",
@@ -4608,17 +4518,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Profile"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Profile"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.Profile"
                 }
@@ -4628,17 +4528,7 @@
           "404": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
@@ -4655,6 +4545,9 @@
         ],
         "parameters": [
           {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
             "name": "profileId",
             "in": "path",
             "required": true,
@@ -4671,16 +4564,6 @@
               "schema": {
                 "$ref": "#/components/schemas/Connect.Protect.CreateProfileDto"
               }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateProfileDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateProfileDto"
-              }
             }
           },
           "required": true
@@ -4689,17 +4572,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Profile"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Profile"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.Profile"
                 }
@@ -4709,17 +4582,7 @@
           "404": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
@@ -4729,7 +4592,7 @@
         }
       }
     },
-    "/protect/Profiles/{profileId}/investigations": {
+    "/protect/profiles/{profileId}/investigations": {
       "get": {
         "operationId": "List Investigations In A Profile",
         "description": "Endpoint to retrieve all Investigations associated with a specific Profile.",
@@ -4737,6 +4600,9 @@
           "Protect"
         ],
         "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
           {
             "name": "profileId",
             "in": "path",
@@ -4765,23 +4631,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Investigation"
-                  }
-                }
-              },
               "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Investigation"
-                  }
-                }
-              },
-              "text/json": {
                 "schema": {
                   "type": "array",
                   "items": {
@@ -4794,17 +4644,7 @@
           "404": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
@@ -4814,7 +4654,7 @@
         }
       }
     },
-    "/protect/Profiles/{profileId}/investigations/{investigationId}": {
+    "/protect/profiles/{profileId}/investigations/{investigationId}": {
       "put": {
         "operationId": "Add Investigation To Profile",
         "description": "Adds an Invesitgation to a Profile",
@@ -4822,6 +4662,9 @@
           "Protect"
         ],
         "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
           {
             "name": "profileId",
             "in": "path",
@@ -4851,17 +4694,7 @@
           "404": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
@@ -4871,7 +4704,7 @@
         }
       }
     },
-    "/protect/Investigations/{investigationId}/file": {
+    "/protect/investigations/{investigationId}/file": {
       "post": {
         "operationId": "Create Protect Investigation PDF",
         "description": "Creates a LexisNexis branded PDF that shows the full report for the selected entities. This report will include search criteria used, user, time/date stamp and full LexisNexis World Compliance Report. It is recommended to call this endpoint before adding InvestigationRecords to an Investigation, as only non-processed alerts populate the PDF.",
@@ -4879,6 +4712,9 @@
           "Protect"
         ],
         "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
           {
             "name": "investigationId",
             "in": "path",
@@ -4896,16 +4732,6 @@
               "schema": {
                 "$ref": "#/components/schemas/Connect.Protect.GetInvestigationFileBodyDto"
               }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.GetInvestigationFileBodyDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.GetInvestigationFileBodyDto"
-              }
             }
           },
           "required": true
@@ -4914,17 +4740,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.InvestigationFileResponse"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.InvestigationFileResponse"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.InvestigationFileResponse"
                 }
@@ -4934,17 +4750,7 @@
           "404": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
@@ -4954,7 +4760,7 @@
         }
       }
     },
-    "/protect/Investigations/{investigationId}/records": {
+    "/protect/investigations/{investigationId}/records": {
       "get": {
         "operationId": "List Matches Per Investigation",
         "description": "Endpoint to return all InvestigationRecords (matches) against an Investigation.",
@@ -4962,6 +4768,9 @@
           "Protect"
         ],
         "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
           {
             "name": "investigationId",
             "in": "path",
@@ -4981,23 +4790,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Record"
-                  }
-                }
-              },
               "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Record"
-                  }
-                }
-              },
-              "text/json": {
                 "schema": {
                   "type": "array",
                   "items": {
@@ -5010,17 +4803,7 @@
           "404": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
@@ -5036,6 +4819,9 @@
           "Protect"
         ],
         "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
           {
             "name": "investigationId",
             "in": "path",
@@ -5053,16 +4839,6 @@
               "schema": {
                 "$ref": "#/components/schemas/Connect.Protect.CreateInvestigationRecordBody"
               }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateInvestigationRecordBody"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateInvestigationRecordBody"
-              }
             }
           },
           "required": true
@@ -5071,23 +4847,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Record"
-                  }
-                }
-              },
               "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Record"
-                  }
-                }
-              },
-              "text/json": {
                 "schema": {
                   "type": "array",
                   "items": {
@@ -5100,17 +4860,7 @@
           "400": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
@@ -5120,17 +4870,7 @@
           "404": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
@@ -5140,26 +4880,21 @@
         }
       }
     },
-    "/protect/Schedules": {
+    "/protect/schedules": {
       "post": {
         "operationId": "Create Protect Schedule",
         "description": "Creates a Schedule. A Schedule has a 1:1 relationship with an Investigation. Investigations that are scheduled will automatically check for new re-screen your initial search criteria on a nightly basis allowing you to review any new alerts each day.",
         "tags": [
           "Protect"
         ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateScheduleDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateScheduleDto"
-              }
-            },
-            "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/Connect.Protect.CreateScheduleDto"
               }
@@ -5171,17 +4906,7 @@
           "201": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Schedule"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Schedule"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.Schedule"
                 }
@@ -5191,17 +4916,7 @@
           "400": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
@@ -5211,17 +4926,7 @@
           "404": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
@@ -5231,7 +4936,7 @@
         }
       }
     },
-    "/protect/Schedules/{scheduleId}": {
+    "/protect/schedules/{scheduleId}": {
       "get": {
         "operationId": "Retrieve Schedule By Id",
         "description": "Endpoint to retrieve a specific Schedule by Id. A Schedule Id can be retrieved from the associated Investigation.",
@@ -5239,6 +4944,9 @@
           "Protect"
         ],
         "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
           {
             "name": "scheduleId",
             "in": "path",
@@ -5253,17 +4961,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Schedule"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Schedule"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.Schedule"
                 }
@@ -5273,17 +4971,7 @@
           "404": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
@@ -5298,6 +4986,9 @@
           "Protect"
         ],
         "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
           {
             "name": "scheduleId",
             "in": "path",
@@ -5316,17 +5007,7 @@
           "404": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
@@ -5336,7 +5017,7 @@
         }
       }
     },
-    "/protect/Audits": {
+    "/protect/audits": {
       "get": {
         "operationId": "Retrieve Protect Audit Log",
         "description": "Returns logged interactions with Protect endpoints for audit purposes. Actions logged include creating an Investigation, InvestgiationRecord and Schedule.",
@@ -5344,6 +5025,9 @@
           "Protect"
         ],
         "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
           {
             "$ref": "#/components/parameters/page"
           },
@@ -5410,23 +5094,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.AuditDto"
-                  }
-                }
-              },
               "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.AuditDto"
-                  }
-                }
-              },
-              "text/json": {
                 "schema": {
                   "type": "array",
                   "items": {
@@ -5439,26 +5107,21 @@
         }
       }
     },
-    "/protect/Audits/file": {
+    "/protect/audits/file": {
       "post": {
         "operationId": "Export Audit Log File",
         "description": "Produces a collection a csv of Audit records.",
         "tags": [
           "Protect"
         ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.AuditExportRequestDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.AuditExportRequestDto"
-              }
-            },
-            "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/Connect.Protect.AuditExportRequestDto"
               }
@@ -5470,17 +5133,7 @@
           "200": {
             "description": "",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.AuditsExportResponseDto"
-                }
-              },
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.AuditsExportResponseDto"
-                }
-              },
-              "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.AuditsExportResponseDto"
                 }
@@ -5496,7 +5149,7 @@
         "tags": [
           "Local Solutions"
         ],
-        "description": "The Bank Verification tool allows customers to instantly verify that small and medium sized companies you are working with are providing correct bank details, to reduce fraud and avoid delays in your on boarding process. The bank data for these companies is provided to Creditsafe by various financial providers, including major banks. When you provides us with a company number and their bank details, we are able to perform instant checks to verify that those bank details are associated with that company and return - </br> • Match – We have bank information on the company, and the data provided by the customer matches this company's records </br> • No Match – We have bank information on the company, but the data provided does not match any of the company's records </br> • Data Unavailable – We do not have bank information on the company.",
+        "description": "The Bank Verification tool allows customers to instantly verify that small and medium sized companies you are working with are providing correct bank details, to reduce fraud and avoid delays in your on boarding process. The bank data for these companies is provided to Creditsafe by various financial providers, including major banks. When you provides us with a company number and their bank details, we are able to perform instant checks to verify that those bank details are associated with that company and return - </br> Match – We have bank information on the company, and the data provided by the customer matches this company's records </br> No Match – We have bank information on the company, but the data provided does not match any of the company's records </br> Data Unavailable - We do not have bank information on the company.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -12007,14 +11660,6 @@
         ]
       },
       "Connect.Protect.AuditDto": {
-        "required": [
-          "createdAt",
-          "description",
-          "id",
-          "payload",
-          "type",
-          "userId"
-        ],
         "type": "object",
         "properties": {
           "id": {
@@ -12043,9 +11688,6 @@
         }
       },
       "Connect.Protect.AuditsExportResponseDto": {
-        "required": [
-          "location"
-        ],
         "type": "object",
         "properties": {
           "location": {
@@ -12356,9 +11998,7 @@
         }
       },
       "Connect.Protect.CreateInvestigationQueryDto": {
-        "required": [
-          "type"
-        ],
+        "nullable": true,
         "type": "object",
         "properties": {
           "type": {
@@ -12366,64 +12006,72 @@
             "enum": [
               "business",
               "individual"
-            ]
+            ],
+            "nullable": true
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "houseNo": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "street": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "province": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "city": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "postCode": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "countryCode": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "firstName": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "middleName": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "lastName": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "generation": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "dateOfBirth": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "nationalId": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "citizenship": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "phoneNo": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           }
         }
       },
       "Connect.Protect.Investigation": {
-        "required": [
-          "alertCreatedAt",
-          "createdAt",
-          "customerId",
-          "id",
-          "query",
-          "userId"
-        ],
         "type": "object",
         "properties": {
           "id": {
