@@ -268,15 +268,6 @@
             }
           },
           {
-            "name": "phone",
-            "in": "query",
-            "description": "Phone Number of the Company",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
             "name": "callRef",
             "in": "query",
             "description": "Call Reference",
@@ -531,6 +522,243 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.CompanySearch.SearchCriteria"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/companies/match": {
+      "get": {
+        "tags": [
+          "Companies"
+        ],
+        "description": "Supply all company search criteria to find potential company matches ranked by a `confidenceMatchScore`.   - <a href=https://creditsafe.freshdesk.com/en/support/solutions/articles/7000059769-interpreting-confidence-match-scores>See here for more information</a>",
+        "operationId": "Confidence Match Search",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "example": "GB",
+            "description": "Iso-2 country code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "matchThreshold",
+            "in": "query",
+            "example": 905,
+            "description": "Return matches above this score (900 - 999)",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "regNo",
+            "in": "query",
+            "description": "Local Company Identifier - The Company identifier associated with it's Domestic Filing Agency. i.e. French SIREN/SIRET, United Kingdom Companies House CRN.",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "vatNo",
+            "in": "query",
+            "description": "Company VAT Number",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "Company Name",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "address",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            },
+            "description": "Combination of all address fields to form a simpleValue address string."
+          },
+          {
+            "name": "street",
+            "in": "query",
+            "description": "Address part identifier - Street of the Company",
+            "schema": {
+              "type": "string",
+              "nullable": true,
+              "default": null
+            }
+          },
+          {
+            "name": "houseNo",
+            "in": "query",
+            "description": "Address part identifier - House/Building Number of the Company",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "Address part identifier - City of the Company",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "postCode",
+            "in": "query",
+            "description": "Address part identifier - Postcode/Zip Code of the Company.",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "province",
+            "in": "query",
+            "description": "Address part identifier - Province/State of the Company",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "officeType",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/Creditsafe.GlobalData.OfficeType",
+              "nullable": true
+            }
+          },
+          {
+            "name": "phoneNo",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/Creditsafe.GlobalData.CompanyStatus",
+              "nullable": true
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/Creditsafe.GlobalData.CompanyType"
+            },
+            "allowEmptyValue": true
+          },
+          {
+            "name": "website",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "reference1",
+            "in": "query",
+            "description": "Customer supplied free text reference 1 of 3",
+            "example": "free text 1",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reference2",
+            "in": "query",
+            "description": "Customer supplied free text reference 2 of 3",
+            "example": "free text 2",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "reference3",
+            "in": "query",
+            "description": "Customer supplied free text reference 3 of 3",
+            "example": "free text 3",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "callRef",
+            "in": "query",
+            "description": "Call Reference",
+            "schema": {
+              "type": "string",
+              "nullable": true,
+              "default": null
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/Connect.ConfidenceMatch.MatchResults"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Connect.ConfidenceMatch.NoResults"
+                    }
+                  ]
                 }
               }
             }
@@ -15635,6 +15863,134 @@
           "payload": {
             "type": "string",
             "nullable": true
+          }
+        }
+      },
+      "Connect.ConfidenceMatch.MatchResults": {
+        "properties": {
+          "totalMatches": {
+            "type": "integer"
+          },
+          "matchedCompanies": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "matchScoreConfidence": {
+                  "type": "integer"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "regNo": {
+                  "type": "string"
+                },
+                "safeNo": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "address": {
+                  "type": "object",
+                  "properties": {
+                    "simpleValue": {
+                      "type": "string"
+                    },
+                    "street": {
+                      "type": "string"
+                    },
+                    "city": {
+                      "type": "string"
+                    },
+                    "postcode": {
+                      "type": "string"
+                    },
+                    "country": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "status": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "dateOfLatestAccounts": {
+                  "type": "string"
+                },
+                "dateOfLatestChange": {
+                  "type": "string"
+                },
+                "matchScoreExplainPlan": {
+                  "type": "object",
+                  "properties": {
+                    "matchScore": {
+                      "type": "integer"
+                    },
+                    "matchScoreAlpha": {
+                      "type": "string"
+                    },
+                    "matchScoreLocal id": {
+                      "type": "string"
+                    },
+                    "matchScoreName": {
+                      "type": "string"
+                    },
+                    "matchScoreHouseNo": {
+                      "type": "string"
+                    },
+                    "matchScoreStreet": {
+                      "type": "string"
+                    },
+                    "matchScorePoBox": {
+                      "type": "string"
+                    },
+                    "matchScoreCity": {
+                      "type": "string"
+                    },
+                    "matchScoreState": {
+                      "type": "string"
+                    },
+                    "matchScorePostCode": {
+                      "type": "string"
+                    },
+                    "matchScoreCountry": {
+                      "type": "string"
+                    },
+                    "matchScoreVatNo": {
+                      "type": "string"
+                    },
+                    "matchScoreRegNo": {
+                      "type": "string"
+                    },
+                    "matchScorePhoneNo": {
+                      "type": "string"
+                    },
+                    "matchScoreSimpleValue": {
+                      "type": "string"
+                    },
+                    "matchScoreNum": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Connect.ConfidenceMatch.NoResults": {
+        "properties": {
+          "totalMatches": {
+            "type": "integer"
+          },
+          "matchedCompanies": {
+            "type": "array"
           }
         }
       }
