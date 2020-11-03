@@ -4513,7 +4513,7 @@
             "name": "countries",
             "in": "query",
             "example": "DE",
-            "description": "iso-2 country code",
+            "description": "ISO-2 country code",
             "required": true,
             "schema": {
               "$ref": "#/components/schemas/Creditsafe.GlobalData.CountryCode"
@@ -4536,65 +4536,54 @@
             "in": "query",
             "description": "Consumer's First Name",
             "schema": {
-              "type": "string",
-              "nullable": true
-            }
+              "type": "string"
+            },
+            "required": true
           },
           {
             "name": "lastName",
             "in": "query",
             "description": "Consumer's Last Name",
             "schema": {
-              "type": "string",
-              "nullable": true
-            }
+              "type": "string"
+            },
+            "required": true
           },
           {
             "name": "street",
             "in": "query",
             "description": "Address part identifier - Street of the Consumer",
             "schema": {
-              "type": "string",
-              "nullable": true,
-              "default": null
-            }
+              "type": "string"
+            },
+            "required": true
           },
           {
             "name": "houseNo",
             "in": "query",
             "description": "Address part identifier - House/Building Number of the Consumer",
             "schema": {
-              "type": "string",
-              "nullable": true
-            }
+              "type": "string"
+            },
+            "required": true
           },
           {
             "name": "city",
             "in": "query",
             "description": "Address part identifier - City of the Consumer",
             "schema": {
-              "type": "string",
-              "nullable": true
-            }
+              "type": "string"
+            },
+            "required": true
           },
           {
             "name": "postCode",
             "in": "query",
             "description": "Address part identifier - Postcode/Zip Code of the Consumer",
             "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "callRef",
-            "in": "query",
-            "description": "Call Reference",
-            "schema": {
-              "type": "string",
-              "nullable": true,
-              "default": null
-            }
+              "type": "string"
+            },
+            "required": true
           },
           {
             "name": "dateOfBirth",
@@ -4612,6 +4601,16 @@
             "schema": {
               "type": "string",
               "nullable": true
+            }
+          },
+          {
+            "name": "callRef",
+            "in": "query",
+            "description": "Call Reference",
+            "schema": {
+              "type": "string",
+              "nullable": true,
+              "default": null
             }
           }
         ],
