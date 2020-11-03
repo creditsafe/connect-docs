@@ -43,6 +43,10 @@
       "description": "Endpoints to access pre-configured decision trees to automate credit decisions. Decision Engine can help you save time and money across your company by automating time consuming processes which drain your company's resources. This can free you and your staff to spend more time to work on achieving your business goals.</br></br>A full audit trail of previous decisions is maintained for user access and decisions in a pending state can be manually approved or declined."
     },
     {
+      "name": "Consumers",
+      "description": "Endpoints to order Consumer Reports. In order to order a Consumer Report, sufficient information to uniquely identify the Consumer (search criteria) must be provided to filter potential results down to one record. When one record has been found, the returned object will be the Consumer Report. Currently only piloting with German Consumers."
+    },
+    {
       "name": "Protect",
       "description": "The focus on screening clients and third parties is increasing. International regulators are demanding that firms improve their ongoing sanctions screening process. LexisNexis World Compliance data through Connect allows customers to mitigate risk around Anti-Bribery and Corruption under local and international regulations such as the UK Bribery Act, by enabling users to screen their third party agents, suppliers or employees against watch lists.  With LexisNexis World Compliance through Creditsafe Connect, compliance is easy, efficient and cost-effective, even as the regulatory mountain grows."
     },
@@ -521,7 +525,17 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Connect.CompanySearch.SearchCriteria"
+                  "type": "array",
+                  "items": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchemaCountry"
+                      },
+                      {
+                        "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchemaSet"
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -4457,6 +4471,238 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.DecisionEngine.DecisionLogResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/consumers": {
+      "get": {
+        "tags": [
+          "Consumers"
+        ],
+        "description": "Consumer Search and Report endpoint. When sufficient information has been provided to filter potential Consumer results down to one record then the Consumer Report will be returned.",
+        "operationId": "Consumer Report",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "countries",
+            "in": "query",
+            "example": "DE",
+            "description": "iso-2 country code",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Creditsafe.GlobalData.CountryCode"
+            }
+          },
+          {
+            "name": "language",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string",
+              "nullable": true,
+              "default": "EN",
+              "maxLength": 2,
+              "minLength": 2
+            }
+          },
+          {
+            "name": "firstName",
+            "in": "query",
+            "description": "Consumer's First Name",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "lastName",
+            "in": "query",
+            "description": "Consumer's Last Name",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "street",
+            "in": "query",
+            "description": "Address part identifier - Street of the Consumer",
+            "schema": {
+              "type": "string",
+              "nullable": true,
+              "default": null
+            }
+          },
+          {
+            "name": "houseNo",
+            "in": "query",
+            "description": "Address part identifier - House/Building Number of the Consumer",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "Address part identifier - City of the Consumer",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "postCode",
+            "in": "query",
+            "description": "Address part identifier - Postcode/Zip Code of the Consumer",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "callRef",
+            "in": "query",
+            "description": "Call Reference",
+            "schema": {
+              "type": "string",
+              "nullable": true,
+              "default": null
+            }
+          },
+          {
+            "name": "dateOfBirth",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "nullable": true
+            }
+          },
+          {
+            "name": "customData",
+            "in": "query",
+            "example": "de_reason_code::ER",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "totalSize": {
+                      "type": "integer",
+                      "format": "int32"
+                    },
+                    "consumers": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.Consumer.ConsumerReport"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/consumers/searchcriteria": {
+      "get": {
+        "tags": [
+          "Consumers"
+        ],
+        "description": "Returns country specific fields that can be used to search for a Consumer.",
+        "operationId": "Consumer Search Criteria",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "countries",
+            "in": "query",
+            "description": "Comma-separated list of ISO-2 country codes",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "callRef",
+            "in": "query",
+            "description": "Call Reference",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "allOf": [
+                      {
+                        "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.ConsumerCriteriaSet"
+                      }
+                    ]
+                  }
                 }
               }
             }
@@ -11881,6 +12127,22 @@
           },
           "additionalInformation": {
             "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.Consumer.ConsumerAdditionalInformation"
+          }
+        }
+      },
+      "Creditsafe.GlobalData.Reports.ConsumerCriteriaSet": {
+        "properties": {
+          "countries": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Creditsafe.GlobalData.CountryCode"
+            }
+          },
+          "criteriaSets": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
           }
         }
       },
