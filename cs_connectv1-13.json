@@ -3,7 +3,7 @@
   "info": {
     "title": "Creditsafe Connect",
     "version": "1.3",
-    "description": "Creditsafe Connect is a REST API that provides access to the <a href=\"https://www.creditsafe.com/gb/en/more/about/our-data.html\">Creditsafe Global Company Database</a> allowing you to control your master data, utilise up-to-date Business and Director information to enhance your onboarding and qualification processes, and get alerts when your customer's and supplier's Credit Report changes. <h2>Quick Start</h2> To start your Creditsafe Connect API integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>By default, you will have been setup on our Sandbox environment.</br></br>\nUsing a REST API client construct an `/authenticate` POST request and enter your username & password (case-sensitive) into the POST body. A successful response will return an  `authentication token`.</br></br>\nUse the `authentication token` in an `Authorization` header on all other Creditsafe Connect calls as proof of your authenticity.\n\n<h2>Environments</h2>Production Environment baseurl: <code> https://connect.creditsafe.com/v1 </code> </br> Sandbox Test Environment baseurl:  <code>https://connect.sandbox.creditsafe.com/v1</code> <h2>Resources</h2> <ul> <li><a href=\"https://creditsafe.github.io/connect-docs/cs_connectv1-13.html\">OpenAPI</a> specification.<li><a href=\"https://github.com/creditsafe/connect-docs/tree/master/archive\">OpenAPI</a> specification archive. <li><a href=\"https://www.getpostman.com/collections/3aa74cc7318e44aeb96d\">Postman Collection</a> of the most common example calls to Creditsafe Connect.</li> <li><a href=\"https://connect-portal.creditsafe.com\"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password and form requests.</li> <li><a href=\"https://creditsafe.freshdesk.com/en/support/solutions/categories/7000007071/folders/7000018640\"> Help Articles</a>  including FAQs, Data Dictionaries and a Feature Availability Matrix.  </ul>"
+    "description": "Creditsafe Connect is a REST API that provides access to the <a href=\"https://www.creditsafe.com/gb/en/more/about/our-data.html\">Creditsafe Global Company Database</a> allowing you to control your master data, utilise up-to-date Business and Director information to enhance your onboarding and qualification processes, and get alerts when your customer's and supplier's Credit Report changes. <h2>Quick Start</h2> To start your Creditsafe Connect API integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>By default, you will have been setup on our Sandbox environment.</br></br>\nUsing a REST API client construct an `/authenticate` POST request and enter your username & password (case-sensitive) into the POST body. A successful response will return an  `authentication token`.</br></br>\nUse the `authentication token` in an `Authorization` header on all other Creditsafe Connect calls as proof of your authenticity.\n\n<h2>Environments</h2>Production Environment baseurl: <code> https://connect.creditsafe.com/v1 </code> </br> Sandbox Test Environment baseurl:  <code>https://connect.sandbox.creditsafe.com/v1</code> <h2>Resources</h2> <ul> <li><a href=\"https://creditsafe.github.io/connect-docs/cs_connectv1-13.html\">OpenAPI</a> specification.<li><a href=\"https://github.com/creditsafe/connect-docs/tree/master/archive\">OpenAPI</a> specification archive. <li><a href=\"https://www.getpostman.com/collections/4406bbddb81c308db8ff\">Postman Collection</a> of the most common example calls to Creditsafe Connect.</li> <li><a href=\"https://connect-portal.creditsafe.com\"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password and form requests.</li> <li><a href=\"https://creditsafe.freshdesk.com/en/support/solutions/categories/7000007071/folders/7000018640\"> Help Articles</a>  including FAQs, Data Dictionaries and a Feature Availability Matrix.  </ul>"
   },
   "servers": [
     {
@@ -453,7 +453,7 @@
         }
       }
     },
-    "/access/countries": {
+    "/access": {
       "get": {
         "operationId": "Subscription Details",
         "tags": [
@@ -675,7 +675,16 @@
           {
             "name": "province",
             "in": "query",
-            "description": "Address part identifier - Province/State of the Company",
+            "description": "Address part identifier - Province of the Company",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "description": "Address part identifier - State of the Company",
             "schema": {
               "type": "string",
               "nullable": true
@@ -1461,7 +1470,7 @@
           {
             "name": "sections",
             "in": "query",
-            "description": "Specify a value to return a single section, or multiple-comma separated sections of the completed Fresh Investigation. Leave null to return the full report. Available sections; - companyIdentification - creditScore - contactInformation - directors - otherInformation - groupStructure - extendedGroupStructure - financialStatements - negativeInformation - additionalInformation - directorships - localFinancialStatements - paymentData - companySummary - alternateSummary",
+            "description": "Specify a value to return a single section, or multiple-comma separated sections of the completed Fresh Investigation. Leave null to return all sections. Available sections; - companyIdentification - creditScore - contactInformation - directors - otherInformation - groupStructure - extendedGroupStructure - financialStatements - negativeInformation - additionalInformation - directorships - localFinancialStatements - paymentData - companySummary - alternateSummary",
             "schema": {
               "type": "string"
             },
@@ -1475,6 +1484,60 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.FreshInv.CompletedInvestigation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/freshinvestigations/{orderId}/report": {
+      "get": {
+        "operationId": "Retrieve Completed Investigation",
+        "tags": [
+          "Fresh Investigations"
+        ],
+        "description": "Returns the Investigation Report data for a specific Order",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Investigation Report.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.CompanyReportResponse"
                 }
               }
             }
@@ -1782,13 +1845,7 @@
             "$ref": "#/components/parameters/pageSize"
           },
           {
-            "name": "isProcessed",
-            "in": "query",
-            "description": "Filter the events by `true` or `false` value on the isProcessed field. The flag value can be set for each event using the Update isProcessed endpoint.",
-            "schema": {
-              "type": "boolean",
-              "nullable": true
-            }
+            "$ref": "#/components/parameters/filterByCreatedDate"
           }
         ],
         "responses": {
@@ -2676,6 +2733,9 @@
             }
           },
           {
+            "$ref": "#/components/parameters/sortBy"
+          },
+          {
             "$ref": "#/components/parameters/sortDir"
           },
           {
@@ -2685,29 +2745,13 @@
             "$ref": "#/components/parameters/page"
           },
           {
-            "name": "sortBy",
-            "in": "query",
-            "description": "Sort results by this column. Null values of sort column are listed after non-nulls.",
-            "schema": {
-              "type": "string",
-              "default": "companyName",
-              "enum": [
-                "companyName",
-                "countryCode",
-                "eventId",
-                "eventDate",
-                "textValueEn"
-              ]
-            }
+            "$ref": "#/components/parameters/startDate"
           },
           {
-            "name": "isProcessed",
-            "in": "query",
-            "description": "Filter the events by `true` or `false` value on the isProcessed field. The flag value can be set for each event using the Update isProcessed endpoint.",
-            "schema": {
-              "type": "boolean",
-              "nullable": true
-            }
+            "$ref": "#/components/parameters/endDate"
+          },
+          {
+            "$ref": "#/components/parameters/filterByCreatedDate"
           },
           {
             "name": "portfolioId",
@@ -2771,7 +2815,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Set a `true` or `false` flag on isProcessed for a given event",
+        "description": "WARNING -  This endpoint will depreciate during the last week of January 2021 and will not be usable anymore. We recommend to utilize the `filterByCreatedDate` path parameter on the `/notificationEvents` endpoints to return exact Notification Events that have triggered on the specific day/date range.",
         "operationId": "Update isProcessed Flag",
         "parameters": [
           {
@@ -5622,7 +5666,7 @@
         "tags": [
           "Local Solutions"
         ],
-        "description": "The Bank Verification tool allows customers to instantly verify that small and medium sized companies you are working with are providing correct bank details, to reduce fraud and avoid delays in your on boarding process. The bank data for these companies is provided to Creditsafe by various financial providers, including major banks. When you provides us with a company number and their bank details, we are able to perform instant checks to verify that those bank details are associated with that company and return - </br> Match – We have bank information on the company, and the data provided by the customer matches this company's records </br> No Match – We have bank information on the company, but the data provided does not match any of the company's records </br> Data Unavailable - We do not have bank information on the company.",
+        "description": "The Bank Verification tool allows customers to instantly verify that small and medium sized companies you are working with are providing correct bank details, to reduce fraud and avoid delays in your on boarding process. The bank data for these companies is provided to Creditsafe by various financial providers, including major banks. When you provides us with a company number and their bank details, we are able to perform instant checks to verify that those bank details are associated with that company and return - </br> Match – We have bank information on the company, and the data provided by the customer matches the company records </br> No Match – We have bank information on the company, but the data provided does not match any of the company records </br> Data Unavailable - We do not have bank information on the company.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -5763,6 +5807,60 @@
             }
           }
         }
+      },
+      "put": {
+        "tags": [
+          "Local Solutions"
+        ],
+        "summary": "Submits a search",
+        "description": "Resolves a picklist belonging to the specified UniqueID, which would have been generated during a prior search. Guids (and thus cached searches) expire after fifteen minutes.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "resolved",
+            "in": "query",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Identity.SearchResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Identity.BasicResponse"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/localSolutions/GB/identitysearch/history/{uniqueId}/input": {
@@ -5835,6 +5933,42 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Identity.SearchResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Identity.BasicResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/localSolutions/GB/identitysearch/searchreasons": {
+      "get": {
+        "tags": [
+          "Local Solutions"
+        ],
+        "summary": "Retrieves a prior search result.",
+        "description": "Returns an object describing which Reasons for Search are available and which are selected by a given customer. All reasons are always listed, with selected reasons specified as true.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Identity.ReasonResponse"
                 }
               }
             }
@@ -6020,6 +6154,126 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Identity.BasicResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/localSolutions/GB/identitysearch/revalidation/{uniqueId}": {
+      "put": {
+        "tags": [
+          "Local Solutions"
+        ],
+        "summary": "Sets the reference for an existing history item",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "uniqueId",
+            "in": "path",
+            "description": "The ID of the record to update",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Connect.Identity.RevalidateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Identity.SearchResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Identity.BasicResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Identity.BasicResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/localSolutions/GB/CCDS/{companyId}": {
+      "get": {
+        "operationId": "CCDS",
+        "tags": [
+          "Local Solutions"
+        ],
+        "description": "Gets CCDS data of the supplied company",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "companyId",
+            "in": "path",
+            "description": "The connectId or safeNumber of the company",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "GB-0-X9999999"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.BankMatch.CCDS"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
                 }
               }
             }
@@ -6239,6 +6493,19 @@
           "enum": [
             "asc",
             "desc"
+          ]
+        }
+      },
+      "filterByCreatedDate": {
+        "name": "filterByCreatedDate",
+        "in": "query",
+        "description": "Set to `true` to filter the Notification Events of the \"createdDate\" field when using `startDate` and `endDate` parameters. By default this is set to `false`, with the date paramters filtering using the \"eventDate\" field.",
+        "schema": {
+          "type": "boolean",
+          "default": false,
+          "enum": [
+            false,
+            true
           ]
         }
       }
@@ -9515,7 +9782,7 @@
               "id": {
                 "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchema-ValueSchema_1_System.String"
               },
-              "safeNumber": {
+              "safeNo": {
                 "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchema-ValueSchema_1_System.String"
               },
               "name": {
@@ -9530,10 +9797,10 @@
               "status": {
                 "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchema-ValueSchema_1_Creditsafe.GlobalData.CompanyStatus"
               },
-              "registrationNumber": {
+              "regNo": {
                 "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchema-ValueSchema_1_System.String"
               },
-              "vatNumber": {
+              "vatNo": {
                 "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchema-ValueSchema_1_System.String"
               },
               "address": {
@@ -9672,7 +9939,7 @@
           "id": {
             "type": "string"
           },
-          "safeNumber": {
+          "safeNo": {
             "type": "string"
           },
           "idType": {
@@ -9690,10 +9957,10 @@
           "status": {
             "$ref": "#/components/schemas/Creditsafe.GlobalData.CompanyStatus"
           },
-          "registrationNumber": {
+          "regNo": {
             "type": "string"
           },
-          "vatNumber": {
+          "vatNo": {
             "type": "string"
           },
           "address": {
@@ -15966,17 +16233,6 @@
             "type": "string",
             "nullable": true
           },
-          "userId": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "customerId": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "isInternal": {
-            "type": "boolean"
-          },
           "passport": {
             "$ref": "#/components/schemas/Connect.Identity.Passport"
           },
@@ -15994,9 +16250,6 @@
           },
           "bankAccountDetails": {
             "$ref": "#/components/schemas/Connect.Identity.BankAccountDetails"
-          },
-          "seniorUser": {
-            "type": "boolean"
           }
         }
       },
@@ -16172,6 +16425,9 @@
                     },
                     "country": {
                       "type": "string"
+                    },
+                    "state": {
+                      "type": "string"
                     }
                   }
                 },
@@ -16252,6 +16508,365 @@
           },
           "matchedCompanies": {
             "type": "array"
+          }
+        }
+      },
+      "Connect.BankMatch.CcdsCompany": {
+        "type": "object",
+        "properties": {
+          "creditSafeCompanyId": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Connect.BankMatch.Totals": {
+        "type": "object",
+        "properties": {
+          "totalAccounts": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalOverdraftOrCreditLimit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "remainingBalance": {
+            "type": "integer",
+            "format": "int64",
+            "nullable": true
+          },
+          "totalAverageBalance": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "Connect.BankMatch.PerOrganisationAggregation": {
+        "type": "object",
+        "properties": {
+          "providerId": {
+            "type": "string",
+            "nullable": true
+          },
+          "creditCards": {
+            "$ref": "#/components/schemas/Connect.BankMatch.Totals"
+          },
+          "currentAccounts": {
+            "$ref": "#/components/schemas/Connect.BankMatch.Totals"
+          },
+          "loans": {
+            "$ref": "#/components/schemas/Connect.BankMatch.Totals"
+          }
+        }
+      },
+      "Connect.BankMatch.Aggregations": {
+        "type": "object",
+        "properties": {
+          "totalCreditCards": {
+            "$ref": "#/components/schemas/Connect.BankMatch.Totals"
+          },
+          "totalCurrentAccounts": {
+            "$ref": "#/components/schemas/Connect.BankMatch.Totals"
+          },
+          "totalLoans": {
+            "$ref": "#/components/schemas/Connect.BankMatch.Totals"
+          },
+          "perOrganisationAggregations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Connect.BankMatch.PerOrganisationAggregation"
+            },
+            "nullable": true
+          }
+        }
+      },
+      "Connect.BankMatch.BusinessAddress": {
+        "type": "object",
+        "properties": {
+          "line1": {
+            "type": "string",
+            "nullable": true
+          },
+          "line2": {
+            "type": "string",
+            "nullable": true
+          },
+          "line3": {
+            "type": "string",
+            "nullable": true
+          },
+          "line4": {
+            "type": "string",
+            "nullable": true
+          },
+          "line5": {
+            "type": "string",
+            "nullable": true
+          },
+          "line6": {
+            "type": "string",
+            "nullable": true
+          },
+          "postcode": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Connect.BankMatch.Facility": {
+        "type": "object",
+        "properties": {
+          "businessTypeIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessName": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessAddress": {
+            "$ref": "#/components/schemas/Connect.BankMatch.BusinessAddress"
+          },
+          "additionalTradingStyle": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessTelephoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyRegistrationNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "vatNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "specialInstructionIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDateOfAgreement": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "closeDateOfAgreement": {
+            "type": "object",
+            "nullable": true
+          },
+          "currentBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "currentBalanceCreditIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "actualCurrentBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "facilityStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "originalDefaultBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "defaultSatisfactionDate": {
+            "type": "object",
+            "nullable": true
+          },
+          "creditOrOverdraftLimit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "flagSettings": {
+            "type": "string",
+            "nullable": true
+          },
+          "transferredToConsolidatedDebtAccount": {
+            "type": "string",
+            "nullable": true
+          },
+          "repaymentPeriod": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "paymentAmount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "paymentFrequencyIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "numberOfCashAdvances": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "valueOfCashAdvances": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "minimumBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "minimumBalanceCreditIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "actualMinimumBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "maximumBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "maximumBalanceCreditIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "actualMaximumBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "averageBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "averageBalanceCreditIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "actualAverageBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "creditTurnover": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "creditTurnoverNetOrGrossIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "debitTurnover": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "debitTurnoverNetOrGrossIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "rejectedPayments": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "maximumDurationOfExcess": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "changedFacilityNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankSortCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankAccountNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankAccountIban": {
+            "type": "string",
+            "nullable": true
+          },
+          "currentAccountReportingLevelIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "sourceCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "facilityNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "facilityId": {
+            "type": "string",
+            "nullable": true
+          },
+          "identifier": {
+            "type": "string",
+            "nullable": true
+          },
+          "providerType": {
+            "type": "string",
+            "nullable": true
+          },
+          "bankCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "batch": {
+            "type": "string",
+            "nullable": true
+          },
+          "facilityType": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "facilityTypeCategory": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Connect.BankMatch.Data": {
+        "type": "object",
+        "properties": {
+          "aggregations": {
+            "$ref": "#/components/schemas/Connect.BankMatch.Aggregations"
+          },
+          "facilities": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Connect.BankMatch.Facility"
+            },
+            "nullable": true
+          }
+        }
+      },
+      "Connect.BankMatch.CCDS": {
+        "type": "object",
+        "properties": {
+          "safeNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "ccdsCompany": {
+            "$ref": "#/components/schemas/Connect.BankMatch.CcdsCompany"
+          },
+          "overallAggregations": {
+            "$ref": "#/components/schemas/Connect.BankMatch.Totals"
+          },
+          "bankData": {
+            "$ref": "#/components/schemas/Connect.BankMatch.Data"
+          },
+          "afpData": {
+            "$ref": "#/components/schemas/Connect.BankMatch.Data"
           }
         }
       }
