@@ -6991,6 +6991,7 @@
             "properties": {
               "name": {
                 "type": "string",
+                "description": "Your name",
                 "nullable": false
               },
               "emailAddress": {
@@ -7005,6 +7006,7 @@
               },
               "company": {
                 "type": "object",
+                "description": "your company information",
                 "properties": {
                   "name": {
                     "type": "string",
