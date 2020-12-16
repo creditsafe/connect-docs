@@ -1450,7 +1450,7 @@
     },
     "/freshinvestigations/{orderId}": {
       "get": {
-        "operationId": "Retrieve FreshInvestigation",
+        "operationId": "Retrieve FreshInvestigation Order",
         "tags": [
           "Fresh Investigations"
         ],
@@ -1513,7 +1513,7 @@
     },
     "/freshinvestigations/{orderId}/report": {
       "get": {
-        "operationId": "Retrieve FreshInvestigation Report",
+        "operationId": "Retrieve FreshInvestigation Report Content",
         "tags": [
           "Fresh Investigations"
         ],
