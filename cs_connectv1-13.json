@@ -1246,7 +1246,7 @@
         "tags": [
           "Fresh Investigations"
         ],
-        "description": "Places an order for a Fresh Investigation (Offline Report). Providing as much detail as possible about the Company, our team will use official sources and registries to quickly answer questions about a company's stability and financial health. Fresh Investigations take 5.5 days on average to complete.",
+        "description": "Places an order for a Fresh Investigation (Offline Report). Providing as much detail as possible about the Company, our team will use official sources and registries to quickly answer questions about a company's stability and financial health. Fresh Investigations take 5.5 days on average to complete. By adding `consent:true` to the request, you are allowing Creditsafe to disclose your company details to the company you have requested the Investigation against, to be used only in the aim of improving our Investigation report.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -1295,7 +1295,7 @@
         }
       },
       "get": {
-        "operationId": "Get Investigations",
+        "operationId": "Get FreshInvestigations",
         "tags": [
           "Fresh Investigations"
         ],
@@ -1450,7 +1450,7 @@
     },
     "/freshinvestigations/{orderId}": {
       "get": {
-        "operationId": "Retrieve Investigation",
+        "operationId": "Retrieve FreshInvestigation",
         "tags": [
           "Fresh Investigations"
         ],
@@ -1513,11 +1513,11 @@
     },
     "/freshinvestigations/{orderId}/report": {
       "get": {
-        "operationId": "Retrieve Completed Investigation",
+        "operationId": "Retrieve FreshInvestigation Report",
         "tags": [
           "Fresh Investigations"
         ],
-        "description": "Returns the Investigation Report data for a specific Order",
+        "description": "Returns the Fresh Investigation Report data for a specific order, after the order has a status of delivered.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -5769,7 +5769,7 @@
         "tags": [
           "Local Solutions"
         ],
-        "summary": "Submits a search",
+        "summary": "Submits an identitysearch",
         "description": "Submits a search across the specified Products. Validates criteria for each individual search before submitting, and may return a list of error strings instead.",
         "parameters": [
           {
@@ -5812,7 +5812,7 @@
         "tags": [
           "Local Solutions"
         ],
-        "summary": "Submits a search",
+        "summary": "Resolves a picklist against a given UniqueId",
         "description": "Resolves a picklist belonging to the specified UniqueID, which would have been generated during a prior search. Guids (and thus cached searches) expire after fifteen minutes.",
         "parameters": [
           {
@@ -5868,7 +5868,7 @@
         "tags": [
           "Local Solutions"
         ],
-        "summary": "Retrieves a prior search's input",
+        "summary": "Retrieves a prior identitysearch's input",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -5911,7 +5911,7 @@
         "tags": [
           "Local Solutions"
         ],
-        "summary": "Retrieves a prior search result.",
+        "summary": "Retrieves a prior identitysearch result.",
         "description": "Retrieves a prior search result. This will include the search input and any ID/AML searches, but as we cannot hold Consumer search results these are not included. Resubmission is necessary if an updated Consumer result is needed.",
         "parameters": [
           {
@@ -5955,7 +5955,7 @@
         "tags": [
           "Local Solutions"
         ],
-        "summary": "Retrieves a prior search result.",
+        "summary": "Gets identitysearch Reasons.",
         "description": "Returns an object describing which Reasons for Search are available and which are selected by a given customer. All reasons are always listed, with selected reasons specified as true.",
         "parameters": [
           {
@@ -5991,7 +5991,7 @@
         "tags": [
           "Local Solutions"
         ],
-        "summary": "Gets a list of history items",
+        "summary": "Gets a list of identitysearch history items",
         "description": "Retrieves a paginated history list for the specified customer/user, filtered based on the include* parameters",
         "parameters": [
           {
@@ -6166,7 +6166,7 @@
         "tags": [
           "Local Solutions"
         ],
-        "summary": "Sets the reference for an existing history item",
+        "summary": "Revalidates a given identitysearch with additional documents",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -6227,7 +6227,7 @@
     },
     "/localSolutions/GB/CCDS/{companyId}": {
       "get": {
-        "operationId": "CCDS",
+        "operationId": "Retrieves CCDS Data",
         "tags": [
           "Local Solutions"
         ],
@@ -6982,50 +6982,71 @@
         "type": "object",
         "properties": {
           "consent": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Including this allows Creditsafe to disclose your company details to the target company in the aim of improving the quality of our Investigation Report"
           },
           "contactInfo": {
+            "description": "Your contact information",
             "type": "object",
             "properties": {
               "name": {
-                "type": "string"
+                "type": "string",
+                "nullable": false
               },
               "emailAddress": {
-                "type": "string"
+                "type": "string",
+                "description": "The address where Investigation creation confirmations are sent",
+                "nullable": false
               },
               "telephoneNumber": {
-                "type": "string"
+                "type": "string",
+                "description": "Your contact number",
+                "nullable": true
               },
               "company": {
                 "type": "object",
                 "properties": {
                   "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Your company name",
+                    "nullable": false
                   },
                   "number": {
-                    "type": "string"
+                    "type": "string",
+                    "nullable": false,
+                    "description": "Your company VAT number/Reg Number/Tax Number"
                   }
                 }
               }
             }
           },
           "chargeReference": {
-            "type": "string"
+            "type": "string",
+            "description": "Free text field to add your own personal reference to the order"
           },
           "searchCriteria": {
             "type": "object",
+            "description": "Details on the company you are investigating - the target company",
             "properties": {
               "name": {
-                "type": "string"
+                "type": "string",
+                "description": "Target company name",
+                "nullable": false
               },
               "additionalInfo": {
-                "type": "string"
+                "type": "string",
+                "description": "Any further details on your target company that will assist our Investigation",
+                "nullable": true
               },
               "telephoneNumber": {
-                "type": "string"
+                "type": "string",
+                "description": "Target company telephone number",
+                "nullable": true
               },
               "address": {
                 "type": "object",
+                "description": "Target company address",
+                "nullable": true,
                 "properties": {
                   "simple": {
                     "type": "string"
@@ -7039,13 +7060,19 @@
                 }
               },
               "regNo": {
-                "type": "string"
+                "type": "string",
+                "description": "Target company registration number",
+                "nullable": true
               },
               "vatNo": {
-                "type": "string"
+                "type": "string",
+                "description": "Target company VAT number",
+                "nullable": true
               },
               "countryCode": {
-                "type": "string"
+                "type": "string",
+                "description": "Target company ISO2 country code",
+                "nullable": false
               }
             }
           }
