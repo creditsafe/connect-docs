@@ -96,7 +96,7 @@
           "401": {
             "description": "",
             "content": {
-              "applicaiton/json": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Authentication.Unauthorised"
                 }
@@ -6606,213 +6606,210 @@
             "type": "string"
           },
           "countryAccess": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "creditsafeConnectOnlineReports": {
-                  "type": "array",
-                  "description": "Country usage for Company Reports service",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "countryName": {
-                        "type": "string"
-                      },
-                      "templateName": {
-                        "type": "string",
-                        "description": "Company Report template. Full reports are default"
-                      },
-                      "countryIso2": {
-                        "type": "string"
-                      },
-                      "startDate": {
-                        "type": "string",
-                        "description": "Date of when the service was enabled"
-                      },
-                      "expireDate": {
-                        "type": "string",
-                        "description": "Date of when the service will expire"
-                      },
-                      "paid": {
-                        "type": "integer",
-                        "description": "Measure of total usage available in the service"
-                      },
-                      "used": {
-                        "type": "integer",
-                        "description": "Service usage"
-                      }
+            "type": "object",
+            "properties": {
+              "creditsafeConnectOnlineReports": {
+                "type": "array",
+                "description": "Country usage for Company Reports service",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "countryName": {
+                      "type": "string"
+                    },
+                    "templateName": {
+                      "type": "string",
+                      "description": "Company Report template. Full reports are default"
+                    },
+                    "countryIso2": {
+                      "type": "string"
+                    },
+                    "startDate": {
+                      "type": "string",
+                      "description": "Date of when the service was enabled"
+                    },
+                    "expireDate": {
+                      "type": "string",
+                      "description": "Date of when the service will expire"
+                    },
+                    "paid": {
+                      "type": "integer",
+                      "description": "Measure of total usage available in the service"
+                    },
+                    "used": {
+                      "type": "integer",
+                      "description": "Service usage"
                     }
                   }
-                },
-                "creditsafeConnectOfflineReports": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "countryIso2": {
-                        "type": "string"
-                      },
-                      "startDate": {
-                        "type": "string",
-                        "description": "Date of when the service was enabled"
-                      },
-                      "expireDate": {
-                        "type": "string",
-                        "description": "Date of when the service will expire"
-                      },
-                      "paid": {
-                        "type": "integer",
-                        "description": "Measure of total usage available in the service"
-                      },
-                      "used": {
-                        "type": "integer",
-                        "description": "Service usage"
-                      }
+                }
+              },
+              "creditsafeConnectOfflineReports": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "countryIso2": {
+                      "type": "string"
+                    },
+                    "startDate": {
+                      "type": "string",
+                      "description": "Date of when the service was enabled"
+                    },
+                    "expireDate": {
+                      "type": "string",
+                      "description": "Date of when the service will expire"
+                    },
+                    "paid": {
+                      "type": "integer",
+                      "description": "Measure of total usage available in the service"
+                    },
+                    "used": {
+                      "type": "integer",
+                      "description": "Service usage"
                     }
                   }
-                },
-                "creditsafeConnectMonitoring": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "startDate": {
-                        "type": "string",
-                        "description": "Date of when the service was enabled"
-                      },
-                      "expireDate": {
-                        "type": "string",
-                        "description": "Date of when the service will expire"
-                      },
-                      "paid": {
-                        "type": "integer",
-                        "description": "Measure of total usage available in the service"
-                      },
-                      "used": {
-                        "type": "integer",
-                        "description": "Service usage"
-                      }
+                }
+              },
+              "creditsafeConnectMonitoring": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "startDate": {
+                      "type": "string",
+                      "description": "Date of when the service was enabled"
+                    },
+                    "expireDate": {
+                      "type": "string",
+                      "description": "Date of when the service will expire"
+                    },
+                    "paid": {
+                      "type": "integer",
+                      "description": "Measure of total usage available in the service"
+                    },
+                    "used": {
+                      "type": "integer",
+                      "description": "Service usage"
                     }
                   }
-                },
-                "creditsafeConnectDirectorReports": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "countryName": {
-                        "type": "string"
-                      },
-                      "countryIso2": {
-                        "type": "string"
-                      },
-                      "startDate": {
-                        "type": "string",
-                        "description": "Date of when the service was enabled"
-                      },
-                      "expireDate": {
-                        "type": "string",
-                        "description": "Date of when the service will expire"
-                      },
-                      "paid": {
-                        "type": "integer",
-                        "description": "Measure of total usage available in the service"
-                      },
-                      "used": {
-                        "type": "integer",
-                        "description": "Service usage"
-                      }
+                }
+              },
+              "creditsafeConnectDirectorReports": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "countryName": {
+                      "type": "string"
+                    },
+                    "countryIso2": {
+                      "type": "string"
+                    },
+                    "startDate": {
+                      "type": "string",
+                      "description": "Date of when the service was enabled"
+                    },
+                    "expireDate": {
+                      "type": "string",
+                      "description": "Date of when the service will expire"
+                    },
+                    "paid": {
+                      "type": "integer",
+                      "description": "Measure of total usage available in the service"
+                    },
+                    "used": {
+                      "type": "integer",
+                      "description": "Service usage"
                     }
                   }
-                },
-                "creditsafeConnectImageDocuments": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "countryIso2": {
-                        "type": "string"
-                      },
-                      "startDate": {
-                        "type": "string",
-                        "description": "Date of when the service was enabled"
-                      },
-                      "expireDate": {
-                        "type": "string",
-                        "description": "Date of when the service will expire"
-                      },
-                      "paid": {
-                        "type": "integer",
-                        "description": "Measure of total usage available in the service"
-                      },
-                      "used": {
-                        "type": "integer",
-                        "description": "Service usage"
-                      }
+                }
+              },
+              "creditsafeConnectImageDocuments": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "countryIso2": {
+                      "type": "string"
+                    },
+                    "startDate": {
+                      "type": "string",
+                      "description": "Date of when the service was enabled"
+                    },
+                    "expireDate": {
+                      "type": "string",
+                      "description": "Date of when the service will expire"
+                    },
+                    "paid": {
+                      "type": "integer",
+                      "description": "Measure of total usage available in the service"
+                    },
+                    "used": {
+                      "type": "integer",
+                      "description": "Service usage"
                     }
                   }
-                },
-                "creditsafeConnectBankValidation": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "startDate": {
-                        "type": "string",
-                        "description": "Date of when the service was enabled"
-                      },
-                      "expireDate": {
-                        "type": "string",
-                        "description": "Date of when the service will expire"
-                      },
-                      "paid": {
-                        "type": "integer",
-                        "description": "Measure of total usage available in the service"
-                      },
-                      "used": {
-                        "type": "integer",
-                        "description": "Service usage"
-                      }
+                }
+              },
+              "creditsafeConnectBankValidation": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "startDate": {
+                      "type": "string",
+                      "description": "Date of when the service was enabled"
+                    },
+                    "expireDate": {
+                      "type": "string",
+                      "description": "Date of when the service will expire"
+                    },
+                    "paid": {
+                      "type": "integer",
+                      "description": "Measure of total usage available in the service"
+                    },
+                    "used": {
+                      "type": "integer",
+                      "description": "Service usage"
                     }
                   }
-                },
-                "creditsafeConnectBankVerification": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "startDate": {
-                        "type": "string",
-                        "description": "Date of when the service was enabled"
-                      },
-                      "expireDate": {
-                        "type": "string",
-                        "description": "Date of when the service will expire"
-                      },
-                      "paid": {
-                        "type": "integer",
-                        "description": "Measure of total usage available in the service"
-                      },
-                      "used": {
-                        "type": "integer",
-                        "description": "Service usage"
-                      }
+                }
+              },
+              "creditsafeConnectBankVerification": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "startDate": {
+                      "type": "string",
+                      "description": "Date of when the service was enabled"
+                    },
+                    "expireDate": {
+                      "type": "string",
+                      "description": "Date of when the service will expire"
+                    },
+                    "paid": {
+                      "type": "integer",
+                      "description": "Measure of total usage available in the service"
+                    },
+                    "used": {
+                      "type": "integer",
+                      "description": "Service usage"
                     }
                   }
                 }
@@ -16503,7 +16500,7 @@
                     "matchScoreAlpha": {
                       "type": "string"
                     },
-                    "matchScoreLocal id": {
+                    "matchScoreLocalId": {
                       "type": "string"
                     },
                     "matchScoreName": {
