@@ -52,7 +52,7 @@
     },
     {
       "name": "GB Consumers and AML",
-      "description": "The identyservice endpoints are used to run GB Consumer and  AML searches.  You must specify the product type and search parameters you want to obtain a response for in the body of the request."
+      "description": "The identity service endpoints are used to run GB Consumer and AML searches.\n You must specify the product type and search parameters you want to obtain a response for in the body of the request."
     },
     {
       "name": "Consumers",
@@ -296,8 +296,12 @@
           {
             "name": "phoneNo",
             "in": "query",
+            "description": "Provides Array of phone numbers or Null",
             "schema": {
-              "type": "string",
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
               "nullable": true
             }
           },
@@ -5670,7 +5674,7 @@
         "tags": [
           "Local Solutions"
         ],
-        "description": "The Bank Verification tool allows customers to instantly verify that small and medium sized companies you are working with are providing correct bank details, to reduce fraud and avoid delays in your on boarding process. The bank data for these companies is provided to Creditsafe by various financial providers, including major banks. When you provides us with a company number and their bank details, we are able to perform instant checks to verify that those bank details are associated with that company and return - </br> Match – We have bank information on the company, and the data provided by the customer matches the company records </br> No Match – We have bank information on the company, but the data provided does not match any of the company records </br> Data Unavailable - We do not have bank information on the company.",
+        "description": "The Bank Verification tool allows customers to instantly verify that small and medium sized companies you are working with are providing correct bank details, to reduce fraud and avoid delays in your on boarding process. The bank data for these companies is provided to Creditsafe by various financial providers, including major banks. When you provide us with a company number and their bank details, we are able to perform instant checks to verify that those bank details are associated with that company and return - </br> Match – We have bank information on the company, and the data provided by the customer matches the company records </br> No Match – We have bank information on the company, but the data provided does not match any of the company records </br> Data Unavailable - We do not have bank information on the company.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
