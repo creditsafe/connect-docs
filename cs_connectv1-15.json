@@ -5778,7 +5778,7 @@
           "GB Consumers and AML"
         ],
         "summary": "Submits a GB Consumer or AML Search",
-        "description": "Submits a GB COnsumer or AML depnding on the Product provided. Validates criteria for each individual search before submitting, and may return a list of error strings instead.",
+        "description": "Submits a GB Consumer or AML depnding on the Product provided. Validates criteria for each individual search before submitting, and may return a list of error strings instead.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
