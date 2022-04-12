@@ -10797,9 +10797,10 @@
             "type": "string"
           },
           "numberOfSharesIssued": {
-            "type": "long",
+            "type": "integer",
             "format": "int64",
-            "nullable": true
+            "nullable": true,
+            "Description": "The format <int64> refers to the 'Long' type classification"
           },
           "shareHolders": {
             "type": "array",
