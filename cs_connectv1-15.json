@@ -5793,6 +5793,7 @@
             }
           }
         },
+        
         "responses": {
           "200": {
             "description": "Success",
@@ -10796,7 +10797,7 @@
             "type": "string"
           },
           "numberOfSharesIssued": {
-            "type": "integer",
+            "type": "long",
             "format": "int64",
             "nullable": true
           },
