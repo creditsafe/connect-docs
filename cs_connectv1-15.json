@@ -10800,7 +10800,7 @@
             "type": "integer",
             "format": "int64",
             "nullable": true,
-            "description": "<int64> refers to the 'long' type "
+            "description": "'int64' refers to the 'long' type "
           },
           "shareHolders": {
             "type": "array",
