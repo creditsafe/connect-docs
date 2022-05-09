@@ -13642,7 +13642,7 @@
             "nullable": true
           }
         },
-        "examples": {
+        "x-code-samples": {
           "Consumer":{
           "common": {
             "Person": {
