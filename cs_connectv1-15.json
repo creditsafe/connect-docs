@@ -13642,7 +13642,7 @@
             "nullable": true
           }
         },
-        "examples": {
+        "x-examples": {
           "Consumer":{
             "value":{
              "common": {
