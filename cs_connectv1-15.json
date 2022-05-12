@@ -13642,9 +13642,8 @@
             "nullable": true
           }
         },
-        "x-examples": {
+        "example": {
           "Consumer":{
-            "value":{
              "common": {
                 "Person": {
                   "currentName": {
@@ -13673,43 +13672,9 @@
               "products": [
                 "Consumer"
               ]
-                    }  
-                  },
-          "AML" :{
-            "value":{
-              "common": {
-                "Person": {
-                  "currentName": {
-                      "title": "MRS",
-                      "Forename": "Sarah",
-                      "Surname": "Hawkins"
-                                  },
-                  "dateofBirth": "1974-07-07",
-                  "addresses": {
-                     "Current": {
-                       "buildingNo": "6",
-                       "buildingName": "HAZELTREE COURT",
-                       "street": "",
-                       "city": "TROWBRIDGE",
-                       "postCode": "BA99 7SZ"
-                                }
-                               }
-                           },
-                "Reference": "Some reference",
-                "IsInternal": false
-                        },
-             "consumer": {
-              "Demo": true,
-              "Reason": "QuotationSearch"
-                          },
-              "products": [
-                "aml"
-              ]
-                    }  
-            }
+                    }              
           }            
-                
-      },
+         },
       "Connect.Identity.CommonResult": {
         "type": "object",
         "properties": {
