@@ -13620,6 +13620,17 @@
       },
       "Connect.Identity.SearchRequest": {
         "type": "object",
+        "required": [
+          "common",
+          "products"
+        ],
+        "discriminator": {
+          "propertyName": "products",
+          "mapping": {
+            "aml": "#/components/schemas/aml",
+            "consumer": "#/components/schemas/consumer"
+          }
+        },
         "properties": {
           "uniqueId": {
             "type": "string",
@@ -13635,46 +13646,40 @@
             "$ref": "#/components/schemas/Connect.Identity.AmlSearchCriteria"
           },
           "products": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Connect.Identity.Product"
-            },
-            "nullable": true
+            "description": "Select a product type",
+            "type": "string"
           }
-        },
-        "example": {
-          "Consumer":{
-             "common": {
-                "Person": {
-                  "currentName": {
-                      "title": "MRS",
-                      "Forename": "Sarah",
-                      "Surname": "Hawkins"
-                                  },
-                  "dateofBirth": "1974-07-07",
-                  "addresses": {
-                     "Current": {
-                       "buildingNo": "6",
-                       "buildingName": "HAZELTREE COURT",
-                       "street": "",
-                       "city": "TROWBRIDGE",
-                       "postCode": "BA99 7SZ"
-                                }
-                               }
-                           },
-                "Reference": "Some reference",
-                "IsInternal": false
-                        },
-             "consumer": {
-              "Demo": true,
-              "Reason": "QuotationSearch"
-                          },
-              "products": [
-                "Consumer"
-              ]
-                    }              
-          }            
+        }
+             
          },
+      "aml": {
+        "description": "Returns details of an AML product search",
+        "allOf": [
+          {
+            "ref": "#/components/schemas/Connect.Identity.SearchRequest"
+          },
+          {"type": "object",
+           "properties": {
+             "type": "string",
+             "default": "aml"
+           }
+          }
+        ] 
+       },
+       "consumer": {
+        "description": "Returns details of an Consumer product search",
+        "allOf": [
+          {
+            "ref": "#/components/schemas/Connect.Identity.SearchRequest"
+          },
+          {"type": "object",
+           "properties": {
+             "type": "string",
+             "default": "consumer"
+           }
+          }
+        ] 
+       },
       "Connect.Identity.CommonResult": {
         "type": "object",
         "properties": {
