@@ -5788,8 +5788,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Connect.Identity.SearchRequest"
-              }
+                "$ref": "#/components/requestBodies/Identity"             }
             }
           }
         },
@@ -6519,6 +6518,27 @@
         }
       }
     },
+    "requestBodies": {
+      "Identity": {
+          "content": {
+              "application/json": {
+                  "schema": {
+                      "allOf": [
+                          {
+                              "description": "Identity Search",
+                              "title": "Identity"
+                          },
+          {
+                              "$ref": "#/components/schemas/Connect.GBConsumer"
+                          }
+                      ]
+      }
+    }
+  },
+  "description": "Consumer or AML object used for Identity Search",
+  "required":	true 
+}
+},
     "schemas": {
       "Connect.Authentication.AuthRequest": {
         "type": "object",
@@ -10800,7 +10820,7 @@
             "type": "integer",
             "format": "int64",
             "nullable": true,
-            "description": "'int64' refers to the 'long' type "
+            "description": "`int64` refers to the `long` type "
           },
           "shareHolders": {
             "type": "array",
@@ -13620,17 +13640,6 @@
       },
       "Connect.Identity.SearchRequest": {
         "type": "object",
-        "required": [
-          "common",
-          "products"
-        ],
-        "discriminator": {
-          "propertyName": "products",
-          "mapping": {
-            "aml": "#/components/schemas/aml",
-            "consumer": "#/components/schemas/consumer"
-          }
-        },
         "properties": {
           "uniqueId": {
             "type": "string",
@@ -13646,40 +13655,14 @@
             "$ref": "#/components/schemas/Connect.Identity.AmlSearchCriteria"
           },
           "products": {
-            "description": "Select a product type",
-            "type": "string"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Connect.Identity.Product"
+            },
+            "nullable": true
           }
         }
-             
-         },
-      "aml": {
-        "description": "Returns details of an AML product search",
-        "allOf": [
-          {
-            "ref": "#/components/schemas/Connect.Identity.SearchRequest"
-          },
-          {"type": "object",
-           "properties": {
-             "type": "string",
-             "default": "aml"
-           }
-          }
-        ] 
-       },
-       "consumer": {
-        "description": "Returns details of an Consumer product search",
-        "allOf": [
-          {
-            "ref": "#/components/schemas/Connect.Identity.SearchRequest"
-          },
-          {"type": "object",
-           "properties": {
-             "type": "string",
-             "default": "consumer"
-           }
-          }
-        ] 
-       },
+      },   
       "Connect.Identity.CommonResult": {
         "type": "object",
         "properties": {
