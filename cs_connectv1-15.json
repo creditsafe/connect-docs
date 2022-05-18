@@ -16533,7 +16533,7 @@
               "description": "Person search criteria",	
               "allOf":	[
               {
-                "ref":	"#/components/schemas/Connect.Identity.CommonSearchCriteria"
+                "$ref":	"#/components/schemas/Connect.Identity.CommonSearchCriteria"
               }
               ]
             },
