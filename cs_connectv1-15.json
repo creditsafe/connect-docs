@@ -16484,7 +16484,7 @@
       },
       "Connect.GBConsumer": {
         "type":	"object",
-        "dicriminator":	{
+        "discriminator":	{
           "propertyName":	"products",
             "mapping":	{
               "AML":	"#/components/schemas/AMLSearch",
