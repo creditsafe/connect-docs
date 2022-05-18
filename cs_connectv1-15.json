@@ -16484,6 +16484,13 @@
       },
       "Connect.GBConsumer": {
         "type":	"object",
+        "discriminator":	{
+          "propertyName":	"products",
+            "mapping":	{
+              "AML":	"#/components/schemas/AMLSearch",
+              "Consumer":	"#/components/schemas/consumerSearch"
+          }
+        },
         "properties":	{
             "UniqueId":	{
               "type":	"string",
