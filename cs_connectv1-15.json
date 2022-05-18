@@ -16492,6 +16492,8 @@
           }
         },
         "properties":	{
+          "allOf": [
+            {
           "UniqueId":	{
             "type":	"string",
             "nullable":	true
@@ -16500,6 +16502,8 @@
             "description":	"Select product type for object parameters and example body",
             "type":	"string"
           }
+        }
+          ]
         }
       
       },
