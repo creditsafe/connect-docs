@@ -5785,13 +5785,8 @@
           }
         ],
         "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/requestBodies/Identity"             }
-            }
-          }
-        },
+            "$ref": "#/components/requestBodies/Identity" 
+                              },
         
         "responses": {
           "200": {
@@ -6524,20 +6519,18 @@
               "application/json": {
                   "schema": {
                       "allOf": [
-                          {
-                              "description": "Identity Search",
+                        {
+                         "description": "Identity Search",
                               "title": "Identity"
-                          },
-          {
-                              "$ref": "#/components/schemas/Connect.GBConsumer"
-                          }
+                        },
+                        {
+                          "$ref": "#/components/schemas/Connect.GBConsumer"
+                        }
                       ]
       }
     }
-  },
-  "description": "Consumer or AML object used for Identity Search",
-  "required":	true 
-}
+  }
+ }
 },
     "schemas": {
       "Connect.Authentication.AuthRequest": {
@@ -13406,11 +13399,13 @@
         "properties": {
           "title": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "example": "MRS"
           },
           "forename": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "example": "Sarah"
           },
           "otherNames": {
             "type": "string",
@@ -13418,7 +13413,8 @@
           },
           "surname": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "example": "Hawkins"
           },
           "suffix": {
             "type": "string",
@@ -13436,6 +13432,49 @@
         "format": "int32"
       },
       "Connect.Identity.Address": {
+        "type": "object",
+        "properties": {
+          "buildingNo": {
+            "type": "string",
+            "nullable": true,
+            "example": "6"
+          },
+          "buildingName": {
+            "type": "string",
+            "nullable": true,
+            "example":"HAZELTREE COURT"
+          },
+          "street": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true,
+            "example": "TROWBRIDGE"
+          },
+          "country": {
+            "type": "string",
+            "nullable": true
+          },
+          "postCode": {
+            "type": "string",
+            "nullable": true,
+            "example": "CF10 1LA"
+          },
+          "startDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "endDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        }
+      },
+      "Connect.Identity.Address1": {
         "type": "object",
         "properties": {
           "buildingNo": {
@@ -13481,13 +13520,13 @@
             "$ref": "#/components/schemas/Connect.Identity.Address"
           },
           "previous1": {
-            "$ref": "#/components/schemas/Connect.Identity.Address"
+            "$ref": "#/components/schemas/Connect.Identity.Address1"
           },
           "previous2": {
-            "$ref": "#/components/schemas/Connect.Identity.Address"
+            "$ref": "#/components/schemas/Connect.Identity.Address1"
           },
           "previous3": {
-            "$ref": "#/components/schemas/Connect.Identity.Address"
+            "$ref": "#/components/schemas/Connect.Identity.Address1"
           }
         }
       },
@@ -13503,7 +13542,8 @@
           "dateOfBirth": {
             "type": "string",
             "format": "date-time",
-            "nullable": true
+            "nullable": true,
+            "example": "1974-07-07"
           },
           "gender": {
             "$ref": "#/components/schemas/Connect.Identity.Gender"
@@ -16442,6 +16482,68 @@
           }
         }
       },
+      "Connect.GBConsumer": {
+        "type":	"object",
+        "dicriminator":	{
+          "propertyName":	"products",
+            "mapping":	{
+              "AML":	"#/components/schemas/AMLSearch",
+              "Consumer":	"#/components/schemas/consumerSearch"
+          }
+        },
+        "properties":	{
+          "UniqueId":	{
+            "type":	"string",
+            "nullable":	true
+            },
+          "products":	{
+            "description":	"Select product type for object parameters and example body",
+            "type":	"string"
+          }
+        }
+      
+      },
+      
+      "AMLSearch": {
+        "description":	"Search parameters for AML product",
+        "properties":	{
+          "common": {
+            "description": "Person search criteria",	
+            "allOf":	[
+            {
+              "ref":	"#/components/schemas/Connect.Identity.CommonSearchCriteria"
+            }
+          ]
+        },
+          "iDAml":	{
+            "description":	"Reference to bank account detail search",
+            "allOf":	[
+              {
+              "ref": "#/components/schemas/Connect.Identity.AmlSearchCriteria"
+            }
+            ]
+          }
+        }
+      },
+      
+      "consumerSearch":	{
+        "description":	"Search parameters for a consumer product",
+          "properties":	{
+            "common": {
+              "description": "Person search criteria",	
+              "allOf":	[
+              {
+                "ref":	"#/components/schemas/Connect.Identity.CommonSearchCriteria"
+              }
+              ]
+            },
+            "consumer": {
+              "Demo": true,
+              "Reason": "QuotationSearch"
+            }
+          }
+      },
+
       "Connect.ConfidenceMatch.MatchResults": {
         "properties": {
           "totalMatches": {
