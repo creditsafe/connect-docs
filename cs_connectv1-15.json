@@ -16484,28 +16484,24 @@
       },
       "Connect.GBConsumer": {
         "type":	"object",
-        "discriminator":	{
-          "propertyName":	"products",
-            "mapping":	{
-              "AML":	"#/components/schemas/AMLSearch",
-              "Consumer":	"#/components/schemas/consumerSearch"
-          }
-        },
         "properties":	{
-          "allOf": [
-            {
-          "UniqueId":	{
-            "type":	"string",
-            "nullable":	true
+            "UniqueId":	{
+              "type":	"string",
+              "nullable":	true
             },
-          "products":	{
-            "description":	"Select product type for object parameters and example body",
-            "type":	"string"
-          }
+           "products":	{
+             "description":	"Select product type for object parameters and example body",
+               "oneOf": [
+                {
+                  "$ref" :	"#/components/schemas/AMLSearch"
+                },
+                {
+                   "$ref": "#/components/schemas/consumerSearch"
+                }
+
+            ]
+          }                 
         }
-          ]
-        }
-      
       },
       
       "AMLSearch": {
