@@ -16511,7 +16511,7 @@
             "description": "Person search criteria",	
             "allOf":	[
             {
-              "ref":	"#/components/schemas/Connect.Identity.CommonSearchCriteria"
+              "$ref":	"#/components/schemas/Connect.Identity.CommonSearchCriteria"
             }
           ]
         },
@@ -16519,7 +16519,7 @@
             "description":	"Reference to bank account detail search",
             "allOf":	[
               {
-              "ref": "#/components/schemas/Connect.Identity.AmlSearchCriteria"
+              "$ref": "#/components/schemas/Connect.Identity.AmlSearchCriteria"
             }
             ]
           }
