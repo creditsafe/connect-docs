@@ -13394,7 +13394,7 @@
           }
         }
       },
-      "Connect.Identity.Name": {
+      "Connect.Identity.currentName": {
         "type": "object",
         "properties": {
           "title": {
@@ -13415,6 +13415,34 @@
             "type": "string",
             "nullable": true,
             "example": "Hawkins"
+          },
+          "suffix": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "Connect.Identity.Name": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "nullable": true,
+            
+          },
+          "forename": {
+            "type": "string",
+            "nullable": true,
+            
+          },
+          "otherNames": {
+            "type": "string",
+            "nullable": true
+          },
+          "surname": {
+            "type": "string",
+            "nullable": true,
+            
           },
           "suffix": {
             "type": "string",
@@ -13534,7 +13562,7 @@
         "type": "object",
         "properties": {
           "currentName": {
-            "$ref": "#/components/schemas/Connect.Identity.Name"
+            "$ref": "#/components/schemas/Connect.Identity.currentName"
           },
           "previousName": {
             "$ref": "#/components/schemas/Connect.Identity.Name"
