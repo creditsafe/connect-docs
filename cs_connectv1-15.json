@@ -13427,12 +13427,12 @@
         "properties": {
           "title": {
             "type": "string",
-            "nullable": true,
+            "nullable": true
             
           },
           "forename": {
             "type": "string",
-            "nullable": true,
+            "nullable": true
             
           },
           "otherNames": {
@@ -13441,7 +13441,7 @@
           },
           "surname": {
             "type": "string",
-            "nullable": true,
+            "nullable": true
             
           },
           "suffix": {
@@ -16512,13 +16512,7 @@
       },
       "Connect.GBConsumer": {
         "type":	"object",
-        "discriminator":	{
-          "propertyName":	"products",
-            "mapping":	{
-              "AML":	"#/components/schemas/AMLSearch",
-              "Consumer":	"#/components/schemas/consumerSearch"
-          }
-        },
+        
         "properties":	{
             "UniqueId":	{
               "type":	"string",
@@ -16549,6 +16543,7 @@
               "$ref":	"#/components/schemas/Connect.Identity.CommonSearchCriteria"
             }
           ]
+
         },
           "iDAml":	{
             "description":	"Reference to bank account detail search",
