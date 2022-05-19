@@ -6528,32 +6528,8 @@
                           "$ref": "#/components/schemas/Connect.GBConsumer"
                         }
                       ]
-      },
-                  "example": {
-                       "common": {
-                          "person": {
-                              "currentName": {
-                                  "title": "",
-                                  "forename": "John",
-                                  "otherNames": "",
-                                  "surname": "Murphy",
-                                  "suffix": ""
-                              },
-                              "dateOfBirth": "1974-07-07",
-                              "gender": "",
-                              "addresses": {
-                                  "current": {
-                                      "buildingNo": "",
-                                      "buildingName": "Stadium Plaza",
-                                      "street": "Wood Street",
-                                      "city": "Cardiff",
-                                      "postCode": "CF10 1LA"
-                                  }
-                              }
-                          },
-                          "reference": ""
-                      }
-                  }
+      }
+              
     }
   }               
  }
@@ -16568,7 +16544,7 @@
             "allOf":	[
             {
               "$ref":	"#/components/schemas/Connect.Identity.CommonSearchCriteria"
-            }
+            }                      
           ]
 
         },
@@ -16578,21 +16554,47 @@
               {
               "$ref": "#/components/schemas/Connect.Identity.AmlSearchCriteria"
             }
-            ],
-            "example": {
-              "idAml": {
-                "landlineNumber": "",
-                "exDirectory": false,
-                "sortCode": "",
-                "bankAccountNumber": ""
-            }
-          }
+            ]
+            
         },
           "products": {
               "type": "string",
               "description": "Enter `AML` for this product search",
               "example": "AML"
           }
+        },
+        "example": {
+          "common": {
+            "person": {
+                "currentName": {
+                    "title": "",
+                    "forename": "John",
+                    "otherNames": "",
+                    "surname": "Murphy",
+                    "suffix": ""
+                },
+                "dateOfBirth": "1974-07-07",
+                "gender": "",
+                "addresses": {
+                    "current": {
+                        "buildingNo": "",
+                        "buildingName": "Stadium Plaza",
+                        "street": "Wood Street",
+                        "city": "Cardiff",
+                        "postCode": "CF10 1LA"
+                    }
+                }
+            },
+            "reference": ""
+        },
+        "idAml": {
+            "landlineNumber": "",
+            "exDirectory": false,
+            "sortCode": "",
+            "bankAccountNumber": ""
+        },
+        "products": "AML"
+                    
         }
       },
       
@@ -16612,6 +16614,35 @@
               "description": "Enter `Consumer` for this product search",
               "example": "consumer"
             }
+          },
+          "example": { 
+            "common": {
+              "Person": {
+                "currentName": {
+                    "title": "MRS",
+                        "Forename": "Sarah",
+                    "Surname": "Hawkins"
+                },
+                    "dateofBirth": "1974-07-07",
+                "addresses": {
+                    "Current": {
+                        "buildingNo": "6",
+                            "buildingName": "HAZELTREE COURT",
+                            "street": "",
+                            "city": "TROWBRIDGE",
+                        "postCode": "BA99 7SZ"
+                    }
+                }
+                },
+                "Reference": "Some reference",
+                "IsInternal": false
+            },
+            "consumer": {
+                "Demo": true,
+                "Reason": "QuotationSearch"
+            },
+            "products": "Consumer"
+            
           }
       },
 
