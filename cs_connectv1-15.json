@@ -16521,6 +16521,14 @@
               "type":	"string",
               "nullable":	true
             },
+            "common": {
+              "description": "Person search criteria",	
+              "allOf":	[
+              {
+                "$ref":	"#/components/schemas/Connect.Identity.CommonSearchCriteria"
+              }                      
+            ]  
+          },
            "products":	{
              "description":	"Select product type for object parameters and example body. \n\n Options for an `AML Search` or `Consumer Search`",
                "oneOf": [
@@ -16538,112 +16546,32 @@
       
       "AMLSearch": {
         "description":	"Search parameters for AML product",
-        "properties":	{
-          "common": {
-            "description": "Person search criteria",	
-            "allOf":	[
-            {
-              "$ref":	"#/components/schemas/Connect.Identity.CommonSearchCriteria"
-            }                      
-          ]
-
-        },
+        "properties":	{          
           "iDAml":	{
             "description":	"Reference to bank account detail search",
             "allOf":	[
               {
               "$ref": "#/components/schemas/Connect.Identity.AmlSearchCriteria"
             }
-            ]
-            
+            ]            
         },
           "products": {
               "type": "string",
               "description": "Enter `AML` for this product search"
           }
-        },
-        "example": {
-          "common": {
-            "person": {
-                "currentName": {
-                    "title": "",
-                    "forename": "John",
-                    "otherNames": "",
-                    "surname": "Murphy",
-                    "suffix": ""
-                },
-                "dateOfBirth": "1974-07-07",
-                "gender": "",
-                "addresses": {
-                    "current": {
-                        "buildingNo": "",
-                        "buildingName": "Stadium Plaza",
-                        "street": "Wood Street",
-                        "city": "Cardiff",
-                        "postCode": "CF10 1LA"
-                    }
-                }
-            },
-            "reference": ""
-        },
-        "idAml": {
-            "landlineNumber": "",
-            "exDirectory": false,
-            "sortCode": "",
-            "bankAccountNumber": ""
-        },
-        "products": "AML"
-                    
-        }
+        }        
       },
       
       "consumerSearch":	{
         "description":	"Search parameters for a consumer product",
           "properties":	{
-            "common": {
-              "description": "Person search criteria",	
-              "allOf":	[
-              {
-                "$ref":	"#/components/schemas/Connect.Identity.CommonSearchCriteria"
-              }
-              ]
-            },
             "products": {
               "type": "string",
               "description": "Enter `Consumer` for this product search"
               
             }
-          },
-          "example": { 
-            "common": {
-              "Person": {
-                "currentName": {
-                    "title": "MRS",
-                    "Forename": "Sarah",
-                    "Surname": "Hawkins"
-                },
-                    "dateofBirth": "1974-07-07",
-                "addresses": {
-                    "Current": {
-                        "buildingNo": "6",
-                            "buildingName": "HAZELTREE COURT",
-                            "street": "",
-                            "city": "TROWBRIDGE",
-                        "postCode": "BA99 7SZ"
-                    }
-                }
-                },
-                "Reference": "Some reference",
-                "IsInternal": false
-            },
-            "consumer": {
-                "Demo": true,
-                "Reason": "QuotationSearch"
-            },
-            "products": "Consumer"
-            
           }
-      },
+        },
 
       "Connect.ConfidenceMatch.MatchResults": {
         "properties": {
