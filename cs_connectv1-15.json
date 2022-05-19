@@ -16521,7 +16521,7 @@
               "nullable":	true
             },
            "products":	{
-             "description":	"Select product type for object parameters and example body",
+             "description":	"Select product type for object parameters and example body. \n\n Options for an `AML Search` or `Consumer Search`",
                "oneOf": [
                 {
                   "$ref" :	"#/components/schemas/AMLSearch"
@@ -16557,6 +16557,7 @@
           },
           "products": {
               "type": "string",
+              "description": "Enter `AML` for this product search",
               "example": "AML"
           }
         }
@@ -16575,6 +16576,7 @@
             },
             "products": {
               "type": "string",
+              "description": "Enter `Consumer` for this product search",
               "example": "consumer"
             }
           }
