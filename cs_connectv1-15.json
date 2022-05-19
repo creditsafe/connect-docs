@@ -13412,7 +13412,8 @@
           },
           "otherNames": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "example": ""
           },
           "surname": {
             "type": "string",
