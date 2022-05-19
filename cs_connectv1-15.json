@@ -16557,7 +16557,8 @@
         },
           "products": {
               "type": "string",
-              "description": "Enter `AML` for this product search"
+              "description": "Enter `AML` for this product search",
+              "example": "AML"
           }
         }        
       },
@@ -16567,7 +16568,8 @@
           "properties":	{
             "products": {
               "type": "string",
-              "description": "Enter `Consumer` for this product search"
+              "description": "Enter `Consumer` for this product search",
+              "example": "consumer"
               
             }
           }
