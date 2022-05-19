@@ -6528,46 +6528,8 @@
                         }
                       ]
       }
-    },
-    "text/plain": {
-      "examples": {
-        "AML": {
-          
-            "common": {
-                "person": {
-                    "currentName": {
-                        "title": "",
-                        "forename": "John",
-                        "otherNames": "",
-                        "surname": "Murphy",
-                        "suffix": ""
-                    },
-                    "dateOfBirth": "1974-07-07",
-                    "gender": "",
-                    "addresses": {
-                        "current": {
-                            "buildingNo": "",
-                            "buildingName": "Stadium Plaza",
-                            "street": "Wood Street",
-                            "city": "Cardiff",
-                            "postCode": "CF10 1LA"
-                        }
-                    }
-                },
-                "reference": ""
-            },
-            "idAml": {
-                "landlineNumber": "",
-                "exDirectory": false,
-                "sortCode": "",
-                "bankAccountNumber": ""
-            },
-            "products": [
-                "Aml"
-            ]
-        }
-        }
-      }
+            
+    }
   }               
  }
 },
@@ -16592,6 +16554,10 @@
               "$ref": "#/components/schemas/Connect.Identity.AmlSearchCriteria"
             }
             ]
+          },
+          "products": {
+              "type": "string",
+              "example": "AML"
           }
         }
       },
@@ -16607,9 +16573,9 @@
               }
               ]
             },
-            "consumer": {
-              "Demo": true,
-              "Reason": "QuotationSearch"
+            "products": {
+              "type": "string",
+              "example": "consumer"
             }
           }
       },
