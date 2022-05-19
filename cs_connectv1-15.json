@@ -16578,8 +16578,16 @@
               {
               "$ref": "#/components/schemas/Connect.Identity.AmlSearchCriteria"
             }
-            ]
-          },
+            ],
+            "example": {
+              "idAml": {
+                "landlineNumber": "",
+                "exDirectory": false,
+                "sortCode": "",
+                "bankAccountNumber": ""
+            }
+          }
+        },
           "products": {
               "type": "string",
               "description": "Enter `AML` for this product search",
