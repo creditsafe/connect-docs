@@ -16559,8 +16559,7 @@
         },
           "products": {
               "type": "string",
-              "description": "Enter `AML` for this product search",
-              "example": "AML"
+              "description": "Enter `AML` for this product search"
           }
         },
         "example": {
@@ -16611,8 +16610,8 @@
             },
             "products": {
               "type": "string",
-              "description": "Enter `Consumer` for this product search",
-              "example": "consumer"
+              "description": "Enter `Consumer` for this product search"
+              
             }
           },
           "example": { 
@@ -16620,7 +16619,7 @@
               "Person": {
                 "currentName": {
                     "title": "MRS",
-                        "Forename": "Sarah",
+                    "Forename": "Sarah",
                     "Surname": "Hawkins"
                 },
                     "dateofBirth": "1974-07-07",
