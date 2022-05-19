@@ -6528,8 +6528,32 @@
                           "$ref": "#/components/schemas/Connect.GBConsumer"
                         }
                       ]
-      }
-            
+      },
+                  "example": {
+                       "common": {
+                          "person": {
+                              "currentName": {
+                                  "title": "",
+                                  "forename": "John",
+                                  "otherNames": "",
+                                  "surname": "Murphy",
+                                  "suffix": ""
+                              },
+                              "dateOfBirth": "1974-07-07",
+                              "gender": "",
+                              "addresses": {
+                                  "current": {
+                                      "buildingNo": "",
+                                      "buildingName": "Stadium Plaza",
+                                      "street": "Wood Street",
+                                      "city": "Cardiff",
+                                      "postCode": "CF10 1LA"
+                                  }
+                              }
+                          },
+                          "reference": ""
+                      }
+                  }
     }
   }               
  }
