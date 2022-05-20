@@ -16518,18 +16518,7 @@
         "type":	"object",
         
         "properties":	{
-            "UniqueId":	{
-              "type":	"string",
-              "nullable":	true
-            },
-            "common": {
-              "description": "Person search criteria",	
-              "allOf":	[
-              {
-                "$ref":	"#/components/schemas/Connect.Identity.CommonSearchCriteria"
-              }                      
-            ]  
-          },
+        
            "products":	{
              "description":	"Select product type for object parameters and example body. \n\n Options for an `AML Search` or `Consumer Search`",
                "oneOf": [
@@ -16547,7 +16536,19 @@
       
       "AMLSearch": {
         "description":	"Search parameters for AML product",
-        "properties":	{          
+        "properties":	{   
+          "UniqueId":	{
+            "type":	"string",
+            "nullable":	true
+          },
+          "common": {
+            "description": "Person search criteria",	
+            "allOf":	[
+            {
+              "$ref":	"#/components/schemas/Connect.Identity.CommonSearchCriteria"
+            }                      
+          ]  
+        },       
           "iDAml":	{
             "description":	"Reference to bank account detail search",
             "allOf":	[
@@ -16567,6 +16568,18 @@
       "consumerSearch":	{
         "description":	"Search parameters for a consumer product",
           "properties":	{
+            "UniqueId":	{
+              "type":	"string",
+              "nullable":	true
+            },
+            "common": {
+              "description": "Person search criteria",	
+              "allOf":	[
+              {
+                "$ref":	"#/components/schemas/Connect.Identity.CommonSearchCriteria"
+              }                      
+            ]  
+          },
             "products": {
               "type": "string",
               "description": "Enter `Consumer` for this product search",
