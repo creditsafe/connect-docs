@@ -16515,12 +16515,8 @@
         }
       },
       "Connect.GBConsumer": {
-        "type":	"object",
-        
-        
-        
-          
-             "description":	"Select product type for object parameters and example body. \n\n Options for an `AML Search` or `Consumer Search`",
+        "type":	"object",       
+          "description":	"Select product type for object parameters and example body. \n\n Options for an `AML Search` or `Consumer Search`",
                "oneOf": [
                 {
                   "$ref" :	"#/components/schemas/AMLSearch"
@@ -16528,12 +16524,8 @@
                 {
                    "$ref": "#/components/schemas/consumerSearch"
                 }
-
-            ]
-                          
-        
-      },
-      
+            ]        
+          },      
       "AMLSearch": {
         "description":	"Search parameters for AML product",
         "properties":	{   
@@ -16550,6 +16542,7 @@
           ]  
         }, 
           "consumer": {
+            "description": "Second person search option",
             "$ref": "#/components/schemas/Connect.Identity.ConsumerSearchCriteria"
         },      
           "iDAml":	{
