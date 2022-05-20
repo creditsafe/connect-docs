@@ -13402,23 +13402,23 @@
         "properties": {
           "title": {
             "type": "string",
-            "nullable": true,
-            "example": "MRS"
+            "nullable": true
+            
           },
           "forename": {
             "type": "string",
-            "nullable": true,
-            "example": "Sarah"
+            "nullable": true
+            
           },
           "otherNames": {
             "type": "string",
-            "nullable": true,
-            "example": ""
+            "nullable": true
+            
           },
           "surname": {
             "type": "string",
-            "nullable": true,
-            "example": "Hawkins"
+            "nullable": true
+            
           },
           "suffix": {
             "type": "string",
@@ -13468,13 +13468,13 @@
         "properties": {
           "buildingNo": {
             "type": "string",
-            "nullable": true,
-            "example": "6"
+            "nullable": true
+            
           },
           "buildingName": {
             "type": "string",
-            "nullable": true,
-            "example":"HAZELTREE COURT"
+            "nullable": true
+            
           },
           "street": {
             "type": "string",
@@ -13482,8 +13482,8 @@
           },
           "city": {
             "type": "string",
-            "nullable": true,
-            "example": "TROWBRIDGE"
+            "nullable": true
+            
           },
           "country": {
             "type": "string",
@@ -13491,8 +13491,8 @@
           },
           "postCode": {
             "type": "string",
-            "nullable": true,
-            "example": "CF10 1LA"
+            "nullable": true
+            
           },
           "startDate": {
             "type": "string",
@@ -13574,8 +13574,8 @@
           "dateOfBirth": {
             "type": "string",
             "format": "date-time",
-            "nullable": true,
-            "example": "1974-07-07"
+            "nullable": true
+            
           },
           "gender": {
             "$ref": "#/components/schemas/Connect.Identity.Gender"
