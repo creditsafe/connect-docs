@@ -6430,7 +6430,7 @@
       "authToken": {
         "name": "Authorization",
         "in": "header",
-        "description": "Authorisation Token",
+        "description": "Authorization Token",
         "required": true,
         "schema": {
           "type": "string"
@@ -6515,7 +6515,7 @@
     },
     "requestBodies": {
       "Identity": {
-        "description": "Select the `products` tab for the requestbody for each of the products `AML` and `Consumer`",
+        "description": "Select the `products` tab for the request body for each of the products `AML` and `Consumer`",
           "content": {
               "application/json": {
                   "schema": {
