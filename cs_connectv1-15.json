@@ -16517,7 +16517,7 @@
       "Connect.GBConsumer": {
         "type":	"object",
         
-        "properties":	{
+        
         
           
              "description":	"Select product type for object parameters and example body. \n\n Options for an `AML Search` or `Consumer Search`",
@@ -16530,7 +16530,7 @@
                 }
 
             ]
-          }                 
+                          
         
       },
       
@@ -16548,7 +16548,10 @@
               "$ref":	"#/components/schemas/Connect.Identity.CommonSearchCriteria"
             }                      
           ]  
-        },       
+        }, 
+          "consumer": {
+            "$ref": "#/components/schemas/Connect.Identity.ConsumerSearchCriteria"
+        },      
           "iDAml":	{
             "description":	"Reference to bank account detail search",
             "allOf":	[
@@ -16579,6 +16582,9 @@
                 "$ref":	"#/components/schemas/Connect.Identity.CommonSearchCriteria"
               }                      
             ]  
+          },
+           "consumer": {
+              "$ref": "#/components/schemas/Connect.Identity.ConsumerSearchCriteria"
           },
             "products": {
               "type": "string",
