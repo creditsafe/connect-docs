@@ -6515,7 +6515,7 @@
     },
     "requestBodies": {
       "Identity": {
-        "description": "Select the `products` dropdown for the requestbody for each of the products `AML` and `Consumer`",
+        "description": "Select the `products` tab for the requestbody for each of the products `AML` and `Consumer`",
           "content": {
               "application/json": {
                   "schema": {
