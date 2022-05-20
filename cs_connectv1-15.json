@@ -16519,7 +16519,7 @@
         
         "properties":	{
         
-           "products":	{
+          
              "description":	"Select product type for object parameters and example body. \n\n Options for an `AML Search` or `Consumer Search`",
                "oneOf": [
                 {
@@ -16531,7 +16531,7 @@
 
             ]
           }                 
-        }
+        
       },
       
       "AMLSearch": {
