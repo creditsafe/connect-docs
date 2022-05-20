@@ -16577,6 +16577,7 @@
             ]  
           },
            "consumer": {
+              "description": "Second person search option",
               "$ref": "#/components/schemas/Connect.Identity.ConsumerSearchCriteria"
           },
             "products": {
