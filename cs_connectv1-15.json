@@ -16517,14 +16517,15 @@
       "Connect.GBConsumer": {
         "type":	"object",       
           "description":	"Select product type for object parameters and example body.\n\n Options for an `AML Search` or `Consumer Search`",
-               "oneOf": [
+               "oneOf":[
                 {
                   "$ref" :	"#/components/schemas/AMLSearch"
                 },
+                       
                 {
                    "$ref": "#/components/schemas/consumerSearch"
                 }
-            ]        
+               ]
           },      
       "AMLSearch": {
         "description":	"Search parameters for AML product",
