@@ -13610,17 +13610,17 @@
         }
       },
       "Connect.Identity.ReasonCode": {
-        "enum": [
-          0,
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8
-        ],
+        "x-enumDescription": {
+          "0":  "AddressVerification",
+          "1":  "BusinessSeacrch",
+          "2":  "CreditApplication",
+          "3":  "DebtCollection",
+          "4":  "DirectorsSearch",
+          "5":  "QuotationSearch",
+          "6":  "EmployeeCheck",
+          "7":  "TenantVet",
+          "8":  "GeneralInsurance"
+        },
         "type": "integer",
         "format": "int32"
       },
