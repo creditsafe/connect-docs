@@ -6519,15 +6519,16 @@
           "content": {
               "application/json": {
                   "schema": {
-                      "allOf": [
-                        {
-                         "description": "Identity Search",
-                              "title": "Identity"
-                        },
-                        {
-                          "$ref": "#/components/schemas/Connect.GBConsumer"
-                        }
-                      ]
+                    "oneOf":[
+                      {
+                        "$ref" :	"#/components/schemas/AMLSearch"
+                      },
+                             
+                      {
+                         "$ref": "#/components/schemas/consumerSearch"
+                      }
+                     ]
+                  
       }
               
     }
