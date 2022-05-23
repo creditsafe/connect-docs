@@ -10083,7 +10083,7 @@
               },
               "page": {
                 "type": "integer",
-                "format": "int32S"
+                "format": "int32"
               },
               "pageSize": {
                 "type": "integer",
