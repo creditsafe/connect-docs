@@ -13611,14 +13611,14 @@
       },
       "Connect.Identity.ReasonCode": {
         "enum":[
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8"
           ],
         "x-enumDescriptions": {
           "0":  "AddressVerification",
