@@ -635,15 +635,6 @@
             }
           },
           {
-            "name": "address",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            },
-            "description": "Combination of all address fields to form a simpleValue address string."
-          },
-          {
             "name": "street",
             "in": "query",
             "description": "Address part identifier - Street of the Company",
@@ -9985,11 +9976,11 @@
       "Creditsafe.GlobalData.CompanyData": {
         "type": "object",
         "properties": {
-          "country": {
-            "$ref": "#/components/schemas/Creditsafe.GlobalData.CountryCode"
-          },
           "id": {
             "type": "string"
+          },
+          "country": {
+            "$ref": "#/components/schemas/Creditsafe.GlobalData.CountryCode"
           },
           "safeNo": {
             "type": "string"
