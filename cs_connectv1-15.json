@@ -5801,7 +5801,7 @@
             }
           },           
           "401": {
-            "description": "",
+            "description": "Invalid Token",
             "content": {
               "application/json": {
                 "schema": {
@@ -5811,7 +5811,7 @@
             }
       },
     "403": {
-        "description": "",
+        "description": "Access Forbidden",
         "content": {
           "application/json": {
             "schema": {
