@@ -5769,16 +5769,15 @@
           "GB Consumers and AML"
         ],
         "summary": "Submits a GB Consumer or AML Search",
-        "description": "Submits a GB Consumer or AML depnding on the Product provided. Validates criteria for each individual search before submitting, and may return a list of error strings instead." ,
+        "description": "Submits a GB Consumer or AML depnding on the Product provided. Validates criteria for each individual search before submitting, and may return a list of error strings instead.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
           }
         ],
         "requestBody": {
-            "$ref": "#/components/requestBodies/Identity" 
-                              },
-        
+          "$ref": "#/components/requestBodies/Identity"
+        },
         "responses": {
           "200": {
             "description": "Success",
@@ -6540,26 +6539,22 @@
     "requestBodies": {
       "Identity": {
         "description": "Select the `products` tab for the request body for each of the products `AML` and `Consumer`",
-          "content": {
-              "application/json": {
-                  "schema": {
-                    "oneOf":[
-                      {
-                        "$ref" :	"#/components/schemas/AMLSearch"
-                      },
-                             
-                      {
-                         "$ref": "#/components/schemas/consumerSearch"
-                      }
-                     ]
-                  
+        "content": {
+          "application/json": {
+            "schema": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/AMLSearch"
+                },
+                {
+                  "$ref": "#/components/schemas/consumerSearch"
+                }
+              ]
+            }
+          }
+        }
       }
-              
-    }
-  }               
- }
-},
-
+    },
     "schemas": {
       "Connect.Authentication.AuthRequest": {
         "type": "object",
@@ -13428,22 +13423,18 @@
           "title": {
             "type": "string",
             "nullable": true
-            
           },
           "forename": {
             "type": "string",
             "nullable": true
-            
           },
           "otherNames": {
             "type": "string",
             "nullable": true
-            
           },
           "surname": {
             "type": "string",
             "nullable": true
-            
           },
           "suffix": {
             "type": "string",
@@ -13457,12 +13448,10 @@
           "title": {
             "type": "string",
             "nullable": true
-            
           },
           "forename": {
             "type": "string",
             "nullable": true
-            
           },
           "otherNames": {
             "type": "string",
@@ -13471,7 +13460,6 @@
           "surname": {
             "type": "string",
             "nullable": true
-            
           },
           "suffix": {
             "type": "string",
@@ -13494,12 +13482,10 @@
           "buildingNo": {
             "type": "string",
             "nullable": true
-            
           },
           "buildingName": {
             "type": "string",
             "nullable": true
-            
           },
           "street": {
             "type": "string",
@@ -13508,7 +13494,6 @@
           "city": {
             "type": "string",
             "nullable": true
-            
           },
           "country": {
             "type": "string",
@@ -13517,7 +13502,6 @@
           "postCode": {
             "type": "string",
             "nullable": true
-            
           },
           "startDate": {
             "type": "string",
@@ -13600,7 +13584,6 @@
             "type": "string",
             "format": "date-time",
             "nullable": true
-            
           },
           "gender": {
             "$ref": "#/components/schemas/Connect.Identity.Gender"
@@ -13634,7 +13617,7 @@
         }
       },
       "Connect.Identity.ReasonCode": {
-        "enum":[
+        "enum": [
           1,
           2,
           3,
@@ -13643,17 +13626,17 @@
           6,
           7,
           8
-          ],
+        ],
         "x-enumDescriptions": {
-          "0":  "AddressVerification",
-          "1":  "BusinessSeacrch",
-          "2":  "CreditApplication",
-          "3":  "DebtCollection",
-          "4":  "DirectorsSearch",
-          "5":  "QuotationSearch",
-          "6":  "EmployeeCheck",
-          "7":  "TenantVet",
-          "8":  "GeneralInsurance"
+          "0": "AddressVerification",
+          "1": "BusinessSeacrch",
+          "2": "CreditApplication",
+          "3": "DebtCollection",
+          "4": "DirectorsSearch",
+          "5": "QuotationSearch",
+          "6": "EmployeeCheck",
+          "7": "TenantVet",
+          "8": "GeneralInsurance"
         },
         "type": "integer",
         "format": "int32"
@@ -13769,7 +13752,7 @@
             "nullable": true
           }
         }
-      },   
+      },
       "Connect.Identity.CommonResult": {
         "type": "object",
         "properties": {
@@ -16550,145 +16533,141 @@
         }
       },
       "Connect.GBConsumer": {
-        "type":	"object",       
-          "description":	"Select product type for object parameters and example body.\n\n Options for an `AML Search` or `Consumer Search`",
-               "oneOf":[
-                {
-                  "$ref" :	"#/components/schemas/AMLSearch"
-                },
-                       
-                {
-                   "$ref": "#/components/schemas/consumerSearch"
-                }
-               ]
-          },      
+        "type": "object",
+        "description": "Select product type for object parameters and example body.\n\n Options for an `AML Search` or `Consumer Search`",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/AMLSearch"
+          },
+          {
+            "$ref": "#/components/schemas/consumerSearch"
+          }
+        ]
+      },
       "AMLSearch": {
-        "description":	"Search parameters for AML product",
-        "properties":	{   
-          "UniqueId":	{
-            "type":	"string",
-            "nullable":	true
+        "description": "Search parameters for AML product",
+        "properties": {
+          "UniqueId": {
+            "type": "string",
+            "nullable": true
           },
           "common": {
-            "description": "Person search criteria",	
-            "allOf":	[
-            {
-              "$ref":	"#/components/schemas/Connect.Identity.CommonSearchCriteria"
-            }                      
-          ]  
-        }, 
+            "description": "Person search criteria",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Connect.Identity.CommonSearchCriteria"
+              }
+            ]
+          },
           "consumer": {
             "description": "Second person search option",
             "$ref": "#/components/schemas/Connect.Identity.ConsumerSearchCriteria"
-        },      
-          "iDAml":	{
-            "description":	"Reference to bank account detail search",
-            "allOf":	[
+          },
+          "iDAml": {
+            "description": "Reference to bank account detail search",
+            "allOf": [
               {
-              "$ref": "#/components/schemas/Connect.Identity.AmlSearchCriteria"
-            }
-            ]            
-        },
+                "$ref": "#/components/schemas/Connect.Identity.AmlSearchCriteria"
+              }
+            ]
+          },
           "products": {
-              "type": "string",
-              "description": "Enter `AML` for this product search",
-              "example": "AML"
+            "type": "string",
+            "description": "Enter `AML` for this product search",
+            "example": "AML"
           }
-        },        
+        },
         "example": {
           "common": {
             "person": {
-                "currentName": {
-                    "title": "MR",
-                    "forename": "John",
-                    "otherNames": "",
-                    "surname": "Murphy",
-                    "suffix": ""
-                },
-                "dateOfBirth": "1974-07-07",
-                "gender": "",
-                "addresses": {
-                    "current": {
-                        "buildingNo": "",
-                        "buildingName": "Stadium Plaza",
-                        "street": "Wood Street",
-                        "city": "Cardiff",
-                        "postCode": "CF10 1LA"
-                    }
+              "currentName": {
+                "title": "MR",
+                "forename": "John",
+                "otherNames": "",
+                "surname": "Murphy",
+                "suffix": ""
+              },
+              "dateOfBirth": "1974-07-07",
+              "gender": "",
+              "addresses": {
+                "current": {
+                  "buildingNo": "",
+                  "buildingName": "Stadium Plaza",
+                  "street": "Wood Street",
+                  "city": "Cardiff",
+                  "postCode": "CF10 1LA"
                 }
+              }
             },
             "reference": ""
-        },
+          },
           "idAml": {
             "landlineNumber": "",
             "exDirectory": false,
             "sortCode": "",
             "bankAccountNumber": ""
-      },
-      "products": [
-          "Aml"
-      ]
+          },
+          "products": [
+            "Aml"
+          ]
         }
       },
-      
-      "consumerSearch":	{
-        "description":	"Search parameters for a consumer product",
-          "properties":	{
-            "UniqueId":	{
-              "type":	"string",
-              "nullable":	true
-            },
-            "common": {
-              "description": "Person search criteria",	
-              "allOf":	[
+      "consumerSearch": {
+        "description": "Search parameters for a consumer product",
+        "properties": {
+          "UniqueId": {
+            "type": "string",
+            "nullable": true
+          },
+          "common": {
+            "description": "Person search criteria",
+            "allOf": [
               {
-                "$ref":	"#/components/schemas/Connect.Identity.CommonSearchCriteria"
-              }                      
-            ]  
-          },
-           "consumer": {
-              "description": "Second person search option",
-              "$ref": "#/components/schemas/Connect.Identity.ConsumerSearchCriteria"
-          },
-            "products": {
-              "type": "string",
-              "description": "Enter `Consumer` for this product search",
-              "example": "consumer"
-              
-            }
-          },
-          "example": {
-            "common": {
-              "Person": {
-                "currentName": {
-                    "title": "MRS",
-                        "Forename": "Sarah",
-                    "Surname": "Hawkins"
-                },
-                    "dateofBirth": "1974-07-07",
-                "addresses": {
-                    "Current": {
-                        "buildingNo": "6",
-                            "buildingName": "HAZELTREE COURT",
-                            "street": "",
-                            "city": "TROWBRIDGE",
-                        "postCode": "BA99 7SZ"
-                    }
-                }
-                },
-                "Reference": "Some reference",
-                "IsInternal": false
-            },
-            "consumer": {
-                "Demo": true,
-                "Reason": "QuotationSearch"
-            },
-            "products": [
-                "Consumer"
+                "$ref": "#/components/schemas/Connect.Identity.CommonSearchCriteria"
+              }
             ]
+          },
+          "consumer": {
+            "description": "Second person search option",
+            "$ref": "#/components/schemas/Connect.Identity.ConsumerSearchCriteria"
+          },
+          "products": {
+            "type": "string",
+            "description": "Enter `Consumer` for this product search",
+            "example": "consumer"
           }
         },
-
+        "example": {
+          "common": {
+            "Person": {
+              "currentName": {
+                "title": "MRS",
+                "Forename": "Sarah",
+                "Surname": "Hawkins"
+              },
+              "dateofBirth": "1974-07-07",
+              "addresses": {
+                "Current": {
+                  "buildingNo": "6",
+                  "buildingName": "HAZELTREE COURT",
+                  "street": "",
+                  "city": "TROWBRIDGE",
+                  "postCode": "BA99 7SZ"
+                }
+              }
+            },
+            "Reference": "Some reference",
+            "IsInternal": false
+          },
+          "consumer": {
+            "Demo": true,
+            "Reason": "QuotationSearch"
+          },
+          "products": [
+            "Consumer"
+          ]
+        }
+      },
       "Connect.ConfidenceMatch.MatchResults": {
         "properties": {
           "totalMatches": {
@@ -16816,7 +16795,10 @@
             "type": "integer"
           },
           "matchedCompanies": {
-            "type": "array"
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
