@@ -6614,22 +6614,22 @@
           "Data Cleaning"
         ],
         "operationId": "Data Cleaning Create Job",
-        "produces": [
-          "application/json"
-        ],
-        "consumes": [
-          "application/json"
-        ],
+        "summary": "ConnectDataCleaningCreateJobRequest",
         "parameters": [
           {
-            "in": "body",
-            "name": "ConnectDataCleaningCreateJobRequest",
-            "required": true,
-            "schema": {
-              "$ref": "#/components/schemas/ConnectDataCleaningCreateJobRequest"
-            }
+            "$ref": "#/components/parameters/authToken"
           }
         ],
+        "requestBody": {
+          "content": {
+            "application:json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConnectDataCleaningCreateJobRequest"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "200 response",
