@@ -20337,6 +20337,75 @@
         }
       }
     },
+    "MODEL5bdbb3" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string"
+        }
+      }
+    },
+    "MODEL28cf8d" : {
+      "type" : "object",
+      "required" : [ "hasHeader", "jobFile" ],
+      "properties" : {
+        "jobFile" : {
+          "type" : "string",
+          "format" : "binary"
+        },
+        "hasHeader" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "MODEL4f561c" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string"
+        }
+      }
+    },
+    "MODELf6df8e" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string"
+        }
+      }
+    },
+    "MODEL8790cc" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string"
+        }
+      }
+    },
+    "MODELcebf3b" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string"
+        }
+      }
+    },
+    "MODELcf4983" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string"
+        }
+      }
+    },
+    "MODEL5b4b1c" : {
+      "type" : "object",
+      "properties" : {
+        "message" : {
+          "type" : "string"
+        }
+      }
+    },
     "ConnectDataCleaningResponse" : {
       "type" : "object"
     },
