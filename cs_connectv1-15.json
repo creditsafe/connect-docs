@@ -7564,543 +7564,688 @@
         }
       }
     },
-    "/dataCleaning/jobs" : {
-      "get" : {
-        "operationId" : "Data Cleaning Get Jobs",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "countries",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "status",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "jobName",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "sortBy",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "fromDate",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "customerId",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "toDate",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "userId",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "pageSize",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "companyName",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "sortDir",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "page",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "archived",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "200 response",
-            "schema" : {
-              "$ref" : "#/definitions/ArrayOfConnectDataCleaningJob"
+    "/dataCleaning/jobs": {
+      "get": {
+        "tags": [
+          "Data Cleaning"
+        ],
+        "operationId": "Data Cleaning Get Jobs",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "countries",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
             }
           },
-          "400" : {
-            "description" : "400 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesBadRequest"
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
             }
           },
-          "401" : {
-            "description" : "401 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesInvalidToken"
+          {
+            "name": "jobName",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
             }
           },
-          "403" : {
-            "description" : "403 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesAccessForbidden"
+          {
+            "name": "sortBy",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fromDate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "customerId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "toDate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "companyName",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sortDir",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "archived",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArrayOfConnectDataCleaningJob"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400 Bad Request Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401 Invalid Token response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403 Access Forbidden response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
             }
           }
         }
       },
-      "post" : {
-        "operationId" : "Data Cleaning Create Job",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "in" : "body",
-          "name" : "ConnectDataCleaningCreateJobRequest",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/ConnectDataCleaningCreateJobRequest"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "200 response",
-            "schema" : {
-              "$ref" : "#/definitions/ArrayOfConnectDataCleaningJob"
-            }
-          },
-          "400" : {
-            "description" : "400 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesBadRequest"
-            }
-          },
-          "401" : {
-            "description" : "401 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesInvalidToken"
-            }
-          },
-          "403" : {
-            "description" : "403 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesAccessForbidden"
+      "post": {
+        "tags": [
+          "Data Cleaning"
+        ],
+        "operationId": "Data Cleaning Create Job",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ConnectDataCleaningCreateJobRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ConnectDataCleaningCreateJobRequest"
             }
           }
-        }
-      }
-    },
-    "/dataCleaning/jobs/{id}" : {
-      "get" : {
-        "operationId" : "Data Cleaning Get Job",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "200 response",
-            "schema" : {
-              "$ref" : "#/definitions/ArrayOfConnectDataCleaningJob"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/components/schemas/ArrayOfConnectDataCleaningJob"
             }
           },
-          "400" : {
-            "description" : "400 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesBadRequest"
+          "400": {
+            "description": "400 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
             }
           },
-          "401" : {
-            "description" : "401 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesInvalidToken"
+          "401": {
+            "description": "401 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
             }
           },
-          "403" : {
-            "description" : "403 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesAccessForbidden"
-            }
-          },
-          "404" : {
-            "description" : "404 response",
-            "schema" : {
-              "$ref" : "#/definitions/MODEL5b4b1c"
+          "403": {
+            "description": "403 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
             }
           }
         }
       }
     },
-    "/dataCleaning/jobs/{id}/archive" : {
-      "post" : {
-        "operationId" : "Data Cleaning Job Archive",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "in" : "body",
-          "name" : "ConnectDataCleaningArchiveJobRequest",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/ConnectDataCleaningArchiveJobRequest"
+    "/dataCleaning/jobs/{id}": {
+      "get": {
+        "tags": [
+          "Data Cleaning"
+        ],
+        "operationId": "Data Cleaning Get Job",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "200 response",
-            "schema" : {
-              "$ref" : "#/definitions/ArrayOfConnectDataCleaningResponse"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/components/schemas/ArrayOfConnectDataCleaningJob"
             }
           },
-          "400" : {
-            "description" : "400 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesBadRequest"
+          "400": {
+            "description": "400 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
             }
           },
-          "401" : {
-            "description" : "401 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesInvalidToken"
+          "401": {
+            "description": "401 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
             }
           },
-          "403" : {
-            "description" : "403 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesAccessForbidden"
+          "403": {
+            "description": "403 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
             }
           },
-          "404" : {
-            "description" : "404 response",
-            "schema" : {
-              "$ref" : "#/definitions/MODELcebf3b"
-            }
-          }
-        }
-      }
-    },
-    "/dataCleaning/jobs/{id}/enrich" : {
-      "post" : {
-        "operationId" : "Data Cleaning Job Enrich",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "in" : "body",
-          "name" : "ConnectDataCleaningEnrichRequest",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/ConnectDataCleaningEnrichRequest"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "200 response",
-            "schema" : {
-              "$ref" : "#/definitions/ArrayOfConnectDataCleaningResponse"
-            }
-          },
-          "400" : {
-            "description" : "400 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesBadRequest"
-            }
-          },
-          "401" : {
-            "description" : "401 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesInvalidToken"
-            }
-          },
-          "403" : {
-            "description" : "403 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesAccessForbidden"
-            }
-          },
-          "404" : {
-            "description" : "404 response",
-            "schema" : {
-              "$ref" : "#/definitions/MODEL5bdbb3"
+          "404": {
+            "description": "404 response",
+            "schema": {
+              "$ref": "#/components/schemas/MODEL5b4b1c"
             }
           }
         }
       }
     },
-    "/dataCleaning/jobs/{id}/enrichedFile" : {
-      "get" : {
-        "operationId" : "Data Cleaning Get Job Enriched File",
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "fileType",
-          "in" : "query",
-          "required" : false,
-          "type" : "string"
-        }, {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "type" : "string"
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "200 response",
-            "schema" : {
-              "$ref" : "#/definitions/ArrayOfConnectDataCleaningResponse"
+    "/dataCleaning/jobs/{id}/archive": {
+      "post": {
+        "tags": [
+          "Data Cleaning"
+        ],
+        "operationId": "Data Cleaning Job Archive",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "ConnectDataCleaningArchiveJobRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ConnectDataCleaningArchiveJobRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/components/schemas/ArrayOfConnectDataCleaningResponse"
             }
           },
-          "400" : {
-            "description" : "400 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesBadRequest"
+          "400": {
+            "description": "400 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
             }
           },
-          "401" : {
-            "description" : "401 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesInvalidToken"
+          "401": {
+            "description": "401 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
             }
           },
-          "403" : {
-            "description" : "403 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesAccessForbidden"
+          "403": {
+            "description": "403 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
             }
           },
-          "404" : {
-            "description" : "404 response",
-            "schema" : {
-              "$ref" : "#/definitions/MODELf6df8e"
+          "404": {
+            "description": "404 response",
+            "schema": {
+              "$ref": "#/components/schemas/MODELcebf3b"
             }
           }
         }
       }
     },
-    "/dataCleaning/jobs/{id}/enrichments" : {
-      "put" : {
-        "operationId" : "Data Cleaning Job Update Enrichments",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "in" : "body",
-          "name" : "ConnectDataCleaningUpdateEnrichmentsRequest",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/ConnectDataCleaningUpdateEnrichmentsRequest"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "200 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectDataCleaningResponse"
-            }
+    "/dataCleaning/jobs/{id}/enrich": {
+      "post": {
+        "tags": [
+          "Data Cleaning"
+        ],
+        "operationId": "Data Cleaning Job Enrich",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
           },
-          "400" : {
-            "description" : "400 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesBadRequest"
-            }
-          },
-          "401" : {
-            "description" : "401 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesInvalidToken"
-            }
-          },
-          "403" : {
-            "description" : "403 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesAccessForbidden"
-            }
-          },
-          "404" : {
-            "description" : "404 response",
-            "schema" : {
-              "$ref" : "#/definitions/MODELcf4983"
+          {
+            "in": "body",
+            "name": "ConnectDataCleaningEnrichRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ConnectDataCleaningEnrichRequest"
             }
           }
-        }
-      }
-    },
-    "/dataCleaning/jobs/{id}/mappings" : {
-      "put" : {
-        "operationId" : "Data Cleaning Job Update Mappings",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "in" : "body",
-          "name" : "ConnectDataCleaningUpdateMappingsRequest",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/ConnectDataCleaningUpdateMappingsRequest"
-          }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "200 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectDataCleaningResponse"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/components/schemas/ArrayOfConnectDataCleaningResponse"
             }
           },
-          "400" : {
-            "description" : "400 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesBadRequest"
+          "400": {
+            "description": "400 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
             }
           },
-          "401" : {
-            "description" : "401 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesInvalidToken"
+          "401": {
+            "description": "401 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
             }
           },
-          "403" : {
-            "description" : "403 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesAccessForbidden"
+          "403": {
+            "description": "403 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
             }
           },
-          "404" : {
-            "description" : "404 response",
-            "schema" : {
-              "$ref" : "#/definitions/MODEL4f561c"
+          "404": {
+            "description": "404 response",
+            "schema": {
+              "$ref": "#/components/schemas/MODEL5bdbb3"
             }
           }
         }
       }
     },
-    "/dataCleaning/jobs/{id}/submit" : {
-      "post" : {
-        "operationId" : "Data Cleaning Job Submit",
-        "consumes" : [ "application/json" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "in" : "body",
-          "name" : "ConnectDataCleaningSubmitJobRequest",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/ConnectDataCleaningSubmitJobRequest"
+    "/dataCleaning/jobs/{id}/enrichedFile": {
+      "get": {
+        "tags": [
+          "Data Cleaning"
+        ],
+        "operationId": "Data Cleaning Get Job Enriched File",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "fileType",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "200 response",
-            "schema" : {
-              "$ref" : "#/definitions/ArrayOfConnectDataCleaningResponse"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/components/schemas/ArrayOfConnectDataCleaningResponse"
             }
           },
-          "400" : {
-            "description" : "400 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesBadRequest"
+          "400": {
+            "description": "400 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
             }
           },
-          "401" : {
-            "description" : "401 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesInvalidToken"
+          "401": {
+            "description": "401 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
             }
           },
-          "403" : {
-            "description" : "403 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesAccessForbidden"
+          "403": {
+            "description": "403 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
             }
           },
-          "404" : {
-            "description" : "404 response",
-            "schema" : {
-              "$ref" : "#/definitions/MODEL7c8060"
+          "404": {
+            "description": "404 response",
+            "schema": {
+              "$ref": "#/components/schemas/MODELf6df8e"
             }
           }
         }
       }
     },
-    "/dataCleaning/jobs/{id}/upload" : {
-      "post" : {
-        "operationId" : "Data Cleaning Job File Upload",
-        "consumes" : [ "multipart/form-data" ],
-        "produces" : [ "application/json" ],
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "type" : "string"
-        }, {
-          "in" : "body",
-          "name" : "MODEL28cf8d",
-          "required" : true,
-          "schema" : {
-            "$ref" : "#/definitions/MODEL28cf8d"
+    "/dataCleaning/jobs/{id}/enrichments": {
+      "put": {
+        "tags": [
+          "Data Cleaning"
+        ],
+        "operationId": "Data Cleaning Job Update Enrichments",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "ConnectDataCleaningUpdateEnrichmentsRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ConnectDataCleaningUpdateEnrichmentsRequest"
+            }
           }
-        } ],
-        "responses" : {
-          "200" : {
-            "description" : "200 response",
-            "schema" : {
-              "$ref" : "#/definitions/ArrayOfConnectDataCleaningResponse"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectDataCleaningResponse"
             }
           },
-          "400" : {
-            "description" : "400 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesBadRequest"
+          "400": {
+            "description": "400 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
             }
           },
-          "401" : {
-            "description" : "401 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesInvalidToken"
+          "401": {
+            "description": "401 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
             }
           },
-          "403" : {
-            "description" : "403 response",
-            "schema" : {
-              "$ref" : "#/definitions/ConnectErrorResponsesAccessForbidden"
+          "403": {
+            "description": "403 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
             }
           },
-          "404" : {
-            "description" : "404 response",
-            "schema" : {
-              "$ref" : "#/definitions/MODEL8790cc"
+          "404": {
+            "description": "404 response",
+            "schema": {
+              "$ref": "#/components/schemas/MODELcf4983"
+            }
+          }
+        }
+      }
+    },
+    "/dataCleaning/jobs/{id}/mappings": {
+      "put": {
+        "tags": [
+          "Data Cleaning"
+        ],
+        "operationId": "Data Cleaning Job Update Mappings",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "ConnectDataCleaningUpdateMappingsRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ConnectDataCleaningUpdateMappingsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectDataCleaningResponse"
+            }
+          },
+          "400": {
+            "description": "400 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+            }
+          },
+          "401": {
+            "description": "401 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+            }
+          },
+          "403": {
+            "description": "403 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+            }
+          },
+          "404": {
+            "description": "404 response",
+            "schema": {
+              "$ref": "#/components/schemas/MODEL4f561c"
+            }
+          }
+        }
+      }
+    },
+    "/dataCleaning/jobs/{id}/submit": {
+      "post": {
+        "tags": [
+          "Data Cleaning"
+        ],
+        "operationId": "Data Cleaning Job Submit",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "ConnectDataCleaningSubmitJobRequest",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ConnectDataCleaningSubmitJobRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/components/schemas/ArrayOfConnectDataCleaningResponse"
+            }
+          },
+          "400": {
+            "description": "400 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+            }
+          },
+          "401": {
+            "description": "401 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+            }
+          },
+          "403": {
+            "description": "403 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+            }
+          },
+          "404": {
+            "description": "404 response",
+            "schema": {
+              "$ref": "#/components/schemas/MODEL7c8060"
+            }
+          }
+        }
+      }
+    },
+    "/dataCleaning/jobs/{id}/upload": {
+      "post": {
+        "tags": [
+          "Data Cleaning"
+        ],
+        "operationId": "Data Cleaning Job File Upload",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "MODEL28cf8d",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/MODEL28cf8d"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "schema": {
+              "$ref": "#/components/schemas/ArrayOfConnectDataCleaningResponse"
+            }
+          },
+          "400": {
+            "description": "400 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+            }
+          },
+          "401": {
+            "description": "401 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+            }
+          },
+          "403": {
+            "description": "403 response",
+            "schema": {
+              "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+            }
+          },
+          "404": {
+            "description": "404 response",
+            "schema": {
+              "$ref": "#/components/schemas/MODEL8790cc"
             }
           }
         }
@@ -18995,1234 +19140,164 @@
           }
         }
       },
-      "BatchUpload": {
-        "required": [
-          "createdAt",
-          "customerId",
-          "errorFilename",
-          "fileName",
-          "id",
-          "rowCount",
-          "status",
-          "storageFileName",
-          "userId"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "guid"
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "customerId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "type": {
-            "$ref": "#/components/schemas/InvestigationType"
-          },
-          "fileName": {
-            "type": "string"
-          },
-          "storageFileName": {
-            "type": "string"
-          },
-          "errorFilename": {
-            "type": "string"
-          },
-          "rowCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "status": {
-            "$ref": "#/components/schemas/BatchUploadStatus"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "modifiedAt": {
-            "type": "string",
-            "format": "date-time"
-          }
+      "ArrayOfConnectDataCleaningJob" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/ConnectDataCleaningJob"
         }
       },
-      "InvestigationType": {
-        "type": "string",
-        "description": "",
-        "enum": [
-          "business",
-          "individual"
-        ],
-        "x-enumNames": [
-          "Business",
-          "Individual"
-        ]
+      "ConnectDataCleaningJob": {
+        "type": "object"
       },
-      "BatchUploadStatus": {
-        "type": "string",
-        "description": "",
-        "enum": [
-          "inProgress",
-          "completed",
-          "partiallyCompleted",
-          "failed"
-        ],
-        "x-enumNames": [
-          "InProgress",
-          "Completed",
-          "PartiallyCompleted",
-          "Failed"
-        ]
-      },
-      "FileDownloadResponse": {
-        "required": [
-          "filePath"
-        ],
+      "ConnectDataCleaningCreateJobRequest": {
         "type": "object",
+        "required": [
+          "name"
+        ],
         "properties": {
-          "filePath": {
+          "name": {
             "type": "string"
           }
         }
       },
-      "BatchUploadFileType": {
-        "type": "string",
-        "description": "",
-        "enum": [
-          "business",
-          "individual",
-          "template",
-          "templateUserGuide"
-        ],
-        "x-enumNames": [
-          "Business",
-          "Individual",
-          "Template",
-          "TemplateUserGuide"
-        ]
+      "ConnectDataCleaningArchiveJobRequest": {
+        "type": "object"
       },
-      "CountryOption": {
-        "required": [
-          "code",
-          "label"
-        ],
-        "type": "object",
-        "properties": {
-          "label": {
-            "type": "string"
-          },
-          "code": {
-            "type": "string"
-          }
+      "ConnectDataCleaningEnrichRequest": {
+        "type": "object"
+      },
+      "ConnectDataCleaningUpdateMappingsRequest": {
+        "type": "object"
+      },
+      "ConnectDataCleaningSubmitJobRequest": {
+        "type": "object"
+      },
+      "ArrayOfConnectDataCleaningResponse": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ConnectDataCleaningResponse"
         }
       },
-      "ProblemDetails": {
+      "ConnectMonitoringCreatePortfolioRequest": {
         "type": "object",
+        "required": [
+          "name"
+        ],
         "properties": {
-          "type": {
+          "name": {
             "type": "string"
           },
-          "title": {
-            "type": "string"
+          "isDefault": {
+            "type": "boolean"
           },
-          "status": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "detail": {
-            "type": "string"
-          },
-          "instance": {
-            "type": "string"
-          },
-          "extensions": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "object"
+          "emails": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "emailAddress": {
+                  "type": "string"
+                }
+              }
             }
-          }
-        },
-        "additionalProperties": {
-          "type": "object"
-        }
-      },
-      "CreateScheduleDto": {
-        "required": [
-          "frequency",
-          "isEmailRequired"
-        ],
-        "type": "object",
-        "properties": {
-          "investigationId": {
-            "type": "string",
-            "format": "guid"
+          },
+          "emailSubject": {
+            "type": "string"
+          },
+          "emailLanguage": {
+            "type": "string"
           },
           "frequency": {
             "type": "string"
           },
-          "screeningThreshold": {
-            "type": "integer",
-            "format": "int32"
+          "webhookUrl": {
+            "type": "string"
           },
-          "isEmailRequired": {
+          "webhookEnabled": {
             "type": "boolean"
           }
         }
       },
-      "Schedule": {
-        "required": [
-          "createdAt",
-          "customerId",
-          "frequency",
-          "id",
-          "investigation",
-          "investigationId",
-          "isEmailRequired",
-          "screeningThreshold",
-          "userId"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "guid"
-          },
-          "customerId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "investigationId": {
-            "type": "string",
-            "format": "guid"
-          },
-          "investigation": {
-            "$ref": "#/components/schemas/Investigation"
-          },
-          "frequency": {
-            "$ref": "#/components/schemas/AlertsFrequency"
-          },
-          "screeningThreshold": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "lastRun": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "isEmailRequired": {
-            "type": "boolean"
-          }
-        }
-      },
-      "AlertsFrequency": {
-        "type": "string",
-        "description": "",
-        "enum": [
-          "daily"
-        ],
-        "x-enumNames": [
-          "Daily"
-        ]
-      },
-      "Investigation": {
-        "required": [
-          "alertCreatedAt",
-          "assignedRisk",
-          "createdAt",
-          "customerId",
-          "id",
-          "investigationName",
-          "query",
-          "status",
-          "userId"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "guid"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "customerId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "query": {
-            "$ref": "#/components/schemas/InvestigationQuery"
-          },
-          "scheduleId": {
-            "type": "string",
-            "format": "guid"
-          },
-          "scheduledOn": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "profileId": {
-            "type": "string",
-            "format": "guid"
-          },
-          "profileName": {
-            "type": "string"
-          },
-          "alertCreatedAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "alertsCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "noteCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "assignedRisk": {
-            "$ref": "#/components/schemas/InvestigationRisk"
-          },
-          "investigationName": {
-            "type": "string"
-          },
-          "currentAlert": {
-            "$ref": "#/components/schemas/InvestigationAlert"
-          },
-          "assignedToUserId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "status": {
-            "$ref": "#/components/schemas/InvestigationStatus"
-          }
-        }
-      },
-      "InvestigationRiskResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "guid"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "customerId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "query": {
-            "$ref": "#/components/schemas/Connect.Protect.InvestigationQuery"
-          },
-          "scheduleId": {
-            "type": "string",
-            "format": "guid"
-          },
-          "scheduledOn": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "profileId": {
-            "type": "string",
-            "format": "guid"
-          },
-          "profileName": {
-            "type": "string"
-          },
-          "alertCreatedAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "alertsCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "noteCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "assignedRisk": {
-            "type": "string",
-            "enum": [
-              "noRisk",
-              "low",
-              "medium",
-              "high"
-            ]
-          },
-          "investigationName": {
-            "type": "string"
-          },
-          "currentAlert": {
-            "$ref": "#/components/schemas/Connect.Protect.ListAllInvestigationsCurrentAlert"
-          },
-          "status": {
-            "type": "string"
-          }
-        }
-      },
-      "InvestigationRisk": {
-        "type": "string",
-        "enum": [
-          "noRisk",
-          "high",
-          "medium",
-          "low"
-        ],
-        "x-enumNames": [
-          "NoRisk",
-          "High",
-          "Medium",
-          "Low"
-        ]
-      },
-      "InvestigationStatus": {
-        "type": "string",
-        "description": "",
-        "enum": [
-          "none",
-          "approved",
-          "declined",
-          "pending",
-          "cancelled",
-          "referred",
-          "closed"
-        ],
-        "x-enumNames": [
-          "None",
-          "Approved",
-          "Declined",
-          "Pending",
-          "Cancelled",
-          "Referred",
-          "Closed"
-        ]
-      },
-      "InvestigationOrderBys": {
-        "type": "string",
-        "description": "",
-        "enum": [
-          "alertCount",
-          "name",
-          "city",
-          "profile",
-          "searchedAt",
-          "street",
-          "province",
-          "country",
-          "dateOfBirth",
-          "createdAt"
-        ],
-        "x-enumNames": [
-          "AlertCount",
-          "Name",
-          "City",
-          "Profile",
-          "SearchedAt",
-          "Street",
-          "Province",
-          "Country",
-          "DateOfBirth",
-          "CreatedAt"
-        ]
-      },
-      "OrderDirection": {
-        "type": "string",
-        "description": "",
-        "enum": [
-          "asc",
-          "desc"
-        ],
-        "x-enumNames": [
-          "Asc",
-          "Desc"
-        ]
-      },
-      "GetInvestigationFileBodyDto": {
-        "type": "object",
-        "properties": {
-          "recordIds": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        }
-      },
-      "CreateInvestigationRecordBody": {
-        "type": "object",
-        "properties": {
-          "recordIds": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InvestigationRecordDto"
-            }
-          }
-        }
-      },
-      "InvestigationRecordDto": {
-        "required": [
-          "recordId",
-          "type"
-        ],
-        "type": "object",
-        "properties": {
-          "recordId": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "type": {
-            "$ref": "#/components/schemas/MatchType"
-          }
-        }
-      },
-      "UpdateInvestigationRecordsDto": {
-        "type": "object",
-        "properties": {
-          "records": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InvestigationRecordDto"
-            }
-          }
-        }
-      },
-      "DeleteRecordsDto": {
-        "required": [
-          "recordIds"
-        ],
-        "type": "object",
-        "properties": {
-          "recordIds": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        }
-      },
-      "InvestigationNote": {
-        "required": [
-          "createdAt",
-          "id",
-          "investigationId",
-          "subject",
-          "userId"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "guid"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "subject": {
-            "type": "string"
-          },
-          "text": {
-            "type": "string"
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "investigationId": {
-            "type": "string",
-            "format": "guid"
-          }
-        }
-      },
-      "CreateInvestigationNoteDto": {
-        "required": [
-          "subject"
-        ],
-        "type": "object",
-        "properties": {
-          "subject": {
-            "type": "string"
-          },
-          "text": {
-            "type": "string"
-          }
-        }
-      },
-      "AssignRiskToInvestigationDto": {
-        "required": [
-          "assignedRisk"
-        ],
-        "type": "object",
-        "properties": {
-          "assignedRisk": {
-            "$ref": "#/components/schemas/InvestigationRisk"
-          }
-        }
-      },
-      "UpdateInvestigationRequestDto": {
-        "required": [
-          "investigationStatus"
-        ],
-        "type": "object",
-        "properties": {
-          "investigationStatus": {
-            "$ref": "#/components/schemas/InvestigationStatus"
-          },
-          "assignedToUserId": {
-            "type": "integer",
-            "format": "int32"
-          }
-        }
-      },
-      "InvestigationQuery": {
-        "required": [
-          "screeningThreshold",
-          "searchName",
-          "type"
-        ],
-        "type": "object",
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/InvestigationType"
-          },
-          "name": {
-            "type": "string"
-          },
-          "houseNo": {
-            "type": "string"
-          },
-          "street": {
-            "type": "string"
-          },
-          "province": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "postCode": {
-            "type": "string"
-          },
-          "countryCode": {
-            "type": "string"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "middleName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "generation": {
-            "type": "string"
-          },
-          "dateOfBirth": {
-            "type": "string"
-          },
-          "nationalId": {
-            "type": "string"
-          },
-          "citizenship": {
-            "type": "string"
-          },
-          "phoneNo": {
-            "type": "string"
-          },
-          "gender": {
-            "$ref": "#/components/schemas/GenderType"
-          },
-          "searchName": {
-            "type": "string"
-          },
-          "screeningThreshold": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "source": {
-            "$ref": "#/components/schemas/SourceType"
-          }
-        }
-      },
-      "GenderType": {
-        "type": "string",
-        "description": "",
-        "enum": [
-          "male",
-          "female"
-        ],
-        "x-enumNames": [
-          "Male",
-          "Female"
-        ]
-      },
-      "SourceType": {
-        "type": "string",
-        "description": "",
-        "enum": [
-          "app",
-          "upp",
-          "api"
-        ],
-        "x-enumNames": [
-          "App",
-          "Upp",
-          "Api"
-        ]
-      },
-      "InvestigationAlert": {
-        "required": [
-          "alertCount",
-          "alertType",
-          "createdAt",
-          "id",
-          "screeningThreshold",
-          "status",
-          "totalRecordCount",
-          "unprocessedRecordCount"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "guid"
-          },
-          "status": {
-            "$ref": "#/components/schemas/InvestigationAlertStatus"
-          },
-          "alertCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalRecordCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "unprocessedRecordCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "resultId": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "screeningThreshold": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "alertType": {
-            "$ref": "#/components/schemas/AlertType"
-          }
-        }
-      },
-      "InvestigationAlertStatus": {
-        "type": "string",
-        "description": "",
-        "enum": [
-          "open",
-          "closedUnprocessed",
-          "closedProcessed",
-          "refetch"
-        ],
-        "x-enumNames": [
-          "Open",
-          "ClosedUnprocessed",
-          "ClosedProcessed",
-          "Refetch"
-        ]
-      },
-      "AlertType": {
-        "type": "string",
-        "description": "",
-        "enum": [
-          "initialSearch",
-          "alert"
-        ],
-        "x-enumNames": [
-          "InitialSearch",
-          "Alert"
-        ]
-      },
-      "Record": {
-        "required": [
-          "addresses",
-          "comments",
-          "dateListed",
-          "entityId",
-          "hasAdverseMedia",
-          "id",
-          "matchScore",
-          "name",
-          "otherNames",
-          "resultId",
-          "sourceDate",
-          "sources"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "matchType": {
-            "$ref": "#/components/schemas/MatchType"
-          },
-          "resultId": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "entityId": {
-            "type": "string"
-          },
-          "matchScore": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "sourceDate": {
-            "type": "string"
-          },
-          "dateListed": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "fullName": {
-            "type": "string"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "middleName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "reasonListed": {
-            "type": "string"
-          },
-          "entityType": {
-            "type": "string"
-          },
-          "dateOfBirth": {
-            "type": "string"
-          },
-          "generation": {
-            "type": "string"
-          },
-          "gender": {
-            "type": "string"
-          },
-          "occupation": {
-            "type": "string"
-          },
-          "placeOfBirth": {
-            "type": "string"
-          },
-          "hasAdverseMedia": {
-            "type": "boolean"
-          },
-          "otherNames": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "addresses": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Address"
-            }
-          },
-          "comments": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "sources": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "MatchType": {
-        "type": "string",
-        "description": "",
-        "enum": [
-          "trueMatch",
-          "falsePositive"
-        ],
-        "x-enumNames": [
-          "TrueMatch",
-          "FalsePositive"
-        ]
-      },
-      "Address": {
-        "type": "object",
-        "properties": {
-          "street": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "province": {
-            "type": "string"
-          },
-          "postalCode": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string"
-          }
-        }
-      },
-      "CreateInvestigationQueryDto": {
-        "required": [
-          "screeningThreshold",
-          "type",
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "enum": [
-              "business",
-              "individual"
-            ]
-          },
-          "name": {
-            "type": "string"
-          },
-          "countryCode": {
-            "type": "string"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "middleName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "dateOfBirth": {
-            "type": "string"
-          },
-          "gender": {
-            "$ref": "#/components/schemas/GenderType"
-          },
-          "searchName": {
-            "type": "string"
-          },
-          "screeningThreshold": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "source": {
-            "$ref": "#/components/schemas/SourceType"
-          }
-        }
-      },
-      "IdvResponseDto": {
-        "required": [
-          "address",
-          "country",
-          "dateOfBirth",
-          "fullName",
-          "id",
-          "idvSearchId",
-          "matchRate",
-          "sources"
-        ],
-        "type": "object",
-        "properties": {
-          "matchRate": {
-            "$ref": "#/components/schemas/MatchRate"
-          },
-          "fullName": {
-            "type": "string"
-          },
-          "dateOfBirth": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "address": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string"
-          },
-          "sources": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/IdvSourcesDto"
-            }
-          },
-          "id": {
-            "type": "string",
-            "format": "guid"
-          },
-          "idvSearchId": {
-            "type": "string",
-            "format": "guid"
-          }
-        }
-      },
-      "MatchRate": {
-        "type": "string",
-        "description": "",
-        "enum": [
-          "fullMatch",
-          "partialMatch",
-          "noMatch"
-        ],
-        "x-enumNames": [
-          "FullMatch",
-          "PartialMatch",
-          "NoMatch"
-        ]
-      },
-      "IdvSourcesDto": {
-        "required": [
-          "category",
-          "matchType"
-        ],
-        "type": "object",
-        "properties": {
-          "category": {
-            "type": "string"
-          },
-          "matchType": {
-            "type": "string"
-          }
-        }
-      },
-      "IdvRequestDto": {
-        "required": [
-          "address",
-          "country",
-          "dateOfBirth",
-          "id",
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "dateOfBirth": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "address": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "state": {
-            "type": "string"
-          },
-          "country": {
-            "type": "string"
-          },
-          "postalCode": {
-            "type": "string"
-          },
-          "acceptCulture": {
-            "type": "string"
-          },
-          "id": {
-            "type": "string",
-            "format": "guid"
-          }
-        }
-      },
-      "InvestigationResponse": {
-        "required": [
-          "createdAt",
-          "createdBy",
-          "id",
-          "investigationName",
-          "notFoundRecordIds",
-          "results",
-          "searchCriteria"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "guid"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "createdBy": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "searchCriteria": {
-            "$ref": "#/components/schemas/InvestigationQuery"
-          },
-          "scheduleId": {
-            "type": "string",
-            "format": "guid"
-          },
-          "profileId": {
-            "type": "string",
-            "format": "guid"
-          },
-          "profileName": {
-            "type": "string"
-          },
-          "alertsCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "currentAlert": {
-            "$ref": "#/components/schemas/InvestigationAlert"
-          },
-          "results": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Record"
-            }
-          },
-          "notFoundRecordIds": {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int64"
-            }
-          },
-          "investigationName": {
-            "type": "string"
-          }
-        }
-      },
-      "Investigation_Query": {
-        "required": [
-          "screeningThreshold",
-          "searchName",
-          "type"
-        ],
-        "type": "object",
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/InvestigationType"
-          },
-          "name": {
-            "type": "string"
-          },
-          "houseNo": {
-            "type": "string"
-          },
-          "street": {
-            "type": "string"
-          },
-          "province": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "postCode": {
-            "type": "string"
-          },
-          "countryCode": {
-            "type": "string"
-          },
-          "firstName": {
-            "type": "string"
-          },
-          "middleName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "generation": {
-            "type": "string"
-          },
-          "dateOfBirth": {
-            "type": "string"
-          },
-          "nationalId": {
-            "type": "string"
-          },
-          "citizenship": {
-            "type": "string"
-          },
-          "phoneNo": {
-            "type": "string"
-          },
-          "gender": {
-            "$ref": "#/components/schemas/GenderType"
-          },
-          "searchName": {
-            "type": "string"
-          },
-          "screeningThreshold": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "source": {
-            "$ref": "#/components/schemas/SourceType"
-          }
-        }
-      },
-      "MODEL5bb0b0": {
+      "MODEL5bdbb3": {
         "type": "object",
         "properties": {
           "message": {
-            "type": "string",
-            "description": "Provides further information on why the request was rejected"
+            "type": "string"
           }
         }
+      },
+      "MODEL28cf8d": {
+        "type": "object",
+        "required": [
+          "hasHeader",
+          "jobFile"
+        ],
+        "properties": {
+          "jobFile": {
+            "type": "string",
+            "format": "binary"
+          },
+          "hasHeader": {
+            "type": "boolean"
+          }
+        }
+      },
+      "MODEL4f561c": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "MODELf6df8e": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "MODEL8790cc": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "MODELcebf3b": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "MODELcf4983": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "MODEL5b4b1c": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "ConnectDataCleaningResponse": {
+        "type": "object"
       },
       "ConnectErrorResponsesBadRequest": {
         "type": "object",
@@ -20246,9 +19321,9 @@
             "type": "string"
           }
         },
-        "description": "Authorization Token has either expired or is not a valid Connect"
+        "description": "Authorization Token has either expired or is not a valid Connect Authorization Token"
       },
-      "Connect.Protect.ErrorResponsesAccessForbidden": {
+      "ConnectErrorResponsesAccessForbidden": {
         "type": "object",
         "properties": {
           "message": {
@@ -20256,193 +19331,8 @@
           }
         },
         "description": "Simple access forbidden message error response"
-      },
-      "ArrayOfConnectDataCleaningJob" : {
-        "type" : "array",
-        "items" : {
-          "$ref" : "#/definitions/ConnectDataCleaningJob"
-        }
-      },
-      "ConnectDataCleaningJob" : {
-        "type" : "object"
-      },
-      "ConnectDataCleaningCreateJobRequest" : {
-        "type" : "object",
-        "required" : [ "name" ],
-        "properties" : {
-          "name" : {
-            "type" : "string"
-          }
-        }
-      },
-      "ConnectDataCleaningArchiveJobRequest" : {
-        "type" : "object"
-      },
-      "ConnectDataCleaningEnrichRequest" : {
-        "type" : "object"
-      },
-      "ConnectDataCleaningUpdateMappingsRequest" : {
-        "type" : "object"
-      },
-      "ConnectDataCleaningSubmitJobRequest" : {
-        "type" : "object"
-      },
-          "ArrayOfConnectDataCleaningResponse" : {
-      "type" : "array",
-      "items" : {
-        "$ref" : "#/definitions/ConnectDataCleaningResponse"
       }
     },
-    "ConnectMonitoringCreatePortfolioRequest" : {
-      "type" : "object",
-      "required" : [ "name" ],
-      "properties" : {
-        "name" : {
-          "type" : "string"
-        },
-        "isDefault" : {
-          "type" : "boolean"
-        },
-        "emails" : {
-          "type" : "array",
-          "items" : {
-            "type" : "object",
-            "properties" : {
-              "firstName" : {
-                "type" : "string"
-              },
-              "lastName" : {
-                "type" : "string"
-              },
-              "emailAddress" : {
-                "type" : "string"
-              }
-            }
-          }
-        },
-        "emailSubject" : {
-          "type" : "string"
-        },
-        "emailLanguage" : {
-          "type" : "string"
-        },
-        "frequency" : {
-          "type" : "string"
-        },
-        "webhookUrl" : {
-          "type" : "string"
-        },
-        "webhookEnabled" : {
-          "type" : "boolean"
-        }
-      }
-    },
-    "MODEL5bdbb3" : {
-      "type" : "object",
-      "properties" : {
-        "message" : {
-          "type" : "string"
-        }
-      }
-    },
-    "MODEL28cf8d" : {
-      "type" : "object",
-      "required" : [ "hasHeader", "jobFile" ],
-      "properties" : {
-        "jobFile" : {
-          "type" : "string",
-          "format" : "binary"
-        },
-        "hasHeader" : {
-          "type" : "boolean"
-        }
-      }
-    },
-    "MODEL4f561c" : {
-      "type" : "object",
-      "properties" : {
-        "message" : {
-          "type" : "string"
-        }
-      }
-    },
-    "MODELf6df8e" : {
-      "type" : "object",
-      "properties" : {
-        "message" : {
-          "type" : "string"
-        }
-      }
-    },
-    "MODEL8790cc" : {
-      "type" : "object",
-      "properties" : {
-        "message" : {
-          "type" : "string"
-        }
-      }
-    },
-    "MODELcebf3b" : {
-      "type" : "object",
-      "properties" : {
-        "message" : {
-          "type" : "string"
-        }
-      }
-    },
-    "MODELcf4983" : {
-      "type" : "object",
-      "properties" : {
-        "message" : {
-          "type" : "string"
-        }
-      }
-    },
-    "MODEL5b4b1c" : {
-      "type" : "object",
-      "properties" : {
-        "message" : {
-          "type" : "string"
-        }
-      }
-    },
-    "ConnectDataCleaningResponse" : {
-      "type" : "object"
-    },
-    "ConnectErrorResponsesBadRequest" : {
-      "type" : "object",
-      "properties" : {
-        "correlationId" : {
-          "type" : "string"
-        },
-        "message" : {
-          "type" : "string"
-        },
-        "details" : {
-          "type" : "string",
-          "description" : "Provides further information on why the request was rejected"
-        }
-      }
-    },
-    "ConnectErrorResponsesInvalidToken" : {
-      "type" : "object",
-      "properties" : {
-        "error" : {
-          "type" : "string"
-        }
-      },
-      "description" : "Authorization Token has either expired or is not a valid Connect Authorization Token"
-    },
-    "ConnectErrorResponsesAccessForbidden" : {
-      "type" : "object",
-      "properties" : {
-        "message" : {
-          "type" : "string"
-        }
-      },
-      "description" : "Simple access forbidden message error response"
-    }    
-  },
     "securitySchemes": {
       "bearerToken": {
         "type": "http",
