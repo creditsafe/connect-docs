@@ -7746,26 +7746,42 @@
         "responses": {
           "200": {
             "description": "200 response",
-            "schema": {
-              "$ref": "#/components/schemas/ArrayOfConnectDataCleaningJob"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArrayOfConnectDataCleaningJob"
+                }
+              }
             }
           },
           "400": {
             "description": "400 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
             }
           },
           "401": {
             "description": "401 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
             }
           },
           "403": {
             "description": "403 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
             }
           }
         }
@@ -7777,46 +7793,65 @@
           "Data Cleaning"
         ],
         "operationId": "Data Cleaning Get Job",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "200 response",
-            "schema": {
-              "$ref": "#/components/schemas/ArrayOfConnectDataCleaningJob"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArrayOfConnectDataCleaningJob"
+                }
+              }
             }
           },
           "400": {
             "description": "400 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
             }
           },
           "401": {
             "description": "401 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
             }
           },
           "403": {
             "description": "403 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
             }
           },
           "404": {
             "description": "404 response",
-            "schema": {
-              "$ref": "#/components/schemas/MODEL5b4b1c"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODEL5b4b1c"
+                }
+              }
             }
           }
         }
@@ -7828,57 +7863,76 @@
           "Data Cleaning"
         ],
         "operationId": "Data Cleaning Job Archive",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
+        "summary": "ConnectDataCleaningArchiveJobRequest",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "ConnectDataCleaningArchiveJobRequest",
-            "required": true,
             "schema": {
-              "$ref": "#/components/schemas/ConnectDataCleaningArchiveJobRequest"
+              "type": "string"
             }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConnectDataCleaningArchiveJobRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "200 response",
-            "schema": {
-              "$ref": "#/components/schemas/ArrayOfConnectDataCleaningResponse"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArrayOfConnectDataCleaningResponse"
+                }
+              }
             }
           },
           "400": {
             "description": "400 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
             }
           },
           "401": {
             "description": "401 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
             }
           },
           "403": {
             "description": "403 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
             }
           },
           "404": {
             "description": "404 response",
-            "schema": {
-              "$ref": "#/components/schemas/MODELcebf3b"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODELcebf3b"
+                }
+              }
             }
           }
         }
@@ -7890,57 +7944,76 @@
           "Data Cleaning"
         ],
         "operationId": "Data Cleaning Job Enrich",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
+        "summary": "ConnectDataCleaningEnrichRequest",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "ConnectDataCleaningEnrichRequest",
-            "required": true,
             "schema": {
-              "$ref": "#/components/schemas/ConnectDataCleaningEnrichRequest"
+              "type": "string"
             }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConnectDataCleaningEnrichRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "200 response",
-            "schema": {
-              "$ref": "#/components/schemas/ArrayOfConnectDataCleaningResponse"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArrayOfConnectDataCleaningResponse"
+                }
+              }
             }
           },
           "400": {
             "description": "400 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
             }
           },
           "401": {
             "description": "401 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
             }
           },
           "403": {
             "description": "403 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
             }
           },
           "404": {
             "description": "404 response",
-            "schema": {
-              "$ref": "#/components/schemas/MODEL5bdbb3"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODEL5bdbb3"
+                }
+              }
             }
           }
         }
@@ -7952,52 +8025,73 @@
           "Data Cleaning"
         ],
         "operationId": "Data Cleaning Get Job Enriched File",
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
             "name": "fileType",
             "in": "query",
             "required": false,
-            "type": "string"
+            "schema": {
+              "type": "string"
+            }
           },
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "200 response",
-            "schema": {
-              "$ref": "#/components/schemas/ArrayOfConnectDataCleaningResponse"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArrayOfConnectDataCleaningResponse"
+                }
+              }
             }
           },
           "400": {
             "description": "400 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
             }
           },
           "401": {
             "description": "401 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
             }
           },
           "403": {
             "description": "403 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
             }
           },
           "404": {
             "description": "404 response",
-            "schema": {
-              "$ref": "#/components/schemas/MODELf6df8e"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODELf6df8e"
+                }
+              }
             }
           }
         }
@@ -8009,57 +8103,76 @@
           "Data Cleaning"
         ],
         "operationId": "Data Cleaning Job Update Enrichments",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
+        "summary": "ConnectDataCleaningUpdateEnrichmentsRequest",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "ConnectDataCleaningUpdateEnrichmentsRequest",
-            "required": true,
             "schema": {
-              "$ref": "#/components/schemas/ConnectDataCleaningUpdateEnrichmentsRequest"
+              "type": "string"
             }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConnectDataCleaningUpdateEnrichmentsRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "200 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectDataCleaningResponse"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectDataCleaningResponse"
+                }
+              }
             }
           },
           "400": {
             "description": "400 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
             }
           },
           "401": {
             "description": "401 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
             }
           },
           "403": {
             "description": "403 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
             }
           },
           "404": {
             "description": "404 response",
-            "schema": {
-              "$ref": "#/components/schemas/MODELcf4983"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODELcf4983"
+                }
+              }
             }
           }
         }
@@ -8071,57 +8184,76 @@
           "Data Cleaning"
         ],
         "operationId": "Data Cleaning Job Update Mappings",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
+        "summary": "ConnectDataCleaningUpdateMappingsRequest",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "ConnectDataCleaningUpdateMappingsRequest",
-            "required": true,
             "schema": {
-              "$ref": "#/components/schemas/ConnectDataCleaningUpdateMappingsRequest"
+              "type": "string"
             }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConnectDataCleaningUpdateMappingsRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "200 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectDataCleaningResponse"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectDataCleaningResponse"
+                }
+              }
             }
           },
           "400": {
             "description": "400 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
             }
           },
           "401": {
             "description": "401 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
             }
           },
           "403": {
             "description": "403 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
             }
           },
           "404": {
             "description": "404 response",
-            "schema": {
-              "$ref": "#/components/schemas/MODEL4f561c"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODEL4f561c"
+                }
+              }
             }
           }
         }
@@ -8133,57 +8265,76 @@
           "Data Cleaning"
         ],
         "operationId": "Data Cleaning Job Submit",
-        "consumes": [
-          "application/json"
-        ],
-        "produces": [
-          "application/json"
-        ],
+        "summary": "ConnectDataCleaningSubmitJobRequest",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "ConnectDataCleaningSubmitJobRequest",
-            "required": true,
             "schema": {
-              "$ref": "#/components/schemas/ConnectDataCleaningSubmitJobRequest"
+              "type": "string"
             }
           }
         ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConnectDataCleaningSubmitJobRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "200 response",
-            "schema": {
-              "$ref": "#/components/schemas/ArrayOfConnectDataCleaningResponse"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArrayOfConnectDataCleaningResponse"
+                }
+              }
             }
           },
           "400": {
             "description": "400 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
             }
           },
           "401": {
             "description": "401 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
             }
           },
           "403": {
             "description": "403 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
             }
           },
           "404": {
             "description": "404 response",
-            "schema": {
-              "$ref": "#/components/schemas/MODEL7c8060"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODEL7c8060"
+                }
+              }
             }
           }
         }
@@ -8195,57 +8346,74 @@
           "Data Cleaning"
         ],
         "operationId": "Data Cleaning Job File Upload",
-        "consumes": [
-          "multipart/form-data"
-        ],
-        "produces": [
-          "application/json"
-        ],
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
-          },
-          {
-            "in": "body",
-            "name": "MODEL28cf8d",
-            "required": true,
             "schema": {
-              "$ref": "#/components/schemas/MODEL28cf8d"
+              "type": "string"
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/MODEL28cf8d"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "200 response",
-            "schema": {
-              "$ref": "#/components/schemas/ArrayOfConnectDataCleaningResponse"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArrayOfConnectDataCleaningResponse"
+                }
+              }
             }
           },
           "400": {
             "description": "400 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
             }
           },
           "401": {
             "description": "401 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
             }
           },
           "403": {
             "description": "403 response",
-            "schema": {
-              "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
             }
           },
           "404": {
             "description": "404 response",
-            "schema": {
-              "$ref": "#/components/schemas/MODEL8790cc"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODEL8790cc"
+                }
+              }
             }
           }
         }
@@ -19289,6 +19457,14 @@
         }
       },
       "MODEL5b4b1c": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "MODEL7c8060": {
         "type": "object",
         "properties": {
           "message": {
