@@ -18219,6 +18219,9 @@
           }
         },
         "description": "Simple access forbidden message error response"
+      },
+      "ConnectDataCleaningUpdateEnrichmentsRequest" : {
+        "type" : "object"
       }
     },
     "securitySchemes": {
