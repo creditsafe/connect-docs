@@ -6493,7 +6493,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ArrayOfConnectDataCleaningJob"
+                  "$ref": "#/components/schemas/ConnectDataCleaningJob"
                 }
               }
             }
@@ -18059,7 +18059,44 @@
         }
       },
       "ConnectDataCleaningJob": {
-        "type": "object"
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modifiedAT": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "managingUserId": {
+            "type": "integer"
+          },
+          "managingCustomerId": {
+            "type": "integer"
+          },
+          "owningCustomerId": {
+            "type": "integer"
+          },
+          "owningUserId": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "archived": {
+            "type": "boolean"
+          }
+        }
       },
       "ConnectDataCleaningCreateJobRequest": {
         "type": "object",
