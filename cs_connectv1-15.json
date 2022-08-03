@@ -19379,7 +19379,11 @@
             "type": "string"
           },
           "source": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "dataCleaning",
+              "prospects"
+            ]
           },
           "archived": {
             "type": "boolean"
