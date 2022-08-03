@@ -7581,6 +7581,7 @@
         ],
         "operationId": "Create Job",
         "summary": "Create Job Request",
+        "description": "Enter a name for the 'Job Request' to be associated to the file",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -7645,6 +7646,7 @@
         ],
         "operationId": "Get All Jobs",
         "summary": "Returns all Data Cleaning Jobs",
+        "description": "This endpoint can be used to retrieve all created data cleaning job requests as defined by the query parameters",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -7805,7 +7807,11 @@
         ],
         "operationId": "Get Job by id number",
         "summary": "Returns Job by {id} number",
+        "description": "Returns Job by {id} number which is generated from 'Creating Job Request' stage",
         "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
           {
             "name": "id",
             "in": "path",
@@ -7876,7 +7882,11 @@
         ],
         "operationId": "Job File Upload with id",
         "summary": "Upload a Job File with an id",
+        "description": "Upload a Job File for processing, you should link to the {id} number generated from the 'Job Request'.",
         "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
           {
             "name": "id",
             "in": "path",
@@ -7956,7 +7966,11 @@
         ],
         "operationId": "Job Update Mappings",
         "summary": "Update Mappings Request",
+        "description": "Update the mapping of the uploaded file to match that of the header within it. You can add or remove the required number of mapping points in the Request Body.",
         "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
           {
             "name": "id",
             "in": "path",
@@ -7971,7 +7985,25 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ConnectDataCleaningUpdateMappingsRequest"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/ConnectDataCleaningUpdateMappingsRequest"
+                  }
+                ],
+                "example": [
+                  {
+                    "mapping": "name",
+                    "value": "0"
+                  },
+                  {
+                    "mapping": "address1",
+                    "value": "1"
+                  },
+                  {
+                    "mapping": "city",
+                    "value": "2"
+                  }
+                ]
               }
             }
           }
