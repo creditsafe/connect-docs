@@ -7691,7 +7691,8 @@
             "in": "query",
             "required": false,
             "schema": {
-              "type": "string"
+              "type": "integer",
+              "format": "date-time"
             }
           },
           {
@@ -7699,7 +7700,7 @@
             "in": "query",
             "required": false,
             "schema": {
-              "type": "string"
+              "type": "integer"
             }
           },
           {
@@ -7707,7 +7708,8 @@
             "in": "query",
             "required": false,
             "schema": {
-              "type": "string"
+              "type": "integer",
+              "format": "date-time"
             }
           },
           {
@@ -7715,7 +7717,7 @@
             "in": "query",
             "required": false,
             "schema": {
-              "type": "string"
+              "type": "integer"
             }
           },
           {
@@ -7723,7 +7725,7 @@
             "in": "query",
             "required": false,
             "schema": {
-              "type": "string"
+              "type": "integer"
             }
           },
           {
@@ -7747,7 +7749,7 @@
             "in": "query",
             "required": false,
             "schema": {
-              "type": "string"
+              "type": "integer"
             }
           },
           {
@@ -7755,7 +7757,7 @@
             "in": "query",
             "required": false,
             "schema": {
-              "type": "string"
+              "type": "boolean"
             }
           }
         ],
@@ -19376,7 +19378,34 @@
             "type": "integer"
           },
           "status": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "created",
+              "uploading",
+              "uploadError",
+              "uploaded",
+              "ready",
+              "matching",
+              "matchingError",
+              "matched",
+              "addingToPortfolio",
+              "addedToPortfolio",
+              "addedToPortfolioError",
+              "aggregating",
+              "aggregatingComplete",
+              "aggregatingError",
+              "enriching",
+              "enrichmentError",
+              "enriched",
+              "transformFileError",
+              "generateTrilliumFileError",
+              "jobMatchingCompletionError",
+              "jobMatchingComplete",
+              "readyForEnriching",
+              "enrichmentComplete",
+              "enrichmentCompletionError",
+              "pdfGenerationError"
+            ]
           },
           "source": {
             "type": "string",
