@@ -6468,7 +6468,7 @@
         ],
         "operationId": "Create Job",
         "summary": "Create Job Request",
-        "description": "Enter a name for the 'Job Request' to be associated to the file",
+        "description": "Enter a name for the 'Job Request' to be associated to the file going to be processed",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -6479,6 +6479,9 @@
             "application:json": {
               "schema": {
                 "$ref": "#/components/schemas/ConnectDataCleaningCreateJobRequest"
+              },
+              "example": {
+                "name": "Create a Data Cleaning Job 03-10-20xx"
               }
             }
           },
@@ -6872,26 +6875,9 @@
           "content": {
             "application/json": {
               "schema": {
-                "allOf": [
-                  {
-                    "$ref": "#/components/schemas/ConnectDataCleaningUpdateMappingsRequest"
-                  }
-                ],
-                "example": [
-                  {
-                    "mapping": "name",
-                    "value": "0"
-                  },
-                  {
-                    "mapping": "address1",
-                    "value": "1"
-                  },
-                  {
-                    "mapping": "city",
-                    "value": "2"
-                  }
-                ]
-              }
+                "$ref": "#/components/schemas/ConnectDataCleaningUpdateMappingsRequest"
+              },
+              "example": null
             }
           }
         },
@@ -18092,9 +18078,7 @@
       "ConnectDataCleaningEnrichRequest": {
         "type": "object"
       },
-      "ConnectDataCleaningUpdateMappingsRequest": {
-        "type": "object"
-      },
+      "ConnectDataCleaningUpdateMappingsRequest": null,
       "ConnectDataCleaningSubmitJobRequest": {
         "type": "object"
       },
