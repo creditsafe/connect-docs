@@ -6699,7 +6699,7 @@
         ],
         "operationId": "Get Job by id number",
         "summary": "Returns Job by {id} number",
-        "description": "Returns Job by {id} number which is generated from 'Creating Job Request' stage",
+        "description": "Returns Job by {id} number which is generated from 'Creating Job Request' stage. This endpoint is used to check the `status` of the job.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -7116,7 +7116,11 @@
         ],
         "operationId": "Data Cleaning Job Enrich",
         "summary": "Start Enrichment Request",
+        "description": "Commencing the Job enrichment to the uploaded file after mapping the enrichment requirements. To have a successful submission a blank response body (See example) is required to be posted.",
         "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
           {
             "name": "id",
             "in": "path",
@@ -7143,6 +7147,9 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ArrayOfConnectDataCleaningResponse"
+                },
+                "example": {
+                  "messageId": "string"
                 }
               }
             }
@@ -7197,14 +7204,19 @@
         ],
         "operationId": "Returns Enriched Job File",
         "summary": "Returns Enriched Job File",
+        "description": "Returns the enriched file after enrichment is complete. Identify the file type to be returned via the query parameter.",
         "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
           {
             "name": "fileType",
             "in": "query",
             "required": false,
             "schema": {
               "type": "string"
-            }
+            },
+            "example": ".csv"
           },
           {
             "name": "id",
@@ -7221,7 +7233,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ArrayOfConnectDataCleaningResponse"
+                  "$ref": "#/components/schemas/ConnectDataCleaningResponse"
+                },
+                "example": {
+                  "filePath": "string"
                 }
               }
             }
@@ -7276,7 +7291,11 @@
         ],
         "operationId": "Archive Job",
         "summary": "Archive Job by id",
+        "description": "Archives the job, this can be done at any stage. To have a successful submission a blank response body (See example) is required to be posted.",
         "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
           {
             "name": "id",
             "in": "path",
@@ -7302,7 +7321,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ArrayOfConnectDataCleaningResponse"
+                  "$ref": "#/components/schemas/ConnectDataCleaningArchiveResponse"
                 }
               }
             }
@@ -18351,6 +18370,51 @@
       },
       "ConnectDataCleaningResponse": {
         "type": "object"
+      },
+      "ConnectDataCleaningArchiveResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "managingUserId": {
+            "type": "integer"
+          },
+          "managingCustomerId": {
+            "type": "integer"
+          },
+          "owningCustomerId": {
+            "type": "integer"
+          },
+          "owningUserId": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          },
+          "countryCode": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "jobEnrichmentSettings": {
+            "type": "string"
+          },
+          "archived": {
+            "type": "boolean"
+          }
+        }
       },
       "ConnectDataCleaningMappingResponse": {
         "type": "array",
