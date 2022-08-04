@@ -8056,7 +8056,11 @@
         ],
         "operationId": "Submit Job",
         "summary": "Submit Job Request",
+        "description": "Submission of the file after mappings have been carried out. To have a successful submission a blank response body (See example) is required to be posted.",
         "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
           {
             "name": "id",
             "in": "path",
@@ -8082,7 +8086,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ArrayOfConnectDataCleaningResponse"
+                  "$ref": "#/components/schemas/ConnectDataCleaningResponse"
+                },
+                "example": {
+                  "messageId": "string"
                 }
               }
             }
