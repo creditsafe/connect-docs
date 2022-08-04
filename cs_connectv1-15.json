@@ -7031,7 +7031,11 @@
         ],
         "operationId": "Update Job Enrichments",
         "summary": "Update Enrichments Request",
+        "description": "Detail which package of enrichment settings are to be applied to the uploaded file.",
         "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
           {
             "name": "id",
             "in": "path",
@@ -18176,7 +18180,29 @@
         ],
         "properties": {
           "mapping": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "companyId",
+              "orgNumber",
+              "name",
+              "tradingName",
+              "aliasName",
+              "previousName",
+              "phone",
+              "email",
+              "address1",
+              "address2",
+              "address3",
+              "town",
+              "postcode",
+              "region",
+              "country",
+              "countryCode",
+              "vatNumber",
+              "taxCode",
+              "personalID",
+              "personalLimit"
+            ]
           },
           "value": {
             "type": "string",
