@@ -18409,7 +18409,9 @@
             "type": "string"
           },
           "jobEnrichmentSettings": {
-            "type": "string"
+              "creditType": {
+                  "type": "string"
+              }
           },
           "archived": {
             "type": "boolean"
