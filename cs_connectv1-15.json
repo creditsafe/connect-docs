@@ -19460,7 +19460,8 @@
             "type": "string"
           },
           "value": {
-            "type": "string"
+            "type": "string",
+            "description": "Value follows array indexing, meaning each column is identified by number, starting at 0 "
           }
         },
         "example": {
