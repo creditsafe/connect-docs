@@ -7832,7 +7832,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ArrayOfConnectDataCleaningJob"
+                  "$ref": "#/components/schemas/ConnectDataCleaningJob"
                 }
               }
             }
@@ -7887,7 +7887,7 @@
         ],
         "operationId": "Job File Upload with id",
         "summary": "Upload a Job File with an id",
-        "description": "Upload a Job File for processing, you should link to the {id} number generated from the 'Job Request'.",
+        "description": "Upload a Job File for processing, you need to link to the {id} number generated from the 'Job Request'.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -7916,7 +7916,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ArrayOfConnectDataCleaningResponse"
+                  "$ref": "#/components/schemas/ConnectDataCleaningUploadResponse"
                 }
               }
             }
@@ -19574,6 +19574,40 @@
       },
       "ConnectDataCleaningResponse": {
         "type": "object"
+      },
+      "ConnectDataCleaningUploadResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "sourceFilename": {
+            "type": "string"
+          },
+          "hasHeader": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "managingUserId": {
+            "type": "integer"
+          },
+          "managingCustomerId": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          }
+        }
       },
       "ConnectErrorResponsesBadRequest": {
         "type": "object",
