@@ -6888,7 +6888,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConnectDataCleaningResponse"
+                  "$ref": "#/components/schemas/ConnectDataCleaningMappingResponse"
                 }
               }
             }
@@ -18174,6 +18174,10 @@
           "value": {
             "type": "string"
           }
+        },
+        "example": {
+          "mapping": "name",
+          "value": "0"
         }
       },
       "ConnectDataCleaningSubmitJobRequest": {
@@ -18313,6 +18317,26 @@
       },
       "ConnectDataCleaningResponse": {
         "type": "object"
+      },
+      "ConnectDataCleaningMappingResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "mapping": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        },
+        "example": [
+          {
+            "mapping": "name",
+            "value": "0"
+          }
+        ]
       },
       "ConnectDataCleaningUploadResponse": {
         "type": "object",
