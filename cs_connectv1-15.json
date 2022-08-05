@@ -19697,10 +19697,18 @@
             "type": "string"
           },
           "jobEnrichmentSettings": {
-             "type": "string"
+            "$ref": "#/components/schemas/jobEnrichmentSettings"
           },
           "archived": {
             "type": "boolean"
+          }
+        }
+      },
+      "jobEnrichmentSettings": {
+        "type": "object",
+        "properties": {
+          "creditType": {
+            "type": "string"
           }
         }
       },
