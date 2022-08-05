@@ -7116,7 +7116,7 @@
         ],
         "operationId": "Data Cleaning Job Enrich",
         "summary": "Start Enrichment Request",
-        "description": "Commencing the Job enrichment to the uploaded file after mapping the enrichment requirements. To have a successful submission a blank response body (See example) is required to be posted.",
+        "description": "Commencing the Job enrichment to the uploaded file after mapping the enrichment requirements. To have a successful submission a blank response body (See example) is required to be posted.<br><br> POST 'enrich' will not commence unless the `Job Status` is `jobMatchingComplete`",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
