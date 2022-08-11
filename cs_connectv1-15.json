@@ -13617,6 +13617,7 @@
         }
       },
       "Connect.Identity.ReasonCode": {
+        "description": "Below is a list of Definitions for the ENUM\n* 0 - AddressVerification\n* 1 - BusinessSeacrch\n* 2 - CreditApplication\n* 3 - DebtCollection\n* 4 - DirectorsSearch\n* 5 - QuotationSearch\n* 6 - EmployeeCheck\n* 7 - TenantVet\n* 8 - GeneralInsurance",
         "enum": [
           1,
           2,
@@ -13627,17 +13628,6 @@
           7,
           8
         ],
-        "x-enumDescriptions": {
-          "0": "AddressVerification",
-          "1": "BusinessSeacrch",
-          "2": "CreditApplication",
-          "3": "DebtCollection",
-          "4": "DirectorsSearch",
-          "5": "QuotationSearch",
-          "6": "EmployeeCheck",
-          "7": "TenantVet",
-          "8": "GeneralInsurance"
-        },
         "type": "integer",
         "format": "int32"
       },
@@ -13746,7 +13736,7 @@
           },
           "products": {
             "type": "array",
-            "description": "Below is a list of Definitions for the ENUM**\n* 0 - Consumer\n* 1 - Id\n* 2 - AML\n* 3 - Bank Match\n* 4 - AML with Bank Match",
+            "description": "Below is a list of Definitions for the ENUM\n* 0 - Consumer\n* 1 - Id\n* 2 - AML\n* 3 - Bank Match\n* 4 - AML with Bank Match",
             "items": {
               "$ref": "#/components/schemas/Connect.Identity.Product"
             },
