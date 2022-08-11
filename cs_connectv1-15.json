@@ -6051,36 +6051,13 @@
           {
             "name": "Products",
             "in": "query",
-            "description": "The array of products to include",
+            "description": "The array of products to include\n\n**Below is a list of Definitions for the ENUM**\n* 0 - Consumer\n* 1 - Id\n* 2 - AML\n* 3 - Bank Match\n* 4 - AML with Bank Match",
             "schema": {
               "type": "array",
               "items": {
-                "type": "integer",
-                "format": "int32",
-                "enum": [
-                  {
-                    "value": 0,
-                    "description": "Consumer"
-                  },
-                  {
-                    "value": 1,
-                    "description": "Id"
-                  },
-                  {
-                    "value": 2,
-                    "description": "AML"
-                  },
-                  {
-                    "value": 3,
-                    "description": "Bank Match"
-                  },
-                  {
-                    "value": 4,
-                    "description": "AML with Bank Match",
-                    "nullable": true
-                  }
-                ]
-              }
+                "$ref": "#/components/schemas/Connect.Identity.Product"
+              },
+              "nullable": true
             }
           },
           {
@@ -13744,26 +13721,11 @@
         "type": "integer",
         "format": "int32",
         "enum": [
-          {
-            "value": 0,
-            "description": "Consumer"
-          },
-          {
-            "value": 1,
-            "description": "Id"
-          },
-          {
-            "value": 2,
-            "description": "AML"
-          },
-          {
-            "value": 3,
-            "description": "Bank Match"
-          },
-          {
-            "value": 4,
-            "description": "AML with Bank Match"
-          }
+          0,
+          1,
+          2,
+          3,
+          4
         ]
       },
       "Connect.Identity.SearchRequest": {
