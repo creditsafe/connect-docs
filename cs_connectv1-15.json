@@ -13746,6 +13746,7 @@
           },
           "products": {
             "type": "array",
+            "description": "Below is a list of Definitions for the ENUM**\n* 0 - Consumer\n* 1 - Id\n* 2 - AML\n* 3 - Bank Match\n* 4 - AML with Bank Match",
             "items": {
               "$ref": "#/components/schemas/Connect.Identity.Product"
             },
