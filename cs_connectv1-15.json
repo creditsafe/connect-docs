@@ -13619,6 +13619,7 @@
       "Connect.Identity.ReasonCode": {
         "description": "Below is a list of Definitions for the ENUM\n* 0 - AddressVerification\n* 1 - BusinessSeacrch\n* 2 - CreditApplication\n* 3 - DebtCollection\n* 4 - DirectorsSearch\n* 5 - QuotationSearch\n* 6 - EmployeeCheck\n* 7 - TenantVet\n* 8 - GeneralInsurance",
         "enum": [
+          0,
           1,
           2,
           3,
