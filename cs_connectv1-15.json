@@ -7031,7 +7031,7 @@
         ],
         "operationId": "Update Job Enrichments",
         "summary": "Update Enrichments Request",
-        "description": "Detail which package of enrichment settings are to be applied to the uploaded file.",
+        "description": "Detail which package of enrichment settings are to be applied to the uploaded file.<br><br> Select one of the three products to acquire the JSON Enrichment schema possible for that product.<br><br> Removal of Enrichment types is possible from each product. Addition of Enrichment types to a product is not possible beyond the maximum schema for each.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -7050,7 +7050,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ConnectDataCleaningUpdateEnrichmentsRequest"
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/basic"
+                  },
+                  {
+                    "$ref": "#/components/schemas/basicPlus"
+                  },
+                  {
+                    "$ref": "#/components/schemas/standard"
+                  }
+                ]
               }
             }
           }
@@ -17454,18 +17464,6 @@
           }
         }
       },
-      "Connect.GBConsumer": {
-        "type": "object",
-        "description": "Select product type for object parameters and example body.\n\n Options for an `AML Search` or `Consumer Search`",
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/AMLSearch"
-          },
-          {
-            "$ref": "#/components/schemas/consumerSearch"
-          }
-        ]
-      },
       "AMLSearch": {
         "description": "Search parameters for AML product",
         "properties": {
@@ -18511,8 +18509,2648 @@
         },
         "description": "Simple access forbidden message error response"
       },
-      "ConnectDataCleaningUpdateEnrichmentsRequest": {
-        "type": "object"
+      "basic": {
+        "type": "object",
+        "properties": {
+          "enrichments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "enrichment": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "example": {
+          "enrichments": [
+            {
+              "enrichment": "general.safeNumber"
+            },
+            {
+              "enrichment": "general.connectId"
+            },
+            {
+              "enrichment": "general.ggsId"
+            },
+            {
+              "enrichment": "general.companyName"
+            },
+            {
+              "enrichment": "general.companyId"
+            },
+            {
+              "enrichment": "general.companyNameKanji"
+            },
+            {
+              "enrichment": "general.companyNameKana"
+            },
+            {
+              "enrichment": "general.aliasName"
+            },
+            {
+              "enrichment": "general.tradeName"
+            },
+            {
+              "enrichment": "general.tradeNumber"
+            },
+            {
+              "enrichment": "general.acronym"
+            },
+            {
+              "enrichment": "general.organisationNumber"
+            },
+            {
+              "enrichment": "general.legalRegistrationNumber"
+            },
+            {
+              "enrichment": "general.siret"
+            },
+            {
+              "enrichment": "general.siren"
+            },
+            {
+              "enrichment": "general.companyNumber"
+            },
+            {
+              "enrichment": "general.kvkNumber"
+            },
+            {
+              "enrichment": "contact.eircode"
+            },
+            {
+              "enrichment": "contact.country"
+            },
+            {
+              "enrichment": "contact.mailing.city"
+            },
+            {
+              "enrichment": "general.companyType"
+            },
+            {
+              "enrichment": "general.companyTypeDesc.en"
+            },
+            {
+              "enrichment": "general.legalName"
+            },
+            {
+              "enrichment": "general.legalNameAlt"
+            },
+            {
+              "enrichment": "general.rsin"
+            },
+            {
+              "enrichment": "general.tradingName"
+            },
+            {
+              "enrichment": "general.regDeletionNumber"
+            },
+            {
+              "enrichment": "general.pattern"
+            },
+            {
+              "enrichment": "general.banding"
+            },
+            {
+              "enrichment": "general.bandingDesc"
+            },
+            {
+              "enrichment": "general.rowNumber"
+            },
+            {
+              "enrichment": "general.duplicate"
+            },
+            {
+              "enrichment": "general.duplicateId"
+            },
+            {
+              "enrichment": "contact.city"
+            }
+          ]
+        }
+      },
+      "basicPlus": {
+        "type": "object",
+        "properties": {
+          "enrichments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "enrichment": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "example": {
+          "enrichments": [
+            {
+              "enrichment": "general.safeNumber"
+            },
+            {
+              "enrichment": "general.connectId"
+            },
+            {
+              "enrichment": "general.ggsId"
+            },
+            {
+              "enrichment": "general.companyName"
+            },
+            {
+              "enrichment": "general.companyId"
+            },
+            {
+              "enrichment": "general.companyNameKanji"
+            },
+            {
+              "enrichment": "general.companyNameKana"
+            },
+            {
+              "enrichment": "general.aliasName"
+            },
+            {
+              "enrichment": "general.tradeName"
+            },
+            {
+              "enrichment": "general.tradeNumber"
+            },
+            {
+              "enrichment": "general.acronym"
+            },
+            {
+              "enrichment": "general.organisationNumber"
+            },
+            {
+              "enrichment": "general.legalRegistrationNumber"
+            },
+            {
+              "enrichment": "general.siret"
+            },
+            {
+              "enrichment": "general.siren"
+            },
+            {
+              "enrichment": "general.companyNumber"
+            },
+            {
+              "enrichment": "general.kvkNumber"
+            },
+            {
+              "enrichment": "contact.eircode"
+            },
+            {
+              "enrichment": "contact.country"
+            },
+            {
+              "enrichment": "contact.mailing.city"
+            },
+            {
+              "enrichment": "general.companyType"
+            },
+            {
+              "enrichment": "general.companyTypeDesc.en"
+            },
+            {
+              "enrichment": "general.legalName"
+            },
+            {
+              "enrichment": "general.legalNameAlt"
+            },
+            {
+              "enrichment": "general.rsin"
+            },
+            {
+              "enrichment": "general.tradingName"
+            },
+            {
+              "enrichment": "general.regDeletionNumber"
+            },
+            {
+              "enrichment": "general.pattern"
+            },
+            {
+              "enrichment": "general.banding"
+            },
+            {
+              "enrichment": "general.bandingDesc"
+            },
+            {
+              "enrichment": "general.rowNumber"
+            },
+            {
+              "enrichment": "general.duplicate"
+            },
+            {
+              "enrichment": "general.duplicateId"
+            },
+            {
+              "enrichment": "contact.city"
+            },
+            {
+              "enrichment": "general.taxCode"
+            },
+            {
+              "enrichment": "general.vatNumber"
+            },
+            {
+              "enrichment": "general.vatLiable"
+            },
+            {
+              "enrichment": "general.principalActivity"
+            },
+            {
+              "enrichment": "general.principalActivity2"
+            },
+            {
+              "enrichment": "general.principalActivity3"
+            },
+            {
+              "enrichment": "general.principalActivity4"
+            },
+            {
+              "enrichment": "general.principalActivity5"
+            },
+            {
+              "enrichment": "general.statusDesc.en"
+            },
+            {
+              "enrichment": "contact.addressLine1"
+            },
+            {
+              "enrichment": "contact.addressLine3"
+            },
+            {
+              "enrichment": "contact.addressLine4"
+            },
+            {
+              "enrichment": "contact.addressLine5"
+            },
+            {
+              "enrichment": "contact.addressLine6"
+            },
+            {
+              "enrichment": "contact.streetName"
+            },
+            {
+              "enrichment": "contact.houseNumber"
+            },
+            {
+              "enrichment": "contact.state"
+            },
+            {
+              "enrichment": "contact.postBox"
+            },
+            {
+              "enrichment": "contact.zip4"
+            },
+            {
+              "enrichment": "contact.region"
+            },
+            {
+              "enrichment": "contact.municipality"
+            },
+            {
+              "enrichment": "contact.province"
+            },
+            {
+              "enrichment": "contact.mailing.addressLine1"
+            },
+            {
+              "enrichment": "contact.mailing.addressLine2"
+            },
+            {
+              "enrichment": "contact.mailing.addressLine3"
+            },
+            {
+              "enrichment": "contact.mailing.addressLine4"
+            },
+            {
+              "enrichment": "contact.mailing.streetName"
+            },
+            {
+              "enrichment": "contact.mailing.houseNumber"
+            },
+            {
+              "enrichment": "contact.mailing.province"
+            },
+            {
+              "enrichment": "contact.mailing.postalCode"
+            },
+            {
+              "enrichment": "contact.nonMailingIndicator"
+            },
+            {
+              "enrichment": "contact.officeAddress1"
+            },
+            {
+              "enrichment": "contact.officeAddress2"
+            },
+            {
+              "enrichment": "contact.officeAddress3"
+            },
+            {
+              "enrichment": "contact.addressType"
+            },
+            {
+              "enrichment": "contact.paf.addressLine1"
+            },
+            {
+              "enrichment": "contact.paf.addressLine2"
+            },
+            {
+              "enrichment": "contact.paf.addressLine3"
+            },
+            {
+              "enrichment": "contact.paf.addressLine4"
+            },
+            {
+              "enrichment": "contact.paf.postalCode"
+            },
+            {
+              "enrichment": "general.locationType"
+            },
+            {
+              "enrichment": "contact.contactPhone"
+            },
+            {
+              "enrichment": "contact.tps"
+            },
+            {
+              "enrichment": "contact.marketingAllowed"
+            },
+            {
+              "enrichment": "contact.fax"
+            },
+            {
+              "enrichment": "contact.specialDistribution"
+            },
+            {
+              "enrichment": "contact.additionToAddress"
+            },
+            {
+              "enrichment": "general.activityCode"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.en"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.jp"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.it"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.fr"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.se"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.de"
+            },
+            {
+              "enrichment": "general.activityCode2"
+            },
+            {
+              "enrichment": "general.activityCode2Desc.en"
+            },
+            {
+              "enrichment": "general.activityCode2Desc.jp"
+            },
+            {
+              "enrichment": "general.activityCode3"
+            },
+            {
+              "enrichment": "general.activityCode3Desc.en"
+            },
+            {
+              "enrichment": "general.sectorCode"
+            },
+            {
+              "enrichment": "general.legalForm"
+            },
+            {
+              "enrichment": "general.legalFormCategory"
+            },
+            {
+              "enrichment": "general.legalFormDetails"
+            },
+            {
+              "enrichment": "general.legalFormDesc.en"
+            },
+            {
+              "enrichment": "general.legalFormDesc.it"
+            },
+            {
+              "enrichment": "general.legalFormDesc.nl"
+            },
+            {
+              "enrichment": "general.legalFormDesc.fr"
+            },
+            {
+              "enrichment": "general.legalFormDesc.de"
+            },
+            {
+              "enrichment": "general.legalFormDesc.no"
+            },
+            {
+              "enrichment": "general.naicsCode"
+            },
+            {
+              "enrichment": "general.naicsCodeDesc.en"
+            },
+            {
+              "enrichment": "general.website"
+            },
+            {
+              "enrichment": "contact.email"
+            },
+            {
+              "enrichment": "general.establishDate"
+            },
+            {
+              "enrichment": "general.registrationDate"
+            },
+            {
+              "enrichment": "general.registrationLocation"
+            },
+            {
+              "enrichment": "general.employees"
+            },
+            {
+              "enrichment": "general.workforceCode"
+            },
+            {
+              "enrichment": "general.workforceCodeDesc.en"
+            },
+            {
+              "enrichment": "general.workforceCodeDesc.fr"
+            },
+            {
+              "enrichment": "general.minimalWorkforceRange"
+            },
+            {
+              "enrichment": "general.annualSales"
+            },
+            {
+              "enrichment": "general.juridicalForm"
+            },
+            {
+              "enrichment": "general.juridicalFormDesc.en"
+            },
+            {
+              "enrichment": "general.juridicalFormDesc.fr"
+            },
+            {
+              "enrichment": "general.juridicalFormDesc.nl"
+            },
+            {
+              "enrichment": "general.status"
+            },
+            {
+              "enrichment": "general.statusDesc.fr"
+            },
+            {
+              "enrichment": "general.statusDesc.nl"
+            },
+            {
+              "enrichment": "general.statusDescShort.en"
+            },
+            {
+              "enrichment": "general.statusDescShort.fr"
+            },
+            {
+              "enrichment": "general.active"
+            },
+            {
+              "enrichment": "financials.shareCapital"
+            },
+            {
+              "enrichment": "financials.bankName"
+            },
+            {
+              "enrichment": "financials.shareCapitalCurrency"
+            },
+            {
+              "enrichment": "financials.bankCode"
+            },
+            {
+              "enrichment": "general.sosFederalTaxId"
+            },
+            {
+              "enrichment": "general.sosCharterNo"
+            },
+            {
+              "enrichment": "general.sosStatus"
+            },
+            {
+              "enrichment": "general.incorporatedState"
+            },
+            {
+              "enrichment": "general.sosAddress"
+            },
+            {
+              "enrichment": "general.sosCity"
+            },
+            {
+              "enrichment": "general.sosState"
+            },
+            {
+              "enrichment": "general.sosZip"
+            },
+            {
+              "enrichment": "general.sosZip4"
+            },
+            {
+              "enrichment": "general.incorporationDate"
+            },
+            {
+              "enrichment": "group.parent.siret"
+            },
+            {
+              "enrichment": "group.parent.siren"
+            },
+            {
+              "enrichment": "group.ultimateParent.siren"
+            },
+            {
+              "enrichment": "general.importFlag"
+            },
+            {
+              "enrichment": "general.exportFlag"
+            },
+            {
+              "enrichment": "general.ltdNonLtdFlag"
+            },
+            {
+              "enrichment": "general.priority"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.nl"
+            },
+            {
+              "enrichment": "general.mainOfficeFlag"
+            },
+            {
+              "enrichment": "general.yearsTrading"
+            },
+            {
+              "enrichment": "general.foundingDeedDate"
+            },
+            {
+              "enrichment": "general.continuanceDate"
+            },
+            {
+              "enrichment": "general.discontinuanceDate"
+            },
+            {
+              "enrichment": "general.mortgages.partiallySatisfied"
+            },
+            {
+              "enrichment": "general.mortgages.satisfied"
+            },
+            {
+              "enrichment": "general.mortgages.outstanding"
+            },
+            {
+              "enrichment": "general.mortgages.total"
+            },
+            {
+              "enrichment": "general.managerType"
+            },
+            {
+              "enrichment": "general.managerTypeDesc.en"
+            },
+            {
+              "enrichment": "general.managerTypeDesc.fr"
+            },
+            {
+              "enrichment": "financials.consolidationCode"
+            },
+            {
+              "enrichment": "contact.addressLine2"
+            },
+            {
+              "enrichment": "contact.postalCode"
+            }
+          ]
+        }
+      },
+      "standard": {
+        "type": "object",
+        "properties": {
+          "enrichments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "enrichment": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "example": {
+          "enrichments": [
+            {
+              "enrichment": "general.safeNumber"
+            },
+            {
+              "enrichment": "general.connectId"
+            },
+            {
+              "enrichment": "general.ggsId"
+            },
+            {
+              "enrichment": "general.companyName"
+            },
+            {
+              "enrichment": "general.companyId"
+            },
+            {
+              "enrichment": "general.companyNameKanji"
+            },
+            {
+              "enrichment": "general.companyNameKana"
+            },
+            {
+              "enrichment": "general.aliasName"
+            },
+            {
+              "enrichment": "general.tradeName"
+            },
+            {
+              "enrichment": "general.tradeNumber"
+            },
+            {
+              "enrichment": "general.acronym"
+            },
+            {
+              "enrichment": "general.organisationNumber"
+            },
+            {
+              "enrichment": "general.legalRegistrationNumber"
+            },
+            {
+              "enrichment": "general.siret"
+            },
+            {
+              "enrichment": "general.siren"
+            },
+            {
+              "enrichment": "general.companyNumber"
+            },
+            {
+              "enrichment": "general.kvkNumber"
+            },
+            {
+              "enrichment": "contact.eircode"
+            },
+            {
+              "enrichment": "contact.country"
+            },
+            {
+              "enrichment": "contact.mailing.city"
+            },
+            {
+              "enrichment": "general.companyType"
+            },
+            {
+              "enrichment": "general.companyTypeDesc.en"
+            },
+            {
+              "enrichment": "general.legalName"
+            },
+            {
+              "enrichment": "general.legalNameAlt"
+            },
+            {
+              "enrichment": "general.rsin"
+            },
+            {
+              "enrichment": "general.tradingName"
+            },
+            {
+              "enrichment": "general.regDeletionNumber"
+            },
+            {
+              "enrichment": "general.pattern"
+            },
+            {
+              "enrichment": "general.banding"
+            },
+            {
+              "enrichment": "general.bandingDesc"
+            },
+            {
+              "enrichment": "general.rowNumber"
+            },
+            {
+              "enrichment": "general.duplicate"
+            },
+            {
+              "enrichment": "general.duplicateId"
+            },
+            {
+              "enrichment": "contact.city"
+            },
+            {
+              "enrichment": "general.taxCode"
+            },
+            {
+              "enrichment": "general.vatNumber"
+            },
+            {
+              "enrichment": "general.vatLiable"
+            },
+            {
+              "enrichment": "general.principalActivity"
+            },
+            {
+              "enrichment": "general.principalActivity2"
+            },
+            {
+              "enrichment": "general.principalActivity3"
+            },
+            {
+              "enrichment": "general.principalActivity4"
+            },
+            {
+              "enrichment": "general.principalActivity5"
+            },
+            {
+              "enrichment": "general.statusDesc.en"
+            },
+            {
+              "enrichment": "contact.addressLine1"
+            },
+            {
+              "enrichment": "contact.addressLine3"
+            },
+            {
+              "enrichment": "contact.addressLine4"
+            },
+            {
+              "enrichment": "contact.addressLine5"
+            },
+            {
+              "enrichment": "contact.addressLine6"
+            },
+            {
+              "enrichment": "contact.streetName"
+            },
+            {
+              "enrichment": "contact.houseNumber"
+            },
+            {
+              "enrichment": "contact.state"
+            },
+            {
+              "enrichment": "contact.postBox"
+            },
+            {
+              "enrichment": "contact.zip4"
+            },
+            {
+              "enrichment": "contact.region"
+            },
+            {
+              "enrichment": "contact.municipality"
+            },
+            {
+              "enrichment": "contact.province"
+            },
+            {
+              "enrichment": "contact.mailing.addressLine1"
+            },
+            {
+              "enrichment": "contact.mailing.addressLine2"
+            },
+            {
+              "enrichment": "contact.mailing.addressLine3"
+            },
+            {
+              "enrichment": "contact.mailing.addressLine4"
+            },
+            {
+              "enrichment": "contact.mailing.streetName"
+            },
+            {
+              "enrichment": "contact.mailing.houseNumber"
+            },
+            {
+              "enrichment": "contact.mailing.province"
+            },
+            {
+              "enrichment": "contact.mailing.postalCode"
+            },
+            {
+              "enrichment": "contact.nonMailingIndicator"
+            },
+            {
+              "enrichment": "contact.officeAddress1"
+            },
+            {
+              "enrichment": "contact.officeAddress2"
+            },
+            {
+              "enrichment": "contact.officeAddress3"
+            },
+            {
+              "enrichment": "contact.addressType"
+            },
+            {
+              "enrichment": "contact.paf.addressLine1"
+            },
+            {
+              "enrichment": "contact.paf.addressLine2"
+            },
+            {
+              "enrichment": "contact.paf.addressLine3"
+            },
+            {
+              "enrichment": "contact.paf.addressLine4"
+            },
+            {
+              "enrichment": "contact.paf.postalCode"
+            },
+            {
+              "enrichment": "general.locationType"
+            },
+            {
+              "enrichment": "contact.contactPhone"
+            },
+            {
+              "enrichment": "contact.tps"
+            },
+            {
+              "enrichment": "contact.marketingAllowed"
+            },
+            {
+              "enrichment": "contact.fax"
+            },
+            {
+              "enrichment": "contact.specialDistribution"
+            },
+            {
+              "enrichment": "contact.additionToAddress"
+            },
+            {
+              "enrichment": "general.activityCode"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.en"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.jp"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.it"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.fr"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.se"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.de"
+            },
+            {
+              "enrichment": "general.activityCode2"
+            },
+            {
+              "enrichment": "general.activityCode2Desc.en"
+            },
+            {
+              "enrichment": "general.activityCode2Desc.jp"
+            },
+            {
+              "enrichment": "general.activityCode3"
+            },
+            {
+              "enrichment": "general.activityCode3Desc.en"
+            },
+            {
+              "enrichment": "general.sectorCode"
+            },
+            {
+              "enrichment": "general.legalForm"
+            },
+            {
+              "enrichment": "general.legalFormCategory"
+            },
+            {
+              "enrichment": "general.legalFormDetails"
+            },
+            {
+              "enrichment": "general.legalFormDesc.en"
+            },
+            {
+              "enrichment": "general.legalFormDesc.it"
+            },
+            {
+              "enrichment": "general.legalFormDesc.nl"
+            },
+            {
+              "enrichment": "general.legalFormDesc.fr"
+            },
+            {
+              "enrichment": "general.legalFormDesc.de"
+            },
+            {
+              "enrichment": "general.legalFormDesc.no"
+            },
+            {
+              "enrichment": "general.naicsCode"
+            },
+            {
+              "enrichment": "general.naicsCodeDesc.en"
+            },
+            {
+              "enrichment": "general.website"
+            },
+            {
+              "enrichment": "contact.email"
+            },
+            {
+              "enrichment": "general.establishDate"
+            },
+            {
+              "enrichment": "general.registrationDate"
+            },
+            {
+              "enrichment": "general.registrationLocation"
+            },
+            {
+              "enrichment": "general.employees"
+            },
+            {
+              "enrichment": "general.workforceCode"
+            },
+            {
+              "enrichment": "general.workforceCodeDesc.en"
+            },
+            {
+              "enrichment": "general.workforceCodeDesc.fr"
+            },
+            {
+              "enrichment": "general.minimalWorkforceRange"
+            },
+            {
+              "enrichment": "general.annualSales"
+            },
+            {
+              "enrichment": "general.juridicalForm"
+            },
+            {
+              "enrichment": "general.juridicalFormDesc.en"
+            },
+            {
+              "enrichment": "general.juridicalFormDesc.fr"
+            },
+            {
+              "enrichment": "general.juridicalFormDesc.nl"
+            },
+            {
+              "enrichment": "general.status"
+            },
+            {
+              "enrichment": "general.statusDesc.fr"
+            },
+            {
+              "enrichment": "general.statusDesc.nl"
+            },
+            {
+              "enrichment": "general.statusDescShort.en"
+            },
+            {
+              "enrichment": "general.statusDescShort.fr"
+            },
+            {
+              "enrichment": "general.active"
+            },
+            {
+              "enrichment": "financials.shareCapital"
+            },
+            {
+              "enrichment": "financials.bankName"
+            },
+            {
+              "enrichment": "financials.shareCapitalCurrency"
+            },
+            {
+              "enrichment": "financials.bankCode"
+            },
+            {
+              "enrichment": "general.sosFederalTaxId"
+            },
+            {
+              "enrichment": "general.sosCharterNo"
+            },
+            {
+              "enrichment": "general.sosStatus"
+            },
+            {
+              "enrichment": "general.incorporatedState"
+            },
+            {
+              "enrichment": "general.sosAddress"
+            },
+            {
+              "enrichment": "general.sosCity"
+            },
+            {
+              "enrichment": "general.sosState"
+            },
+            {
+              "enrichment": "general.sosZip"
+            },
+            {
+              "enrichment": "general.sosZip4"
+            },
+            {
+              "enrichment": "general.incorporationDate"
+            },
+            {
+              "enrichment": "group.parent.siret"
+            },
+            {
+              "enrichment": "group.parent.siren"
+            },
+            {
+              "enrichment": "group.ultimateParent.siren"
+            },
+            {
+              "enrichment": "general.importFlag"
+            },
+            {
+              "enrichment": "general.exportFlag"
+            },
+            {
+              "enrichment": "general.ltdNonLtdFlag"
+            },
+            {
+              "enrichment": "general.priority"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.nl"
+            },
+            {
+              "enrichment": "general.mainOfficeFlag"
+            },
+            {
+              "enrichment": "general.yearsTrading"
+            },
+            {
+              "enrichment": "general.foundingDeedDate"
+            },
+            {
+              "enrichment": "general.continuanceDate"
+            },
+            {
+              "enrichment": "general.discontinuanceDate"
+            },
+            {
+              "enrichment": "general.mortgages.partiallySatisfied"
+            },
+            {
+              "enrichment": "general.mortgages.satisfied"
+            },
+            {
+              "enrichment": "general.mortgages.outstanding"
+            },
+            {
+              "enrichment": "general.mortgages.total"
+            },
+            {
+              "enrichment": "general.managerType"
+            },
+            {
+              "enrichment": "general.managerTypeDesc.en"
+            },
+            {
+              "enrichment": "general.managerTypeDesc.fr"
+            },
+            {
+              "enrichment": "financials.consolidationCode"
+            },
+            {
+              "enrichment": "contact.addressLine2"
+            },
+            {
+              "enrichment": "contact.postalCode"
+            },
+            {
+              "enrichment": "general.federalTaxId"
+            },
+            {
+              "enrichment": "general.inactivityDate"
+            },
+            {
+              "enrichment": "negatives.legalFilings"
+            },
+            {
+              "enrichment": "negatives.uccCount"
+            },
+            {
+              "enrichment": "negatives.lienCount"
+            },
+            {
+              "enrichment": "negatives.lienAmount"
+            },
+            {
+              "enrichment": "negatives.lienDate"
+            },
+            {
+              "enrichment": "negatives.suitCount"
+            },
+            {
+              "enrichment": "negatives.suitAmount"
+            },
+            {
+              "enrichment": "negatives.suitDate"
+            },
+            {
+              "enrichment": "negatives.bankruptcyCount"
+            },
+            {
+              "enrichment": "negatives.bankruptcyAmount"
+            },
+            {
+              "enrichment": "negatives.bankruptcyDate"
+            },
+            {
+              "enrichment": "negatives.judgementCount"
+            },
+            {
+              "enrichment": "negatives.judgementAmount"
+            },
+            {
+              "enrichment": "negatives.judgementDate"
+            },
+            {
+              "enrichment": "negatives.chequeCount"
+            },
+            {
+              "enrichment": "negatives.chequeAmount"
+            },
+            {
+              "enrichment": "negatives.chequeDate"
+            },
+            {
+              "enrichment": "negatives.otherItemCount"
+            },
+            {
+              "enrichment": "negatives.otherItemAmount"
+            },
+            {
+              "enrichment": "negatives.otherItemDate"
+            },
+            {
+              "enrichment": "negatives.uccCautionaryCount"
+            },
+            {
+              "enrichment": "negatives.legalFilingsAmount"
+            },
+            {
+              "enrichment": "negatives.ofacFlag"
+            },
+            {
+              "enrichment": "negatives.ccjCount"
+            },
+            {
+              "enrichment": "negatives.ccjValue"
+            },
+            {
+              "enrichment": "financials.pretaxNetOperatingIncome"
+            },
+            {
+              "enrichment": "financials.extraordinaryIncome"
+            },
+            {
+              "enrichment": "financials.extraordinaryCharges"
+            },
+            {
+              "enrichment": "financials.extraordinaryProfitLoss"
+            },
+            {
+              "enrichment": "financials.tradingMargin"
+            },
+            {
+              "enrichment": "financials.addedValue"
+            },
+            {
+              "enrichment": "financials.grossOperatingSurplus"
+            },
+            {
+              "enrichment": "financials.balance.period1Late"
+            },
+            {
+              "enrichment": "financials.balance.period2Late"
+            },
+            {
+              "enrichment": "financials.balance.period3Late"
+            },
+            {
+              "enrichment": "financials.lastUpdateDate"
+            },
+            {
+              "enrichment": "financials.closureDate"
+            },
+            {
+              "enrichment": "financials.accountPeriodInMonths"
+            },
+            {
+              "enrichment": "financials.capitalNotCalled"
+            },
+            {
+              "enrichment": "financials.financialAssets"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.financialAssets"
+            },
+            {
+              "enrichment": "financials.netCurrentAssets"
+            },
+            {
+              "enrichment": "financials.advancedPayments"
+            },
+            {
+              "enrichment": "financials.receivables"
+            },
+            {
+              "enrichment": "financials.securitiesAndCash"
+            },
+            {
+              "enrichment": "financials.prepaidExpenses"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.prepaidExpenses"
+            },
+            {
+              "enrichment": "financials.shareholdersEquity"
+            },
+            {
+              "enrichment": "financials.otherCapitalResources"
+            },
+            {
+              "enrichment": "financials.riskProvisions"
+            },
+            {
+              "enrichment": "financials.liabilities"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.liabilities"
+            },
+            {
+              "enrichment": "financials.financialLiabilities"
+            },
+            {
+              "enrichment": "financials.advancedPaymentsReceived"
+            },
+            {
+              "enrichment": "financials.tradeAccountPayables"
+            },
+            {
+              "enrichment": "financials.taxAndSocialLiabilities"
+            },
+            {
+              "enrichment": "financials.currency"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.currency"
+            },
+            {
+              "enrichment": "financials.otherDebtsAndFixedAssets"
+            },
+            {
+              "enrichment": "financials.accountsRegularisation"
+            },
+            {
+              "enrichment": "financials.salesOfGoods"
+            },
+            {
+              "enrichment": "financials.netTurnover"
+            },
+            {
+              "enrichment": "financials.netExportTurnover"
+            },
+            {
+              "enrichment": "financials.operatingCharges"
+            },
+            {
+              "enrichment": "financials.financialProfit"
+            },
+            {
+              "enrichment": "financials.accountsOfRegularisation"
+            },
+            {
+              "enrichment": "rating.current.date"
+            },
+            {
+              "enrichment": "rating.current.score"
+            },
+            {
+              "enrichment": "rating.current.description.en"
+            },
+            {
+              "enrichment": "rating.current.description.nl"
+            },
+            {
+              "enrichment": "rating.current.description.no"
+            },
+            {
+              "enrichment": "rating.current.description.fr"
+            },
+            {
+              "enrichment": "rating.current.description.jp"
+            },
+            {
+              "enrichment": "rating.current.fullDescription.en"
+            },
+            {
+              "enrichment": "rating.current.fullDescription.no"
+            },
+            {
+              "enrichment": "rating.current.local"
+            },
+            {
+              "enrichment": "rating.current.creditIndex"
+            },
+            {
+              "enrichment": "rating.current.cds"
+            },
+            {
+              "enrichment": "rating.current.pod"
+            },
+            {
+              "enrichment": "limit.current.value"
+            },
+            {
+              "enrichment": "limit.current.date"
+            },
+            {
+              "enrichment": "rating.current.common"
+            },
+            {
+              "enrichment": "rating.current.colour"
+            },
+            {
+              "enrichment": "rating.previous.score"
+            },
+            {
+              "enrichment": "rating.previous.description.en"
+            },
+            {
+              "enrichment": "rating.previous.description.no"
+            },
+            {
+              "enrichment": "rating.previous.fullDescription.en"
+            },
+            {
+              "enrichment": "rating.previous.fullDescription.no"
+            },
+            {
+              "enrichment": "rating.previous.date"
+            },
+            {
+              "enrichment": "limit.previous.value"
+            },
+            {
+              "enrichment": "limit.previous.date"
+            },
+            {
+              "enrichment": "rating.previous.common"
+            },
+            {
+              "enrichment": "rating.creditworthy"
+            },
+            {
+              "enrichment": "financials.plAccountReserve"
+            },
+            {
+              "enrichment": "financials.otherShortTermFinance"
+            },
+            {
+              "enrichment": "financials.retainedProfit"
+            },
+            {
+              "enrichment": "financials.reserves"
+            },
+            {
+              "enrichment": "financials.debtorDays"
+            },
+            {
+              "enrichment": "financials.bankOverdraftLtl"
+            },
+            {
+              "enrichment": "financials.otherCurrentDebtors"
+            },
+            {
+              "enrichment": "financials.paidShareCapital"
+            },
+            {
+              "enrichment": "financials.preTaxProfitMargin"
+            },
+            {
+              "enrichment": "financials.auditComments"
+            },
+            {
+              "enrichment": "financials.bankers"
+            },
+            {
+              "enrichment": "financials.bankBranchCode"
+            },
+            {
+              "enrichment": "financials.dbt.current"
+            },
+            {
+              "enrichment": "financials.dbt.previous"
+            },
+            {
+              "enrichment": "financials.dbt.local"
+            },
+            {
+              "enrichment": "financials.amortizationAndDepreciation"
+            },
+            {
+              "enrichment": "financials.directorRemuneration"
+            },
+            {
+              "enrichment": "financials.dividends"
+            },
+            {
+              "enrichment": "financials.employeeCosts"
+            },
+            {
+              "enrichment": "financials.employeePensionCosts"
+            },
+            {
+              "enrichment": "financials.equityInPercentage"
+            },
+            {
+              "enrichment": "financials.extraordinaryItems"
+            },
+            {
+              "enrichment": "financials.financialCharges"
+            },
+            {
+              "enrichment": "financials.financialFixedAssets"
+            },
+            {
+              "enrichment": "financials.financialIncome"
+            },
+            {
+              "enrichment": "financials.finishedGoods"
+            },
+            {
+              "enrichment": "financials.intangibleFixedAssets"
+            },
+            {
+              "enrichment": "financials.inventories"
+            },
+            {
+              "enrichment": "financials.issuedShareCapital"
+            },
+            {
+              "enrichment": "financials.landAndBuilding"
+            },
+            {
+              "enrichment": "financials.operatingIncome"
+            },
+            {
+              "enrichment": "financials.otherAmountsReceivable"
+            },
+            {
+              "enrichment": "financials.otherEmployeeCosts"
+            },
+            {
+              "enrichment": "financials.otherStocks"
+            },
+            {
+              "enrichment": "financials.turnover"
+            },
+            {
+              "enrichment": "financials.otherTangibleAssets"
+            },
+            {
+              "enrichment": "financials.otherTermLiabilities"
+            },
+            {
+              "enrichment": "financials.otherTermLoans"
+            },
+            {
+              "enrichment": "financials.plantAndMachinery"
+            },
+            {
+              "enrichment": "financials.preProfitMargin"
+            },
+            {
+              "enrichment": "financials.profitBeforeTax"
+            },
+            {
+              "enrichment": "financials.rawAndConsumables"
+            },
+            {
+              "enrichment": "financials.resultsAfterTaxation"
+            },
+            {
+              "enrichment": "financials.salesWorkingCapital"
+            },
+            {
+              "enrichment": "financials.sharePremiumAccount"
+            },
+            {
+              "enrichment": "financials.socialSecurityContributions"
+            },
+            {
+              "enrichment": "financials.tangibleFixedAssets"
+            },
+            {
+              "enrichment": "financials.totalOperatingExpenses"
+            },
+            {
+              "enrichment": "financials.totalTermDebts"
+            },
+            {
+              "enrichment": "financials.workInProgress"
+            },
+            {
+              "enrichment": "financials.accountingDate"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.accountingDate"
+            },
+            {
+              "enrichment": "financials.numberOfWeeks"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.numberOfWeeks"
+            },
+            {
+              "enrichment": "financials.assets"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.assets"
+            },
+            {
+              "enrichment": "financials.tradeUpdateDate"
+            },
+            {
+              "enrichment": "financials.tradelines"
+            },
+            {
+              "enrichment": "financials.fixedAssets"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.fixedAssets"
+            },
+            {
+              "enrichment": "financials.currentAssets"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.currentAssets"
+            },
+            {
+              "enrichment": "financials.inventory"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.inventory"
+            },
+            {
+              "enrichment": "financials.receivablesAndOther"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.receivablesAndOther"
+            },
+            {
+              "enrichment": "financials.therefromTradeReceivables"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.therefromTradeReceivables"
+            },
+            {
+              "enrichment": "financials.securities"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.securities"
+            },
+            {
+              "enrichment": "financials.liquidAssets"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.liquidAssets"
+            },
+            {
+              "enrichment": "financials.deferedTax"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.deferedTax"
+            },
+            {
+              "enrichment": "financials.activeDiffBetweenAssetAllocation"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.activeDiffBetweenAssetAllocation"
+            },
+            {
+              "enrichment": "financials.deficitNcbCapital"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.deficitNcbCapital"
+            },
+            {
+              "enrichment": "financials.deficitNcblLossCapital"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.deficitNcblLossCapital"
+            },
+            {
+              "enrichment": "financials.balanceSheetTotalAssets"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.balanceSheetTotalAssets"
+            },
+            {
+              "enrichment": "financials.equity"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.equity"
+            },
+            {
+              "enrichment": "financials.subscribedCapital"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.subscribedCapital"
+            },
+            {
+              "enrichment": "financials.privateAccount"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.privateAccount"
+            },
+            {
+              "enrichment": "financials.sharesNcblUnlimitedPartners"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.sharesNcblUnlimitedPartners"
+            },
+            {
+              "enrichment": "financials.sharesNcblLimitedPartners"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.sharesNcblLimitedPartners"
+            },
+            {
+              "enrichment": "financials.fixedEquity"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.fixedEquity"
+            },
+            {
+              "enrichment": "financials.variableEquity"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.variableEquity"
+            },
+            {
+              "enrichment": "financials.balance.current"
+            },
+            {
+              "enrichment": "financials.balance.1to30"
+            },
+            {
+              "enrichment": "financials.balance.31to60"
+            },
+            {
+              "enrichment": "financials.balance.61to90"
+            },
+            {
+              "enrichment": "financials.balance.91plus"
+            },
+            {
+              "enrichment": "financials.balance.total"
+            },
+            {
+              "enrichment": "financials.capitalReserve"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.capitalReserve"
+            },
+            {
+              "enrichment": "financials.revenueReserve"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.revenueReserve"
+            },
+            {
+              "enrichment": "financials.retainedEarnings"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.retainedEarnings"
+            },
+            {
+              "enrichment": "financials.balanceSheetNetIncome"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.balanceSheetNetIncome"
+            },
+            {
+              "enrichment": "financials.accruals"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.accruals"
+            },
+            {
+              "enrichment": "financials.therefromAccrualsPension"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.therefromAccrualsPension"
+            },
+            {
+              "enrichment": "financials.therefromAccrualsTax"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.therefromAccrualsTax"
+            },
+            {
+              "enrichment": "financials.therefromTradePayables"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.therefromTradePayables"
+            },
+            {
+              "enrichment": "financials.defferedIncome"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.defferedIncome"
+            },
+            {
+              "enrichment": "financials.defferedLiabilities"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.defferedLiabilities"
+            },
+            {
+              "enrichment": "financials.balanceSheetTotal"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.balanceSheetTotal"
+            },
+            {
+              "enrichment": "financials.inventoryChange"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.inventoryChange"
+            },
+            {
+              "enrichment": "financials.ownWork"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.ownWork"
+            },
+            {
+              "enrichment": "financials.otherOperationalRevenue"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.otherOperationalRevenue"
+            },
+            {
+              "enrichment": "financials.materials"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.materials"
+            },
+            {
+              "enrichment": "financials.staff"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.staff"
+            },
+            {
+              "enrichment": "financials.amortisation"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.amortisation"
+            },
+            {
+              "enrichment": "financials.otherCosts"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.otherCosts"
+            },
+            {
+              "enrichment": "financials.profitLoss"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.profitLoss"
+            },
+            {
+              "enrichment": "financials.profit"
+            },
+            {
+              "enrichment": "financials.operationalResult"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.operationalResult"
+            },
+            {
+              "enrichment": "financials.therefromOtherInterestSimilarIncome"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.therefromOtherInterestSimilarIncome"
+            },
+            {
+              "enrichment": "financials.therefromInterestsSimilarExpenses"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.therefromInterestsSimilarExpenses"
+            },
+            {
+              "enrichment": "financials.financialResult"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.financialResult"
+            },
+            {
+              "enrichment": "financials.ordinaryOperationalResult"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.ordinaryOperationalResult"
+            },
+            {
+              "enrichment": "financials.extraordinaryResult"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.extraordinaryResult"
+            },
+            {
+              "enrichment": "financials.tax"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.tax"
+            },
+            {
+              "enrichment": "financials.otherTaxes"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.otherTaxes"
+            },
+            {
+              "enrichment": "financials.netIncome"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.netIncome"
+            },
+            {
+              "enrichment": "financials.yearOfBalance"
+            },
+            {
+              "enrichment": "financials.totalShareholdersEquity"
+            },
+            {
+              "enrichment": "financials.totalOperatingIncome"
+            },
+            {
+              "enrichment": "financials.salesRevenue"
+            },
+            {
+              "enrichment": "financials.otherOperatingIncome"
+            },
+            {
+              "enrichment": "financials.costOfStocks"
+            },
+            {
+              "enrichment": "financials.changeInStock"
+            },
+            {
+              "enrichment": "financials.changeInWorkInProgress"
+            },
+            {
+              "enrichment": "financials.writeDownOfFixedAssets"
+            },
+            {
+              "enrichment": "financials.otherOperatingExpenses"
+            },
+            {
+              "enrichment": "financials.allocatedDividend"
+            },
+            {
+              "enrichment": "financials.revenueSubsidiaries"
+            },
+            {
+              "enrichment": "financials.revenueGroupCompanies"
+            },
+            {
+              "enrichment": "financials.revenueAssociatedCompanies"
+            },
+            {
+              "enrichment": "financials.interestIncomeGroup"
+            },
+            {
+              "enrichment": "financials.otherInterestIncome"
+            },
+            {
+              "enrichment": "financials.otherFinancialIncome"
+            },
+            {
+              "enrichment": "financials.changeValueCurrentAssets"
+            },
+            {
+              "enrichment": "financials.writedownsCurrentAssets"
+            },
+            {
+              "enrichment": "financials.writedownsFixedAssets"
+            },
+            {
+              "enrichment": "financials.otherInterestExpensesGroup"
+            },
+            {
+              "enrichment": "financials.otherInterestExpenses"
+            },
+            {
+              "enrichment": "financials.otherFinancialExpenses"
+            },
+            {
+              "enrichment": "financials.otherFinancialCosts"
+            },
+            {
+              "enrichment": "financials.financialExpenses"
+            },
+            {
+              "enrichment": "financials.totalNetFinancialItems"
+            },
+            {
+              "enrichment": "financials.netProfitLoss"
+            },
+            {
+              "enrichment": "financials.taxOnExtraordinaryResult"
+            },
+            {
+              "enrichment": "financials.minorityShare"
+            },
+            {
+              "enrichment": "financials.netResultAfterDividends"
+            },
+            {
+              "enrichment": "financials.groupContributions"
+            },
+            {
+              "enrichment": "financials.allocationOtherEquity"
+            },
+            {
+              "enrichment": "financials.totalTransfersAllocations"
+            },
+            {
+              "enrichment": "financials.researchAndDevelopment"
+            },
+            {
+              "enrichment": "financials.concessions"
+            },
+            {
+              "enrichment": "financials.deferredTaxAsset"
+            },
+            {
+              "enrichment": "financials.goodwillIntangibleAssets"
+            },
+            {
+              "enrichment": "financials.otherIntangibleFixedAssets"
+            },
+            {
+              "enrichment": "financials.landAndBuildings"
+            },
+            {
+              "enrichment": "financials.shipsRigsAircraft"
+            },
+            {
+              "enrichment": "financials.operatingEquipment"
+            },
+            {
+              "enrichment": "financials.otherOperationFactors"
+            },
+            {
+              "enrichment": "financials.totalTangibleAssets"
+            },
+            {
+              "enrichment": "financials.sharesInvestmentSubsidiaries"
+            },
+            {
+              "enrichment": "financials.investmentsInGroupCompanies"
+            },
+            {
+              "enrichment": "financials.investmentsInAssociatedCompanies"
+            },
+            {
+              "enrichment": "financials.investmentsInShares"
+            },
+            {
+              "enrichment": "financials.bondsAndAccountsReceivables"
+            },
+            {
+              "enrichment": "financials.pensionFunds"
+            },
+            {
+              "enrichment": "financials.otherFinancialFixedAssets"
+            },
+            {
+              "enrichment": "financials.bonds"
+            },
+            {
+              "enrichment": "financials.otherReceivables"
+            },
+            {
+              "enrichment": "financials.otherReceivables2"
+            },
+            {
+              "enrichment": "financials.otherFixedAssets"
+            },
+            {
+              "enrichment": "financials.rawMaterials"
+            },
+            {
+              "enrichment": "financials.otherInventories"
+            },
+            {
+              "enrichment": "financials.totalInventories"
+            },
+            {
+              "enrichment": "financials.tradeReceivables"
+            },
+            {
+              "enrichment": "financials.receivablesToCompInGroup"
+            },
+            {
+              "enrichment": "financials.totalReceivable"
+            },
+            {
+              "enrichment": "financials.sharesAndInterestsInGroup"
+            },
+            {
+              "enrichment": "financials.quotedInvestmentShares"
+            },
+            {
+              "enrichment": "financials.quotedBonds"
+            },
+            {
+              "enrichment": "financials.otherMarkedBasedFinancial"
+            },
+            {
+              "enrichment": "financials.otherFinancialInstr"
+            },
+            {
+              "enrichment": "financials.otherInvestments"
+            },
+            {
+              "enrichment": "financials.cashAndBankDeposits"
+            },
+            {
+              "enrichment": "financials.totalFunds"
+            },
+            {
+              "enrichment": "financials.ownShares"
+            },
+            {
+              "enrichment": "financials.sharePremiumReserve"
+            },
+            {
+              "enrichment": "financials.otherPaidInCapital"
+            },
+            {
+              "enrichment": "financials.totalEquityDeposits"
+            },
+            {
+              "enrichment": "financials.valuationReserve"
+            },
+            {
+              "enrichment": "financials.otherEquity"
+            },
+            {
+              "enrichment": "financials.minorityInterestsGroups"
+            },
+            {
+              "enrichment": "financials.totalRetainedEarnings"
+            },
+            {
+              "enrichment": "financials.otherReserves"
+            },
+            {
+              "enrichment": "financials.longtermPensionCommitments"
+            },
+            {
+              "enrichment": "financials.deferredTaxLiabilities"
+            },
+            {
+              "enrichment": "financials.otherProvisions"
+            },
+            {
+              "enrichment": "financials.totalProvisionsLiabilities"
+            },
+            {
+              "enrichment": "financials.convertibleLoans"
+            },
+            {
+              "enrichment": "financials.otherLongtermLoans"
+            },
+            {
+              "enrichment": "financials.longtermLiabilitiesFinInst"
+            },
+            {
+              "enrichment": "financials.longtermGroupContrLiabilities"
+            },
+            {
+              "enrichment": "financials.liableLoanCapital"
+            },
+            {
+              "enrichment": "financials.otherLongtermLiabilities"
+            },
+            {
+              "enrichment": "financials.totalOtherLongtermLiabilities"
+            },
+            {
+              "enrichment": "financials.convertibleLoan"
+            },
+            {
+              "enrichment": "financials.certificateLoan"
+            },
+            {
+              "enrichment": "financials.shorttermLiabilitiesFinInst"
+            },
+            {
+              "enrichment": "financials.payableTax"
+            },
+            {
+              "enrichment": "financials.specialGovernmentTaxes"
+            },
+            {
+              "enrichment": "financials.suggestedDividend"
+            },
+            {
+              "enrichment": "financials.shorttermLiabilitiesGroup"
+            },
+            {
+              "enrichment": "financials.otherCreditors"
+            },
+            {
+              "enrichment": "financials.totalLiabilitiesEquity"
+            },
+            {
+              "enrichment": "financials.solvencyRatio"
+            },
+            {
+              "enrichment": "financials.recentHighCredit"
+            },
+            {
+              "enrichment": "financials.operatingProfit"
+            },
+            {
+              "enrichment": "financials.depreciation"
+            },
+            {
+              "enrichment": "financials.auditFees"
+            },
+            {
+              "enrichment": "financials.currentRatio"
+            },
+            {
+              "enrichment": "financials.netWorkingCapital"
+            },
+            {
+              "enrichment": "financials.gearingRatio"
+            },
+            {
+              "enrichment": "financials.creditorDays"
+            },
+            {
+              "enrichment": "financials.liquidityAcidTest"
+            },
+            {
+              "enrichment": "financials.returnOnCapitalEmployed"
+            },
+            {
+              "enrichment": "financials.returnOnTotalAssetsEmployed"
+            },
+            {
+              "enrichment": "financials.currentDebtRatio"
+            },
+            {
+              "enrichment": "financials.totalDebtRatio"
+            },
+            {
+              "enrichment": "financials.stockTurnoverRatio"
+            },
+            {
+              "enrichment": "financials.returnOnNetAssetsEmployed"
+            },
+            {
+              "enrichment": "financials.netCashflowFromOperations"
+            },
+            {
+              "enrichment": "financials.netCashflowBeforeFinancing"
+            },
+            {
+              "enrichment": "financials.netCashflowFromFinancing"
+            },
+            {
+              "enrichment": "financials.auditorsQualification"
+            },
+            {
+              "enrichment": "financials.auditors"
+            },
+            {
+              "enrichment": "financials.capitalEmployed"
+            },
+            {
+              "enrichment": "financials.contingentLiability"
+            },
+            {
+              "enrichment": "financials.latestAccountDate"
+            },
+            {
+              "enrichment": "financials.profitLossAccount"
+            },
+            {
+              "enrichment": "financials.paidUpCapital"
+            },
+            {
+              "enrichment": "financials.accountsType"
+            },
+            {
+              "enrichment": "financials.accountsFrom"
+            },
+            {
+              "enrichment": "financials.accountsTo"
+            },
+            {
+              "enrichment": "financials.accountsMonths"
+            },
+            {
+              "enrichment": "financials.preTaxMargin"
+            },
+            {
+              "enrichment": "financials.retainedProfits"
+            },
+            {
+              "enrichment": "financials.dividendsPayable"
+            },
+            {
+              "enrichment": "financials.profitAfterTax"
+            },
+            {
+              "enrichment": "financials.taxation"
+            },
+            {
+              "enrichment": "financials.preTaxProfit"
+            },
+            {
+              "enrichment": "financials.interestPayments"
+            },
+            {
+              "enrichment": "financials.consolidatedAccounts"
+            },
+            {
+              "enrichment": "financials.exports"
+            },
+            {
+              "enrichment": "financials.costOfSales"
+            },
+            {
+              "enrichment": "financials.grossProfit"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.grossProfit"
+            },
+            {
+              "enrichment": "financials.wagesSalaries"
+            },
+            {
+              "enrichment": "financials.directorsEmoluments"
+            },
+            {
+              "enrichment": "negatives.totalCollectionAmount"
+            },
+            {
+              "enrichment": "negatives.bankruptcy"
+            },
+            {
+              "enrichment": "negatives.delinquencyCount"
+            },
+            {
+              "enrichment": "negatives.delinquencyAmount"
+            },
+            {
+              "enrichment": "negatives.collectionCases"
+            },
+            {
+              "enrichment": "negatives.collectionCount"
+            },
+            {
+              "enrichment": "negatives.collectionAmount"
+            },
+            {
+              "enrichment": "negatives.collectionDate"
+            },
+            {
+              "enrichment": "financials.netAssets"
+            },
+            {
+              "enrichment": "financials.totalLiabilities"
+            },
+            {
+              "enrichment": "financials.totalLongTermLiabilities"
+            },
+            {
+              "enrichment": "financials.otherLongTermFinance"
+            },
+            {
+              "enrichment": "financials.miscCurrentLiabilities"
+            },
+            {
+              "enrichment": "financials.otherShortTermFinancials"
+            },
+            {
+              "enrichment": "financials.bankOverdraft"
+            },
+            {
+              "enrichment": "financials.totalAssets"
+            },
+            {
+              "enrichment": "financials.miscCurrentAssets"
+            },
+            {
+              "enrichment": "financials.otherCurrentAssets"
+            },
+            {
+              "enrichment": "financials.tradeDebtors"
+            },
+            {
+              "enrichment": "financials.intangibleAssets"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.intangibleAssets"
+            },
+            {
+              "enrichment": "financials.tangibleAssets"
+            },
+            {
+              "enrichment": "financials.stocks"
+            },
+            {
+              "enrichment": "financials.cash"
+            },
+            {
+              "enrichment": "financials.shareholderFunds"
+            },
+            {
+              "enrichment": "financials.revaluationReserve"
+            },
+            {
+              "enrichment": "financials.sundryReserves"
+            },
+            {
+              "enrichment": "financials.coefficientLinear"
+            },
+            {
+              "enrichment": "financials.workingCapital"
+            },
+            {
+              "enrichment": "financials.accountsStartDate"
+            },
+            {
+              "enrichment": "financials.accountsEndDate"
+            },
+            {
+              "enrichment": "financials.totalFixedAssets"
+            },
+            {
+              "enrichment": "financials.totalCurrentAssets"
+            },
+            {
+              "enrichment": "financials.tradeCreditors"
+            },
+            {
+              "enrichment": "financials.totalCurrentLiabilities"
+            },
+            {
+              "enrichment": "financials.longTermLiabilities"
+            },
+            {
+              "enrichment": "financials.totalEquity"
+            },
+            {
+              "enrichment": "financials.netWorth"
+            },
+            {
+              "enrichment": "financials.liquidityRatio"
+            },
+            {
+              "enrichment": "financials.netResult"
+            },
+            {
+              "enrichment": "financials.capital"
+            },
+            {
+              "enrichment": "financials.nominalCapital"
+            },
+            {
+              "enrichment": "financials.placedCapital"
+            },
+            {
+              "enrichment": "financials.depositedCapital"
+            },
+            {
+              "enrichment": "group.daughter.name"
+            },
+            {
+              "enrichment": "group.daughter.country"
+            },
+            {
+              "enrichment": "group.parent.id"
+            },
+            {
+              "enrichment": "group.parent.safeNumber"
+            },
+            {
+              "enrichment": "group.parent.name"
+            },
+            {
+              "enrichment": "group.parent.companyNo"
+            },
+            {
+              "enrichment": "group.parent.rating.current.score"
+            },
+            {
+              "enrichment": "group.parent.rating.current.description.en"
+            },
+            {
+              "enrichment": "group.parent.rating.current.description.nl"
+            },
+            {
+              "enrichment": "group.parent.limit.current.value"
+            },
+            {
+              "enrichment": "group.parent.addressLine1"
+            },
+            {
+              "enrichment": "group.parent.city"
+            },
+            {
+              "enrichment": "group.parent.postalCode"
+            },
+            {
+              "enrichment": "group.parent.country"
+            },
+            {
+              "enrichment": "group.ultimateParent.id"
+            },
+            {
+              "enrichment": "group.ultimateParent.safeNumber"
+            },
+            {
+              "enrichment": "group.ultimateParent.name"
+            },
+            {
+              "enrichment": "group.ultimateParent.companyNo"
+            },
+            {
+              "enrichment": "group.ultimateParent.rating.current.score"
+            },
+            {
+              "enrichment": "group.ultimateParent.rating.current.description.en"
+            },
+            {
+              "enrichment": "group.ultimateParent.rating.current.description.nl"
+            },
+            {
+              "enrichment": "group.ultimateParent.limit.current.value"
+            },
+            {
+              "enrichment": "group.ultimateParent.country"
+            },
+            {
+              "enrichment": "group.ultimateParent.entityType"
+            },
+            {
+              "enrichment": "group.ultimateParent.isoCode"
+            },
+            {
+              "enrichment": "group.ultimateParent.address"
+            },
+            {
+              "enrichment": "group.ultimateParent.poBox"
+            },
+            {
+              "enrichment": "group.ultimateParent.city"
+            },
+            {
+              "enrichment": "group.ultimateParent.inseeCityCode"
+            },
+            {
+              "enrichment": "group.ultimateParent.postalCode"
+            },
+            {
+              "enrichment": "group.ultimateParent.contactPhone"
+            },
+            {
+              "enrichment": "group.headquarter.id"
+            },
+            {
+              "enrichment": "directors.title.en"
+            },
+            {
+              "enrichment": "directors.title.nl"
+            },
+            {
+              "enrichment": "directors.title.fr"
+            },
+            {
+              "enrichment": "directors.firstName"
+            },
+            {
+              "enrichment": "directors.fullNameKana"
+            },
+            {
+              "enrichment": "directors.middleName"
+            },
+            {
+              "enrichment": "directors.lastName"
+            },
+            {
+              "enrichment": "directors.fullName"
+            },
+            {
+              "enrichment": "directors.salutation"
+            },
+            {
+              "enrichment": "directors.gender"
+            },
+            {
+              "enrichment": "directors.addressLine1"
+            },
+            {
+              "enrichment": "directors.addressLine2"
+            },
+            {
+              "enrichment": "directors.addressLine3"
+            },
+            {
+              "enrichment": "directors.addressLine4"
+            },
+            {
+              "enrichment": "directors.city"
+            },
+            {
+              "enrichment": "directors.region"
+            },
+            {
+              "enrichment": "directors.state"
+            },
+            {
+              "enrichment": "directors.postalCode"
+            },
+            {
+              "enrichment": "directors.country"
+            },
+            {
+              "enrichment": "directors.birthDate"
+            },
+            {
+              "enrichment": "directors.birthPlace"
+            },
+            {
+              "enrichment": "directors.appointmentDate"
+            },
+            {
+              "enrichment": "directors.endDate"
+            },
+            {
+              "enrichment": "directors.nationality"
+            },
+            {
+              "enrichment": "directors.honours"
+            },
+            {
+              "enrichment": "directors.managerPositionCode"
+            },
+            {
+              "enrichment": "shareholders.name"
+            },
+            {
+              "enrichment": "shareholders.info"
+            },
+            {
+              "enrichment": "shareholders.currency"
+            },
+            {
+              "enrichment": "general.isHeadquarter"
+            }
+          ]
+        }
       }
     },
     "securitySchemes": {
