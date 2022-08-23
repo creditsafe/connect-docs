@@ -8339,7 +8339,7 @@
             "schema": {
               "type": "string"
             },
-            "example": ".csv"
+            "example": "csv"
           },
           {
             "name": "id",
