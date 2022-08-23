@@ -7031,7 +7031,7 @@
         ],
         "operationId": "Update Job Enrichments",
         "summary": "Update Enrichments Request",
-        "description": "Detail which package of enrichment settings are to be applied to the uploaded file.<br><br> Select one of the three products to acquire the JSON Enrichment schema possible for that product.<br><br> Removal of Enrichment types is possible from each product. Addition of Enrichment types to a product is not possible beyond the maximum schema for each.",
+        "description": "Detail which package of enrichment settings are to be applied to the uploaded file.<br><br> Select one of the three creditTypes to acquire the JSON Enrichment schema possible for that product.<br><br> Removal of Enrichment types is possible from each product. Addition of Enrichment types to a product is not possible beyond the maximum schema for each.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
