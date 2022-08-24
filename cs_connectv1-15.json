@@ -7602,7 +7602,7 @@
         },
         "responses": {
           "200": {
-            "description": "200 response",
+            "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
@@ -7612,7 +7612,7 @@
             }
           },
           "400": {
-            "description": "400 response",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -7622,7 +7622,7 @@
             }
           },
           "401": {
-            "description": "401 response",
+            "description": "Invalid Token",
             "content": {
               "application/json": {
                 "schema": {
@@ -7632,7 +7632,7 @@
             }
           },
           "403": {
-            "description": "403 response",
+            "description": "Access Forbidden",
             "content": {
               "application/json": {
                 "schema": {
@@ -7672,14 +7672,6 @@
           },
           {
             "name": "jobName",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "sortBy",
             "in": "query",
             "required": false,
             "schema": {
@@ -7730,14 +7722,6 @@
           },
           {
             "name": "companyName",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "sortDir",
             "in": "query",
             "required": false,
             "schema": {
@@ -7828,7 +7812,7 @@
         ],
         "responses": {
           "200": {
-            "description": "200 response",
+            "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
@@ -7838,7 +7822,7 @@
             }
           },
           "400": {
-            "description": "400 response",
+            "description": "Bad Request Response",
             "content": {
               "application/json": {
                 "schema": {
@@ -7848,7 +7832,7 @@
             }
           },
           "401": {
-            "description": "401 response",
+            "description": "Invalid Token Response",
             "content": {
               "application/json": {
                 "schema": {
@@ -7858,7 +7842,7 @@
             }
           },
           "403": {
-            "description": "403 response",
+            "description": "Access Forbidden Response",
             "content": {
               "application/json": {
                 "schema": {
@@ -7886,7 +7870,7 @@
           "Data Cleaning"
         ],
         "operationId": "Job File Upload with id",
-        "summary": "Upload a Job File with an id",
+        "summary": "Upload a Job File with an {id}",
         "description": "Upload a Job File for processing, you need to link to the {id} number generated from the 'Job Request'.",
         "parameters": [
           {
@@ -19379,9 +19363,11 @@
         "type": "object",
         "properties": {
           "id": {
+            "description": "ID number associated to the created job - used for future searches",
             "type": "string"
           },
           "name": {
+            "description": "The name associated to the 'Job Number' created by the user in the 'POST - Create Job Request'",
             "type": "string"
           },
           "createdAt": {
