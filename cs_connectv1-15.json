@@ -19429,12 +19429,50 @@
               "pdfGenerationError"
             ]
           },
+          "countryCode": {
+            "description": "Available after Enrichment",
+            "type": "string"
+          },
+          "portfolioId": {
+            "type": "string",
+            "description": "Available after Enrichment"
+          },
           "source": {
             "type": "string",
             "enum": [
               "dataCleaning",
               "prospects"
             ]
+          },
+          "jobSummary": {
+            "description": "Available after Enrichment",
+            "type": "object",
+            "properties": {
+              "totalRows": {
+                "type": "integer"
+              },
+              "matched": {
+                "type": "integer"
+              },
+              "manualMatched": {
+                "type": "integer"
+              },
+              "unmatched": {
+                "type": "integer"
+              },
+              "duplicates": {
+                "type": "integer"
+              }
+            }
+          },
+          "jobEnrichmentSettings": {
+            "description": "Available after Enrichment",
+            "type": "object",
+            "properties": {
+              "creditType": {
+                "type": "string"
+              }
+            }
           },
           "archived": {
             "type": "boolean"
