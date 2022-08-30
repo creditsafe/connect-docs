@@ -7143,20 +7143,21 @@
         },
         "responses": {
           "200": {
-            "description": "200 response",
+            "description": "Successful Response",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ArrayOfConnectDataCleaningResponse"
                 },
                 "example": {
+                  "correlationId": "string",
                   "messageId": "string"
                 }
               }
             }
           },
           "400": {
-            "description": "400 response",
+            "description": "Bad Request Response",
             "content": {
               "application/json": {
                 "schema": {
@@ -7166,7 +7167,7 @@
             }
           },
           "401": {
-            "description": "401 response",
+            "description": "Invalid Token response",
             "content": {
               "application/json": {
                 "schema": {
@@ -7176,7 +7177,7 @@
             }
           },
           "403": {
-            "description": "403 response",
+            "description": "Access Forbidden Response",
             "content": {
               "application/json": {
                 "schema": {
@@ -7237,6 +7238,7 @@
                   "$ref": "#/components/schemas/ConnectDataCleaningResponse"
                 },
                 "example": {
+                  "correlationId": "string",
                   "filePath": "string"
                 }
               }
