@@ -392,6 +392,15 @@
             }
           },
           {
+            "name": "includeIndicators",
+            "in": "query",
+            "description": "Optional parameter to include the three following indicator scores in to a company report - `Covid Score` , `Financial Strength` , `Estimated Turnover`",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
             "name": "customData",
             "in": "query",
             "description": "Additional Report Parameters e.g.  German Report Reason Code value is `de_reason_code::1` . Use /reportcustomdata/{country} endpoint to see all values.",
@@ -10691,6 +10700,28 @@
           }
         }
       },
+      "Creditsafe.GlobalData.Reports.indicators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": [
+            {
+              "type": "eti",
+              "changeDate": "2021-11-16T15:42:12Z"
+            },
+            {
+              "type": "fsi",
+              "value": "X",
+              "changeDate": "2021-04-01T16:05:27Z"
+            },
+            {
+              "type": "cov",
+              "value": "C",
+              "changeDate": "2021-03-25T16:27:03Z"
+            }
+          ]
+        }
+      },
       "Creditsafe.GlobalData.Reports.EntityType": {
         "enum": [
           "Other",
@@ -11672,6 +11703,9 @@
           },
           "contactInformation": {
             "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.LtdContactInformation"
+          },
+          "indicators": {
+            "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.indicators"
           },
           "shareCapitalStructure": {
             "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.LtdShareCapitalStructure"
