@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Creditsafe Connect",
-    "version": "1.5.1",
+    "version": "1.5.3",
     "description": "Creditsafe Connect is a REST API that provides access to the <a href=\"https://www.creditsafe.com/gb/en/more/about/our-data.html\">Creditsafe Global Company Database.</a> This allows you to: <ul><li>Control your master data</li><li>Utilise up-to-date Business and Director information, enhancing your onboarding and qualification processes</li><li>Recieve alerts when your customer's and supplier's Credit Report changes</li></ul> <h2>Quick Start</h2> To start your Creditsafe Connect API integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>By default, you will have been setup on our Sandbox environment.</br></br>\nUsing a REST API client construct an `/authenticate` POST request and enter your username & password (case-sensitive) into the POST body. A successful response will return an  `authentication token`.</br></br>\nUse the `authentication token` in an `Authorization` header on all other Creditsafe Connect calls as proof of your authenticity.\n\n<h2>Environments</h2>Production Environment baseurl: <code> https://connect.creditsafe.com/v1 </code> </br> Sandbox Test Environment baseurl:  <code>https://connect.sandbox.creditsafe.com/v1</code> <h2>Resources</h2> <ul> <li><a href=\"https://creditsafe.github.io/connect-docs/cs_connectv1-15.html\">OpenAPI</a> specification.</li><li><a href=\"https://www.getpostman.com/collections/4406bbddb81c308db8ff\">Postman Collection</a> of the most common example calls to Creditsafe Connect.</li> <li><a href=\"https://connect-portal.creditsafe.com\"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password and form requests.</li> <li><a href=\"https://creditsafe.freshdesk.com/en/support/solutions/categories/7000007071/folders/7000018640\"> Help Articles</a>  including: <ul><li>FAQs</li><li><a href=\"https://creditsafe.freshdesk.com/en/support/solutions/articles/7000053487-connect-api-data-dictionaries\"> Data Dictionaries </a></li><li><a href=\"https://creditsafe.freshdesk.com/en/support/solutions/articles/7000054765-connect-api-data-availability-per-country\"> Data Availability per Country </a></li><li><a href=\"https://creditsafe.freshdesk.com/en/support/solutions/articles/7000054656-connect-api-feature-availability-per-country\"> Feature Availability Matrix</a></li></ul></ul>"
   },
   "servers": [
@@ -389,6 +389,15 @@
               "type": "string",
               "default": "full",
               "nullable": true
+            }
+          },
+          {
+            "name": "includeIndicators",
+            "in": "query",
+            "description": "Optional parameter to include the three following indicator scores in to a company report - `Covid Score` , `Financial Strength` , `Estimated Turnover`",
+            "schema": {
+              "type": "boolean",
+              "default": false
             }
           },
           {
@@ -5798,7 +5807,7 @@
                 }
               }
             }
-          },           
+          },
           "401": {
             "description": "Invalid Token",
             "content": {
@@ -5808,32 +5817,32 @@
                 }
               }
             }
-      },
-    "403": {
-        "description": "Access Forbidden",
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "example": {
-                "message": "Access forbidden"
+          },
+          "403": {
+            "description": "Access Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Access forbidden"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Identity.BasicResponse"
+                }
               }
             }
           }
         }
       },
-    "500": {
-        "description": "Server Error",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Connect.Identity.BasicResponse"
-            }
-          }
-        }
-      }
-    }
-  },
       "put": {
         "tags": [
           "GB Consumers and AML"
@@ -6051,7 +6060,7 @@
           {
             "name": "Products",
             "in": "query",
-            "description": "The array of products to include",
+            "description": "The array of products to include\n\n**Below is a list of Definitions for the ENUM**\n* 0 - Consumer\n* 1 - Id\n* 2 - AML\n* 3 - Bank Match\n* 4 - AML with Bank Match",
             "schema": {
               "type": "array",
               "items": {
@@ -10691,6 +10700,28 @@
           }
         }
       },
+      "Creditsafe.GlobalData.Reports.indicators": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": [
+            {
+              "type": "eti",
+              "changeDate": "2021-11-16T15:42:12Z"
+            },
+            {
+              "type": "fsi",
+              "value": "X",
+              "changeDate": "2021-04-01T16:05:27Z"
+            },
+            {
+              "type": "cov",
+              "value": "C",
+              "changeDate": "2021-03-25T16:27:03Z"
+            }
+          ]
+        }
+      },
       "Creditsafe.GlobalData.Reports.EntityType": {
         "enum": [
           "Other",
@@ -11672,6 +11703,9 @@
           },
           "contactInformation": {
             "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.LtdContactInformation"
+          },
+          "indicators": {
+            "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.indicators"
           },
           "shareCapitalStructure": {
             "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.LtdShareCapitalStructure"
@@ -13617,7 +13651,9 @@
         }
       },
       "Connect.Identity.ReasonCode": {
+        "description": "Below is a list of Definitions for the ENUM\n* 0 - AddressVerification\n* 1 - BusinessSeacrch\n* 2 - CreditApplication\n* 3 - DebtCollection\n* 4 - DirectorsSearch\n* 5 - QuotationSearch\n* 6 - EmployeeCheck\n* 7 - TenantVet\n* 8 - GeneralInsurance",
         "enum": [
+          0,
           1,
           2,
           3,
@@ -13627,17 +13663,6 @@
           7,
           8
         ],
-        "x-enumDescriptions": {
-          "0": "AddressVerification",
-          "1": "BusinessSeacrch",
-          "2": "CreditApplication",
-          "3": "DebtCollection",
-          "4": "DirectorsSearch",
-          "5": "QuotationSearch",
-          "6": "EmployeeCheck",
-          "7": "TenantVet",
-          "8": "GeneralInsurance"
-        },
         "type": "integer",
         "format": "int32"
       },
@@ -13718,15 +13743,15 @@
         }
       },
       "Connect.Identity.Product": {
+        "type": "integer",
+        "format": "int32",
         "enum": [
           0,
           1,
           2,
           3,
           4
-        ],
-        "type": "integer",
-        "format": "int32"
+        ]
       },
       "Connect.Identity.SearchRequest": {
         "type": "object",
@@ -13746,6 +13771,7 @@
           },
           "products": {
             "type": "array",
+            "description": "Below is a list of Definitions for the ENUM\n* 0 - Consumer\n* 1 - Id\n* 2 - AML\n* 3 - Bank Match\n* 4 - AML with Bank Match",
             "items": {
               "$ref": "#/components/schemas/Connect.Identity.Product"
             },
