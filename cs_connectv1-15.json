@@ -855,6 +855,64 @@
         }
       }
     },
+    "/companies/match/batch/jobs": {
+      "get": {
+        "tags": [
+          "Companies"
+        ],
+        "description": "Returns all jobs for that user",
+        "operationId": "Return Jobs",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          }
+        ]
+      }
+    },
+    "/companies/match/batch/jobs{jobid}/status": {
+      "get": {
+        "tags": [
+          "Companies"
+        ],
+        "description": "Returns the status of a job from the job ID number.",
+        "operationId": "Request the status of a Job",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "jobid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/companies/match/batch/jobs{jobid}/result": {
+      "get": {
+        "tags": [
+          "Companies"
+        ],
+        "description": "Returns the result of the job in a `CSV` file format for the specified job ID",
+        "operationId": "Request a Job file by ID",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "jobid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
     "/people": {
       "get": {
         "tags": [
