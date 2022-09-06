@@ -843,11 +843,27 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "oneOf": [
-                    {
-                      "$ref": "#/components/schemas/Connect.ConfidenceMatch.MatchResults"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/Connect.ConfidenceMatch.BatchPost"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
                 }
               }
             }
@@ -860,13 +876,45 @@
         "tags": [
           "Companies"
         ],
-        "description": "Returns all jobs for that user",
+        "description": "Returns all jobs for that user - no parameters are required as all jobs are associated to user ID linked to 'token' posted within the 'header'",
         "operationId": "Return Jobs",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ConfidenceMatch.Batch.Jobs"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/companies/match/batch/jobs{jobid}/status": {
@@ -16915,6 +16963,91 @@
             "type": "array",
             "items": {
               "type": "string"
+            }
+          }
+        }
+      },
+      "Connect.ConfidenceMatch.BatchPost": {
+        "properties": {
+          "correlationId": {
+            "type": "string"
+          },
+          "jobId": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "dateCreated": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dateStarted": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "dateCompleted": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "totalItems": {
+            "type": "integer"
+          },
+          "processedItems": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "Connect.ConfidenceMatch.Batch.Jobs": {
+        "type": "object",
+        "properties": {
+          "correlationId": {
+            "type": "string"
+          },
+          "jobs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "jobId": {
+                  "type": "string"
+                },
+                "userId": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "dateCreated": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "dateStarted": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "dateCompleted": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "totalItems": {
+                  "type": "integer"
+                },
+                "processedItems": {
+                  "type": "integer"
+                },
+                "status": {
+                  "type": "string"
+                }
+              }
             }
           }
         }
