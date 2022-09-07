@@ -993,7 +993,7 @@
         ],
         "responses": {
           "200": {
-            "description": "CSV response if deliminated by a `,` 56 columns after separation and not all columns will provide response.",
+            "description": "CSV response is deliminated by a `,` 56 columns after separation and not all columns will provide response.",
             "content": {
               "text/csv": {
                 "schema": {
