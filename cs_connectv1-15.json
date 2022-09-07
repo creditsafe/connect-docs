@@ -917,7 +917,7 @@
         }
       }
     },
-    "/companies/match/batch/jobs{jobid}/status": {
+    "/companies/match/batch/jobs/{jobid}/status": {
       "get": {
         "tags": [
           "Companies"
@@ -971,7 +971,7 @@
         }
       }
     },
-    "/companies/match/batch/jobs{jobid}/result": {
+    "/companies/match/batch/jobs/{jobid}/result": {
       "get": {
         "tags": [
           "Companies"
