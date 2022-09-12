@@ -980,7 +980,7 @@
         "tags": [
           "Confidence Match Batch"
         ],
-        "description": "Returns the result of the job in a `CSV` format for the specified job ID, jobs will be returned in sequential flow.",
+        "description": "Returns the result of the job in a `CSV` format for the specified job ID, jobs will be returned in sequential flow. <br><br>Note: A file is NOT returned, the CSV format is returned in the response body",
         "operationId": "Request a Job file by ID",
         "parameters": [
           {
