@@ -9632,7 +9632,7 @@
       "Creditsafe.GlobalData.SearchCriteriaSchema-ValueSchema_1_System.String": {
         "type": "object",
         "properties": {
-          "optional": {
+          "required": {
             "type": "boolean"
           },
           "minLength": {
@@ -9856,6 +9856,12 @@
               "safeNo": {
                 "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchema-ValueSchema_1_System.String"
               },
+              "regNo": {
+                "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchema-ValueSchema_1_System.String"
+              },
+              "vatNo": {
+                "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchema-ValueSchema_1_System.String"
+              },
               "name": {
                 "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchema-QueryStringSchema"
               },
@@ -9867,12 +9873,6 @@
               },
               "status": {
                 "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchema-ValueSchema_1_Creditsafe.GlobalData.CompanyStatus"
-              },
-              "regNo": {
-                "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchema-ValueSchema_1_System.String"
-              },
-              "vatNo": {
-                "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchema-ValueSchema_1_System.String"
               },
               "address": {
                 "$ref": "#/components/schemas/Creditsafe.GlobalData.AddressCriteriaSchema"
@@ -9896,10 +9896,10 @@
       "Creditsafe.GlobalData.SearchCriteriaSchemaCountry": {
         "type": "object",
         "properties": {
-          "country": {
+          "countries": {
             "$ref": "#/components/schemas/Creditsafe.GlobalData.CountryCode"
           },
-          "schemas": {
+          "criteriaSets": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchema"
