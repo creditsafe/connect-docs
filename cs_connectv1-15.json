@@ -11748,6 +11748,19 @@
               },
               "report": {
                 "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.CompanyReport"
+              },
+              "companyID": {
+                "type": "string"
+              },
+              "dateOfOrder": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "language": {
+                "type": "string"
+              },
+              "userID": {
+                "type": "integer"
               }
             }
           }
