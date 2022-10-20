@@ -365,10 +365,20 @@
         "tags": [
           "Companies"
         ],
-        "description": "Orders a Company's Credit Report by connectId. Set the content-type of the request to `application\\pdf` to receive a PDF of the report instead of JSON.",
+        "description": "Orders a Company's Credit Report by connectId.<br><br> To acquire a PDF version of the report use the optional request in 'Header'.<br><br> This request will provide the link to download the PDF at the end of the JSON response.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": false,
+            "description": "Applies request for PDF link to Company Report.",
+            "schema":{
+              "type": "string"
+            },
+            "example": "application/json+pdf"
           },
           {
             "name": "language",
