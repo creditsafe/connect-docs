@@ -10010,6 +10010,9 @@
           "country": {
             "$ref": "#/components/schemas/Creditsafe.GlobalData.CountryCode"
           },
+          "regNo": {
+            "type": "string"
+          },
           "safeNo": {
             "type": "string"
           },
@@ -10027,9 +10030,6 @@
           },
           "status": {
             "$ref": "#/components/schemas/Creditsafe.GlobalData.CompanyStatus"
-          },
-          "regNo": {
-            "type": "string"
           },
           "vatNo": {
             "nullable": true,
@@ -10089,17 +10089,11 @@
       },
       "Creditsafe.GlobalData.SearchResponse_1_Creditsafe.GlobalData.Company": {
         "allOf": [
-          {
-            "$ref": "#/components/schemas/Creditsafe.GlobalData.ServiceResponse"
-          },
-          {
+            {
             "type": "object",
             "properties": {
-              "companies": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Creditsafe.GlobalData.Company"
-                }
+              "correlationId":{
+                "type": "string"
               },
               "page": {
                 "type": "integer",
@@ -10112,6 +10106,12 @@
               "totalSize": {
                 "type": "integer",
                 "format": "int32"
+              },  
+              "companies": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Creditsafe.GlobalData.Company"
+                }
               }
             }
           }
