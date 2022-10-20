@@ -538,9 +538,6 @@
                     "allOf": [
                       {
                         "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchemaCountry"
-                      },
-                      {
-                        "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchemaSet"
                       }
                     ]
                   }
@@ -9896,8 +9893,20 @@
       "Creditsafe.GlobalData.SearchCriteriaSchemaCountry": {
         "type": "object",
         "properties": {
+          "correlationId": {
+            "type": "string"
+        },
           "countries": {
+            "type":"array",
+            "items": {
             "$ref": "#/components/schemas/Creditsafe.GlobalData.CountryCode"
+            }          
+          },
+          "languages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "criteriaSets": {
             "type": "array",
@@ -9915,12 +9924,6 @@
           {
             "type": "object",
             "properties": {
-              "countriesCriteria": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchemaCountry"
-                }
-              },
               "customData": {
                 "type": "array",
                 "items": {
