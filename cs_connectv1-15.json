@@ -11734,12 +11734,12 @@
       },
       "Creditsafe.GlobalData.Reports.CompanyReportResponse": {
         "allOf": [
-          {
-            "$ref": "#/components/schemas/Creditsafe.GlobalData.ServiceResponse"
-          },
-          {
+            {
             "type": "object",
             "properties": {
+              "correlationID":{
+                "type": "string"
+              },
               "failedSections": {
                 "type": "array",
                 "items": {
