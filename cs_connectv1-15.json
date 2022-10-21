@@ -441,7 +441,7 @@
                   "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.CompanyReportResponse"
                 }
               },
-              "application/pdf": {
+              "application/json+pdf": {
                 "schema": {
                   "$ref": "#/components/schemas/Creditsafe.GlobalData.Core.Attachment.BinaryAttachment"
                 }
@@ -12514,18 +12514,44 @@
         }
       },
       "Creditsafe.GlobalData.Core.Attachment.BinaryAttachment": {
-        "type": "object",
-        "properties": {
-          "format": {
-            "type": "string"
-          },
-          "style": {
-            "type": "string"
-          },
-          "content": {
-            "type": "string"
+        "allOf": [
+          {
+          "type": "object",
+          "properties": {
+            "correlationID":{
+              "type": "string"
+            },
+            "failedSections": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.ReportSection"
+              }
+            },
+            "report": {
+              "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.CompanyReport"
+            },
+            "pdfReportStream": {
+              "type": "string",
+              "format": "byte",
+              "description": "Base64-encoded contents of the PDF."
+            
+            },
+            "companyID": {
+              "type": "string"
+            },
+            "dateOfOrder": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "language": {
+              "type": "string"
+            },
+            "userID": {
+              "type": "integer"
+            }
           }
         }
+      ]
       },
       "Creditsafe.GlobalData.Core.SupplierConnector.ConsumerReportResponse": {
         "allOf": [
