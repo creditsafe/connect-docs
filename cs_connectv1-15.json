@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Creditsafe Connect",
-    "version": "1.5.5",
+    "version": "1.5.6",
     "description": "Creditsafe Connect is a REST API that provides access to the <a href=\"https://www.creditsafe.com/gb/en/more/about/our-data.html\">Creditsafe Global Company Database.</a> This allows you to: <ul><li>Control your master data</li><li>Utilise up-to-date Business and Director information, enhancing your onboarding and qualification processes</li><li>Recieve alerts when your customer's and supplier's Credit Report changes</li></ul>   <h2>Customer Feedback</h2> Use the buttons below to let us know what you think of this documentation. Your feedback will be sent directly to the author to be considered for future versions.<br><br><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=f49570f5&embed_data=dGVtcGVyYXR1cmVfaWQ9MSZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"> <img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/gold.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=601a6fd1&embed_data=dGVtcGVyYXR1cmVfaWQ9MiZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/green.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=f1f7701c&embed_data=dGVtcGVyYXR1cmVfaWQ9MyZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/amber.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=73951e8b&embed_data=dGVtcGVyYXR1cmVfaWQ9NCZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/red.png\" /></a> <br><br> Selecting one of the buttons above will open a new tab to the feedback portal. <h2>Quick Start</h2> To start your Creditsafe Connect API integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>By default, you will have been setup on our Sandbox environment.</br></br>\nUsing a REST API client construct an `/authenticate` POST request and enter your username & password (case-sensitive) into the POST body. A successful response will return an  `authentication token`.</br></br>\nUse the `authentication token` in an `Authorization` header on all other Creditsafe Connect calls as proof of your authenticity.\n\n<h2>Environments</h2>Production Environment baseurl: <code> https://connect.creditsafe.com/v1 </code> </br> Sandbox Test Environment baseurl:  <code>https://connect.sandbox.creditsafe.com/v1</code>  <h2>Resources</h2> \n  <ul> \n    <li><a href=\"https://creditsafe.github.io/connect-docs/cs_connectv1-15.html\">OpenAPI</a> specification.</li>\n    <li><a href=\"https://www.getpostman.com/collections/4406bbddb81c308db8ff\">Postman Collection</a> of the most common example calls to Creditsafe Connect.</li> \n    <li><a href=\"https://connect-portal.creditsafe.com\"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password and form requests.</li> \n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions\"> Help Articles</a>  including: <ul><li><a href=\"https://help.creditsafeuk.com/en/support/solutions/7000007130\">FAQs</a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000053487-connect-api-data-dictionaries\"> Data Dictionaries </a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000054765-connect-api-data-availability-per-country\"> Data Availability per Country </a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000054656-connect-api-feature-availability-per-country\"> Feature Availability Matrix</a></li>\n    </ul></ul><br>\n "
   },
   "servers": [
@@ -365,10 +365,20 @@
         "tags": [
           "Companies"
         ],
-        "description": "Orders a Company's Credit Report by connectId. Set the content-type of the request to `application\\pdf` to receive a PDF of the report instead of JSON.",
+        "description": "Orders a Company Credit Report by connectId.<br><br> To acquire a PDF version of the report use the optional request in 'Header'.<br><br> This request will provide a 'Base64-encoded' script to convert to a PDF, this will appear at the end of the JSON response.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "Accept",
+            "in": "header",
+            "required": false,
+            "description": "Applies request for PDF link to Company Report.",
+            "schema":{
+              "type": "string"
+            },
+            "example": "application/json+pdf"
           },
           {
             "name": "language",
@@ -440,7 +450,7 @@
                   "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.CompanyReportResponse"
                 }
               },
-              "application/pdf": {
+              "application/json+pdf": {
                 "schema": {
                   "$ref": "#/components/schemas/Creditsafe.GlobalData.Core.Attachment.BinaryAttachment"
                 }
@@ -547,9 +557,6 @@
                     "allOf": [
                       {
                         "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchemaCountry"
-                      },
-                      {
-                        "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchemaSet"
                       }
                     ]
                   }
@@ -9905,8 +9912,20 @@
       "Creditsafe.GlobalData.SearchCriteriaSchemaCountry": {
         "type": "object",
         "properties": {
+          "correlationId": {
+            "type": "string"
+        },
           "countries": {
+            "type":"array",
+            "items": {
             "$ref": "#/components/schemas/Creditsafe.GlobalData.CountryCode"
+            }          
+          },
+          "languages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "criteriaSets": {
             "type": "array",
@@ -9924,12 +9943,6 @@
           {
             "type": "object",
             "properties": {
-              "countriesCriteria": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchemaCountry"
-                }
-              },
               "customData": {
                 "type": "array",
                 "items": {
@@ -10019,6 +10032,9 @@
           "country": {
             "$ref": "#/components/schemas/Creditsafe.GlobalData.CountryCode"
           },
+          "regNo": {
+            "type": "string"
+          },
           "safeNo": {
             "type": "string"
           },
@@ -10036,9 +10052,6 @@
           },
           "status": {
             "$ref": "#/components/schemas/Creditsafe.GlobalData.CompanyStatus"
-          },
-          "regNo": {
-            "type": "string"
           },
           "vatNo": {
             "nullable": true,
@@ -10098,17 +10111,11 @@
       },
       "Creditsafe.GlobalData.SearchResponse_1_Creditsafe.GlobalData.Company": {
         "allOf": [
-          {
-            "$ref": "#/components/schemas/Creditsafe.GlobalData.ServiceResponse"
-          },
-          {
+            {
             "type": "object",
             "properties": {
-              "companies": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Creditsafe.GlobalData.Company"
-                }
+              "correlationId":{
+                "type": "string"
               },
               "page": {
                 "type": "integer",
@@ -10121,6 +10128,12 @@
               "totalSize": {
                 "type": "integer",
                 "format": "int32"
+              },  
+              "companies": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Creditsafe.GlobalData.Company"
+                }
               }
             }
           }
@@ -11768,12 +11781,12 @@
       },
       "Creditsafe.GlobalData.Reports.CompanyReportResponse": {
         "allOf": [
-          {
-            "$ref": "#/components/schemas/Creditsafe.GlobalData.ServiceResponse"
-          },
-          {
+            {
             "type": "object",
             "properties": {
+              "correlationID":{
+                "type": "string"
+              },
               "failedSections": {
                 "type": "array",
                 "items": {
@@ -11782,6 +11795,19 @@
               },
               "report": {
                 "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.CompanyReport"
+              },
+              "companyID": {
+                "type": "string"
+              },
+              "dateOfOrder": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "language": {
+                "type": "string"
+              },
+              "userID": {
+                "type": "integer"
               }
             }
           }
@@ -12525,18 +12551,44 @@
         }
       },
       "Creditsafe.GlobalData.Core.Attachment.BinaryAttachment": {
-        "type": "object",
-        "properties": {
-          "format": {
-            "type": "string"
-          },
-          "style": {
-            "type": "string"
-          },
-          "content": {
-            "type": "string"
+        "allOf": [
+          {
+          "type": "object",
+          "properties": {
+            "correlationID":{
+              "type": "string"
+            },
+            "failedSections": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.ReportSection"
+              }
+            },
+            "report": {
+              "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.CompanyReport"
+            },
+            "pdfReportStream": {
+              "type": "string",
+              "format": "byte",
+              "description": "Base64-encoded contents of the PDF."
+            
+            },
+            "companyID": {
+              "type": "string"
+            },
+            "dateOfOrder": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "language": {
+              "type": "string"
+            },
+            "userID": {
+              "type": "integer"
+            }
           }
         }
+      ]
       },
       "Creditsafe.GlobalData.Core.SupplierConnector.ConsumerReportResponse": {
         "allOf": [
