@@ -375,7 +375,7 @@
             "in": "header",
             "required": false,
             "description": "Applies request for PDF link to Company Report.",
-            "schema":{
+            "schema": {
               "type": "string"
             },
             "example": "application/json+pdf"
@@ -9914,12 +9914,12 @@
         "properties": {
           "correlationId": {
             "type": "string"
-        },
+          },
           "countries": {
-            "type":"array",
+            "type": "array",
             "items": {
-            "$ref": "#/components/schemas/Creditsafe.GlobalData.CountryCode"
-            }          
+              "$ref": "#/components/schemas/Creditsafe.GlobalData.CountryCode"
+            }
           },
           "languages": {
             "type": "array",
@@ -10111,10 +10111,10 @@
       },
       "Creditsafe.GlobalData.SearchResponse_1_Creditsafe.GlobalData.Company": {
         "allOf": [
-            {
+          {
             "type": "object",
             "properties": {
-              "correlationId":{
+              "correlationId": {
                 "type": "string"
               },
               "page": {
@@ -10128,7 +10128,7 @@
               "totalSize": {
                 "type": "integer",
                 "format": "int32"
-              },  
+              },
               "companies": {
                 "type": "array",
                 "items": {
@@ -10717,22 +10717,24 @@
         "type": "array",
         "items": {
           "type": "object",
-          "properties": [
-            {
-              "type": "eti",
-              "changeDate": "2021-11-16T15:42:12Z"
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "eti",
+                "fsi",
+                "cov"
+              ]
             },
-            {
-              "type": "fsi",
-              "value": "X",
-              "changeDate": "2021-04-01T16:05:27Z"
+            "value": {
+              "type": "string",
+              "example": "X"
             },
-            {
-              "type": "cov",
-              "value": "C",
-              "changeDate": "2021-03-25T16:27:03Z"
+            "changeDate": {
+              "type": "string",
+              "format": "date-time"
             }
-          ]
+          }
         }
       },
       "Creditsafe.GlobalData.Reports.EntityType": {
@@ -11781,10 +11783,10 @@
       },
       "Creditsafe.GlobalData.Reports.CompanyReportResponse": {
         "allOf": [
-            {
+          {
             "type": "object",
             "properties": {
-              "correlationID":{
+              "correlationID": {
                 "type": "string"
               },
               "failedSections": {
@@ -12553,42 +12555,41 @@
       "Creditsafe.GlobalData.Core.Attachment.BinaryAttachment": {
         "allOf": [
           {
-          "type": "object",
-          "properties": {
-            "correlationID":{
-              "type": "string"
-            },
-            "failedSections": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.ReportSection"
+            "type": "object",
+            "properties": {
+              "correlationID": {
+                "type": "string"
+              },
+              "failedSections": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.ReportSection"
+                }
+              },
+              "report": {
+                "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.CompanyReport"
+              },
+              "pdfReportStream": {
+                "type": "string",
+                "format": "byte",
+                "description": "Base64-encoded contents of the PDF."
+              },
+              "companyID": {
+                "type": "string"
+              },
+              "dateOfOrder": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "language": {
+                "type": "string"
+              },
+              "userID": {
+                "type": "integer"
               }
-            },
-            "report": {
-              "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.CompanyReport"
-            },
-            "pdfReportStream": {
-              "type": "string",
-              "format": "byte",
-              "description": "Base64-encoded contents of the PDF."
-            
-            },
-            "companyID": {
-              "type": "string"
-            },
-            "dateOfOrder": {
-              "type": "string",
-              "format": "date-time"
-            },
-            "language": {
-              "type": "string"
-            },
-            "userID": {
-              "type": "integer"
             }
           }
-        }
-      ]
+        ]
       },
       "Creditsafe.GlobalData.Core.SupplierConnector.ConsumerReportResponse": {
         "allOf": [
