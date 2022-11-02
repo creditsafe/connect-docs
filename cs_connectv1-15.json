@@ -44,7 +44,26 @@
     },
     {
       "name": "Protect",
-      "description": "The focus on screening clients and third parties is increasing. International regulators are demanding that firms improve their ongoing sanctions screening process. LexisNexis World Compliance data through Connect allows customers to mitigate risk around Anti-Bribery and Corruption under local and international regulations such as the UK Bribery Act, by enabling users to screen their third party agents, suppliers or employees against watch lists.  With LexisNexis World Compliance through Creditsafe Connect, compliance is easy, efficient and cost-effective, even as the regulatory mountain grows."
+      "description": "The focus on screening clients and third parties is increasing. International regulators are demanding that firms improve their ongoing sanctions screening process. LexisNexis World Compliance data through Connect allows customers to mitigate risk around Anti-Bribery and Corruption under local and international regulations such as the UK Bribery Act, by enabling users to screen their third party agents, suppliers or employees against watch lists.  With LexisNexis World Compliance through Creditsafe Connect, compliance is easy, efficient and cost-effective, even as the regulatory mountain grows.",
+      "x-traitTag": true
+    },
+    {
+      "name": "Protect Profile"
+    },
+    {
+      "name": "Protect Investigations"
+    },
+    {
+      "name": "Protect Audit"
+    },
+    {
+      "name": "Protect Schedules"
+    },
+    {
+      "name": "Protect IDV"
+    },
+    {
+      "name": "Protect Batch Uploads"
     },
     {
       "name": "Local Solutions",
@@ -375,7 +394,7 @@
             "in": "header",
             "required": false,
             "description": "Applies request for PDF link to Company Report.",
-            "schema":{
+            "schema": {
               "type": "string"
             },
             "example": "application/json+pdf"
@@ -4784,7 +4803,7 @@
         "operationId": "Create Protect Investigation",
         "description": "Creates an Investigation according to the provided Investigation criteria. Each result is potential match which is attributed a relevancy/match score between 1-100 and a high level reason for it's inclusion in the World Compliance Database by looking at the Reason Listed and Comments to firstly ascertain whether the entry is a match for you search criteria and then utilise the data available for your own onboarding needs.",
         "tags": [
-          "Protect"
+          "Protect Investigations"
         ],
         "parameters": [
           {
@@ -4838,7 +4857,7 @@
         "operationId": "List All Protect Investigations",
         "description": "Endpoint to return all investigations. Filter response by using query parameters. Use the alertsCount parameter to only return Investigations with alerts greater than the supplied value.",
         "tags": [
-          "Protect"
+          "Protect Investigations"
         ],
         "parameters": [
           {
@@ -4897,7 +4916,7 @@
         "operationId": "Retrieve Protect Investigation By Id",
         "description": "Endpoint to retrieve a specific Investigation by ID. Can also be used to retrieve the assoicated Scheduele Id that has been linked to the Investigation.",
         "tags": [
-          "Protect"
+          "Protect Investigations"
         ],
         "parameters": [
           {
@@ -4943,7 +4962,7 @@
         "operationId": "List All Protect Profiles",
         "description": "Returns all profiles or filtered with a matching profile name.",
         "tags": [
-          "Protect"
+          "Protect Profile"
         ],
         "parameters": [
           {
@@ -4989,7 +5008,7 @@
         "operationId": "Create Protect Profile",
         "description": "Creates a profile. Profiles can be used as an additional category to group related investigations together. For instance - You may want to investigate all  Branches, Directors and Shareholders of one business, and keep them in the same Profile.",
         "tags": [
-          "Protect"
+          "Protect Profile"
         ],
         "requestBody": {
           "content": {
@@ -5020,7 +5039,7 @@
         "operationId": "Retrieve Protect Profile By ID",
         "description": "Endpoint to retrieve a profile by Id",
         "tags": [
-          "Protect"
+          "Protect Profile"
         ],
         "parameters": [
           {
@@ -5064,7 +5083,7 @@
         "description": "Endpoint to change the name of a profile.",
         "operationId": "Edit Protect Profile",
         "tags": [
-          "Protect"
+          "Protect Profile"
         ],
         "parameters": [
           {
@@ -5120,7 +5139,7 @@
         "operationId": "List Investigations In A Profile",
         "description": "Endpoint to retrieve all Investigations associated with a specific Profile.",
         "tags": [
-          "Protect"
+          "Protect Profile"
         ],
         "parameters": [
           {
@@ -5182,7 +5201,7 @@
         "operationId": "Add Investigation To Profile",
         "description": "Adds an Invesitgation to a Profile",
         "tags": [
-          "Protect"
+          "Protect Profile"
         ],
         "parameters": [
           {
@@ -5232,7 +5251,7 @@
         "operationId": "Create Protect Investigation PDF",
         "description": "Creates a LexisNexis branded PDF that shows the full report for the selected entities. This report will include search criteria used, user, time/date stamp and full LexisNexis World Compliance Report. It is recommended to call this endpoint before adding InvestigationRecords to an Investigation, as only non-processed alerts populate the PDF.",
         "tags": [
-          "Protect"
+          "Protect Investigations"
         ],
         "parameters": [
           {
@@ -5288,7 +5307,7 @@
         "operationId": "List Matches Per Investigation",
         "description": "Endpoint to return all InvestigationRecords (matches) against an Investigation.",
         "tags": [
-          "Protect"
+          "Protect Investigations"
         ],
         "parameters": [
           {
@@ -5339,7 +5358,7 @@
         "operationId": "Add Match To Investigation",
         "description": "Endpoint to add InvestigationRecords to an Investigation. By adding InvestigationRecords you are confirming that the result is a match to your search criteria.",
         "tags": [
-          "Protect"
+          "Protect Investigations"
         ],
         "parameters": [
           {
@@ -5408,7 +5427,7 @@
         "operationId": "Create Protect Schedule",
         "description": "Creates a Schedule. A Schedule has a 1:1 relationship with an Investigation. Investigations that are scheduled will automatically check for new re-screen your initial search criteria on a nightly basis allowing you to review any new alerts each day.",
         "tags": [
-          "Protect"
+          "Protect Schedules"
         ],
         "parameters": [
           {
@@ -5464,7 +5483,7 @@
         "operationId": "Retrieve Schedule By Id",
         "description": "Endpoint to retrieve a specific Schedule by Id. A Schedule Id can be retrieved from the associated Investigation.",
         "tags": [
-          "Protect"
+          "Protect Schedules"
         ],
         "parameters": [
           {
@@ -5506,7 +5525,7 @@
       "delete": {
         "description": "Deletes a Schedule from an Investigation meaning entity will no longer be monitored on a nightly basis but record will still remain in the audit trail",
         "tags": [
-          "Protect"
+          "Protect Schedules"
         ],
         "parameters": [
           {
@@ -5545,7 +5564,7 @@
         "operationId": "Retrieve Protect Audit Log",
         "description": "Returns logged interactions with Protect endpoints for audit purposes. Actions logged include creating an Investigation, InvestgiationRecord and Schedule.",
         "tags": [
-          "Protect"
+          "Protect Audit"
         ],
         "parameters": [
           {
@@ -5635,7 +5654,7 @@
         "operationId": "Export Audit Log File",
         "description": "Produces a collection a csv of Audit records.",
         "tags": [
-          "Protect"
+          "Protect Audit"
         ],
         "parameters": [
           {
@@ -5659,6 +5678,260 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.AuditsExportResponseDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/protect/batchUploads": {
+      "post": {
+        "tags": [
+          "Protect Batch Uploads"
+        ],
+        "operationId": "Batch Upload File",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "properties": {
+                  "InvestigationType": {
+                    "type": "string",
+                    "nullable": false,
+                    "enum": [
+                      "business",
+                      "individual"
+                    ],
+                    "x-schema": {
+                      "$ref": "#/components/schemas/InvestigationType"
+                    }
+                  },
+                  "File": {
+                    "type": "string",
+                    "format": "binary",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchUpload"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchUpload"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Protect Batch Uploads"
+        ],
+        "operationId": "Returns Batch Uploads",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": false
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BatchUpload"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BatchUpload"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/protect/batchUploads/{batchUploadId}": {
+      "get": {
+        "tags": [
+          "Protect Batch Uploads"
+        ],
+        "operationId": "Returns Batch Upload by ID",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "batchUploadId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid",
+              "nullable": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchUpload"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchUpload"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/protect/batchUploads/{batchUploadId}/errorFile": {
+      "get": {
+        "tags": [
+          "Protect Batch Uploads"
+        ],
+        "operationId": "Returns Error File Link",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid",
+              "nullable": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDownloadResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDownloadResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/protect/batchUploads/templates": {
+      "get": {
+        "tags": [
+          "Protect Batch Uploads"
+        ],
+        "operationId": "Returns Selected Template Link",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": false,
+              "enum": [
+                "business",
+                "individual",
+                "template",
+                "templateUserGuide"
+              ],
+              "x-schema": {
+                "$ref": "#/components/schemas/BatchUploadFileType"
+              }
+            },
+            "x-schema": {
+              "$ref": "#/components/schemas/BatchUploadFileType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDownloadResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDownloadResponse"
                 }
               }
             }
@@ -9905,12 +10178,12 @@
         "properties": {
           "correlationId": {
             "type": "string"
-        },
+          },
           "countries": {
-            "type":"array",
+            "type": "array",
             "items": {
-            "$ref": "#/components/schemas/Creditsafe.GlobalData.CountryCode"
-            }          
+              "$ref": "#/components/schemas/Creditsafe.GlobalData.CountryCode"
+            }
           },
           "languages": {
             "type": "array",
@@ -10102,10 +10375,10 @@
       },
       "Creditsafe.GlobalData.SearchResponse_1_Creditsafe.GlobalData.Company": {
         "allOf": [
-            {
+          {
             "type": "object",
             "properties": {
-              "correlationId":{
+              "correlationId": {
                 "type": "string"
               },
               "page": {
@@ -10119,7 +10392,7 @@
               "totalSize": {
                 "type": "integer",
                 "format": "int32"
-              },  
+              },
               "companies": {
                 "type": "array",
                 "items": {
@@ -11747,10 +12020,10 @@
       },
       "Creditsafe.GlobalData.Reports.CompanyReportResponse": {
         "allOf": [
-            {
+          {
             "type": "object",
             "properties": {
-              "correlationID":{
+              "correlationID": {
                 "type": "string"
               },
               "failedSections": {
@@ -12519,42 +12792,41 @@
       "Creditsafe.GlobalData.Core.Attachment.BinaryAttachment": {
         "allOf": [
           {
-          "type": "object",
-          "properties": {
-            "correlationID":{
-              "type": "string"
-            },
-            "failedSections": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.ReportSection"
+            "type": "object",
+            "properties": {
+              "correlationID": {
+                "type": "string"
+              },
+              "failedSections": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.ReportSection"
+                }
+              },
+              "report": {
+                "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.CompanyReport"
+              },
+              "pdfReportStream": {
+                "type": "string",
+                "format": "byte",
+                "description": "Base64-encoded contents of the PDF."
+              },
+              "companyID": {
+                "type": "string"
+              },
+              "dateOfOrder": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "language": {
+                "type": "string"
+              },
+              "userID": {
+                "type": "integer"
               }
-            },
-            "report": {
-              "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.CompanyReport"
-            },
-            "pdfReportStream": {
-              "type": "string",
-              "format": "byte",
-              "description": "Base64-encoded contents of the PDF."
-            
-            },
-            "companyID": {
-              "type": "string"
-            },
-            "dateOfOrder": {
-              "type": "string",
-              "format": "date-time"
-            },
-            "language": {
-              "type": "string"
-            },
-            "userID": {
-              "type": "integer"
             }
           }
-        }
-      ]
+        ]
       },
       "Creditsafe.GlobalData.Core.SupplierConnector.ConsumerReportResponse": {
         "allOf": [
@@ -17203,6 +17475,161 @@
           "afpData": {
             "$ref": "#/components/schemas/Connect.BankMatch.Data"
           }
+        }
+      },
+      "BatchUpload": {
+        "required": [
+          "createdAt",
+          "customerId",
+          "errorFilename",
+          "fileName",
+          "id",
+          "rowCount",
+          "status",
+          "storageFileName",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "guid"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "customerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "$ref": "#/components/schemas/InvestigationType"
+          },
+          "fileName": {
+            "type": "string"
+          },
+          "storageFileName": {
+            "type": "string"
+          },
+          "errorFilename": {
+            "type": "string"
+          },
+          "rowCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "$ref": "#/components/schemas/BatchUploadStatus"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "InvestigationType": {
+        "type": "string",
+        "description": "",
+        "enum": [
+          "business",
+          "individual"
+        ],
+        "x-enumNames": [
+          "Business",
+          "Individual"
+        ]
+      },
+      "BatchUploadStatus": {
+        "type": "string",
+        "description": "",
+        "enum": [
+          "inProgress",
+          "completed",
+          "partiallyCompleted",
+          "failed"
+        ],
+        "x-enumNames": [
+          "InProgress",
+          "Completed",
+          "PartiallyCompleted",
+          "Failed"
+        ]
+      },
+      "FileDownloadResponse": {
+        "required": [
+          "filePath"
+        ],
+        "type": "object",
+        "properties": {
+          "filePath": {
+            "type": "string"
+          }
+        }
+      },
+      "BatchUploadFileType": {
+        "type": "string",
+        "description": "",
+        "enum": [
+          "business",
+          "individual",
+          "template",
+          "templateUserGuide"
+        ],
+        "x-enumNames": [
+          "Business",
+          "Individual",
+          "Template",
+          "TemplateUserGuide"
+        ]
+      },
+      "CountryOption": {
+        "required": [
+          "code",
+          "label"
+        ],
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          }
+        }
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "instance": {
+            "type": "string"
+          },
+          "extensions": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          }
+        },
+        "additionalProperties": {
+          "type": "object"
         }
       }
     },
