@@ -5445,6 +5445,92 @@
         }
       }
     },
+    "/protect/schedules/{id}": {
+      "put": {
+        "tags": [
+          "Protect Schedules"
+        ],
+        "operationId": "Updates Schedule",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid",
+              "nullable": false
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateScheduleDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateScheduleDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateScheduleDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schedule"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schedule"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schedule"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "dto"
+      }
+    },
     "/protect/schedules/{scheduleId}": {
       "get": {
         "operationId": "Retrieve Schedule By Id",
@@ -5490,6 +5576,7 @@
         }
       },
       "delete": {
+        "operationId": "Deletes Schedule from Investigation",
         "description": "Deletes a Schedule from an Investigation meaning entity will no longer be monitored on a nightly basis but record will still remain in the audit trail",
         "tags": [
           "Protect Schedules"
@@ -17606,6 +17693,777 @@
         },
         "additionalProperties": {
           "type": "object"
+        }
+      },
+      "CreateScheduleDto": {
+        "required": [
+          "frequency",
+          "isEmailRequired"
+        ],
+        "type": "object",
+        "properties": {
+          "investigationId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "frequency": {
+            "type": "string"
+          },
+          "screeningThreshold": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isEmailRequired": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Schedule": {
+        "required": [
+          "createdAt",
+          "customerId",
+          "frequency",
+          "id",
+          "investigation",
+          "investigationId",
+          "isEmailRequired",
+          "screeningThreshold",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "guid"
+          },
+          "customerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "investigationId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "investigation": {
+            "$ref": "#/components/schemas/Investigation"
+          },
+          "frequency": {
+            "$ref": "#/components/schemas/AlertsFrequency"
+          },
+          "screeningThreshold": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "lastRun": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isEmailRequired": {
+            "type": "boolean"
+          }
+        }
+      },
+      "AlertsFrequency": {
+        "type": "string",
+        "description": "",
+        "enum": [
+          "daily"
+        ],
+        "x-enumNames": [
+          "Daily"
+        ]
+      },
+      "Investigation": {
+        "required": [
+          "alertCreatedAt",
+          "assignedRisk",
+          "createdAt",
+          "customerId",
+          "id",
+          "investigationName",
+          "query",
+          "status",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "guid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "customerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "query": {
+            "$ref": "#/components/schemas/InvestigationQuery"
+          },
+          "scheduleId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "scheduledOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "profileId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "profileName": {
+            "type": "string"
+          },
+          "alertCreatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "alertsCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "noteCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "assignedRisk": {
+            "$ref": "#/components/schemas/InvestigationRisk"
+          },
+          "investigationName": {
+            "type": "string"
+          },
+          "currentAlert": {
+            "$ref": "#/components/schemas/InvestigationAlert"
+          },
+          "assignedToUserId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "$ref": "#/components/schemas/InvestigationStatus"
+          }
+        }
+      },
+      "InvestigationRisk": {
+        "type": "string",
+        "description": "",
+        "enum": [
+          "noRisk",
+          "high",
+          "medium",
+          "low"
+        ],
+        "x-enumNames": [
+          "NoRisk",
+          "High",
+          "Medium",
+          "Low"
+        ]
+      },
+      "InvestigationStatus": {
+        "type": "string",
+        "description": "",
+        "enum": [
+          "none",
+          "approved",
+          "declined",
+          "pending",
+          "cancelled",
+          "referred",
+          "closed"
+        ],
+        "x-enumNames": [
+          "None",
+          "Approved",
+          "Declined",
+          "Pending",
+          "Cancelled",
+          "Referred",
+          "Closed"
+        ]
+      },
+      "InvestigationOrderBys": {
+        "type": "string",
+        "description": "",
+        "enum": [
+          "alertCount",
+          "name",
+          "city",
+          "profile",
+          "searchedAt",
+          "street",
+          "province",
+          "country",
+          "dateOfBirth",
+          "createdAt"
+        ],
+        "x-enumNames": [
+          "AlertCount",
+          "Name",
+          "City",
+          "Profile",
+          "SearchedAt",
+          "Street",
+          "Province",
+          "Country",
+          "DateOfBirth",
+          "CreatedAt"
+        ]
+      },
+      "OrderDirection": {
+        "type": "string",
+        "description": "",
+        "enum": [
+          "asc",
+          "desc"
+        ],
+        "x-enumNames": [
+          "Asc",
+          "Desc"
+        ]
+      },
+      "GetInvestigationFileBodyDto": {
+        "type": "object",
+        "properties": {
+          "recordIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      },
+      "CreateInvestigationRecordBody": {
+        "type": "object",
+        "properties": {
+          "recordIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvestigationRecordDto"
+            }
+          }
+        }
+      },
+      "InvestigationRecordDto": {
+        "required": [
+          "recordId",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "recordId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "type": {
+            "$ref": "#/components/schemas/MatchType"
+          }
+        }
+      },
+      "UpdateInvestigationRecordsDto": {
+        "type": "object",
+        "properties": {
+          "records": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/InvestigationRecordDto"
+            }
+          }
+        }
+      },
+      "DeleteRecordsDto": {
+        "required": [
+          "recordIds"
+        ],
+        "type": "object",
+        "properties": {
+          "recordIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        }
+      },
+      "InvestigationNote": {
+        "required": [
+          "createdAt",
+          "id",
+          "investigationId",
+          "subject",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "guid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "investigationId": {
+            "type": "string",
+            "format": "guid"
+          }
+        }
+      },
+      "CreateInvestigationNoteDto": {
+        "required": [
+          "subject"
+        ],
+        "type": "object",
+        "properties": {
+          "subject": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      },
+      "AssignRiskToInvestigationDto": {
+        "required": [
+          "assignedRisk"
+        ],
+        "type": "object",
+        "properties": {
+          "assignedRisk": {
+            "$ref": "#/components/schemas/InvestigationRisk"
+          }
+        }
+      },
+      "UpdateInvestigationRequestDto": {
+        "required": [
+          "investigationStatus"
+        ],
+        "type": "object",
+        "properties": {
+          "investigationStatus": {
+            "$ref": "#/components/schemas/InvestigationStatus"
+          },
+          "assignedToUserId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "InvestigationQuery": {
+        "required": [
+          "screeningThreshold",
+          "searchName",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/InvestigationType"
+          },
+          "name": {
+            "type": "string"
+          },
+          "houseNo": {
+            "type": "string"
+          },
+          "street": {
+            "type": "string"
+          },
+          "province": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "postCode": {
+            "type": "string"
+          },
+          "countryCode": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "middleName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "generation": {
+            "type": "string"
+          },
+          "dateOfBirth": {
+            "type": "string"
+          },
+          "nationalId": {
+            "type": "string"
+          },
+          "citizenship": {
+            "type": "string"
+          },
+          "phoneNo": {
+            "type": "string"
+          },
+          "gender": {
+            "$ref": "#/components/schemas/GenderType"
+          },
+          "searchName": {
+            "type": "string"
+          },
+          "screeningThreshold": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "source": {
+            "$ref": "#/components/schemas/SourceType"
+          }
+        }
+      },
+      "GenderType": {
+        "type": "string",
+        "description": "",
+        "enum": [
+          "male",
+          "female"
+        ],
+        "x-enumNames": [
+          "Male",
+          "Female"
+        ]
+      },
+      "SourceType": {
+        "type": "string",
+        "description": "",
+        "enum": [
+          "app",
+          "upp",
+          "api"
+        ],
+        "x-enumNames": [
+          "App",
+          "Upp",
+          "Api"
+        ]
+      },
+      "InvestigationAlert": {
+        "required": [
+          "alertCount",
+          "alertType",
+          "createdAt",
+          "id",
+          "screeningThreshold",
+          "status",
+          "totalRecordCount",
+          "unprocessedRecordCount"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "guid"
+          },
+          "status": {
+            "$ref": "#/components/schemas/InvestigationAlertStatus"
+          },
+          "alertCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalRecordCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "unprocessedRecordCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "resultId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "screeningThreshold": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "alertType": {
+            "$ref": "#/components/schemas/AlertType"
+          }
+        }
+      },
+      "InvestigationAlertStatus": {
+        "type": "string",
+        "description": "",
+        "enum": [
+          "open",
+          "closedUnprocessed",
+          "closedProcessed",
+          "refetch"
+        ],
+        "x-enumNames": [
+          "Open",
+          "ClosedUnprocessed",
+          "ClosedProcessed",
+          "Refetch"
+        ]
+      },
+      "AlertType": {
+        "type": "string",
+        "description": "",
+        "enum": [
+          "initialSearch",
+          "alert"
+        ],
+        "x-enumNames": [
+          "InitialSearch",
+          "Alert"
+        ]
+      },
+      "Record": {
+        "required": [
+          "addresses",
+          "comments",
+          "dateListed",
+          "entityId",
+          "hasAdverseMedia",
+          "id",
+          "matchScore",
+          "name",
+          "otherNames",
+          "resultId",
+          "sourceDate",
+          "sources"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "matchType": {
+            "$ref": "#/components/schemas/MatchType"
+          },
+          "resultId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "entityId": {
+            "type": "string"
+          },
+          "matchScore": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sourceDate": {
+            "type": "string"
+          },
+          "dateListed": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "fullName": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "middleName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "reasonListed": {
+            "type": "string"
+          },
+          "entityType": {
+            "type": "string"
+          },
+          "dateOfBirth": {
+            "type": "string"
+          },
+          "generation": {
+            "type": "string"
+          },
+          "gender": {
+            "type": "string"
+          },
+          "occupation": {
+            "type": "string"
+          },
+          "placeOfBirth": {
+            "type": "string"
+          },
+          "hasAdverseMedia": {
+            "type": "boolean"
+          },
+          "otherNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "addresses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Address"
+            }
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "MatchType": {
+        "type": "string",
+        "description": "",
+        "enum": [
+          "trueMatch",
+          "falsePositive"
+        ],
+        "x-enumNames": [
+          "TrueMatch",
+          "FalsePositive"
+        ]
+      },
+      "Address": {
+        "type": "object",
+        "properties": {
+          "street": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "province": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateInvestigationQueryDto": {
+        "required": [
+          "screeningThreshold",
+          "searchName",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "houseNo": {
+            "type": "string"
+          },
+          "street": {
+            "type": "string"
+          },
+          "province": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "postCode": {
+            "type": "string"
+          },
+          "countryCode": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "middleName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "generation": {
+            "type": "string"
+          },
+          "dateOfBirth": {
+            "type": "string"
+          },
+          "nationalId": {
+            "type": "string"
+          },
+          "citizenship": {
+            "type": "string"
+          },
+          "phoneNo": {
+            "type": "string"
+          },
+          "gender": {
+            "$ref": "#/components/schemas/GenderType"
+          },
+          "searchName": {
+            "type": "string"
+          },
+          "screeningThreshold": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "source": {
+            "$ref": "#/components/schemas/SourceType"
+          }
         }
       }
     },
