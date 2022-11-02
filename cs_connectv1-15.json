@@ -5646,6 +5646,136 @@
         }
       }
     },
+    "/protect/idv/gdc/search": {
+      "post": {
+        "tags": [
+          "Protect IDV"
+        ],
+        "operationId": "IDV Search",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdvRequestDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdvRequestDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/IdvRequestDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdvResponseDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IdvResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "request"
+      }
+    },
+    "/protect/idv/file": {
+      "get": {
+        "tags": [
+          "Protect IDV"
+        ],
+        "operationId": "Returns IDV Report",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "idvSearchId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "guid",
+              "nullable": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/protect/audits": {
       "get": {
         "operationId": "Retrieve Protect Audit Log",
@@ -18487,6 +18617,121 @@
           },
           "source": {
             "$ref": "#/components/schemas/SourceType"
+          }
+        }
+      },
+      "IdvResponseDto": {
+        "required": [
+          "address",
+          "country",
+          "dateOfBirth",
+          "fullName",
+          "id",
+          "idvSearchId",
+          "matchRate",
+          "sources"
+        ],
+        "type": "object",
+        "properties": {
+          "matchRate": {
+            "$ref": "#/components/schemas/MatchRate"
+          },
+          "fullName": {
+            "type": "string"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "address": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IdvSourcesDto"
+            }
+          },
+          "id": {
+            "type": "string",
+            "format": "guid"
+          },
+          "idvSearchId": {
+            "type": "string",
+            "format": "guid"
+          }
+        }
+      },
+      "MatchRate": {
+        "type": "string",
+        "description": "",
+        "enum": [
+          "fullMatch",
+          "partialMatch",
+          "noMatch"
+        ],
+        "x-enumNames": [
+          "FullMatch",
+          "PartialMatch",
+          "NoMatch"
+        ]
+      },
+      "IdvSourcesDto": {
+        "required": [
+          "category",
+          "matchType"
+        ],
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string"
+          },
+          "matchType": {
+            "type": "string"
+          }
+        }
+      },
+      "IdvRequestDto": {
+        "required": [
+          "address",
+          "country",
+          "dateOfBirth",
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "address": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "acceptCulture": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string",
+            "format": "guid"
           }
         }
       }
