@@ -5,6 +5,7 @@
         "Behavioural",
         "CCDS",
         "Cifas",
+        "codegen",
         "Creditsafe",
         "Creditsafes",
         "Decisioning",
@@ -18,6 +19,7 @@
         "Neighbourhood",
         "openapi",
         "organisation",
+        "organisations",
         "Payables",
         "Perc",
         "picklist",
@@ -27,6 +29,7 @@
         "searchcriteria",
         "searchreasons",
         "Unauthorised",
-        "Unsearched"
+        "Unsearched",
+        "utilise"
     ]
 }
