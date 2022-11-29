@@ -44,14 +44,16 @@
     },
     {
       "name": "Protect",
-      "description": "The focus on screening clients and third parties is increasing. International regulators are demanding that firms improve their ongoing sanctions screening process. LexisNexis World Compliance data through Connect allows customers to mitigate risk around Anti-Bribery and Corruption under local and international regulations such as the UK Bribery Act, by enabling users to screen their third party agents, suppliers or employees against watch lists.  With LexisNexis World Compliance through Creditsafe Connect, compliance is easy, efficient and cost-effective, even as the regulatory mountain grows.",
+      "description": "The focus on screening clients and third parties is increasing. International regulators are demanding that firms improve their ongoing sanctions screening process. LexisNexis World Compliance data through Connect allows customers to mitigate risk around Anti-Bribery and Corruption under local and international regulations such as the UK Bribery Act, by enabling users to screen their third party agents, suppliers or employees against watch lists.  With LexisNexis World Compliance through Creditsafe Connect, compliance is easy, efficient and cost-effective, even as the regulatory mountain grows.<br><br> <a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000063160-integrating-with-protect#Profiles\"> How to use Protect API Document </a>",
       "x-traitTag": true
     },
     {
-      "name": "Protect Profile"
+      "name": "Protect Profile",
+      "description": "Profiles can be used as an additional category to group related investigations together. For instance - You may want to investigate all  Branches, Directors and Shareholders of one business, and keep them in the same Profile."
     },
     {
-      "name": "Protect Investigations"
+      "name": "Protect Investigations",
+      "description": "An Investigation is the terminology used within Protect for a search.<br><br>Investigations are created against Businesses or Individuals, but you also need to decide which additional parameters you have available to base your Investigation on. This is typically a Name and an Address.<br><br> Searches are exclusively populated by Businesses and Individuals that meet a strict criteria e.g. They possess PEPs, SEOs, Sanctions."
     },
     {
       "name": "Protect Audit"
@@ -4801,7 +4803,7 @@
     "/protect/investigations": {
       "post": {
         "operationId": "Create Protect Investigation",
-        "description": "Creates an Investigation according to the provided Investigation criteria. Each result is potential match which is attributed a relevancy/match score between 1-100 and a high level reason for it's inclusion in the World Compliance Database by looking at the Reason Listed and Comments to firstly ascertain whether the entry is a match for you search criteria and then utilise the data available for your own onboarding needs.",
+        "description": "Creates an Investigation according to the provided Investigation criteria. Each result is potential match which is attributed a relevancy/match score between 1-100 and a high level reason for it's inclusion in the World Compliance Database by looking at the Reason Listed and Comments to firstly ascertain whether the entry is a match for your search criteria and then utilise the data available for your own onboarding needs.",
         "tags": [
           "Protect Investigations"
         ],
@@ -4913,8 +4915,8 @@
     },
     "/protect/investigations/{investigationId}": {
       "get": {
-        "operationId": "Retrieve Protect Investigation By Id",
-        "description": "Endpoint to retrieve a specific Investigation by ID. Can also be used to retrieve the assoicated Scheduele Id that has been linked to the Investigation.",
+        "operationId": "Return Protect Investigation By Id",
+        "description": "Endpoint to return a specific Investigation by ID. Can also be used to retrieve the assoicated Scheduele Id that has been linked to the Investigation.",
         "tags": [
           "Protect Investigations"
         ],
@@ -4955,12 +4957,949 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": [
+          "Protect Investigations"
+        ],
+        "operationId": "Delete Investigation",
+        "description": "Deletes an Investigation by {Id} number. This will remove the entire Investigation and all results within it.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "investigationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid",
+              "nullable": false
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully Processed"
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/protect/investigations/{InvestigationId}/records": {
+      "post": {
+        "tags": [
+          "Protect Investigations"
+        ],
+        "operationId": "Add Investigations Records",
+        "description": "Requires the 'Investigation Id' in path, followed by 'Record Id' in the request body to add a record to the previously created Investigation.<br><br>By adding InvestigationRecords you are confirming that the result is a match to your search criteria. <br><br>To return to the original Investigation search to allocate other records, use \"GET Investigation results by ID.\"",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "Investigation Id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid",
+              "nullable": false
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInvestigationRecordBody"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInvestigationRecordBody"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInvestigationRecordBody"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Record"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Record"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
+      "get": {
+        "tags": [
+          "Protect Investigations"
+        ],
+        "operationId": "Return Investigations Records",
+        "description": "Requires the 'Investigation Id' in path.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "investigationId",
+            "description": "Investigation Id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid",
+              "nullable": false
+            }
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Connect.Protect.Record"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Protect.ErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODEL5bb0b0"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Protect Investigations"
+        ],
+        "operationId": "Update Investigations Records",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid",
+              "nullable": false
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateInvestigationRecordsDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateInvestigationRecordsDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateInvestigationRecordsDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Record"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Record"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "body"
+      },
+      "delete": {
+        "tags": [
+          "Protect Investigations"
+        ],
+        "operationId": "Delete Investigation Records",
+        "description": "Deletes a record from an Investigation ID.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid",
+              "nullable": false
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteRecordsDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteRecordsDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteRecordsDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Record"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Record"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "dto"
+      }
+    },
+    "/protect/investigations/{InvestigationId}/results": {
+      "get": {
+        "tags": [
+          "Protect Investigations"
+        ],
+        "operationId": "Get Investigation Results By Id",
+        "description": "Returns original Investigation search results to assign any other results to the records.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "investigationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid",
+              "nullable": false
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": false
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Record"
+                      }
+                    }
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Record"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/protect/investigations/{id}/risk": {
+      "put": {
+        "tags": [
+          "Protect Investigations"
+        ],
+        "operationId": "Assign Risk To Investigation",
+        "parameters": [
+          {
+            "name": "Id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid",
+              "nullable": false
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignRiskToInvestigationDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignRiskToInvestigationDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignRiskToInvestigationDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvestigationRiskResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvestigationRiskResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "assignedRiskDto"
+      }
+    },
+    "/protect/investigations/file": {
+      "post": {
+        "tags": [
+          "Protect Investigations"
+        ],
+        "operationId": "Create Investigation And Return Report Link",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInvestigationQueryDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInvestigationQueryDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInvestigationQueryDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDownloadResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDownloadResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "query"
+      }
+    },
+    "/protect/investigations/{investigationId}/records/file": {
+      "post": {
+        "tags": [
+          "Protect Investigations"
+        ],
+        "operationId": "Returns Investigation Report",
+        "description": "This endpoint will Return a report by providing a file path.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "investigationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid",
+              "nullable": false
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetInvestigationFileBodyDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetInvestigationFileBodyDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetInvestigationFileBodyDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDownloadResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDownloadResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDownloadResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "dto"
+      }
+    },
+    "/protect/investigations/{id}/notes": {
+      "post": {
+        "tags": [
+          "Protect Investigations"
+        ],
+        "operationId": "Create Investigation Note",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid",
+              "nullable": false
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInvestigationNoteDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInvestigationNoteDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateInvestigationNoteDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvestigationNote"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InvestigationNote"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        },
+        "x-codegen-request-body-name": "note"
+      },
+      "get": {
+        "tags": [
+          "Protect Investigations"
+        ],
+        "operationId": "Get Investigation Notes",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid",
+              "nullable": false
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": false
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestigationNote"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestigationNote"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestigationNote"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/InvestigationNote"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/protect/profiles": {
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          }
+        ],
+        "operationId": "Create Protect Profile",
+        "description": "Creates an empty profile.",
+        "tags": [
+          "Protect Profile"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Connect.Protect.CreateProfileDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Protect.Profile"
+                }
+              }
+            }
+          }
+        }
+      },
       "get": {
         "operationId": "List All Protect Profiles",
-        "description": "Returns all profiles or filtered with a matching profile name.",
+        "description": "Returns all profiles for the logged in user or filtered with a matching profile name.",
         "tags": [
           "Protect Profile"
         ],
@@ -4998,46 +5937,12 @@
             }
           }
         }
-      },
-      "post": {
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          }
-        ],
-        "operationId": "Create Protect Profile",
-        "description": "Creates a profile. Profiles can be used as an additional category to group related investigations together. For instance - You may want to investigate all  Branches, Directors and Shareholders of one business, and keep them in the same Profile.",
-        "tags": [
-          "Protect Profile"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateProfileDto"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "201": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.Profile"
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/protect/profiles/{profileId}": {
       "get": {
         "operationId": "Retrieve Protect Profile By ID",
-        "description": "Endpoint to retrieve a profile by Id",
+        "description": "Retrieves a profile by Id in the Path.",
         "tags": [
           "Protect Profile"
         ],
@@ -13471,6 +14376,10 @@
         ],
         "type": "object",
         "properties": {
+          "correlationId": {
+            "type": "string",
+            "format": "GUID"
+          },
           "id": {
             "type": "string",
             "format": "guid"
@@ -13500,6 +14409,9 @@
           "alertsCount": {
             "type": "integer",
             "format": "int32"
+          },
+          "currentAlert": {
+            "$ref": "#/components/schemas/Connect.Protect.ListAllInvestigationsCurrentAlert"
           },
           "results": {
             "type": "array",
@@ -13563,6 +14475,16 @@
           },
           "phoneNo": {
             "type": "string"
+          },
+          "searchName": {
+            "type": "string"
+          },
+          "screeningThreshold": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "source": {
+            "type": "string"
           }
         }
       },
@@ -13581,6 +14503,12 @@
             "type": "integer",
             "format": "int64"
           },
+          "matchType": {
+            "type": "string"
+          },
+          "resultId": {
+            "type": "integer"
+          },
           "entityId": {
             "type": "string"
           },
@@ -13589,7 +14517,8 @@
             "format": "int32"
           },
           "sourceDate": {
-            "type": "string"
+            "type": "string",
+            "format": "date-time"
           },
           "dateListed": {
             "type": "string"
@@ -13679,10 +14608,53 @@
           }
         }
       },
-      "Connect.Protect.CreateInvestigationQueryDto": {
+      "Connect.Protect.ListAllInvestigationsCurrentAlert": {
         "type": "object",
         "properties": {
+          "id": {
+            "type": "string",
+            "format": "GUID"
+          },
+          "status": {
+            "type": "string"
+          },
+          "alertCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalRecordCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "unprocessedRecordCount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "resultId": {
+            "type": "integer",
+            "format": "GUID"
+          },
+          "screeningThreshold": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "alertType": {
+            "type": "string"
+          }
+        }
+      },
+      "Connect.Protect.CreateInvestigationQueryDto": {
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "properties": {
           "type": {
+            "description": "Individual relates to individuals <br> Business relates to businesses and organisations e.g political parties and terrorist groups.",
             "type": "string",
             "enum": [
               "business",
@@ -13690,6 +14662,7 @@
             ]
           },
           "name": {
+            "description": "The full or partial business or individual name",
             "type": "string",
             "nullable": true
           },
@@ -13718,18 +14691,22 @@
             "nullable": true
           },
           "firstName": {
+            "description": "Individual Only - To be used instead of ''name'' field should the user want to split out the name into first, middle, last.",
             "type": "string",
             "nullable": true
           },
           "middleName": {
+            "description": "Individual Only - To be used instead of ''name'' field should the user want to split out the name into first, middle, last.",
             "type": "string",
             "nullable": true
           },
           "lastName": {
+            "description": "Individual Only - To be used instead of ''name'' field should the user want to split out the name into first, middle, last.",
             "type": "string",
             "nullable": true
           },
           "generation": {
+            "description": "Individual Only - Example JR, SNR, III. Usually associated with American names.",
             "type": "string",
             "nullable": true
           },
@@ -13795,6 +14772,28 @@
           "alertsCount": {
             "type": "integer",
             "format": "int32"
+          },
+          "noteCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "assignedRisk": {
+            "type": "string",
+            "enum": [
+              "noRisk",
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "investigationName": {
+            "type": "string"
+          },
+          "currentAlert": {
+            "$ref": "#/components/schemas/Connect.Protect.ListAllInvestigationsCurrentAlert"
+          },
+          "status": {
+            "type": "string"
           }
         }
       },
@@ -18013,9 +19012,77 @@
           }
         }
       },
+      "InvestigationRiskResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "guid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "customerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "query": {
+            "$ref": "#/components/schemas/Connect.Protect.InvestigationQuery"
+          },
+          "scheduleId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "scheduledOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "profileId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "profileName": {
+            "type": "string"
+          },
+          "alertCreatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "alertsCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "noteCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "assignedRisk": {
+            "type": "string",
+            "enum": [
+              "noRisk",
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "investigationName": {
+            "type": "string"
+          },
+          "currentAlert": {
+            "$ref": "#/components/schemas/Connect.Protect.ListAllInvestigationsCurrentAlert"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
       "InvestigationRisk": {
         "type": "string",
-        "description": "",
         "enum": [
           "noRisk",
           "high",
@@ -18552,30 +19619,19 @@
       "CreateInvestigationQueryDto": {
         "required": [
           "screeningThreshold",
-          "searchName",
-          "type"
+          "type",
+          "name"
         ],
         "type": "object",
         "properties": {
           "type": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "business",
+              "individual"
+            ]
           },
           "name": {
-            "type": "string"
-          },
-          "houseNo": {
-            "type": "string"
-          },
-          "street": {
-            "type": "string"
-          },
-          "province": {
-            "type": "string"
-          },
-          "city": {
-            "type": "string"
-          },
-          "postCode": {
             "type": "string"
           },
           "countryCode": {
@@ -18590,19 +19646,7 @@
           "lastName": {
             "type": "string"
           },
-          "generation": {
-            "type": "string"
-          },
           "dateOfBirth": {
-            "type": "string"
-          },
-          "nationalId": {
-            "type": "string"
-          },
-          "citizenship": {
-            "type": "string"
-          },
-          "phoneNo": {
             "type": "string"
           },
           "gender": {
@@ -18734,6 +19778,182 @@
             "format": "guid"
           }
         }
+      },
+      "InvestigationResponse": {
+        "required": [
+          "createdAt",
+          "createdBy",
+          "id",
+          "investigationName",
+          "notFoundRecordIds",
+          "results",
+          "searchCriteria"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "guid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "searchCriteria": {
+            "$ref": "#/components/schemas/InvestigationQuery"
+          },
+          "scheduleId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "profileId": {
+            "type": "string",
+            "format": "guid"
+          },
+          "profileName": {
+            "type": "string"
+          },
+          "alertsCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentAlert": {
+            "$ref": "#/components/schemas/InvestigationAlert"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Record"
+            }
+          },
+          "notFoundRecordIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          "investigationName": {
+            "type": "string"
+          }
+        }
+      },
+      "Investigation_Query": {
+        "required": [
+          "screeningThreshold",
+          "searchName",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/InvestigationType"
+          },
+          "name": {
+            "type": "string"
+          },
+          "houseNo": {
+            "type": "string"
+          },
+          "street": {
+            "type": "string"
+          },
+          "province": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "postCode": {
+            "type": "string"
+          },
+          "countryCode": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "middleName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "generation": {
+            "type": "string"
+          },
+          "dateOfBirth": {
+            "type": "string"
+          },
+          "nationalId": {
+            "type": "string"
+          },
+          "citizenship": {
+            "type": "string"
+          },
+          "phoneNo": {
+            "type": "string"
+          },
+          "gender": {
+            "$ref": "#/components/schemas/GenderType"
+          },
+          "searchName": {
+            "type": "string"
+          },
+          "screeningThreshold": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "source": {
+            "$ref": "#/components/schemas/SourceType"
+          }
+        }
+      },
+      "MODEL5bb0b0": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Provides further information on why the request was rejected"
+          }
+        }
+      },
+      "ConnectErrorResponsesBadRequest": {
+        "type": "object",
+        "properties": {
+          "correlationId": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string",
+            "description": "Provides further information on why the request was rejected"
+          }
+        }
+      },
+      "ConnectErrorResponsesInvalidToken": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "description": "Authorization Token has either expired or is not a valid Connect"
+      },
+      "Connect.Protect.ErrorResponsesAccessForbidden": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "description": "Simple access forbidden message error response"
       }
     },
     "securitySchemes": {
