@@ -59,13 +59,15 @@
       "name": "Protect Audit"
     },
     {
-      "name": "Protect Schedules"
+      "name": "Protect Schedules",
+      "description": "A Schedule has a 1:1 relationship with an Investigation. Investigations that are scheduled will automatically check for new re-screen your initial search criteria on a nightly basis allowing you to review any new alerts each day."
     },
     {
       "name": "Protect IDV"
     },
     {
-      "name": "Protect Batch Uploads"
+      "name": "Protect Batch Uploads",
+      "description": "Allows for a file to be uploaded to create multiple searches.<br><br> Once the status is 'Complete' you can view all the files by calling - GET List all Protect Investigations.  "
     },
     {
       "name": "Local Solutions",
@@ -6330,7 +6332,7 @@
     "/protect/schedules": {
       "post": {
         "operationId": "Create Protect Schedule",
-        "description": "Creates a Schedule. A Schedule has a 1:1 relationship with an Investigation. Investigations that are scheduled will automatically check for new re-screen your initial search criteria on a nightly basis allowing you to review any new alerts each day.",
+        "description": "Creates a Schedule.",
         "tags": [
           "Protect Schedules"
         ],
@@ -6813,6 +6815,7 @@
           "Protect Batch Uploads"
         ],
         "operationId": "Batch Upload File",
+        "description": "Endpoint to upload a file to generate multiple searches and investigations. <br><br> note - file needs to be structured as per the template. ",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -7010,12 +7013,13 @@
         }
       }
     },
-    "/protect/batchUploads/templates": {
+    "/protect/batchUploads/templates/{type}": {
       "get": {
         "tags": [
           "Protect Batch Uploads"
         ],
         "operationId": "Returns Selected Template Link",
+        "description": "Provides template for the file upload csv structure, also provides a user guide if called.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -7028,8 +7032,6 @@
               "type": "string",
               "nullable": false,
               "enum": [
-                "business",
-                "individual",
                 "template",
                 "templateUserGuide"
               ],
