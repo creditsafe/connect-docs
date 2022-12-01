@@ -10889,8 +10889,10 @@
         "enum": [
           "NotSet",
           "Ltd",
-          "NonLtd"
+          "NonLtd",
+          "NonLtdNonReg"
         ],
+        "description": "`NonLtdNonReg` is only available in country 'NO'.",
         "type": "string"
       },
       "Creditsafe.GlobalData.Country": {
