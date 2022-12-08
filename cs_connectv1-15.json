@@ -590,12 +590,6 @@
             "$ref": "#/components/parameters/authToken"
           },
           {
-            "$ref": "#/components/parameters/page"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
             "name": "country",
             "in": "query",
             "example": "GB",
@@ -697,39 +691,7 @@
             }
           },
           {
-            "name": "officeType",
-            "in": "query",
-            "schema": {
-              "$ref": "#/components/schemas/Creditsafe.GlobalData.OfficeType",
-              "nullable": true
-            }
-          },
-          {
             "name": "phoneNo",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "nullable": true
-            }
-          },
-          {
-            "name": "status",
-            "in": "query",
-            "schema": {
-              "$ref": "#/components/schemas/Creditsafe.GlobalData.CompanyStatus",
-              "nullable": true
-            }
-          },
-          {
-            "name": "type",
-            "in": "query",
-            "schema": {
-              "$ref": "#/components/schemas/Creditsafe.GlobalData.CompanyType"
-            },
-            "allowEmptyValue": true
-          },
-          {
-            "name": "website",
             "in": "query",
             "schema": {
               "type": "string",
