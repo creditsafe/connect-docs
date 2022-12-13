@@ -44,7 +44,7 @@
     },
     {
       "name": "Protect",
-      "description": "The focus on screening clients and third parties is increasing. International regulators are demanding that firms improve their ongoing sanctions screening process. LexisNexis World Compliance data through Connect allows customers to mitigate risk around Anti-Bribery and Corruption under local and international regulations such as the UK Bribery Act, by enabling users to screen their third party agents, suppliers or employees against watch lists.  With LexisNexis World Compliance through Creditsafe Connect, compliance is easy, efficient and cost-effective, even as the regulatory mountain grows.<br><br> <a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000063160-integrating-with-protect#Profiles\" target=\"_blank\"> How to use Protect API Document </a>",
+      "description": "The focus on screening clients and third parties is increasing. International regulators are demanding that firms improve their ongoing sanctions screening process. World Compliance data through Connect allows customers to mitigate risk around Anti-Bribery and Corruption under local and international regulations such as the UK Bribery Act, by enabling users to screen their third party agents, suppliers or employees against watch lists.  With World Compliance through Creditsafe Connect, compliance is easy, efficient and cost-effective, even as the regulatory mountain grows.<br><br> <a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000063160-integrating-with-protect#Profiles\" target=\"_blank\"> How to use Protect API Document </a>",
       "x-traitTag": true
     },
     {
@@ -6165,7 +6165,7 @@
     "/protect/investigations/{investigationId}/file": {
       "post": {
         "operationId": "Create Protect Investigation PDF",
-        "description": "Creates a LexisNexis branded PDF that shows the full report for the selected entities. This report will include search criteria used, user, time/date stamp and full LexisNexis World Compliance Report. It is recommended to call this endpoint before adding InvestigationRecords to an Investigation, as only non-processed alerts populate the PDF.",
+        "description": "Creates a PDF that shows the full report for the selected entities. This report will include search criteria used, user, time/date stamp and full World Compliance Report. It is recommended to call this endpoint before adding InvestigationRecords to an Investigation, as only non-processed alerts populate the PDF.",
         "tags": [
           "Protect Investigations"
         ],
