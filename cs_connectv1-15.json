@@ -127,7 +127,7 @@
             "name": "countries",
             "in": "query",
             "example": "GB,FR",
-            "description": "comma-separated list of iso-2 country codes",
+            "description": "comma-separated list of iso-2 country codes.<br>The code `PLC` can be used here to search for companies of this type across all countries.",
             "required": true,
             "schema": {
               "type": "object",
