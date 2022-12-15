@@ -7794,7 +7794,7 @@
         "properties": {
           "message": {
             "type": "string",
-            "description": "Message stating if your request was succesfful",
+            "description": "Message stating if your request was successful",
             "example": "Portfolio removed"
           }
         }
@@ -8017,7 +8017,7 @@
             "properties": {
               "message": {
                 "type": "string",
-                "example": "Updation successful"
+                "example": "Update successful"
               }
             }
           }
@@ -9480,10 +9480,12 @@
         "type": "string"
       },
       "Creditsafe.GlobalData.CompanyType": {
+        "description": "`NonLtdNonReg` is only available for countries in Norway.",
         "enum": [
           "NotSet",
           "Ltd",
-          "NonLtd"
+          "NonLtd",
+          "NonLtdNonReg"
         ],
         "type": "string"
       },
