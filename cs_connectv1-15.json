@@ -583,7 +583,7 @@
         "tags": [
           "Companies"
         ],
-        "description": "Supply all company search criteria to find potential company matches ranked by a `confidenceMatchScore`.   - <a href=https://creditsafe.freshdesk.com/en/support/solutions/articles/7000059769-interpreting-confidence-match-scores>See here for more information</a>",
+        "description": "Supply all company search criteria to find potential company matches ranked by a `single score`.   - <a href=https://creditsafe.freshdesk.com/en/support/solutions/articles/7000059769-interpreting-confidence-match-scores>See here for more information</a>",
         "operationId": "Confidence Match Search",
         "parameters": [
           {
@@ -16702,6 +16702,9 @@
                 "name": {
                   "type": "string"
                 },
+                "phoneNumber": {
+                  "type": "integer"
+                },
                 "address": {
                   "type": "object",
                   "properties": {
@@ -16730,6 +16733,10 @@
                 },
                 "type": {
                   "type": "string"
+                },
+                "officeType":{
+                  "type": "string",
+                  "description": "Only available with US countries."
                 },
                 "dateOfLatestAccounts": {
                   "type": "string"
