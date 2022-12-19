@@ -583,7 +583,7 @@
         "tags": [
           "Companies"
         ],
-        "description": "Supply all company search criteria to find potential company matches ranked by a `single score`.   - <a href=https://creditsafe.freshdesk.com/en/support/solutions/articles/7000059769-interpreting-confidence-match-scores>See here for more information</a>",
+        "description": "Supply all company search criteria to find potential company matches ranked by a `single score`.   - <a href=\"https://creditsafe.freshdesk.com/en/support/solutions/articles/7000059769-interpreting-confidence-match-scores\" target=\"_blank\">See here for more information</a>",
         "operationId": "Confidence Match Search",
         "parameters": [
           {
