@@ -16736,7 +16736,7 @@
                 },
                 "officeType":{
                   "type": "string",
-                  "description": "Only available with US countries."
+                  "description": "Only available with US companies."
                 },
                 "dateOfLatestAccounts": {
                   "type": "string"
