@@ -4852,10 +4852,11 @@
             }
           },
           {
-            "name": "query.type",
+            "name": "type",
             "in": "query",
             "schema": {
-              "$ref": "#/components/schemas/Connect.Protect.CreateInvestigationQueryDto"
+              "type": "string",
+              "enum": ["business", "individual"]
             }
           },
           {
@@ -6028,13 +6029,6 @@
               "type": "string",
               "format": "guid",
               "nullable": false
-            }
-          },
-          {
-            "name": "query.type",
-            "in": "query",
-            "schema": {
-              "$ref": "#/components/schemas/Connect.Protect.CreateInvestigationQueryDto"
             }
           },
           {
