@@ -14390,7 +14390,8 @@
       "Connect.Protect.CreateInvestigationQueryDto": {
         "type": "object",
         "required": [
-          "type"
+          "type",
+          "name"
         ],
         "properties": {
           "type": {
@@ -14461,6 +14462,14 @@
           "citizenship": {
             "type": "string",
             "nullable": true
+          },
+          "gender":{
+            "type": "string",
+            "nullable": true,
+            "enum": [
+              "male",
+              "female"
+            ]
           },
           "phoneNo": {
             "type": "string",
