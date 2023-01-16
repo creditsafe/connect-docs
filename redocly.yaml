@@ -18,8 +18,7 @@ rules:
     assertions:
       defined: true
       minLength: 30
-      pattern: ^[A-Z].+(\.|\.
-)$
+      pattern: ^[A-Z].+(\.|\.)$
 
 features.openapi:
   generateCodeSamples:
