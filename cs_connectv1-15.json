@@ -376,7 +376,7 @@
             }
           },
           "400": {
-            "description": "400 response",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -386,7 +386,7 @@
             }
           },
           "401": {
-            "description": "401 response",
+            "description": "Invalid Token",
             "content": {
               "application/json": {
                 "schema": {
@@ -11278,6 +11278,12 @@
             "properties": {
               "correlationId": {
                 "type": "string"
+              },
+              "messages": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CreditsafeGlobalDataMessage"
+                }
               },
               "page": {
                 "type": "integer",
