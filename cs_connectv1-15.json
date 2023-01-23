@@ -90,6 +90,7 @@
     "/authenticate": {
       "post": {
         "operationId": "Authenticate",
+        "summary": "Authenticate",
         "security": [],
         "tags": [
           "Authentication"
@@ -135,7 +136,8 @@
           "Companies"
         ],
         "description": "Endpoint to search for Companies according to the provided Search Criteria. To get the most relevant results, it is recommended to use a unique identifier such as `regNo` where available. If a unique identifier is not available, use a combination of the companies registered `postCode` and `name` for the next best hit rate.",
-        "operationId": "Company Search",
+        "summary": "Company Search",
+        "operationId": "companySearch",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -384,7 +386,8 @@
     },
     "/companies/{connectId}": {
       "get": {
-        "operationId": "Company Credit Report",
+        "operationId": "companyCreditReport",
+        "summary": "Company Credit Report",
         "tags": [
           "Companies"
         ],
@@ -505,7 +508,8 @@
     },
     "/access": {
       "get": {
-        "operationId": "Subscription Details",
+        "operationId": "subscriptionDetails",
+        "summary": "Subscription Details",
         "tags": [
           "Authentication"
         ],
