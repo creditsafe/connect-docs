@@ -1,5 +1,5 @@
 {
-  "openapi": "3.0.1",
+  "openapi": "3.0.3",
   "info": {
     "title": "Creditsafe Connect",
     "version": "1.6.0",
@@ -378,6 +378,26 @@
                       "$ref": "#/components/schemas/Connect.CompanySearch.NoResults"
                     }
                   ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
                 }
               }
             }
@@ -4877,7 +4897,10 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "enum": ["business", "individual"]
+              "enum": [
+                "business",
+                "individual"
+              ]
             }
           },
           {
@@ -4908,7 +4931,6 @@
       "get": {
         "operationId": "Return Protect Investigation By Id",
         "description": "Endpoint to return a specific Investigation by ID. Can also be used to retrieve the associated Schedule Id that has been linked to the Investigation.",
-
         "tags": [
           "Protect Investigations"
         ],
@@ -6792,7 +6814,6 @@
         }
       }
     },
-    
     "/localSolutions/GB/bankmatch": {
       "get": {
         "operationId": "Bank Match",
@@ -8652,20 +8673,62 @@
             "type": "object"
           },
           "messages": {
-            "type": "object",
-            "properties": {
-              "code": {
-                "type": "string"
-              },
-              "text": {
-                "type": "string"
-              },
-              "type": {
-                "type": "string"
-              }
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreditsafeGlobalDataMessage"
             }
           }
         }
+      },
+      "CreditsafeGlobalDataMessage": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/CreditsafeGlobalDataMessageType"
+          },
+          "code": {
+            "$ref": "#/components/schemas/CreditsafeGlobalDataMessageCode"
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      },
+      "CreditsafeGlobalDataMessageType": {
+        "type": "string",
+        "enum": [
+          "Information",
+          "Warning",
+          "Error"
+        ]
+      },
+      "CreditsafeGlobalDataMessageCode": {
+        "type": "string",
+        "enum": [
+          "NoResults",
+          "TooManyResults",
+          "ReportUnavailable",
+          "ReportUnavailableDueToLegal",
+          "ReportUnavailableOnline",
+          "LegalNotice",
+          "InvalidCredentials",
+          "AccessRestricted",
+          "AccessLimitsNearing",
+          "InsufficientCustomerData",
+          "ReportboxAlmostFull",
+          "ReportboxFull",
+          "InvalidRequestXml",
+          "InvalidOperationParameters",
+          "OperationNotSupported",
+          "InvalidCustomData",
+          "ChangeNotification",
+          "TemporarySystemProblem",
+          "EndpointShutdown",
+          "UnexpectedInternalError",
+          "Other",
+          "DataServiceAccessProblems",
+          "DataServiceInvalidResponse"
+        ]
       },
       "Connect.ErrorResponses.BadRequest": {
         "type": "object",
@@ -12158,6 +12221,12 @@
               "correlationId": {
                 "type": "string"
               },
+              "messages": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CreditsafeGlobalDataMessage"
+                }
+              },
               "page": {
                 "type": "integer",
                 "format": "int32"
@@ -15405,7 +15474,7 @@
             "type": "string",
             "nullable": true
           },
-          "gender":{
+          "gender": {
             "type": "string",
             "nullable": true,
             "enum": [
@@ -18939,7 +19008,7 @@
                 "type": {
                   "type": "string"
                 },
-                "officeType":{
+                "officeType": {
                   "type": "string",
                   "description": "Only available with US companies."
                 },
