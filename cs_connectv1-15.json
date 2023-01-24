@@ -56,7 +56,8 @@
       "description": "An Investigation is the terminology used within Protect for a search.<br><br>Investigations are created against Businesses or Individuals, but you also need to decide which additional parameters you have available to base your Investigation on. This is typically a Name and an Address.<br><br> Searches are exclusively populated by Businesses and Individuals that meet a strict criteria e.g. They possess PEPs, SEOs, Sanctions."
     },
     {
-      "name": "Protect Audit"
+      "name": "Protect Audit",
+      "description": "Provides a log of all actions taken against endpoint to evidence any necessary that checks were carried out correctly."
     },
     {
       "name": "Protect Schedules",
@@ -555,7 +556,8 @@
     },
     "/companies/searchcriteria": {
       "get": {
-        "operationId": "Company Search Criteria",
+        "operationId": "companySearchCriteria",
+        "summary": "Company Search Criteria",
         "tags": [
           "Companies"
         ],
@@ -620,7 +622,8 @@
           "Companies"
         ],
         "description": "Supply all company search criteria to find potential company matches ranked by a `single score`.   - <a href=\"https://creditsafe.freshdesk.com/en/support/solutions/articles/7000059769-interpreting-confidence-match-scores\" target=\"_blank\">See here for more information</a>",
-        "operationId": "Confidence Match Search",
+        "operationId": "confidenceMatchSearch",
+        "summary": "Confidence Match Search",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -819,7 +822,8 @@
           "People/Directors"
         ],
         "description": "Endpoint to find Directors based on search criteria to order a Creditsafe Director Report.",
-        "operationId": "Director Search",
+        "operationId": "directorSSearch",
+        "summary": "Director Search",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -937,7 +941,8 @@
         "tags": [
           "People/Directors"
         ],
-        "operationId": "Director Report",
+        "operationId": "directorReport",
+        "summary": "Director Report",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -1011,7 +1016,8 @@
           "People/Directors"
         ],
         "description": "Returns the set of available People Search parameters/fields for a provided list of countries.",
-        "operationId": "People/Director Search Criteria",
+        "operationId": "people/DirectorSearchCriteria",
+        "summary": "People/Director Search Criteria",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -1065,7 +1071,8 @@
           "Images"
         ],
         "description": "Returns the available Images for a given Company connectId.",
-        "operationId": "Company Image Documents",
+        "operationId": "companyImageDocuments",
+        "summary": "Company Image Documents",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -1141,7 +1148,8 @@
           "Images"
         ],
         "description": "Lists available Image Document formats, types and languages per country.",
-        "operationId": "Image Document Category Types",
+        "operationId": "imageDocumentCategoryTypes",
+        "summary": "Image Document Category Types",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -1195,7 +1203,8 @@
           "Images"
         ],
         "description": "Endpoint to order an Image Document by Image ID.",
-        "operationId": "Company Image",
+        "operationId": "companyImage",
+        "summary":"Company Image",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -1246,7 +1255,8 @@
     },
     "/freshinvestigations": {
       "post": {
-        "operationId": "Create FreshInvestigation",
+        "operationId": "createFreshInvestigation",
+        "summary": "Create Fresh Investigation",
         "tags": [
           "Fresh Investigations"
         ],
@@ -3961,7 +3971,8 @@
           "Global Monitoring"
         ],
         "description": "Endpoint allows you to import a list of companies to add to the selected portfolio along with some personal information for the company. Importing a portfolio will add the companies to the specified portfolio, duplicates in the import file will be ignored.You may also optionally add an email to the body of the request and get an email notification when the import is processed..",
-        "operationId": "Import A Portfolio File",
+        "operationId": "importAPortfolioFile",
+        "summary": "Import A Portfolio File",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4043,7 +4054,8 @@
           "Global Monitoring"
         ],
         "description": "Endpoint allows you to sync a portfolio file with your portfolio. Sync action will delete all companies in your specified portfolio, and then add the companies from the file into the portfolio.",
-        "operationId": "Sync A Portfolio File",
+        "operationId": "syncAPortfolioFile",
+        "summary": "Sync A Portfolio File",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4125,7 +4137,8 @@
           "Decision Engine"
         ],
         "description": "Returns all decision trees that the user has permission to access.",
-        "operationId": "Decision Trees",
+        "operationId": "decisionTrees",
+        "summary": "Decision Trees",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
