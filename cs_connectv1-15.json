@@ -6798,7 +6798,7 @@
             "multipart/form-data": {
               "schema": {
                 "properties": {
-                  "InvestigationType": {
+                  "investigationType": {
                     "type": "string",
                     "nullable": false,
                     "enum": [
