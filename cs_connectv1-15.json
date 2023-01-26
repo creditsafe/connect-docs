@@ -2197,7 +2197,8 @@
           "Global Monitoring"
         ],
         "description": "Update Portfolio details such as Name, email recipients, language and subject line.",
-        "operationId": "Update Portfolio Details",
+        "operationId": "updatePortfolioDetails",
+        "summary": "Update Portfolio Details",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -2289,7 +2290,8 @@
           "Global Monitoring"
         ],
         "description": "Get a list of distinct countries of companies monitored within a portfolio.",
-        "operationId": "List Countries of Monitored Companies",
+        "operationId": "listCountriesOfMonitoredCompanies",
+        "summary": "List Countries of Monitored Companies",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -2357,7 +2359,8 @@
           "Global Monitoring"
         ],
         "description": "Get all notification `eventRules` for the given `portfolioId`. Notification event rules allow you to control which events you wish to monitor for the `companies` contained within the given `portfolio`.",
-        "operationId": "List Portfolio EventRules",
+        "operationId": "listPortfolioEventRules",
+        "summary": "List Portfolio Event Rules",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -2425,7 +2428,8 @@
           "Global Monitoring"
         ],
         "description": "Endpoint to that lists all the eventRules, their status and parameters based on a portfolio Id, filtered by country. Newly created portfolios are without any notification event rules by default, but you can switch rules on/off per country or on a global basis. There are different rules available for each country due to the different type of change event data that's available. The following GET request lists all the available rules for a portfolio.",
-        "operationId": "List Portfolio EventRules By Country",
+        "operationId": "listPortfolioEventRulesByCountry",
+        "summary": "List Portfolio Event Rules By Country",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -2502,7 +2506,8 @@
           "Global Monitoring"
         ],
         "description": "Endpoint to update an eventRule in a portfolio. Must provide a portfolio unique identifier and a country code in the URL of the PUT request. The Body of the request must contain the `ruleCode` number of the eventRule you want to update, with an `isActive` parameter. Some event rules may also contain specific parameters, which can be set with `param0`, `param1` and `param2`. parameters. Get the above information by calling the List All eventRules endpoint.",
-        "operationId": "Update EventRules",
+        "operationId": "updateEventRules",
+        "summary": "Update EventRules",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -2613,7 +2618,8 @@
           "Global Monitoring"
         ],
         "description": "Update a portfolios event rules to default state. In Connect, default state means all rules are turned off.",
-        "operationId": "Set Portfolio Default Rules",
+        "operationId": "setPortfolioDefaultRules",
+        "summary": "Set Portfolio Default Rules",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -2685,7 +2691,8 @@
           "Global Monitoring"
         ],
         "description": "Get current portfolio risk summary information",
-        "operationId": "Portfolio Risk Summary",
+        "operationId": "portfolioRiskSummary",
+        "summary": "Portfolio Risk Summary",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -15768,6 +15775,7 @@
         }
       },
       "Connect.Identity.Gender": {
+        "description": "Below is a list of Definitions for the ENUM\n* 0 - Unknown\n* 1 - Male\n* 2 - Female\n",
         "enum": [
           0,
           1,
@@ -18824,6 +18832,7 @@
           }
         }
       },
+   
       "AMLSearch": {
         "description": "Search parameters for AML product",
         "properties": {
