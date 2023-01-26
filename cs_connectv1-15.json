@@ -6402,7 +6402,9 @@
         "tags": [
           "Protect Schedules"
         ],
-        "operationId": "Updates Schedule",
+        "operationId": "updatesSchedule",
+        "summary": " Updates Schedule",
+        "description": "Endpoint will update the details around the schedule",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -6570,7 +6572,9 @@
         "tags": [
           "Protect IDV"
         ],
-        "operationId": "IDV Search",
+        "operationId": "idvSearch",
+        "summary": "IDV Search",
+        "description": "",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -6641,7 +6645,9 @@
         "tags": [
           "Protect IDV"
         ],
-        "operationId": "Returns IDV Report",
+        "operationId": "returnsIdvReport",
+        "summary": "Returns IDV Report",
+        "description": "Returns an IDV Report with the potential results and the sources they were matched against.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
