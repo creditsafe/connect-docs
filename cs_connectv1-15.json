@@ -36,7 +36,7 @@
     },
     {
       "name": "Global Monitoring",
-      "description": "Endpoints to Monitor changes to Company Information. Company changes can be retrieved by creating a Portfolio (a collection of companies) and configuring the `eventRules` (the criteria in which to trigger a change, e.g. company name changes, limit changes) on the portfolio. When a company in your Portfolio changes to satisfy an eventRule, a `notificationEvent` will be raised to inform you of the nature of the change. See <a href=\"https://www.creditsafe.com/gb/en/credit-risk/credit-reports/company-credit-reports/company-monitoring.html\"> here</a> for Creditsafe's Global Monitoring capabilities."
+      "description": "Endpoints to Monitor changes to Company Information. Company changes can be retrieved by creating a Portfolio (a collection of companies) and configuring the `eventRules` (the criteria in which to trigger a change, e.g. company name changes, limit changes) on the portfolio. When a company in your Portfolio changes to satisfy an eventRule, a `notificationEvent` will be raised to inform you of the nature of the change. See <a href=\"https://www.creditsafe.com/gb/en/credit-risk/credit-reports/company-credit-reports/company-monitoring.html\"> here</a> for Creditsafe's Global Monitoring capabilities. <br><br><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000058022-connect-monitoring-set-up-guide\" target=\"_blank\">Global Monitoring Setup Guide</a>"
     },
     {
       "name": "Decision Engine",
