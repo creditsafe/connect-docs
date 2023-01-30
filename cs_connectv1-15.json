@@ -5727,7 +5727,9 @@
         "tags": [
           "Protect Investigations"
         ],
-        "operationId": "Create Investigation Note",
+        "operationId": "createInvestigationNote",
+        "summary": "Create Investigation Note",
+        "description": "Creates a note to a specific investigation ID.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -5803,7 +5805,9 @@
         "tags": [
           "Protect Investigations"
         ],
-        "operationId": "Get Investigation Notes",
+        "operationId": "getInvestigationNotes",
+        "summary": "Get Investigation Notes",
+        "description": "Returns the notes created against a specific investigation ID.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
