@@ -24,7 +24,7 @@
     },
     {
       "name": "People/Directors",
-      "description": "Endpoints to find People/Directors and order Director Reports. A Director Report will contain a person's registered information and Active & Previous Directorships, where available. This endpoint is not advised to get a list of directors for a specific Company. Instead, order a Company Credit Report using the `/companies/{id}` endpoint, and use  the `directors` section in the response."
+      "description": "Endpoints to find People/Directors and order Director Reports. A Director Report will contain a person's registered information and Active & Previous Directorships, where available. This endpoint is not advised to get a list of directors for a specific Company. Instead, order a Company Credit Report using the `/companies/{id}` endpoint, and use  the `directors` section in the response. <br><br> Please refer to the following matrix for 'persons report' availability in each country: <br><br><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000054656-connect-api-feature-availability-per-country\" target=\"_blank\"> Feature Availability Matrix</a>"
     },
     {
       "name": "Images",
