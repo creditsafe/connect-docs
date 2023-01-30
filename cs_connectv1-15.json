@@ -963,6 +963,7 @@
         ],
         "operationId": "directorReport",
         "summary": "Director Report",
+        "description": "Returns a report from the ID supplied to the search.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
