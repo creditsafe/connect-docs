@@ -1330,7 +1330,8 @@
         }
       },
       "get": {
-        "operationId": "Get FreshInvestigations",
+        "operationId": "getFreshInvestigations",
+        "summary": "Get Fresh Investigations",
         "tags": [
           "Fresh Investigations"
         ],
@@ -5023,7 +5024,7 @@
         }
       }
     },
-    "/protect/investigations/{InvestigationId}/records": {
+    "/protect/investigations/{investigationId}/records": {
       "post": {
         "tags": [
           "Protect Investigations"
@@ -5035,7 +5036,7 @@
             "$ref": "#/components/parameters/authToken"
           },
           {
-            "name": "Investigation Id",
+            "name": "investigationId",
             "in": "path",
             "required": true,
             "schema": {
@@ -5129,7 +5130,8 @@
         "tags": [
           "Protect Investigations"
         ],
-        "operationId": "Return Investigations Records",
+        "operationId": "returnInvestigationsRecords",
+        "summary": "Return Investigation Records",
         "description": "Requires the 'Investigation Id' in path.",
         "parameters": [
           {
@@ -5213,13 +5215,15 @@
         "tags": [
           "Protect Investigations"
         ],
-        "operationId": "Update Investigations Records",
+        "operationId": "updateInvestigationsRecords",
+        "summary": "Update Investigation Records",
+        "description": "Sends an update to the investigation specified by the ID and changes will be reflected within that investigation.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
           },
           {
-            "name": "id",
+            "name": "investigationId",
             "in": "path",
             "required": true,
             "schema": {
@@ -5308,14 +5312,15 @@
         "tags": [
           "Protect Investigations"
         ],
-        "operationId": "Delete Investigation Records",
+        "operationId": "deleteInvestigationRecords",
+        "summary": "Delete Investigation Records",
         "description": "Deletes a record from an Investigation ID.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
           },
           {
-            "name": "id",
+            "name": "investigationId",
             "in": "path",
             "required": true,
             "schema": {
@@ -6258,129 +6263,11 @@
         }
       }
     },
-    "/protect/investigations/{investigationId}/records": {
-      "get": {
-        "operationId": "List Matches Per Investigation",
-        "description": "Endpoint to return all InvestigationRecords (matches) against an Investigation.",
-        "tags": [
-          "Protect Investigations"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "investigationId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "$ref": "#/components/parameters/page"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Record"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "operationId": "Add Match To Investigation",
-        "description": "Endpoint to add InvestigationRecords to an Investigation. By adding InvestigationRecords you are confirming that the result is a match to your search criteria.",
-        "tags": [
-          "Protect Investigations"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "investigationId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "guid",
-              "nullable": false
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateInvestigationRecordBody"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Record"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
+    
     "/protect/schedules": {
       "post": {
-        "operationId": "Create Protect Schedule",
+        "operationId": "createProtectSchedule",
+        "summary": "Create Protect Schedule",
         "description": "Creates a Schedule.",
         "tags": [
           "Protect Schedules"
