@@ -66,6 +66,10 @@
       "name": "Protect IDV"
     },
     {
+      "name": "Protect Batch Uploads",
+      "description": "Allows for a file to be uploaded to create multiple searches.<br><br> Once the status is 'Complete' you can view all the files by calling - GET List all Protect Investigations.  "
+    },
+    {
       "name": "Local Solutions",
       "description": "A toolbox of country-specific functionality. See the description under each endpoint for more information on a particular solution."
     },
@@ -4852,11 +4856,10 @@
             }
           },
           {
-            "name": "type",
+            "name": "query.type",
             "in": "query",
             "schema": {
-              "type": "string",
-              "enum": ["business", "individual"]
+              "$ref": "#/components/schemas/Connect.Protect.CreateInvestigationQueryDto"
             }
           },
           {
@@ -6032,6 +6035,13 @@
             }
           },
           {
+            "name": "query.type",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/Connect.Protect.CreateInvestigationQueryDto"
+            }
+          },
+          {
             "$ref": "#/components/parameters/page"
           },
           {
@@ -6771,7 +6781,260 @@
         }
       }
     },
-    
+    "/protect/batchUploads": {
+      "post": {
+        "tags": [
+          "Protect Batch Uploads"
+        ],
+        "operationId": "Batch Upload File",
+        "description": "Endpoint to upload a file to generate multiple searches and investigations. <br><br> note - file needs to be structured as per the template. ",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "properties": {
+                  "investigationType": {
+                    "type": "string",
+                    "nullable": false,
+                    "enum": [
+                      "business",
+                      "individual"
+                    ],
+                    "x-schema": {
+                      "$ref": "#/components/schemas/InvestigationType"
+                    }
+                  },
+                  "File": {
+                    "type": "string",
+                    "format": "binary",
+                    "nullable": true
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchUpload"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchUpload"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Protect Batch Uploads"
+        ],
+        "operationId": "Returns Batch Uploads",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": false
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BatchUpload"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BatchUpload"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/protect/batchUploads/{batchUploadId}": {
+      "get": {
+        "tags": [
+          "Protect Batch Uploads"
+        ],
+        "operationId": "Returns Batch Upload by ID",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "batchUploadId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid",
+              "nullable": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchUpload"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchUpload"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/protect/batchUploads/{batchUploadId}/errorFile": {
+      "get": {
+        "tags": [
+          "Protect Batch Uploads"
+        ],
+        "operationId": "Returns Error File Link",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid",
+              "nullable": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDownloadResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDownloadResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/protect/batchUploads/templates/{type}": {
+      "get": {
+        "tags": [
+          "Protect Batch Uploads"
+        ],
+        "operationId": "Returns Selected Template Link",
+        "description": "Provides template for the file upload csv structure, also provides a user guide if called.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": false,
+              "enum": [
+                "template",
+                "templateUserGuide"
+              ],
+              "x-schema": {
+                "$ref": "#/components/schemas/BatchUploadFileType"
+              }
+            },
+            "x-schema": {
+              "$ref": "#/components/schemas/BatchUploadFileType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDownloadResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDownloadResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/localSolutions/GB/bankmatch": {
       "get": {
         "operationId": "Bank Match",
@@ -14390,8 +14653,7 @@
       "Connect.Protect.CreateInvestigationQueryDto": {
         "type": "object",
         "required": [
-          "type",
-          "name"
+          "type"
         ],
         "properties": {
           "type": {
@@ -14462,14 +14724,6 @@
           "citizenship": {
             "type": "string",
             "nullable": true
-          },
-          "gender":{
-            "type": "string",
-            "nullable": true,
-            "enum": [
-              "male",
-              "female"
-            ]
           },
           "phoneNo": {
             "type": "string",
