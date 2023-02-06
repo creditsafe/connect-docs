@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Creditsafe Connect",
-    "version": "1.6.0",
+    "version": "1.7.0",
     "description": "Creditsafe Connect is a REST API that provides access to the <a href=\"https://www.creditsafe.com/gb/en/more/about/our-data.html\" target=\"_blank\">Creditsafe Global Company Database.</a> This allows you to: <ul><li>Control your master data</li><li>Utilize up-to-date Business and Director information, enhancing your onboarding and qualification processes</li><li>Receive alerts when your customer's and supplier's Credit Report changes</li></ul>   <h2>Customer Feedback</h2> Use the buttons below to let us know what you think of this documentation. Please leave comments in your feedback for the author to consider for future versions.<br><br><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=f49570f5&embed_data=dGVtcGVyYXR1cmVfaWQ9MSZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"> <img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/gold.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=601a6fd1&embed_data=dGVtcGVyYXR1cmVfaWQ9MiZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/green.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=f1f7701c&embed_data=dGVtcGVyYXR1cmVfaWQ9MyZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/amber.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=73951e8b&embed_data=dGVtcGVyYXR1cmVfaWQ9NCZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/red.png\" /></a> <br><br> Selecting one of the buttons above will open a new tab to the feedback portal. <h2>Quick Start</h2> To start your Creditsafe Connect API integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>By default, you will have been setup on our Sandbox environment.</br></br>\nUsing a REST API client construct an `/authenticate` POST request and enter your username & password (case-sensitive) into the POST body. A successful response will return an  `authentication token`.</br></br>\nUse the `authentication token` in an `Authorization` header on all other Creditsafe Connect calls as proof of your authenticity.\n\n<h2>Environments</h2>Production Environment baseurl: <code> https://connect.creditsafe.com/v1 </code> </br> Sandbox Test Environment baseurl:  <code>https://connect.sandbox.creditsafe.com/v1</code>  <h2>Resources</h2> \n  <ul> \n    <li><a href=\"https://creditsafe.github.io/connect-docs/cs_connectv1-15.html\" target=\"_blank\">OpenAPI</a> specification.</li>\n    <li><a href=\"https://www.getpostman.com/collections/4406bbddb81c308db8ff\" target=\"_blank\">Postman Collection</a> of the most common example calls to Creditsafe Connect.</li> \n    <li><a href=\"https://connect-portal.creditsafe.com\" target=\"_blank\"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password and form requests.</li> \n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions\" target=\"_blank\"> Help Articles</a>  including: <ul><li><a href=\"https://help.creditsafeuk.com/en/support/solutions/7000007130\" target=\"_blank\">FAQs</a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000053487-connect-api-data-dictionaries\" target=\"_blank\"> Data Dictionaries </a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000054765-connect-api-data-availability-per-country\" target=\"_blank\"> Data Availability per Country </a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000054656-connect-api-feature-availability-per-country\" target=\"_blank\"> Feature Availability Matrix</a></li>\n    </ul></ul><br>\n "
   },
   "servers": [
@@ -24,7 +24,7 @@
     },
     {
       "name": "People/Directors",
-      "description": "Endpoints to find People/Directors and order Director Reports. A Director Report will contain a person's registered information and Active & Previous Directorships, where available. This endpoint is not advised to get a list of directors for a specific Company. Instead, order a Company Credit Report using the `/companies/{id}` endpoint, and use  the `directors` section in the response."
+      "description": "Endpoints to find People/Directors and order Director Reports. A Director Report will contain a person's registered information and Active & Previous Directorships, where available. This endpoint is not advised to get a list of directors for a specific Company. Instead, order a Company Credit Report using the `/companies/{id}` endpoint, and use  the `directors` section in the response. <br><br> Please refer to the following matrix for 'persons report' availability in each country: <br><br><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000054656-connect-api-feature-availability-per-country\" target=\"_blank\"> Feature Availability Matrix</a>"
     },
     {
       "name": "Images",
@@ -36,7 +36,7 @@
     },
     {
       "name": "Global Monitoring",
-      "description": "Endpoints to Monitor changes to Company Information. Company changes can be retrieved by creating a Portfolio (a collection of companies) and configuring the `eventRules` (the criteria in which to trigger a change, e.g. company name changes, limit changes) on the portfolio. When a company in your Portfolio changes to satisfy an eventRule, a `notificationEvent` will be raised to inform you of the nature of the change. See <a href=\"https://www.creditsafe.com/gb/en/credit-risk/credit-reports/company-credit-reports/company-monitoring.html\"> here</a> for Creditsafe's Global Monitoring capabilities."
+      "description": "Endpoints to Monitor changes to Company Information. Company changes can be retrieved by creating a Portfolio (a collection of companies) and configuring the `eventRules` (the criteria in which to trigger a change, e.g. company name changes, limit changes) on the portfolio. When a company in your Portfolio changes to satisfy an eventRule, a `notificationEvent` will be raised to inform you of the nature of the change. See <a href=\"https://www.creditsafe.com/gb/en/credit-risk/credit-reports/company-credit-reports/company-monitoring.html\"> here</a> for Creditsafe's Global Monitoring capabilities. <br><br><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000058022-connect-monitoring-set-up-guide\" target=\"_blank\">Global Monitoring Setup Guide</a>"
     },
     {
       "name": "Decision Engine",
@@ -56,7 +56,8 @@
       "description": "An Investigation is the terminology used within Protect for a search.<br><br>Investigations are created against Businesses or Individuals, but you also need to decide which additional parameters you have available to base your Investigation on. This is typically a Name and an Address.<br><br> Searches are exclusively populated by Businesses and Individuals that meet a strict criteria e.g. They possess PEPs, SEOs, Sanctions."
     },
     {
-      "name": "Protect Audit"
+      "name": "Protect Audit",
+      "description": "Provides a log of all actions taken against endpoint to evidence any necessary that checks were carried out correctly."
     },
     {
       "name": "Protect Schedules",
@@ -71,7 +72,11 @@
     },
     {
       "name": "GB Consumers and AML",
-      "description": "The identity service endpoints are used to run GB Consumer and AML searches.\n You must specify the product type and search parameters you want to obtain a response for in the body of the request."
+      "description": "The identity service endpoints are used to run GB Consumer and AML searches. You must specify the product type and search parameters you want to obtain a response for in the body of the request."
+    },
+    {
+      "name": "Data Cleaning",
+      "description": "A suite of endpoints to allow you to upload, map, match and then append Creditsafe company data to your own master data. Maintaining the quality of company data is of greatest importance to ensure efficiency and maximisation of opportunity."
     },
     {
       "name": "Consumers",
@@ -86,6 +91,7 @@
     "/authenticate": {
       "post": {
         "operationId": "Authenticate",
+        "summary": "Authenticate",
         "security": [],
         "tags": [
           "Authentication"
@@ -131,7 +137,8 @@
           "Companies"
         ],
         "description": "Endpoint to search for Companies according to the provided Search Criteria. To get the most relevant results, it is recommended to use a unique identifier such as `regNo` where available. If a unique identifier is not available, use a combination of the companies registered `postCode` and `name` for the next best hit rate.",
-        "operationId": "Company Search",
+        "summary": "Company Search",
+        "operationId": "companySearch",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -374,13 +381,34 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
           }
         }
       }
     },
     "/companies/{connectId}": {
       "get": {
-        "operationId": "Company Credit Report",
+        "operationId": "companyCreditReport",
+        "summary": "Company Credit Report",
         "tags": [
           "Companies"
         ],
@@ -501,7 +529,8 @@
     },
     "/access": {
       "get": {
-        "operationId": "Subscription Details",
+        "operationId": "subscriptionDetails",
+        "summary": "Subscription Details",
         "tags": [
           "Authentication"
         ],
@@ -547,7 +576,8 @@
     },
     "/companies/searchcriteria": {
       "get": {
-        "operationId": "Company Search Criteria",
+        "operationId": "companySearchCriteria",
+        "summary": "Company Search Criteria",
         "tags": [
           "Companies"
         ],
@@ -612,7 +642,8 @@
           "Companies"
         ],
         "description": "Supply all company search criteria to find potential company matches ranked by a `single score`.   - <a href=\"https://creditsafe.freshdesk.com/en/support/solutions/articles/7000059769-interpreting-confidence-match-scores\" target=\"_blank\">See here for more information</a>",
-        "operationId": "Confidence Match Search",
+        "operationId": "confidenceMatchSearch",
+        "summary": "Confidence Match Search",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -811,7 +842,8 @@
           "People/Directors"
         ],
         "description": "Endpoint to find Directors based on search criteria to order a Creditsafe Director Report.",
-        "operationId": "Director Search",
+        "operationId": "directorSSearch",
+        "summary": "Director Search",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -929,7 +961,9 @@
         "tags": [
           "People/Directors"
         ],
-        "operationId": "Director Report",
+        "operationId": "directorReport",
+        "summary": "Director Report",
+        "description": "Returns a report from the ID supplied to the search.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -1003,7 +1037,8 @@
           "People/Directors"
         ],
         "description": "Returns the set of available People Search parameters/fields for a provided list of countries.",
-        "operationId": "People/Director Search Criteria",
+        "operationId": "people/DirectorSearchCriteria",
+        "summary": "People/Director Search Criteria",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -1057,7 +1092,8 @@
           "Images"
         ],
         "description": "Returns the available Images for a given Company connectId.",
-        "operationId": "Company Image Documents",
+        "operationId": "companyImageDocuments",
+        "summary": "Company Image Documents",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -1133,7 +1169,8 @@
           "Images"
         ],
         "description": "Lists available Image Document formats, types and languages per country.",
-        "operationId": "Image Document Category Types",
+        "operationId": "imageDocumentCategoryTypes",
+        "summary": "Image Document Category Types",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -1187,7 +1224,8 @@
           "Images"
         ],
         "description": "Endpoint to order an Image Document by Image ID.",
-        "operationId": "Company Image",
+        "operationId": "companyImage",
+        "summary":"Company Image",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -1238,7 +1276,8 @@
     },
     "/freshinvestigations": {
       "post": {
-        "operationId": "Create FreshInvestigation",
+        "operationId": "createFreshInvestigation",
+        "summary": "Create Fresh Investigation",
         "tags": [
           "Fresh Investigations"
         ],
@@ -1291,7 +1330,8 @@
         }
       },
       "get": {
-        "operationId": "Get FreshInvestigations",
+        "operationId": "getFreshInvestigations",
+        "summary": "Get Fresh Investigations",
         "tags": [
           "Fresh Investigations"
         ],
@@ -2159,7 +2199,8 @@
           "Global Monitoring"
         ],
         "description": "Update Portfolio details such as Name, email recipients, language and subject line.",
-        "operationId": "Update Portfolio Details",
+        "operationId": "updatePortfolioDetails",
+        "summary": "Update Portfolio Details",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -2251,7 +2292,8 @@
           "Global Monitoring"
         ],
         "description": "Get a list of distinct countries of companies monitored within a portfolio.",
-        "operationId": "List Countries of Monitored Companies",
+        "operationId": "listCountriesOfMonitoredCompanies",
+        "summary": "List Countries of Monitored Companies",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -2319,7 +2361,8 @@
           "Global Monitoring"
         ],
         "description": "Get all notification `eventRules` for the given `portfolioId`. Notification event rules allow you to control which events you wish to monitor for the `companies` contained within the given `portfolio`.",
-        "operationId": "List Portfolio EventRules",
+        "operationId": "listPortfolioEventRules",
+        "summary": "List Portfolio Event Rules",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -2387,7 +2430,8 @@
           "Global Monitoring"
         ],
         "description": "Endpoint to that lists all the eventRules, their status and parameters based on a portfolio Id, filtered by country. Newly created portfolios are without any notification event rules by default, but you can switch rules on/off per country or on a global basis. There are different rules available for each country due to the different type of change event data that's available. The following GET request lists all the available rules for a portfolio.",
-        "operationId": "List Portfolio EventRules By Country",
+        "operationId": "listPortfolioEventRulesByCountry",
+        "summary": "List Portfolio Event Rules By Country",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -2464,7 +2508,8 @@
           "Global Monitoring"
         ],
         "description": "Endpoint to update an eventRule in a portfolio. Must provide a portfolio unique identifier and a country code in the URL of the PUT request. The Body of the request must contain the `ruleCode` number of the eventRule you want to update, with an `isActive` parameter. Some event rules may also contain specific parameters, which can be set with `param0`, `param1` and `param2`. parameters. Get the above information by calling the List All eventRules endpoint.",
-        "operationId": "Update EventRules",
+        "operationId": "updateEventRules",
+        "summary": "Update EventRules",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -2575,7 +2620,8 @@
           "Global Monitoring"
         ],
         "description": "Update a portfolios event rules to default state. In Connect, default state means all rules are turned off.",
-        "operationId": "Set Portfolio Default Rules",
+        "operationId": "setPortfolioDefaultRules",
+        "summary": "Set Portfolio Default Rules",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -2647,7 +2693,8 @@
           "Global Monitoring"
         ],
         "description": "Get current portfolio risk summary information",
-        "operationId": "Portfolio Risk Summary",
+        "operationId": "portfolioRiskSummary",
+        "summary": "Portfolio Risk Summary",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -3953,7 +4000,8 @@
           "Global Monitoring"
         ],
         "description": "Endpoint allows you to import a list of companies to add to the selected portfolio along with some personal information for the company. Importing a portfolio will add the companies to the specified portfolio, duplicates in the import file will be ignored.You may also optionally add an email to the body of the request and get an email notification when the import is processed..",
-        "operationId": "Import A Portfolio File",
+        "operationId": "importAPortfolioFile",
+        "summary": "Import A Portfolio File",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4035,7 +4083,8 @@
           "Global Monitoring"
         ],
         "description": "Endpoint allows you to sync a portfolio file with your portfolio. Sync action will delete all companies in your specified portfolio, and then add the companies from the file into the portfolio.",
-        "operationId": "Sync A Portfolio File",
+        "operationId": "syncAPortfolioFile",
+        "summary": "Sync A Portfolio File",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4117,7 +4166,8 @@
           "Decision Engine"
         ],
         "description": "Returns all decision trees that the user has permission to access.",
-        "operationId": "Decision Trees",
+        "operationId": "decisionTrees",
+        "summary": "Decision Trees",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4856,7 +4906,10 @@
             "in": "query",
             "schema": {
               "type": "string",
-              "enum": ["business", "individual"]
+              "enum": [
+                "business",
+                "individual"
+              ]
             }
           },
           {
@@ -4887,7 +4940,6 @@
       "get": {
         "operationId": "Return Protect Investigation By Id",
         "description": "Endpoint to return a specific Investigation by ID. Can also be used to retrieve the associated Schedule Id that has been linked to the Investigation.",
-
         "tags": [
           "Protect Investigations"
         ],
@@ -4972,7 +5024,7 @@
         }
       }
     },
-    "/protect/investigations/{InvestigationId}/records": {
+    "/protect/investigations/{investigationId}/records": {
       "post": {
         "tags": [
           "Protect Investigations"
@@ -4984,7 +5036,7 @@
             "$ref": "#/components/parameters/authToken"
           },
           {
-            "name": "Investigation Id",
+            "name": "investigationId",
             "in": "path",
             "required": true,
             "schema": {
@@ -4998,17 +5050,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateInvestigationRecordBody"
+                "$ref": "#/components/schemas/Connect.Protect.CreateInvestigationRecordBody"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateInvestigationRecordBody"
+                "$ref": "#/components/schemas/Connect.Protect.CreateInvestigationRecordBody"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateInvestigationRecordBody"
+                "$ref": "#/components/schemas/Connect.Protect.CreateInvestigationRecordBody"
               }
             }
           },
@@ -5022,7 +5074,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Record"
+                    "$ref": "#/components/schemas/Connect.Protect.Record"
                   }
                 }
               },
@@ -5030,7 +5082,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/Record"
+                    "$ref": "#/components/schemas/Connect.Protect.Record"
                   }
                 }
               }
@@ -5041,17 +5093,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
               }
             }
@@ -5061,12 +5113,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
               }
             }
@@ -5078,7 +5130,8 @@
         "tags": [
           "Protect Investigations"
         ],
-        "operationId": "Return Investigations Records",
+        "operationId": "returnInvestigationsRecords",
+        "summary": "Return Investigation Records",
         "description": "Requires the 'Investigation Id' in path.",
         "parameters": [
           {
@@ -5141,7 +5194,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ErrorResponsesAccessForbidden"
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
                 }
               }
             }
@@ -5162,13 +5215,15 @@
         "tags": [
           "Protect Investigations"
         ],
-        "operationId": "Update Investigations Records",
+        "operationId": "updateInvestigationsRecords",
+        "summary": "Update Investigation Records",
+        "description": "Sends an update to the investigation specified by the ID and changes will be reflected within that investigation.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
           },
           {
-            "name": "id",
+            "name": "investigationId",
             "in": "path",
             "required": true,
             "schema": {
@@ -5257,14 +5312,15 @@
         "tags": [
           "Protect Investigations"
         ],
-        "operationId": "Delete Investigation Records",
+        "operationId": "deleteInvestigationRecords",
+        "summary": "Delete Investigation Records",
         "description": "Deletes a record from an Investigation ID.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
           },
           {
-            "name": "id",
+            "name": "investigationId",
             "in": "path",
             "required": true,
             "schema": {
@@ -5677,7 +5733,9 @@
         "tags": [
           "Protect Investigations"
         ],
-        "operationId": "Create Investigation Note",
+        "operationId": "createInvestigationNote",
+        "summary": "Create Investigation Note",
+        "description": "Creates a note to a specific investigation ID.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -5753,7 +5811,9 @@
         "tags": [
           "Protect Investigations"
         ],
-        "operationId": "Get Investigation Notes",
+        "operationId": "getInvestigationNotes",
+        "summary": "Get Investigation Notes",
+        "description": "Returns the notes created against a specific investigation ID.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -5840,8 +5900,9 @@
             "$ref": "#/components/parameters/authToken"
           }
         ],
-        "operationId": "Create Protect Profile",
-        "description": "Creates an empty profile.",
+        "operationId": "createProtectProfile",
+        "summary": "Create Protect Profile",
+        "description": "Creates an empty profile for collating investigations.",
         "tags": [
           "Protect Profile"
         ],
@@ -5865,11 +5926,42 @@
                 }
               }
             }
+          },
+          "400": {
+           "description": "Bad Request",
+            "content": {
+             "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+               }
+              }
+            }
+          },
+        "401": {
+          "description": "Invalid Token",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+              }
+            }
+          }
+        },
+        "403": {
+          "description": "Access Forbidden",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+              }
+            }
           }
         }
-      },
+      }
+    },
       "get": {
-        "operationId": "List All Protect Profiles",
+        "operationId": "listAllProtectProfiles",
+        "summary": "List All Protect Profiles",
         "description": "Returns all profiles for the logged in user or filtered with a matching profile name.",
         "tags": [
           "Protect Profile"
@@ -6171,129 +6263,11 @@
         }
       }
     },
-    "/protect/investigations/{investigationId}/records": {
-      "get": {
-        "operationId": "List Matches Per Investigation",
-        "description": "Endpoint to return all InvestigationRecords (matches) against an Investigation.",
-        "tags": [
-          "Protect Investigations"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "investigationId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "$ref": "#/components/parameters/page"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Record"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "operationId": "Add Match To Investigation",
-        "description": "Endpoint to add InvestigationRecords to an Investigation. By adding InvestigationRecords you are confirming that the result is a match to your search criteria.",
-        "tags": [
-          "Protect Investigations"
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "investigationId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "guid",
-              "nullable": false
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateInvestigationRecordBody"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Connect.Protect.Record"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
+    
     "/protect/schedules": {
       "post": {
-        "operationId": "Create Protect Schedule",
+        "operationId": "createProtectSchedule",
+        "summary": "Create Protect Schedule",
         "description": "Creates a Schedule.",
         "tags": [
           "Protect Schedules"
@@ -6352,7 +6326,9 @@
         "tags": [
           "Protect Schedules"
         ],
-        "operationId": "Updates Schedule",
+        "operationId": "updatesSchedule",
+        "summary": " Updates Schedule",
+        "description": "Endpoint will update the details around the schedule",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -6520,7 +6496,9 @@
         "tags": [
           "Protect IDV"
         ],
-        "operationId": "IDV Search",
+        "operationId": "idvSearch",
+        "summary": "IDV Search",
+        "description": "",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -6567,17 +6545,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
               }
             }
@@ -6591,7 +6569,9 @@
         "tags": [
           "Protect IDV"
         ],
-        "operationId": "Returns IDV Report",
+        "operationId": "returnsIdvReport",
+        "summary": "Returns IDV Report",
+        "description": "Returns an IDV Report with the potential results and the sources they were matched against.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -6627,17 +6607,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProblemDetails"
+                  "$ref": "#/components/schemas/Connect.Protect.ProblemDetails"
                 }
               }
             }
@@ -6771,7 +6751,6 @@
         }
       }
     },
-    
     "/localSolutions/GB/bankmatch": {
       "get": {
         "operationId": "Bank Match",
@@ -7528,7 +7507,17 @@
                           "7",
                           "8"
                         ],
-                        "description": "DE report retrieval reason code:\n1 - Credit Decisioning\n2 - Credit Assessment - Future business connection (with credit risk)\n3 - Credit Assessment - Existing business connection (with credit risk)\n4 - Realisation check receivables collection\n5 - Purchase Contract - Intention of signature of purchase contract (with credit risk)\n6 - Goods Credit Insurance (with credit risk)\n7 - Contract - Intention of signature of leasing or rent contract (with credit risk)\n8 - Insurance Contract - Intention of signature of a insurance contract (with credit risk)"
+                        "description": [
+                          "DE report retrieval reason code:",
+                          "1 - Credit Decisioning'",
+                          "2 - Credit Assessment - Future business connection (with credit risk)",
+                          "3 - Credit Assessment - Existing business connection (with credit risk)",
+                          "4 - Realisation check receivables collection",
+                          "5 - Purchase Contract - Intention of signature of purchase contract (with credit risk)",
+                          "6 - Goods Credit Insurance (with credit risk)",
+                          "7 - Contract - Intention of signature of leasing or rent contract (with credit risk)",
+                          "8 - Insurance Contract - Intention of signature of a insurance contract (with credit risk)"
+                        ]
                       }
                     ],
                     "country": "DE"
@@ -7553,6 +7542,917 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dataCleaning/jobs": {
+      "post": {
+        "tags": [
+          "Data Cleaning"
+        ],
+        "operationId": "Create Job",
+        "summary": "Create Job Request",
+        "description": "Enter a name for the 'Job Request' to be associated to the file going to be processed",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application:json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConnectDataCleaningCreateJobRequest"
+              },
+              "example": {
+                "name": "Create a Data Cleaning Job 03-10-20xx"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectDataCleaningJob"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Data Cleaning"
+        ],
+        "operationId": "Get All Jobs",
+        "summary": "Returns all Data Cleaning Jobs",
+        "description": "This endpoint can be used to retrieve all created data cleaning job requests as defined by the query parameters",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "countries",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "jobName",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fromDate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "customerId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "toDate",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "companyName",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "archived",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArrayOfConnectDataCleaningJob"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400 Bad Request Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401 Invalid Token response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403 Access Forbidden response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dataCleaning/jobs/{id}": {
+      "get": {
+        "tags": [
+          "Data Cleaning"
+        ],
+        "operationId": "Get Job by id number",
+        "summary": "Returns Job by {id} number",
+        "description": "Returns Job by {id} number which is generated from 'Creating Job Request' stage. This endpoint is used to check the `status` of the job.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectDataCleaningJob"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Token Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Forbidden Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODEL5b4b1c"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dataCleaning/jobs/{id}/upload": {
+      "post": {
+        "tags": [
+          "Data Cleaning"
+        ],
+        "operationId": "Job File Upload with id",
+        "summary": "Upload a Job File with an {id}",
+        "description": "Upload a Job File for processing, you need to link to the {id} number generated from the 'Job Request'.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/MODEL28cf8d"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectDataCleaningUploadResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Token Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Forbidden Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODEL8790cc"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dataCleaning/jobs/{id}/mappings": {
+      "put": {
+        "tags": [
+          "Data Cleaning"
+        ],
+        "operationId": "Job Update Mappings",
+        "summary": "Update Mappings Request",
+        "description": "Update the mapping of the uploaded file to match that of the header within it. You can add or remove the required number of mapping points in the Request Body.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConnectDataCleaningUpdateMappingsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectDataCleaningMappingResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODEL4f561c"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dataCleaning/jobs/{id}/submit": {
+      "post": {
+        "tags": [
+          "Data Cleaning"
+        ],
+        "operationId": "Submit Job",
+        "summary": "Submit Job Request",
+        "description": "Submission of the file after mappings have been carried out. To have a successful submission a blank response body (See example) is required to be posted.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConnectDataCleaningSubmitJobRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectDataCleaningResponse"
+                },
+                "example": {
+                  "messageId": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODEL7c8060"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dataCleaning/jobs/{id}/enrichments": {
+      "put": {
+        "tags": [
+          "Data Cleaning"
+        ],
+        "operationId": "Update Job Enrichments",
+        "summary": "Update Enrichments Request",
+        "description": "Detail which package of enrichment settings are to be applied to the uploaded file.<br><br> Select one of the three creditTypes to acquire the JSON Enrichment tag schema possible for that product.<br><br> Removal of Enrichment tags is possible from each creditType. Addition of Enrichment tags to a creditType is not possible beyond the maximum schema for each.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/basic"
+                  },
+                  {
+                    "$ref": "#/components/schemas/basicPlus"
+                  },
+                  {
+                    "$ref": "#/components/schemas/standard"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectDataCleaningResponse"
+                },
+                "example": {
+                  "enrichments": [
+                    {
+                      "enrichment": "Tag Name from request body"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Token Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Forbidden Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODELcf4983"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dataCleaning/jobs/{id}/enrich": {
+      "post": {
+        "tags": [
+          "Data Cleaning"
+        ],
+        "operationId": "Data Cleaning Job Enrich",
+        "summary": "Start Enrichment Request",
+        "description": "Commencing the Job enrichment to the uploaded file after mapping the enrichment requirements. To have a successful submission a blank response body (See example) is required to be posted.<br><br> POST 'enrich' will not commence unless the `Job Status` is `jobMatchingComplete`.<br><br>Use the GET/dataCleaning/jobs/{id} to check Status of job.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConnectDataCleaningEnrichRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ArrayOfConnectDataCleaningResponse"
+                },
+                "example": {
+                  "correlationId": "string",
+                  "messageId": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Token response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Forbidden Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODEL5bdbb3"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dataCleaning/jobs/{id}/enrichedFile": {
+      "get": {
+        "tags": [
+          "Data Cleaning"
+        ],
+        "operationId": "Returns Enriched Job File",
+        "summary": "Returns Enriched Job File",
+        "description": "Returns the enriched file after enrichment is complete. Identify the file type to be returned via the query parameter.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "fileType",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "example": "csv"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectDataCleaningResponse"
+                },
+                "example": {
+                  "correlationId": "string",
+                  "filePath": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODELf6df8e"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/dataCleaning/jobs/{id}/archive": {
+      "post": {
+        "tags": [
+          "Data Cleaning"
+        ],
+        "operationId": "Archive Job",
+        "summary": "Archive Job by id",
+        "description": "Archives the job, this can be done at any stage. To have a successful submission a blank response body (See example) is required to be posted.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConnectDataCleaningArchiveJobRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectDataCleaningArchiveResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "400 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "401 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "403 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODELcebf3b"
                 }
               }
             }
@@ -7710,20 +8610,62 @@
             "type": "object"
           },
           "messages": {
-            "type": "object",
-            "properties": {
-              "code": {
-                "type": "string"
-              },
-              "text": {
-                "type": "string"
-              },
-              "type": {
-                "type": "string"
-              }
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreditsafeGlobalDataMessage"
             }
           }
         }
+      },
+      "CreditsafeGlobalDataMessage": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/CreditsafeGlobalDataMessageType"
+          },
+          "code": {
+            "$ref": "#/components/schemas/CreditsafeGlobalDataMessageCode"
+          },
+          "text": {
+            "type": "string"
+          }
+        }
+      },
+      "CreditsafeGlobalDataMessageType": {
+        "type": "string",
+        "enum": [
+          "Information",
+          "Warning",
+          "Error"
+        ]
+      },
+      "CreditsafeGlobalDataMessageCode": {
+        "type": "string",
+        "enum": [
+          "NoResults",
+          "TooManyResults",
+          "ReportUnavailable",
+          "ReportUnavailableDueToLegal",
+          "ReportUnavailableOnline",
+          "LegalNotice",
+          "InvalidCredentials",
+          "AccessRestricted",
+          "AccessLimitsNearing",
+          "InsufficientCustomerData",
+          "ReportboxAlmostFull",
+          "ReportboxFull",
+          "InvalidRequestXml",
+          "InvalidOperationParameters",
+          "OperationNotSupported",
+          "InvalidCustomData",
+          "ChangeNotification",
+          "TemporarySystemProblem",
+          "EndpointShutdown",
+          "UnexpectedInternalError",
+          "Other",
+          "DataServiceAccessProblems",
+          "DataServiceInvalidResponse"
+        ]
       },
       "Connect.ErrorResponses.BadRequest": {
         "type": "object",
@@ -11216,6 +12158,12 @@
               "correlationId": {
                 "type": "string"
               },
+              "messages": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CreditsafeGlobalDataMessage"
+                }
+              },
               "page": {
                 "type": "integer",
                 "format": "int32"
@@ -14463,7 +15411,7 @@
             "type": "string",
             "nullable": true
           },
-          "gender":{
+          "gender": {
             "type": "string",
             "nullable": true,
             "enum": [
@@ -14757,6 +15705,7 @@
         }
       },
       "Connect.Identity.Gender": {
+        "description": "Below is a list of Definitions for the ENUM\n* 0 - Unknown\n* 1 - Male\n* 2 - Female\n",
         "enum": [
           0,
           1,
@@ -17813,18 +18762,7 @@
           }
         }
       },
-      "Connect.GBConsumer": {
-        "type": "object",
-        "description": "Select product type for object parameters and example body.\n\n Options for an `AML Search` or `Consumer Search`",
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/AMLSearch"
-          },
-          {
-            "$ref": "#/components/schemas/consumerSearch"
-          }
-        ]
-      },
+   
       "AMLSearch": {
         "description": "Search parameters for AML product",
         "properties": {
@@ -18009,7 +18947,7 @@
                 "type": {
                   "type": "string"
                 },
-                "officeType":{
+                "officeType": {
                   "type": "string",
                   "description": "Only available with US companies."
                 },
@@ -19710,6 +20648,3094 @@
           }
         },
         "description": "Simple access forbidden message error response"
+      },
+    
+      "ArrayOfConnectDataCleaningJob" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/ConnectDataCleaningJob"
+        }
+      },
+      "ConnectDataCleaningJob": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "ID number associated to the created job - used for future searches",
+            "type": "string"
+          },
+          "name": {
+            "description": "The name associated to the 'Job Number' created by the user in the 'POST - Create Job Request'",
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modifiedAT": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "managingUserId": {
+            "type": "integer"
+          },
+          "managingCustomerId": {
+            "type": "integer"
+          },
+          "owningCustomerId": {
+            "type": "integer"
+          },
+          "owningUserId": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "created",
+              "uploading",
+              "uploadError",
+              "uploaded",
+              "ready",
+              "matching",
+              "matchingError",
+              "matched",
+              "addingToPortfolio",
+              "addedToPortfolio",
+              "addedToPortfolioError",
+              "aggregating",
+              "aggregatingComplete",
+              "aggregatingError",
+              "enriching",
+              "enrichmentError",
+              "enriched",
+              "transformFileError",
+              "generateTrilliumFileError",
+              "jobMatchingCompletionError",
+              "jobMatchingComplete",
+              "readyForEnriching",
+              "enrichmentComplete",
+              "enrichmentCompletionError",
+              "pdfGenerationError"
+            ]
+          },
+          "countryCode": {
+            "description": "Available after Enrichment",
+            "type": "string"
+          },
+          "portfolioId": {
+            "type": "string",
+            "description": "Available after Enrichment"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "dataCleaning",
+              "prospects"
+            ]
+          },
+          "jobSummary": {
+            "description": "Available after Enrichment",
+            "type": "object",
+            "properties": {
+              "totalRows": {
+                "type": "integer"
+              },
+              "matched": {
+                "type": "integer"
+              },
+              "manualMatched": {
+                "type": "integer"
+              },
+              "unmatched": {
+                "type": "integer"
+              },
+              "duplicates": {
+                "type": "integer"
+              }
+            }
+          },
+          "jobEnrichmentSettings": {
+            "description": "Available after Enrichment",
+            "type": "object",
+            "properties": {
+              "creditType": {
+                "type": "string"
+              }
+            }
+          },
+          "archived": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ConnectDataCleaningCreateJobRequest": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "ConnectDataCleaningArchiveJobRequest": {
+        "type": "object"
+      },
+      "ConnectDataCleaningEnrichRequest": {
+        "type": "object"
+      },
+      "ConnectDataCleaningUpdateMappingsRequest": {
+        "type": "object",
+        "required": [
+          "mappings"
+        ],
+        "properties": {
+          "mappings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JobMappingDto"
+            }
+          }
+        }
+      },
+      "JobMappingDto": {
+        "type": "object",
+        "required": [
+          "mapping",
+          "value"
+        ],
+        "properties": {
+          "mapping": {
+            "type": "string",
+            "enum": [
+              "companyId",
+              "orgNumber",
+              "name",
+              "tradingName",
+              "aliasName",
+              "previousName",
+              "phone",
+              "email",
+              "address1",
+              "address2",
+              "address3",
+              "town",
+              "postcode",
+              "region",
+              "country",
+              "countryCode",
+              "vatNumber",
+              "taxCode",
+              "personalID",
+              "personalLimit"
+            ]
+          },
+          "value": {
+            "type": "string",
+            "description": "Value follows array indexing, meaning each column is identified by number, starting at 0 "
+          }
+        },
+        "example": {
+          "mapping": "name",
+          "value": "0"
+        }
+      },
+      "ConnectDataCleaningSubmitJobRequest": {
+        "type": "object"
+      },
+      "ArrayOfConnectDataCleaningResponse": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ConnectDataCleaningResponse"
+        }
+      },
+      "ConnectMonitoringCreatePortfolioRequest": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "isDefault": {
+            "type": "boolean"
+          },
+          "emails": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
+                "emailAddress": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "emailSubject": {
+            "type": "string"
+          },
+          "emailLanguage": {
+            "type": "string"
+          },
+          "frequency": {
+            "type": "string"
+          },
+          "webhookUrl": {
+            "type": "string"
+          },
+          "webhookEnabled": {
+            "type": "boolean"
+          }
+        }
+      },
+      "MODEL5bdbb3": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "MODEL28cf8d": {
+        "type": "object",
+        "required": [
+          "hasHeader",
+          "jobFile"
+        ],
+        "properties": {
+          "jobFile": {
+            "type": "string",
+            "format": "binary"
+          },
+          "hasHeader": {
+            "type": "boolean"
+          }
+        }
+      },
+      "MODEL4f561c": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "MODELf6df8e": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "MODEL8790cc": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "MODELcebf3b": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "MODELcf4983": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "MODEL5b4b1c": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "MODEL7c8060": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "ConnectDataCleaningResponse": {
+        "type": "object"
+      },
+      "ConnectDataCleaningArchiveResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "managingUserId": {
+            "type": "integer"
+          },
+          "managingCustomerId": {
+            "type": "integer"
+          },
+          "owningCustomerId": {
+            "type": "integer"
+          },
+          "owningUserId": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          },
+          "countryCode": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "jobEnrichmentSettings": {
+            "$ref": "#/components/schemas/jobEnrichmentSettings"
+          },
+          "archived": {
+            "type": "boolean"
+          }
+        }
+      },
+      "jobEnrichmentSettings": {
+        "type": "object",
+        "properties": {
+          "creditType": {
+            "type": "string"
+          }
+        }
+      },
+      "ConnectDataCleaningMappingResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "mapping": {
+              "type": "string"
+            },
+            "value": {
+              "type": "string"
+            }
+          }
+        },
+        "example": [
+          {
+            "mapping": "name",
+            "value": "0"
+          }
+        ]
+      },
+      "ConnectDataCleaningUploadResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "sourceFilename": {
+            "type": "string"
+          },
+          "hasHeader": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "managingUserId": {
+            "type": "integer"
+          },
+          "managingCustomerId": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          }
+        }
+      },
+     "ConnectErrorResponsesAccessForbidden": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "description": "Simple access forbidden message error response"
+      },
+      "basic": {
+        "type": "object",
+        "properties": {
+          "enrichments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "enrichment": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "example": {
+          "enrichments": [
+            {
+              "enrichment": "general.safeNumber"
+            },
+            {
+              "enrichment": "general.connectId"
+            },
+            {
+              "enrichment": "general.ggsId"
+            },
+            {
+              "enrichment": "general.companyName"
+            },
+            {
+              "enrichment": "general.companyId"
+            },
+            {
+              "enrichment": "general.companyNameKanji"
+            },
+            {
+              "enrichment": "general.companyNameKana"
+            },
+            {
+              "enrichment": "general.aliasName"
+            },
+            {
+              "enrichment": "general.tradeName"
+            },
+            {
+              "enrichment": "general.tradeNumber"
+            },
+            {
+              "enrichment": "general.acronym"
+            },
+            {
+              "enrichment": "general.organisationNumber"
+            },
+            {
+              "enrichment": "general.legalRegistrationNumber"
+            },
+            {
+              "enrichment": "general.siret"
+            },
+            {
+              "enrichment": "general.siren"
+            },
+            {
+              "enrichment": "general.companyNumber"
+            },
+            {
+              "enrichment": "general.kvkNumber"
+            },
+            {
+              "enrichment": "contact.eircode"
+            },
+            {
+              "enrichment": "contact.country"
+            },
+            {
+              "enrichment": "contact.mailing.city"
+            },
+            {
+              "enrichment": "general.companyType"
+            },
+            {
+              "enrichment": "general.companyTypeDesc.en"
+            },
+            {
+              "enrichment": "general.legalName"
+            },
+            {
+              "enrichment": "general.legalNameAlt"
+            },
+            {
+              "enrichment": "general.rsin"
+            },
+            {
+              "enrichment": "general.tradingName"
+            },
+            {
+              "enrichment": "general.regDeletionNumber"
+            },
+            {
+              "enrichment": "general.pattern"
+            },
+            {
+              "enrichment": "general.banding"
+            },
+            {
+              "enrichment": "general.bandingDesc"
+            },
+            {
+              "enrichment": "general.rowNumber"
+            },
+            {
+              "enrichment": "general.duplicate"
+            },
+            {
+              "enrichment": "general.duplicateId"
+            },
+            {
+              "enrichment": "contact.city"
+            }
+          ]
+        }
+      },
+      "basicPlus": {
+        "type": "object",
+        "properties": {
+          "enrichments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "enrichment": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "example": {
+          "enrichments": [
+            {
+              "enrichment": "general.safeNumber"
+            },
+            {
+              "enrichment": "general.connectId"
+            },
+            {
+              "enrichment": "general.ggsId"
+            },
+            {
+              "enrichment": "general.companyName"
+            },
+            {
+              "enrichment": "general.companyId"
+            },
+            {
+              "enrichment": "general.companyNameKanji"
+            },
+            {
+              "enrichment": "general.companyNameKana"
+            },
+            {
+              "enrichment": "general.aliasName"
+            },
+            {
+              "enrichment": "general.tradeName"
+            },
+            {
+              "enrichment": "general.tradeNumber"
+            },
+            {
+              "enrichment": "general.acronym"
+            },
+            {
+              "enrichment": "general.organisationNumber"
+            },
+            {
+              "enrichment": "general.legalRegistrationNumber"
+            },
+            {
+              "enrichment": "general.siret"
+            },
+            {
+              "enrichment": "general.siren"
+            },
+            {
+              "enrichment": "general.companyNumber"
+            },
+            {
+              "enrichment": "general.kvkNumber"
+            },
+            {
+              "enrichment": "contact.eircode"
+            },
+            {
+              "enrichment": "contact.country"
+            },
+            {
+              "enrichment": "contact.mailing.city"
+            },
+            {
+              "enrichment": "general.companyType"
+            },
+            {
+              "enrichment": "general.companyTypeDesc.en"
+            },
+            {
+              "enrichment": "general.legalName"
+            },
+            {
+              "enrichment": "general.legalNameAlt"
+            },
+            {
+              "enrichment": "general.rsin"
+            },
+            {
+              "enrichment": "general.tradingName"
+            },
+            {
+              "enrichment": "general.regDeletionNumber"
+            },
+            {
+              "enrichment": "general.pattern"
+            },
+            {
+              "enrichment": "general.banding"
+            },
+            {
+              "enrichment": "general.bandingDesc"
+            },
+            {
+              "enrichment": "general.rowNumber"
+            },
+            {
+              "enrichment": "general.duplicate"
+            },
+            {
+              "enrichment": "general.duplicateId"
+            },
+            {
+              "enrichment": "contact.city"
+            },
+            {
+              "enrichment": "general.taxCode"
+            },
+            {
+              "enrichment": "general.vatNumber"
+            },
+            {
+              "enrichment": "general.vatLiable"
+            },
+            {
+              "enrichment": "general.principalActivity"
+            },
+            {
+              "enrichment": "general.principalActivity2"
+            },
+            {
+              "enrichment": "general.principalActivity3"
+            },
+            {
+              "enrichment": "general.principalActivity4"
+            },
+            {
+              "enrichment": "general.principalActivity5"
+            },
+            {
+              "enrichment": "general.statusDesc.en"
+            },
+            {
+              "enrichment": "contact.addressLine1"
+            },
+            {
+              "enrichment": "contact.addressLine3"
+            },
+            {
+              "enrichment": "contact.addressLine4"
+            },
+            {
+              "enrichment": "contact.addressLine5"
+            },
+            {
+              "enrichment": "contact.addressLine6"
+            },
+            {
+              "enrichment": "contact.streetName"
+            },
+            {
+              "enrichment": "contact.houseNumber"
+            },
+            {
+              "enrichment": "contact.state"
+            },
+            {
+              "enrichment": "contact.postBox"
+            },
+            {
+              "enrichment": "contact.zip4"
+            },
+            {
+              "enrichment": "contact.region"
+            },
+            {
+              "enrichment": "contact.municipality"
+            },
+            {
+              "enrichment": "contact.province"
+            },
+            {
+              "enrichment": "contact.mailing.addressLine1"
+            },
+            {
+              "enrichment": "contact.mailing.addressLine2"
+            },
+            {
+              "enrichment": "contact.mailing.addressLine3"
+            },
+            {
+              "enrichment": "contact.mailing.addressLine4"
+            },
+            {
+              "enrichment": "contact.mailing.streetName"
+            },
+            {
+              "enrichment": "contact.mailing.houseNumber"
+            },
+            {
+              "enrichment": "contact.mailing.province"
+            },
+            {
+              "enrichment": "contact.mailing.postalCode"
+            },
+            {
+              "enrichment": "contact.nonMailingIndicator"
+            },
+            {
+              "enrichment": "contact.officeAddress1"
+            },
+            {
+              "enrichment": "contact.officeAddress2"
+            },
+            {
+              "enrichment": "contact.officeAddress3"
+            },
+            {
+              "enrichment": "contact.addressType"
+            },
+            {
+              "enrichment": "contact.paf.addressLine1"
+            },
+            {
+              "enrichment": "contact.paf.addressLine2"
+            },
+            {
+              "enrichment": "contact.paf.addressLine3"
+            },
+            {
+              "enrichment": "contact.paf.addressLine4"
+            },
+            {
+              "enrichment": "contact.paf.postalCode"
+            },
+            {
+              "enrichment": "general.locationType"
+            },
+            {
+              "enrichment": "contact.contactPhone"
+            },
+            {
+              "enrichment": "contact.tps"
+            },
+            {
+              "enrichment": "contact.marketingAllowed"
+            },
+            {
+              "enrichment": "contact.fax"
+            },
+            {
+              "enrichment": "contact.specialDistribution"
+            },
+            {
+              "enrichment": "contact.additionToAddress"
+            },
+            {
+              "enrichment": "general.activityCode"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.en"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.jp"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.it"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.fr"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.se"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.de"
+            },
+            {
+              "enrichment": "general.activityCode2"
+            },
+            {
+              "enrichment": "general.activityCode2Desc.en"
+            },
+            {
+              "enrichment": "general.activityCode2Desc.jp"
+            },
+            {
+              "enrichment": "general.activityCode3"
+            },
+            {
+              "enrichment": "general.activityCode3Desc.en"
+            },
+            {
+              "enrichment": "general.sectorCode"
+            },
+            {
+              "enrichment": "general.legalForm"
+            },
+            {
+              "enrichment": "general.legalFormCategory"
+            },
+            {
+              "enrichment": "general.legalFormDetails"
+            },
+            {
+              "enrichment": "general.legalFormDesc.en"
+            },
+            {
+              "enrichment": "general.legalFormDesc.it"
+            },
+            {
+              "enrichment": "general.legalFormDesc.nl"
+            },
+            {
+              "enrichment": "general.legalFormDesc.fr"
+            },
+            {
+              "enrichment": "general.legalFormDesc.de"
+            },
+            {
+              "enrichment": "general.legalFormDesc.no"
+            },
+            {
+              "enrichment": "general.naicsCode"
+            },
+            {
+              "enrichment": "general.naicsCodeDesc.en"
+            },
+            {
+              "enrichment": "general.website"
+            },
+            {
+              "enrichment": "contact.email"
+            },
+            {
+              "enrichment": "general.establishDate"
+            },
+            {
+              "enrichment": "general.registrationDate"
+            },
+            {
+              "enrichment": "general.registrationLocation"
+            },
+            {
+              "enrichment": "general.employees"
+            },
+            {
+              "enrichment": "general.workforceCode"
+            },
+            {
+              "enrichment": "general.workforceCodeDesc.en"
+            },
+            {
+              "enrichment": "general.workforceCodeDesc.fr"
+            },
+            {
+              "enrichment": "general.minimalWorkforceRange"
+            },
+            {
+              "enrichment": "general.annualSales"
+            },
+            {
+              "enrichment": "general.juridicalForm"
+            },
+            {
+              "enrichment": "general.juridicalFormDesc.en"
+            },
+            {
+              "enrichment": "general.juridicalFormDesc.fr"
+            },
+            {
+              "enrichment": "general.juridicalFormDesc.nl"
+            },
+            {
+              "enrichment": "general.status"
+            },
+            {
+              "enrichment": "general.statusDesc.fr"
+            },
+            {
+              "enrichment": "general.statusDesc.nl"
+            },
+            {
+              "enrichment": "general.statusDescShort.en"
+            },
+            {
+              "enrichment": "general.statusDescShort.fr"
+            },
+            {
+              "enrichment": "general.active"
+            },
+            {
+              "enrichment": "financials.shareCapital"
+            },
+            {
+              "enrichment": "financials.bankName"
+            },
+            {
+              "enrichment": "financials.shareCapitalCurrency"
+            },
+            {
+              "enrichment": "financials.bankCode"
+            },
+            {
+              "enrichment": "general.sosFederalTaxId"
+            },
+            {
+              "enrichment": "general.sosCharterNo"
+            },
+            {
+              "enrichment": "general.sosStatus"
+            },
+            {
+              "enrichment": "general.incorporatedState"
+            },
+            {
+              "enrichment": "general.sosAddress"
+            },
+            {
+              "enrichment": "general.sosCity"
+            },
+            {
+              "enrichment": "general.sosState"
+            },
+            {
+              "enrichment": "general.sosZip"
+            },
+            {
+              "enrichment": "general.sosZip4"
+            },
+            {
+              "enrichment": "general.incorporationDate"
+            },
+            {
+              "enrichment": "group.parent.siret"
+            },
+            {
+              "enrichment": "group.parent.siren"
+            },
+            {
+              "enrichment": "group.ultimateParent.siren"
+            },
+            {
+              "enrichment": "general.importFlag"
+            },
+            {
+              "enrichment": "general.exportFlag"
+            },
+            {
+              "enrichment": "general.ltdNonLtdFlag"
+            },
+            {
+              "enrichment": "general.priority"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.nl"
+            },
+            {
+              "enrichment": "general.mainOfficeFlag"
+            },
+            {
+              "enrichment": "general.yearsTrading"
+            },
+            {
+              "enrichment": "general.foundingDeedDate"
+            },
+            {
+              "enrichment": "general.continuanceDate"
+            },
+            {
+              "enrichment": "general.discontinuanceDate"
+            },
+            {
+              "enrichment": "general.mortgages.partiallySatisfied"
+            },
+            {
+              "enrichment": "general.mortgages.satisfied"
+            },
+            {
+              "enrichment": "general.mortgages.outstanding"
+            },
+            {
+              "enrichment": "general.mortgages.total"
+            },
+            {
+              "enrichment": "general.managerType"
+            },
+            {
+              "enrichment": "general.managerTypeDesc.en"
+            },
+            {
+              "enrichment": "general.managerTypeDesc.fr"
+            },
+            {
+              "enrichment": "financials.consolidationCode"
+            },
+            {
+              "enrichment": "contact.addressLine2"
+            },
+            {
+              "enrichment": "contact.postalCode"
+            }
+          ]
+        }
+      },
+      "standard": {
+        "type": "object",
+        "properties": {
+          "enrichments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "enrichment": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "example": {
+          "enrichments": [
+            {
+              "enrichment": "general.safeNumber"
+            },
+            {
+              "enrichment": "general.connectId"
+            },
+            {
+              "enrichment": "general.ggsId"
+            },
+            {
+              "enrichment": "general.companyName"
+            },
+            {
+              "enrichment": "general.companyId"
+            },
+            {
+              "enrichment": "general.companyNameKanji"
+            },
+            {
+              "enrichment": "general.companyNameKana"
+            },
+            {
+              "enrichment": "general.aliasName"
+            },
+            {
+              "enrichment": "general.tradeName"
+            },
+            {
+              "enrichment": "general.tradeNumber"
+            },
+            {
+              "enrichment": "general.acronym"
+            },
+            {
+              "enrichment": "general.organisationNumber"
+            },
+            {
+              "enrichment": "general.legalRegistrationNumber"
+            },
+            {
+              "enrichment": "general.siret"
+            },
+            {
+              "enrichment": "general.siren"
+            },
+            {
+              "enrichment": "general.companyNumber"
+            },
+            {
+              "enrichment": "general.kvkNumber"
+            },
+            {
+              "enrichment": "contact.eircode"
+            },
+            {
+              "enrichment": "contact.country"
+            },
+            {
+              "enrichment": "contact.mailing.city"
+            },
+            {
+              "enrichment": "general.companyType"
+            },
+            {
+              "enrichment": "general.companyTypeDesc.en"
+            },
+            {
+              "enrichment": "general.legalName"
+            },
+            {
+              "enrichment": "general.legalNameAlt"
+            },
+            {
+              "enrichment": "general.rsin"
+            },
+            {
+              "enrichment": "general.tradingName"
+            },
+            {
+              "enrichment": "general.regDeletionNumber"
+            },
+            {
+              "enrichment": "general.pattern"
+            },
+            {
+              "enrichment": "general.banding"
+            },
+            {
+              "enrichment": "general.bandingDesc"
+            },
+            {
+              "enrichment": "general.rowNumber"
+            },
+            {
+              "enrichment": "general.duplicate"
+            },
+            {
+              "enrichment": "general.duplicateId"
+            },
+            {
+              "enrichment": "contact.city"
+            },
+            {
+              "enrichment": "general.taxCode"
+            },
+            {
+              "enrichment": "general.vatNumber"
+            },
+            {
+              "enrichment": "general.vatLiable"
+            },
+            {
+              "enrichment": "general.principalActivity"
+            },
+            {
+              "enrichment": "general.principalActivity2"
+            },
+            {
+              "enrichment": "general.principalActivity3"
+            },
+            {
+              "enrichment": "general.principalActivity4"
+            },
+            {
+              "enrichment": "general.principalActivity5"
+            },
+            {
+              "enrichment": "general.statusDesc.en"
+            },
+            {
+              "enrichment": "contact.addressLine1"
+            },
+            {
+              "enrichment": "contact.addressLine3"
+            },
+            {
+              "enrichment": "contact.addressLine4"
+            },
+            {
+              "enrichment": "contact.addressLine5"
+            },
+            {
+              "enrichment": "contact.addressLine6"
+            },
+            {
+              "enrichment": "contact.streetName"
+            },
+            {
+              "enrichment": "contact.houseNumber"
+            },
+            {
+              "enrichment": "contact.state"
+            },
+            {
+              "enrichment": "contact.postBox"
+            },
+            {
+              "enrichment": "contact.zip4"
+            },
+            {
+              "enrichment": "contact.region"
+            },
+            {
+              "enrichment": "contact.municipality"
+            },
+            {
+              "enrichment": "contact.province"
+            },
+            {
+              "enrichment": "contact.mailing.addressLine1"
+            },
+            {
+              "enrichment": "contact.mailing.addressLine2"
+            },
+            {
+              "enrichment": "contact.mailing.addressLine3"
+            },
+            {
+              "enrichment": "contact.mailing.addressLine4"
+            },
+            {
+              "enrichment": "contact.mailing.streetName"
+            },
+            {
+              "enrichment": "contact.mailing.houseNumber"
+            },
+            {
+              "enrichment": "contact.mailing.province"
+            },
+            {
+              "enrichment": "contact.mailing.postalCode"
+            },
+            {
+              "enrichment": "contact.nonMailingIndicator"
+            },
+            {
+              "enrichment": "contact.officeAddress1"
+            },
+            {
+              "enrichment": "contact.officeAddress2"
+            },
+            {
+              "enrichment": "contact.officeAddress3"
+            },
+            {
+              "enrichment": "contact.addressType"
+            },
+            {
+              "enrichment": "contact.paf.addressLine1"
+            },
+            {
+              "enrichment": "contact.paf.addressLine2"
+            },
+            {
+              "enrichment": "contact.paf.addressLine3"
+            },
+            {
+              "enrichment": "contact.paf.addressLine4"
+            },
+            {
+              "enrichment": "contact.paf.postalCode"
+            },
+            {
+              "enrichment": "general.locationType"
+            },
+            {
+              "enrichment": "contact.contactPhone"
+            },
+            {
+              "enrichment": "contact.tps"
+            },
+            {
+              "enrichment": "contact.marketingAllowed"
+            },
+            {
+              "enrichment": "contact.fax"
+            },
+            {
+              "enrichment": "contact.specialDistribution"
+            },
+            {
+              "enrichment": "contact.additionToAddress"
+            },
+            {
+              "enrichment": "general.activityCode"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.en"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.jp"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.it"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.fr"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.se"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.de"
+            },
+            {
+              "enrichment": "general.activityCode2"
+            },
+            {
+              "enrichment": "general.activityCode2Desc.en"
+            },
+            {
+              "enrichment": "general.activityCode2Desc.jp"
+            },
+            {
+              "enrichment": "general.activityCode3"
+            },
+            {
+              "enrichment": "general.activityCode3Desc.en"
+            },
+            {
+              "enrichment": "general.sectorCode"
+            },
+            {
+              "enrichment": "general.legalForm"
+            },
+            {
+              "enrichment": "general.legalFormCategory"
+            },
+            {
+              "enrichment": "general.legalFormDetails"
+            },
+            {
+              "enrichment": "general.legalFormDesc.en"
+            },
+            {
+              "enrichment": "general.legalFormDesc.it"
+            },
+            {
+              "enrichment": "general.legalFormDesc.nl"
+            },
+            {
+              "enrichment": "general.legalFormDesc.fr"
+            },
+            {
+              "enrichment": "general.legalFormDesc.de"
+            },
+            {
+              "enrichment": "general.legalFormDesc.no"
+            },
+            {
+              "enrichment": "general.naicsCode"
+            },
+            {
+              "enrichment": "general.naicsCodeDesc.en"
+            },
+            {
+              "enrichment": "general.website"
+            },
+            {
+              "enrichment": "contact.email"
+            },
+            {
+              "enrichment": "general.establishDate"
+            },
+            {
+              "enrichment": "general.registrationDate"
+            },
+            {
+              "enrichment": "general.registrationLocation"
+            },
+            {
+              "enrichment": "general.employees"
+            },
+            {
+              "enrichment": "general.workforceCode"
+            },
+            {
+              "enrichment": "general.workforceCodeDesc.en"
+            },
+            {
+              "enrichment": "general.workforceCodeDesc.fr"
+            },
+            {
+              "enrichment": "general.minimalWorkforceRange"
+            },
+            {
+              "enrichment": "general.annualSales"
+            },
+            {
+              "enrichment": "general.juridicalForm"
+            },
+            {
+              "enrichment": "general.juridicalFormDesc.en"
+            },
+            {
+              "enrichment": "general.juridicalFormDesc.fr"
+            },
+            {
+              "enrichment": "general.juridicalFormDesc.nl"
+            },
+            {
+              "enrichment": "general.status"
+            },
+            {
+              "enrichment": "general.statusDesc.fr"
+            },
+            {
+              "enrichment": "general.statusDesc.nl"
+            },
+            {
+              "enrichment": "general.statusDescShort.en"
+            },
+            {
+              "enrichment": "general.statusDescShort.fr"
+            },
+            {
+              "enrichment": "general.active"
+            },
+            {
+              "enrichment": "financials.shareCapital"
+            },
+            {
+              "enrichment": "financials.bankName"
+            },
+            {
+              "enrichment": "financials.shareCapitalCurrency"
+            },
+            {
+              "enrichment": "financials.bankCode"
+            },
+            {
+              "enrichment": "general.sosFederalTaxId"
+            },
+            {
+              "enrichment": "general.sosCharterNo"
+            },
+            {
+              "enrichment": "general.sosStatus"
+            },
+            {
+              "enrichment": "general.incorporatedState"
+            },
+            {
+              "enrichment": "general.sosAddress"
+            },
+            {
+              "enrichment": "general.sosCity"
+            },
+            {
+              "enrichment": "general.sosState"
+            },
+            {
+              "enrichment": "general.sosZip"
+            },
+            {
+              "enrichment": "general.sosZip4"
+            },
+            {
+              "enrichment": "general.incorporationDate"
+            },
+            {
+              "enrichment": "group.parent.siret"
+            },
+            {
+              "enrichment": "group.parent.siren"
+            },
+            {
+              "enrichment": "group.ultimateParent.siren"
+            },
+            {
+              "enrichment": "general.importFlag"
+            },
+            {
+              "enrichment": "general.exportFlag"
+            },
+            {
+              "enrichment": "general.ltdNonLtdFlag"
+            },
+            {
+              "enrichment": "general.priority"
+            },
+            {
+              "enrichment": "general.activityCodeDesc.nl"
+            },
+            {
+              "enrichment": "general.mainOfficeFlag"
+            },
+            {
+              "enrichment": "general.yearsTrading"
+            },
+            {
+              "enrichment": "general.foundingDeedDate"
+            },
+            {
+              "enrichment": "general.continuanceDate"
+            },
+            {
+              "enrichment": "general.discontinuanceDate"
+            },
+            {
+              "enrichment": "general.mortgages.partiallySatisfied"
+            },
+            {
+              "enrichment": "general.mortgages.satisfied"
+            },
+            {
+              "enrichment": "general.mortgages.outstanding"
+            },
+            {
+              "enrichment": "general.mortgages.total"
+            },
+            {
+              "enrichment": "general.managerType"
+            },
+            {
+              "enrichment": "general.managerTypeDesc.en"
+            },
+            {
+              "enrichment": "general.managerTypeDesc.fr"
+            },
+            {
+              "enrichment": "financials.consolidationCode"
+            },
+            {
+              "enrichment": "contact.addressLine2"
+            },
+            {
+              "enrichment": "contact.postalCode"
+            },
+            {
+              "enrichment": "general.federalTaxId"
+            },
+            {
+              "enrichment": "general.inactivityDate"
+            },
+            {
+              "enrichment": "negatives.legalFilings"
+            },
+            {
+              "enrichment": "negatives.uccCount"
+            },
+            {
+              "enrichment": "negatives.lienCount"
+            },
+            {
+              "enrichment": "negatives.lienAmount"
+            },
+            {
+              "enrichment": "negatives.lienDate"
+            },
+            {
+              "enrichment": "negatives.suitCount"
+            },
+            {
+              "enrichment": "negatives.suitAmount"
+            },
+            {
+              "enrichment": "negatives.suitDate"
+            },
+            {
+              "enrichment": "negatives.bankruptcyCount"
+            },
+            {
+              "enrichment": "negatives.bankruptcyAmount"
+            },
+            {
+              "enrichment": "negatives.bankruptcyDate"
+            },
+            {
+              "enrichment": "negatives.judgementCount"
+            },
+            {
+              "enrichment": "negatives.judgementAmount"
+            },
+            {
+              "enrichment": "negatives.judgementDate"
+            },
+            {
+              "enrichment": "negatives.chequeCount"
+            },
+            {
+              "enrichment": "negatives.chequeAmount"
+            },
+            {
+              "enrichment": "negatives.chequeDate"
+            },
+            {
+              "enrichment": "negatives.otherItemCount"
+            },
+            {
+              "enrichment": "negatives.otherItemAmount"
+            },
+            {
+              "enrichment": "negatives.otherItemDate"
+            },
+            {
+              "enrichment": "negatives.uccCautionaryCount"
+            },
+            {
+              "enrichment": "negatives.legalFilingsAmount"
+            },
+            {
+              "enrichment": "negatives.ofacFlag"
+            },
+            {
+              "enrichment": "negatives.ccjCount"
+            },
+            {
+              "enrichment": "negatives.ccjValue"
+            },
+            {
+              "enrichment": "financials.pretaxNetOperatingIncome"
+            },
+            {
+              "enrichment": "financials.extraordinaryIncome"
+            },
+            {
+              "enrichment": "financials.extraordinaryCharges"
+            },
+            {
+              "enrichment": "financials.extraordinaryProfitLoss"
+            },
+            {
+              "enrichment": "financials.tradingMargin"
+            },
+            {
+              "enrichment": "financials.addedValue"
+            },
+            {
+              "enrichment": "financials.grossOperatingSurplus"
+            },
+            {
+              "enrichment": "financials.balance.period1Late"
+            },
+            {
+              "enrichment": "financials.balance.period2Late"
+            },
+            {
+              "enrichment": "financials.balance.period3Late"
+            },
+            {
+              "enrichment": "financials.lastUpdateDate"
+            },
+            {
+              "enrichment": "financials.closureDate"
+            },
+            {
+              "enrichment": "financials.accountPeriodInMonths"
+            },
+            {
+              "enrichment": "financials.capitalNotCalled"
+            },
+            {
+              "enrichment": "financials.financialAssets"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.financialAssets"
+            },
+            {
+              "enrichment": "financials.netCurrentAssets"
+            },
+            {
+              "enrichment": "financials.advancedPayments"
+            },
+            {
+              "enrichment": "financials.receivables"
+            },
+            {
+              "enrichment": "financials.securitiesAndCash"
+            },
+            {
+              "enrichment": "financials.prepaidExpenses"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.prepaidExpenses"
+            },
+            {
+              "enrichment": "financials.shareholdersEquity"
+            },
+            {
+              "enrichment": "financials.otherCapitalResources"
+            },
+            {
+              "enrichment": "financials.riskProvisions"
+            },
+            {
+              "enrichment": "financials.liabilities"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.liabilities"
+            },
+            {
+              "enrichment": "financials.financialLiabilities"
+            },
+            {
+              "enrichment": "financials.advancedPaymentsReceived"
+            },
+            {
+              "enrichment": "financials.tradeAccountPayables"
+            },
+            {
+              "enrichment": "financials.taxAndSocialLiabilities"
+            },
+            {
+              "enrichment": "financials.currency"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.currency"
+            },
+            {
+              "enrichment": "financials.otherDebtsAndFixedAssets"
+            },
+            {
+              "enrichment": "financials.accountsRegularisation"
+            },
+            {
+              "enrichment": "financials.salesOfGoods"
+            },
+            {
+              "enrichment": "financials.netTurnover"
+            },
+            {
+              "enrichment": "financials.netExportTurnover"
+            },
+            {
+              "enrichment": "financials.operatingCharges"
+            },
+            {
+              "enrichment": "financials.financialProfit"
+            },
+            {
+              "enrichment": "financials.accountsOfRegularisation"
+            },
+            {
+              "enrichment": "rating.current.date"
+            },
+            {
+              "enrichment": "rating.current.score"
+            },
+            {
+              "enrichment": "rating.current.description.en"
+            },
+            {
+              "enrichment": "rating.current.description.nl"
+            },
+            {
+              "enrichment": "rating.current.description.no"
+            },
+            {
+              "enrichment": "rating.current.description.fr"
+            },
+            {
+              "enrichment": "rating.current.description.jp"
+            },
+            {
+              "enrichment": "rating.current.fullDescription.en"
+            },
+            {
+              "enrichment": "rating.current.fullDescription.no"
+            },
+            {
+              "enrichment": "rating.current.local"
+            },
+            {
+              "enrichment": "rating.current.creditIndex"
+            },
+            {
+              "enrichment": "rating.current.cds"
+            },
+            {
+              "enrichment": "rating.current.pod"
+            },
+            {
+              "enrichment": "limit.current.value"
+            },
+            {
+              "enrichment": "limit.current.date"
+            },
+            {
+              "enrichment": "rating.current.common"
+            },
+            {
+              "enrichment": "rating.current.colour"
+            },
+            {
+              "enrichment": "rating.previous.score"
+            },
+            {
+              "enrichment": "rating.previous.description.en"
+            },
+            {
+              "enrichment": "rating.previous.description.no"
+            },
+            {
+              "enrichment": "rating.previous.fullDescription.en"
+            },
+            {
+              "enrichment": "rating.previous.fullDescription.no"
+            },
+            {
+              "enrichment": "rating.previous.date"
+            },
+            {
+              "enrichment": "limit.previous.value"
+            },
+            {
+              "enrichment": "limit.previous.date"
+            },
+            {
+              "enrichment": "rating.previous.common"
+            },
+            {
+              "enrichment": "rating.creditworthy"
+            },
+            {
+              "enrichment": "financials.plAccountReserve"
+            },
+            {
+              "enrichment": "financials.otherShortTermFinance"
+            },
+            {
+              "enrichment": "financials.retainedProfit"
+            },
+            {
+              "enrichment": "financials.reserves"
+            },
+            {
+              "enrichment": "financials.debtorDays"
+            },
+            {
+              "enrichment": "financials.bankOverdraftLtl"
+            },
+            {
+              "enrichment": "financials.otherCurrentDebtors"
+            },
+            {
+              "enrichment": "financials.paidShareCapital"
+            },
+            {
+              "enrichment": "financials.preTaxProfitMargin"
+            },
+            {
+              "enrichment": "financials.auditComments"
+            },
+            {
+              "enrichment": "financials.bankers"
+            },
+            {
+              "enrichment": "financials.bankBranchCode"
+            },
+            {
+              "enrichment": "financials.dbt.current"
+            },
+            {
+              "enrichment": "financials.dbt.previous"
+            },
+            {
+              "enrichment": "financials.dbt.local"
+            },
+            {
+              "enrichment": "financials.amortizationAndDepreciation"
+            },
+            {
+              "enrichment": "financials.directorRemuneration"
+            },
+            {
+              "enrichment": "financials.dividends"
+            },
+            {
+              "enrichment": "financials.employeeCosts"
+            },
+            {
+              "enrichment": "financials.employeePensionCosts"
+            },
+            {
+              "enrichment": "financials.equityInPercentage"
+            },
+            {
+              "enrichment": "financials.extraordinaryItems"
+            },
+            {
+              "enrichment": "financials.financialCharges"
+            },
+            {
+              "enrichment": "financials.financialFixedAssets"
+            },
+            {
+              "enrichment": "financials.financialIncome"
+            },
+            {
+              "enrichment": "financials.finishedGoods"
+            },
+            {
+              "enrichment": "financials.intangibleFixedAssets"
+            },
+            {
+              "enrichment": "financials.inventories"
+            },
+            {
+              "enrichment": "financials.issuedShareCapital"
+            },
+            {
+              "enrichment": "financials.landAndBuilding"
+            },
+            {
+              "enrichment": "financials.operatingIncome"
+            },
+            {
+              "enrichment": "financials.otherAmountsReceivable"
+            },
+            {
+              "enrichment": "financials.otherEmployeeCosts"
+            },
+            {
+              "enrichment": "financials.otherStocks"
+            },
+            {
+              "enrichment": "financials.turnover"
+            },
+            {
+              "enrichment": "financials.otherTangibleAssets"
+            },
+            {
+              "enrichment": "financials.otherTermLiabilities"
+            },
+            {
+              "enrichment": "financials.otherTermLoans"
+            },
+            {
+              "enrichment": "financials.plantAndMachinery"
+            },
+            {
+              "enrichment": "financials.preProfitMargin"
+            },
+            {
+              "enrichment": "financials.profitBeforeTax"
+            },
+            {
+              "enrichment": "financials.rawAndConsumables"
+            },
+            {
+              "enrichment": "financials.resultsAfterTaxation"
+            },
+            {
+              "enrichment": "financials.salesWorkingCapital"
+            },
+            {
+              "enrichment": "financials.sharePremiumAccount"
+            },
+            {
+              "enrichment": "financials.socialSecurityContributions"
+            },
+            {
+              "enrichment": "financials.tangibleFixedAssets"
+            },
+            {
+              "enrichment": "financials.totalOperatingExpenses"
+            },
+            {
+              "enrichment": "financials.totalTermDebts"
+            },
+            {
+              "enrichment": "financials.workInProgress"
+            },
+            {
+              "enrichment": "financials.accountingDate"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.accountingDate"
+            },
+            {
+              "enrichment": "financials.numberOfWeeks"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.numberOfWeeks"
+            },
+            {
+              "enrichment": "financials.assets"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.assets"
+            },
+            {
+              "enrichment": "financials.tradeUpdateDate"
+            },
+            {
+              "enrichment": "financials.tradelines"
+            },
+            {
+              "enrichment": "financials.fixedAssets"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.fixedAssets"
+            },
+            {
+              "enrichment": "financials.currentAssets"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.currentAssets"
+            },
+            {
+              "enrichment": "financials.inventory"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.inventory"
+            },
+            {
+              "enrichment": "financials.receivablesAndOther"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.receivablesAndOther"
+            },
+            {
+              "enrichment": "financials.therefromTradeReceivables"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.therefromTradeReceivables"
+            },
+            {
+              "enrichment": "financials.securities"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.securities"
+            },
+            {
+              "enrichment": "financials.liquidAssets"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.liquidAssets"
+            },
+            {
+              "enrichment": "financials.deferedTax"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.deferedTax"
+            },
+            {
+              "enrichment": "financials.activeDiffBetweenAssetAllocation"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.activeDiffBetweenAssetAllocation"
+            },
+            {
+              "enrichment": "financials.deficitNcbCapital"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.deficitNcbCapital"
+            },
+            {
+              "enrichment": "financials.deficitNcblLossCapital"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.deficitNcblLossCapital"
+            },
+            {
+              "enrichment": "financials.balanceSheetTotalAssets"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.balanceSheetTotalAssets"
+            },
+            {
+              "enrichment": "financials.equity"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.equity"
+            },
+            {
+              "enrichment": "financials.subscribedCapital"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.subscribedCapital"
+            },
+            {
+              "enrichment": "financials.privateAccount"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.privateAccount"
+            },
+            {
+              "enrichment": "financials.sharesNcblUnlimitedPartners"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.sharesNcblUnlimitedPartners"
+            },
+            {
+              "enrichment": "financials.sharesNcblLimitedPartners"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.sharesNcblLimitedPartners"
+            },
+            {
+              "enrichment": "financials.fixedEquity"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.fixedEquity"
+            },
+            {
+              "enrichment": "financials.variableEquity"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.variableEquity"
+            },
+            {
+              "enrichment": "financials.balance.current"
+            },
+            {
+              "enrichment": "financials.balance.1to30"
+            },
+            {
+              "enrichment": "financials.balance.31to60"
+            },
+            {
+              "enrichment": "financials.balance.61to90"
+            },
+            {
+              "enrichment": "financials.balance.91plus"
+            },
+            {
+              "enrichment": "financials.balance.total"
+            },
+            {
+              "enrichment": "financials.capitalReserve"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.capitalReserve"
+            },
+            {
+              "enrichment": "financials.revenueReserve"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.revenueReserve"
+            },
+            {
+              "enrichment": "financials.retainedEarnings"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.retainedEarnings"
+            },
+            {
+              "enrichment": "financials.balanceSheetNetIncome"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.balanceSheetNetIncome"
+            },
+            {
+              "enrichment": "financials.accruals"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.accruals"
+            },
+            {
+              "enrichment": "financials.therefromAccrualsPension"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.therefromAccrualsPension"
+            },
+            {
+              "enrichment": "financials.therefromAccrualsTax"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.therefromAccrualsTax"
+            },
+            {
+              "enrichment": "financials.therefromTradePayables"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.therefromTradePayables"
+            },
+            {
+              "enrichment": "financials.defferedIncome"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.defferedIncome"
+            },
+            {
+              "enrichment": "financials.defferedLiabilities"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.defferedLiabilities"
+            },
+            {
+              "enrichment": "financials.balanceSheetTotal"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.balanceSheetTotal"
+            },
+            {
+              "enrichment": "financials.inventoryChange"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.inventoryChange"
+            },
+            {
+              "enrichment": "financials.ownWork"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.ownWork"
+            },
+            {
+              "enrichment": "financials.otherOperationalRevenue"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.otherOperationalRevenue"
+            },
+            {
+              "enrichment": "financials.materials"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.materials"
+            },
+            {
+              "enrichment": "financials.staff"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.staff"
+            },
+            {
+              "enrichment": "financials.amortisation"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.amortisation"
+            },
+            {
+              "enrichment": "financials.otherCosts"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.otherCosts"
+            },
+            {
+              "enrichment": "financials.profitLoss"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.profitLoss"
+            },
+            {
+              "enrichment": "financials.profit"
+            },
+            {
+              "enrichment": "financials.operationalResult"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.operationalResult"
+            },
+            {
+              "enrichment": "financials.therefromOtherInterestSimilarIncome"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.therefromOtherInterestSimilarIncome"
+            },
+            {
+              "enrichment": "financials.therefromInterestsSimilarExpenses"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.therefromInterestsSimilarExpenses"
+            },
+            {
+              "enrichment": "financials.financialResult"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.financialResult"
+            },
+            {
+              "enrichment": "financials.ordinaryOperationalResult"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.ordinaryOperationalResult"
+            },
+            {
+              "enrichment": "financials.extraordinaryResult"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.extraordinaryResult"
+            },
+            {
+              "enrichment": "financials.tax"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.tax"
+            },
+            {
+              "enrichment": "financials.otherTaxes"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.otherTaxes"
+            },
+            {
+              "enrichment": "financials.netIncome"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.netIncome"
+            },
+            {
+              "enrichment": "financials.yearOfBalance"
+            },
+            {
+              "enrichment": "financials.totalShareholdersEquity"
+            },
+            {
+              "enrichment": "financials.totalOperatingIncome"
+            },
+            {
+              "enrichment": "financials.salesRevenue"
+            },
+            {
+              "enrichment": "financials.otherOperatingIncome"
+            },
+            {
+              "enrichment": "financials.costOfStocks"
+            },
+            {
+              "enrichment": "financials.changeInStock"
+            },
+            {
+              "enrichment": "financials.changeInWorkInProgress"
+            },
+            {
+              "enrichment": "financials.writeDownOfFixedAssets"
+            },
+            {
+              "enrichment": "financials.otherOperatingExpenses"
+            },
+            {
+              "enrichment": "financials.allocatedDividend"
+            },
+            {
+              "enrichment": "financials.revenueSubsidiaries"
+            },
+            {
+              "enrichment": "financials.revenueGroupCompanies"
+            },
+            {
+              "enrichment": "financials.revenueAssociatedCompanies"
+            },
+            {
+              "enrichment": "financials.interestIncomeGroup"
+            },
+            {
+              "enrichment": "financials.otherInterestIncome"
+            },
+            {
+              "enrichment": "financials.otherFinancialIncome"
+            },
+            {
+              "enrichment": "financials.changeValueCurrentAssets"
+            },
+            {
+              "enrichment": "financials.writedownsCurrentAssets"
+            },
+            {
+              "enrichment": "financials.writedownsFixedAssets"
+            },
+            {
+              "enrichment": "financials.otherInterestExpensesGroup"
+            },
+            {
+              "enrichment": "financials.otherInterestExpenses"
+            },
+            {
+              "enrichment": "financials.otherFinancialExpenses"
+            },
+            {
+              "enrichment": "financials.otherFinancialCosts"
+            },
+            {
+              "enrichment": "financials.financialExpenses"
+            },
+            {
+              "enrichment": "financials.totalNetFinancialItems"
+            },
+            {
+              "enrichment": "financials.netProfitLoss"
+            },
+            {
+              "enrichment": "financials.taxOnExtraordinaryResult"
+            },
+            {
+              "enrichment": "financials.minorityShare"
+            },
+            {
+              "enrichment": "financials.netResultAfterDividends"
+            },
+            {
+              "enrichment": "financials.groupContributions"
+            },
+            {
+              "enrichment": "financials.allocationOtherEquity"
+            },
+            {
+              "enrichment": "financials.totalTransfersAllocations"
+            },
+            {
+              "enrichment": "financials.researchAndDevelopment"
+            },
+            {
+              "enrichment": "financials.concessions"
+            },
+            {
+              "enrichment": "financials.deferredTaxAsset"
+            },
+            {
+              "enrichment": "financials.goodwillIntangibleAssets"
+            },
+            {
+              "enrichment": "financials.otherIntangibleFixedAssets"
+            },
+            {
+              "enrichment": "financials.landAndBuildings"
+            },
+            {
+              "enrichment": "financials.shipsRigsAircraft"
+            },
+            {
+              "enrichment": "financials.operatingEquipment"
+            },
+            {
+              "enrichment": "financials.otherOperationFactors"
+            },
+            {
+              "enrichment": "financials.totalTangibleAssets"
+            },
+            {
+              "enrichment": "financials.sharesInvestmentSubsidiaries"
+            },
+            {
+              "enrichment": "financials.investmentsInGroupCompanies"
+            },
+            {
+              "enrichment": "financials.investmentsInAssociatedCompanies"
+            },
+            {
+              "enrichment": "financials.investmentsInShares"
+            },
+            {
+              "enrichment": "financials.bondsAndAccountsReceivables"
+            },
+            {
+              "enrichment": "financials.pensionFunds"
+            },
+            {
+              "enrichment": "financials.otherFinancialFixedAssets"
+            },
+            {
+              "enrichment": "financials.bonds"
+            },
+            {
+              "enrichment": "financials.otherReceivables"
+            },
+            {
+              "enrichment": "financials.otherReceivables2"
+            },
+            {
+              "enrichment": "financials.otherFixedAssets"
+            },
+            {
+              "enrichment": "financials.rawMaterials"
+            },
+            {
+              "enrichment": "financials.otherInventories"
+            },
+            {
+              "enrichment": "financials.totalInventories"
+            },
+            {
+              "enrichment": "financials.tradeReceivables"
+            },
+            {
+              "enrichment": "financials.receivablesToCompInGroup"
+            },
+            {
+              "enrichment": "financials.totalReceivable"
+            },
+            {
+              "enrichment": "financials.sharesAndInterestsInGroup"
+            },
+            {
+              "enrichment": "financials.quotedInvestmentShares"
+            },
+            {
+              "enrichment": "financials.quotedBonds"
+            },
+            {
+              "enrichment": "financials.otherMarkedBasedFinancial"
+            },
+            {
+              "enrichment": "financials.otherFinancialInstr"
+            },
+            {
+              "enrichment": "financials.otherInvestments"
+            },
+            {
+              "enrichment": "financials.cashAndBankDeposits"
+            },
+            {
+              "enrichment": "financials.totalFunds"
+            },
+            {
+              "enrichment": "financials.ownShares"
+            },
+            {
+              "enrichment": "financials.sharePremiumReserve"
+            },
+            {
+              "enrichment": "financials.otherPaidInCapital"
+            },
+            {
+              "enrichment": "financials.totalEquityDeposits"
+            },
+            {
+              "enrichment": "financials.valuationReserve"
+            },
+            {
+              "enrichment": "financials.otherEquity"
+            },
+            {
+              "enrichment": "financials.minorityInterestsGroups"
+            },
+            {
+              "enrichment": "financials.totalRetainedEarnings"
+            },
+            {
+              "enrichment": "financials.otherReserves"
+            },
+            {
+              "enrichment": "financials.longtermPensionCommitments"
+            },
+            {
+              "enrichment": "financials.deferredTaxLiabilities"
+            },
+            {
+              "enrichment": "financials.otherProvisions"
+            },
+            {
+              "enrichment": "financials.totalProvisionsLiabilities"
+            },
+            {
+              "enrichment": "financials.convertibleLoans"
+            },
+            {
+              "enrichment": "financials.otherLongtermLoans"
+            },
+            {
+              "enrichment": "financials.longtermLiabilitiesFinInst"
+            },
+            {
+              "enrichment": "financials.longtermGroupContrLiabilities"
+            },
+            {
+              "enrichment": "financials.liableLoanCapital"
+            },
+            {
+              "enrichment": "financials.otherLongtermLiabilities"
+            },
+            {
+              "enrichment": "financials.totalOtherLongtermLiabilities"
+            },
+            {
+              "enrichment": "financials.convertibleLoan"
+            },
+            {
+              "enrichment": "financials.certificateLoan"
+            },
+            {
+              "enrichment": "financials.shorttermLiabilitiesFinInst"
+            },
+            {
+              "enrichment": "financials.payableTax"
+            },
+            {
+              "enrichment": "financials.specialGovernmentTaxes"
+            },
+            {
+              "enrichment": "financials.suggestedDividend"
+            },
+            {
+              "enrichment": "financials.shorttermLiabilitiesGroup"
+            },
+            {
+              "enrichment": "financials.otherCreditors"
+            },
+            {
+              "enrichment": "financials.totalLiabilitiesEquity"
+            },
+            {
+              "enrichment": "financials.solvencyRatio"
+            },
+            {
+              "enrichment": "financials.recentHighCredit"
+            },
+            {
+              "enrichment": "financials.operatingProfit"
+            },
+            {
+              "enrichment": "financials.depreciation"
+            },
+            {
+              "enrichment": "financials.auditFees"
+            },
+            {
+              "enrichment": "financials.currentRatio"
+            },
+            {
+              "enrichment": "financials.netWorkingCapital"
+            },
+            {
+              "enrichment": "financials.gearingRatio"
+            },
+            {
+              "enrichment": "financials.creditorDays"
+            },
+            {
+              "enrichment": "financials.liquidityAcidTest"
+            },
+            {
+              "enrichment": "financials.returnOnCapitalEmployed"
+            },
+            {
+              "enrichment": "financials.returnOnTotalAssetsEmployed"
+            },
+            {
+              "enrichment": "financials.currentDebtRatio"
+            },
+            {
+              "enrichment": "financials.totalDebtRatio"
+            },
+            {
+              "enrichment": "financials.stockTurnoverRatio"
+            },
+            {
+              "enrichment": "financials.returnOnNetAssetsEmployed"
+            },
+            {
+              "enrichment": "financials.netCashflowFromOperations"
+            },
+            {
+              "enrichment": "financials.netCashflowBeforeFinancing"
+            },
+            {
+              "enrichment": "financials.netCashflowFromFinancing"
+            },
+            {
+              "enrichment": "financials.auditorsQualification"
+            },
+            {
+              "enrichment": "financials.auditors"
+            },
+            {
+              "enrichment": "financials.capitalEmployed"
+            },
+            {
+              "enrichment": "financials.contingentLiability"
+            },
+            {
+              "enrichment": "financials.latestAccountDate"
+            },
+            {
+              "enrichment": "financials.profitLossAccount"
+            },
+            {
+              "enrichment": "financials.paidUpCapital"
+            },
+            {
+              "enrichment": "financials.accountsType"
+            },
+            {
+              "enrichment": "financials.accountsFrom"
+            },
+            {
+              "enrichment": "financials.accountsTo"
+            },
+            {
+              "enrichment": "financials.accountsMonths"
+            },
+            {
+              "enrichment": "financials.preTaxMargin"
+            },
+            {
+              "enrichment": "financials.retainedProfits"
+            },
+            {
+              "enrichment": "financials.dividendsPayable"
+            },
+            {
+              "enrichment": "financials.profitAfterTax"
+            },
+            {
+              "enrichment": "financials.taxation"
+            },
+            {
+              "enrichment": "financials.preTaxProfit"
+            },
+            {
+              "enrichment": "financials.interestPayments"
+            },
+            {
+              "enrichment": "financials.consolidatedAccounts"
+            },
+            {
+              "enrichment": "financials.exports"
+            },
+            {
+              "enrichment": "financials.costOfSales"
+            },
+            {
+              "enrichment": "financials.grossProfit"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.grossProfit"
+            },
+            {
+              "enrichment": "financials.wagesSalaries"
+            },
+            {
+              "enrichment": "financials.directorsEmoluments"
+            },
+            {
+              "enrichment": "negatives.totalCollectionAmount"
+            },
+            {
+              "enrichment": "negatives.bankruptcy"
+            },
+            {
+              "enrichment": "negatives.delinquencyCount"
+            },
+            {
+              "enrichment": "negatives.delinquencyAmount"
+            },
+            {
+              "enrichment": "negatives.collectionCases"
+            },
+            {
+              "enrichment": "negatives.collectionCount"
+            },
+            {
+              "enrichment": "negatives.collectionAmount"
+            },
+            {
+              "enrichment": "negatives.collectionDate"
+            },
+            {
+              "enrichment": "financials.netAssets"
+            },
+            {
+              "enrichment": "financials.totalLiabilities"
+            },
+            {
+              "enrichment": "financials.totalLongTermLiabilities"
+            },
+            {
+              "enrichment": "financials.otherLongTermFinance"
+            },
+            {
+              "enrichment": "financials.miscCurrentLiabilities"
+            },
+            {
+              "enrichment": "financials.otherShortTermFinancials"
+            },
+            {
+              "enrichment": "financials.bankOverdraft"
+            },
+            {
+              "enrichment": "financials.totalAssets"
+            },
+            {
+              "enrichment": "financials.miscCurrentAssets"
+            },
+            {
+              "enrichment": "financials.otherCurrentAssets"
+            },
+            {
+              "enrichment": "financials.tradeDebtors"
+            },
+            {
+              "enrichment": "financials.intangibleAssets"
+            },
+            {
+              "enrichment": "financialsNonConsolidated.intangibleAssets"
+            },
+            {
+              "enrichment": "financials.tangibleAssets"
+            },
+            {
+              "enrichment": "financials.stocks"
+            },
+            {
+              "enrichment": "financials.cash"
+            },
+            {
+              "enrichment": "financials.shareholderFunds"
+            },
+            {
+              "enrichment": "financials.revaluationReserve"
+            },
+            {
+              "enrichment": "financials.sundryReserves"
+            },
+            {
+              "enrichment": "financials.coefficientLinear"
+            },
+            {
+              "enrichment": "financials.workingCapital"
+            },
+            {
+              "enrichment": "financials.accountsStartDate"
+            },
+            {
+              "enrichment": "financials.accountsEndDate"
+            },
+            {
+              "enrichment": "financials.totalFixedAssets"
+            },
+            {
+              "enrichment": "financials.totalCurrentAssets"
+            },
+            {
+              "enrichment": "financials.tradeCreditors"
+            },
+            {
+              "enrichment": "financials.totalCurrentLiabilities"
+            },
+            {
+              "enrichment": "financials.longTermLiabilities"
+            },
+            {
+              "enrichment": "financials.totalEquity"
+            },
+            {
+              "enrichment": "financials.netWorth"
+            },
+            {
+              "enrichment": "financials.liquidityRatio"
+            },
+            {
+              "enrichment": "financials.netResult"
+            },
+            {
+              "enrichment": "financials.capital"
+            },
+            {
+              "enrichment": "financials.nominalCapital"
+            },
+            {
+              "enrichment": "financials.placedCapital"
+            },
+            {
+              "enrichment": "financials.depositedCapital"
+            },
+            {
+              "enrichment": "group.daughter.name"
+            },
+            {
+              "enrichment": "group.daughter.country"
+            },
+            {
+              "enrichment": "group.parent.id"
+            },
+            {
+              "enrichment": "group.parent.safeNumber"
+            },
+            {
+              "enrichment": "group.parent.name"
+            },
+            {
+              "enrichment": "group.parent.companyNo"
+            },
+            {
+              "enrichment": "group.parent.rating.current.score"
+            },
+            {
+              "enrichment": "group.parent.rating.current.description.en"
+            },
+            {
+              "enrichment": "group.parent.rating.current.description.nl"
+            },
+            {
+              "enrichment": "group.parent.limit.current.value"
+            },
+            {
+              "enrichment": "group.parent.addressLine1"
+            },
+            {
+              "enrichment": "group.parent.city"
+            },
+            {
+              "enrichment": "group.parent.postalCode"
+            },
+            {
+              "enrichment": "group.parent.country"
+            },
+            {
+              "enrichment": "group.ultimateParent.id"
+            },
+            {
+              "enrichment": "group.ultimateParent.safeNumber"
+            },
+            {
+              "enrichment": "group.ultimateParent.name"
+            },
+            {
+              "enrichment": "group.ultimateParent.companyNo"
+            },
+            {
+              "enrichment": "group.ultimateParent.rating.current.score"
+            },
+            {
+              "enrichment": "group.ultimateParent.rating.current.description.en"
+            },
+            {
+              "enrichment": "group.ultimateParent.rating.current.description.nl"
+            },
+            {
+              "enrichment": "group.ultimateParent.limit.current.value"
+            },
+            {
+              "enrichment": "group.ultimateParent.country"
+            },
+            {
+              "enrichment": "group.ultimateParent.entityType"
+            },
+            {
+              "enrichment": "group.ultimateParent.isoCode"
+            },
+            {
+              "enrichment": "group.ultimateParent.address"
+            },
+            {
+              "enrichment": "group.ultimateParent.poBox"
+            },
+            {
+              "enrichment": "group.ultimateParent.city"
+            },
+            {
+              "enrichment": "group.ultimateParent.inseeCityCode"
+            },
+            {
+              "enrichment": "group.ultimateParent.postalCode"
+            },
+            {
+              "enrichment": "group.ultimateParent.contactPhone"
+            },
+            {
+              "enrichment": "group.headquarter.id"
+            },
+            {
+              "enrichment": "directors.title.en"
+            },
+            {
+              "enrichment": "directors.title.nl"
+            },
+            {
+              "enrichment": "directors.title.fr"
+            },
+            {
+              "enrichment": "directors.firstName"
+            },
+            {
+              "enrichment": "directors.fullNameKana"
+            },
+            {
+              "enrichment": "directors.middleName"
+            },
+            {
+              "enrichment": "directors.lastName"
+            },
+            {
+              "enrichment": "directors.fullName"
+            },
+            {
+              "enrichment": "directors.salutation"
+            },
+            {
+              "enrichment": "directors.gender"
+            },
+            {
+              "enrichment": "directors.addressLine1"
+            },
+            {
+              "enrichment": "directors.addressLine2"
+            },
+            {
+              "enrichment": "directors.addressLine3"
+            },
+            {
+              "enrichment": "directors.addressLine4"
+            },
+            {
+              "enrichment": "directors.city"
+            },
+            {
+              "enrichment": "directors.region"
+            },
+            {
+              "enrichment": "directors.state"
+            },
+            {
+              "enrichment": "directors.postalCode"
+            },
+            {
+              "enrichment": "directors.country"
+            },
+            {
+              "enrichment": "directors.birthDate"
+            },
+            {
+              "enrichment": "directors.birthPlace"
+            },
+            {
+              "enrichment": "directors.appointmentDate"
+            },
+            {
+              "enrichment": "directors.endDate"
+            },
+            {
+              "enrichment": "directors.nationality"
+            },
+            {
+              "enrichment": "directors.honours"
+            },
+            {
+              "enrichment": "directors.managerPositionCode"
+            },
+            {
+              "enrichment": "shareholders.name"
+            },
+            {
+              "enrichment": "shareholders.info"
+            },
+            {
+              "enrichment": "shareholders.currency"
+            },
+            {
+              "enrichment": "general.isHeadquarter"
+            }
+          ]
+        }
       }
     },
     "securitySchemes": {
