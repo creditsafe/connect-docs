@@ -4906,7 +4906,7 @@
             }
           },
           {
-            "name": "query.type",
+            "name": "type",
             "in": "query",
             "schema": {
               "type": "string",
@@ -6728,7 +6728,8 @@
     },
     "/protect/audits/file": {
       "post": {
-        "operationId": "Export Audit Log File",
+        "operationId": "exportAuditLogFile",
+        "summary": "Export Audit Log File",
         "description": "Produces a collection a csv of Audit records.",
         "tags": [
           "Protect Audit"
@@ -6755,6 +6756,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.AuditsExportResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
                 }
               }
             }
@@ -15263,6 +15274,10 @@
               "schedule.created",
               "schedule.removed"
             ]
+          },
+          "userId":{
+            "type": "integer",
+            "format": "int32"
           },
           "keywordSearch": {
             "type": "string"
