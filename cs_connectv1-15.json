@@ -4919,6 +4919,7 @@
           },
           {
             "name": "q",
+            "description": "Keyword search: It searches in the 'name' fields of the investigation.",
             "in": "query",
             "schema":{
               "type": "string"
@@ -4963,7 +4964,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "Successful",
             "content": {
               "application/json": {
                 "schema": {
@@ -4971,6 +4972,26 @@
                   "items": {
                     "$ref": "#/components/schemas/Connect.Protect.Investigation"
                   }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
                 }
               }
             }
