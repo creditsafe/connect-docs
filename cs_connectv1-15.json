@@ -4879,7 +4879,8 @@
         }
       },
       "get": {
-        "operationId": "List All Protect Investigations",
+        "operationId": "listAllProtectInvestigations",
+        "summary": "List All Protect Investigations",
         "description": "Endpoint to return all investigations. Filter response by using query parameters. Use the alertsCount parameter to only return Investigations with alerts greater than the supplied value.",
         "tags": [
           "Protect Investigations"
@@ -4913,6 +4914,43 @@
               "enum": [
                 "business",
                 "individual"
+              ]
+            }
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "schema":{
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "schema":{
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "orderBy",
+            "in":"query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "alertCount",
+                "city",
+                "country",
+                "createdAt",
+                "dateOfBirth",
+                "name",
+                "profile",
+                "province",
+                "searchAt",
+                "street"
               ]
             }
           },
