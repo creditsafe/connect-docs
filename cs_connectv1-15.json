@@ -6839,8 +6839,9 @@
         "tags": [
           "Protect Batch Uploads"
         ],
-        "operationId": "Batch Upload File",
-        "description": "Endpoint to upload a file to generate multiple searches and investigations. <br><br> note - file needs to be structured as per the template. ",
+        "operationId": "batchUploadFile",
+        "summary": "Batch Upload File",
+        "description": "Endpoint to upload a file to generate multiple searches and investigations. <br><br> note - file needs to be structured as per the template.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -6849,7 +6850,7 @@
         "requestBody": {
           "content": {
             "multipart/form-data": {
-              "schema": {
+               "schema": {
                 "properties": {
                   "investigationType": {
                     "type": "string",
@@ -6865,7 +6866,8 @@
                   "File": {
                     "type": "string",
                     "format": "binary",
-                    "nullable": true
+                    "nullable": true,
+                    
                   }
                 }
               }
