@@ -100,7 +100,7 @@
         "tags": [
           "Authentication"
         ],
-        "description": "Supply username and password to generate Authentication Token",
+        "description": "Supply username and password to generate Authentication Token.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -645,7 +645,7 @@
         "tags": [
           "Companies"
         ],
-        "description": "Supply all company search criteria to find potential company matches ranked by a `single score`.   - <a href=\"https://creditsafe.freshdesk.com/en/support/solutions/articles/7000059769-interpreting-confidence-match-scores\" target=\"_blank\">See here for more information</a>",
+        "description": "Supply all company search criteria to find potential company matches ranked by a `single score`.   - <a href=\"https://creditsafe.freshdesk.com/en/support/solutions/articles/7000059769-interpreting-confidence-match-scores\" target=\"_blank\">See here for more information</a>.",
         "operationId": "confidenceMatchSearch",
         "summary": "Confidence Match Search",
         "parameters": [
@@ -2136,7 +2136,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Delete the portfolio with portfolioId",
+        "description": "Delete the portfolio with portfolioId.",
         "operationId": "Delete Portfolio",
         "parameters": [
           {
