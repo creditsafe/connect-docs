@@ -4825,7 +4825,8 @@
     },
     "/protect/investigations": {
       "post": {
-        "operationId": "Create Protect Investigation",
+        "operationId": "createProtectInvestigation",
+        "summary": "Create Protect Investigation",
         "description": "Creates an Investigation according to the provided Investigation criteria. Each result is potential match which is attributed a relevancy/match score between 1-100 and a high level reason for it's inclusion in the World Compliance Database by looking at the Reason Listed and Comments to firstly ascertain whether the entry is a match for you search criteria and then utilize the data available for your own onboarding needs.",
         "tags": [
           "Protect Investigations"
@@ -6167,7 +6168,8 @@
     },
     "/protect/profiles/{profileId}/investigations": {
       "get": {
-        "operationId": "List Investigations In A Profile",
+        "operationId": "listInvestigationsInAProfile",
+        "summary": "List Investigations In A Profile.",
         "description": "Endpoint to retrieve all Investigations associated with a specific Profile.",
         "tags": [
           "Protect Profile"
@@ -15694,26 +15696,6 @@
             "type": "string",
             "nullable": true
           },
-          "houseNo": {
-            "type": "string",
-            "nullable": true
-          },
-          "street": {
-            "type": "string",
-            "nullable": true
-          },
-          "province": {
-            "type": "string",
-            "nullable": true
-          },
-          "city": {
-            "type": "string",
-            "nullable": true
-          },
-          "postCode": {
-            "type": "string",
-            "nullable": true
-          },
           "countryCode": {
             "type": "string",
             "nullable": true
@@ -15733,20 +15715,7 @@
             "type": "string",
             "nullable": true
           },
-          "generation": {
-            "description": "Individual Only - Example JR, SNR, III. Usually associated with American names.",
-            "type": "string",
-            "nullable": true
-          },
           "dateOfBirth": {
-            "type": "string",
-            "nullable": true
-          },
-          "nationalId": {
-            "type": "string",
-            "nullable": true
-          },
-          "citizenship": {
             "type": "string",
             "nullable": true
           },
@@ -15757,10 +15726,6 @@
               "male",
               "female"
             ]
-          },
-          "phoneNo": {
-            "type": "string",
-            "nullable": true
           }
         }
       },
