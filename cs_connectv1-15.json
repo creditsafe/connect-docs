@@ -68,7 +68,7 @@
     },
     {
       "name": "Protect Batch Uploads",
-      "description": "Allows for a file to be uploaded to create multiple searches.<br><br> Once the status is 'Complete' you can view all the files by calling - GET List all Protect Investigations.  "
+      "description": "Allows for a file to be uploaded to create multiple searches.<br><br> Once the status is 'Complete' you can view all the files by calling - GET List all Protect Investigations.<br><br>Refer to the 'Selected Template' endpoint for help guide and file header templates."
     },
     {
       "name": "Local Solutions",
@@ -7060,6 +7060,7 @@
             "required": true,
             "schema": {
               "type": "string",
+              "description": "`templateUserGuide` provides a link to a pdf document on how to use protect.<br>`template` returns a header list for the file upload.",
               "nullable": false,
               "enum": [
                 "template",
