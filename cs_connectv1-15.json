@@ -15701,6 +15701,12 @@
             "type": "string",
             "nullable": true
           },
+          "screeningThreshold": { 
+            "description": "Default Threshold is 85",
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
           "countryCode": {
             "type": "string",
             "nullable": true
