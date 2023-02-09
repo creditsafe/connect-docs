@@ -67,6 +67,10 @@
       "name": "Protect IDV"
     },
     {
+      "name": "Protect Batch Uploads",
+      "description": "Allows for a file to be uploaded to create multiple searches.<br><br> Once the status is 'Complete' you can view all the files by calling - GET List all Protect Investigations.  "
+    },
+    {
       "name": "Local Solutions",
       "description": "A toolbox of country-specific functionality. See the description under each endpoint for more information on a particular solution."
     },
@@ -96,7 +100,7 @@
         "tags": [
           "Authentication"
         ],
-        "description": "Supply username and password to generate Authentication Token",
+        "description": "Supply username and password to generate Authentication Token.",
         "requestBody": {
           "content": {
             "application/json": {
@@ -641,7 +645,7 @@
         "tags": [
           "Companies"
         ],
-        "description": "Supply all company search criteria to find potential company matches ranked by a `single score`.   - <a href=\"https://creditsafe.freshdesk.com/en/support/solutions/articles/7000059769-interpreting-confidence-match-scores\" target=\"_blank\">See here for more information</a>",
+        "description": "Supply all company search criteria to find potential company matches ranked by a `single score`.   - <a href=\"https://creditsafe.freshdesk.com/en/support/solutions/articles/7000059769-interpreting-confidence-match-scores\" target=\"_blank\">See here for more information</a>.",
         "operationId": "confidenceMatchSearch",
         "summary": "Confidence Match Search",
         "parameters": [
@@ -2132,7 +2136,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Delete the portfolio with portfolioId",
+        "description": "Delete the portfolio with portfolioId.",
         "operationId": "Delete Portfolio",
         "parameters": [
           {
@@ -2692,7 +2696,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Get current portfolio risk summary information",
+        "description": "Get current portfolio risk summary information.",
         "operationId": "portfolioRiskSummary",
         "summary": "Portfolio Risk Summary",
         "parameters": [
@@ -2761,7 +2765,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Get all notificationEvents based on the portfolio id, optionally filter with query parameters",
+        "description": "Get all notificationEvents based on the portfolio id, optionally filter with query parameters.",
         "operationId": "List Portfolio Notifications",
         "parameters": [
           {
@@ -3358,7 +3362,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Delete companies from current portfolio",
+        "description": "Delete companies from current portfolio.",
         "operationId": "Clear Companies From Portfolio",
         "parameters": [
           {
@@ -3612,7 +3616,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Updates the company details in a specified portfolio",
+        "description": "Updates the company details in a specified portfolio.",
         "operationId": "Update Company Details In Portfolio",
         "parameters": [
           {
@@ -3710,7 +3714,7 @@
           "Global Monitoring"
         ],
         "operationId": "List Company Specific NotificationEvents",
-        "description": "List of notification events based on the company id,optionally filtered with query parameters",
+        "description": "List of notification events based on the company id,optionally filtered with query parameters.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -3843,7 +3847,7 @@
           "Global Monitoring"
         ],
         "operationId": "Portfolio User Permissions",
-        "description": "Retrieve user permissions within the customer for a portfolio",
+        "description": "Retrieve user permissions within the customer for a portfolio.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -3908,7 +3912,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Update/Create user permissions within the customer for portfolio",
+        "description": "Update/Create user permissions within the customer for portfolio.",
         "operationId": "Share Portfolio With Users",
         "parameters": [
           {
@@ -4821,7 +4825,8 @@
     },
     "/protect/investigations": {
       "post": {
-        "operationId": "Create Protect Investigation",
+        "operationId": "createProtectInvestigation",
+        "summary": "Create Protect Investigation",
         "description": "Creates an Investigation according to the provided Investigation criteria. Each result is potential match which is attributed a relevancy/match score between 1-100 and a high level reason for it's inclusion in the World Compliance Database by looking at the Reason Listed and Comments to firstly ascertain whether the entry is a match for you search criteria and then utilize the data available for your own onboarding needs.",
         "tags": [
           "Protect Investigations"
@@ -4875,7 +4880,8 @@
         }
       },
       "get": {
-        "operationId": "List All Protect Investigations",
+        "operationId": "listAllProtectInvestigations",
+        "summary": "List All Protect Investigations",
         "description": "Endpoint to return all investigations. Filter response by using query parameters. Use the alertsCount parameter to only return Investigations with alerts greater than the supplied value.",
         "tags": [
           "Protect Investigations"
@@ -4913,6 +4919,44 @@
             }
           },
           {
+            "name": "q",
+            "description": "Keyword search: It searches in the 'name' fields of the investigation.",
+            "in": "query",
+            "schema":{
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "schema":{
+              "type": "string",
+              "enum": [
+                "asc",
+                "desc"
+              ]
+            }
+          },
+          {
+            "name": "orderBy",
+            "in":"query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "alertCount",
+                "city",
+                "country",
+                "createdAt",
+                "dateOfBirth",
+                "name",
+                "profile",
+                "province",
+                "searchAt",
+                "street"
+              ]
+            }
+          },
+          {
             "$ref": "#/components/parameters/page"
           },
           {
@@ -4921,7 +4965,7 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "Successful",
             "content": {
               "application/json": {
                 "schema": {
@@ -4929,6 +4973,26 @@
                   "items": {
                     "$ref": "#/components/schemas/Connect.Protect.Investigation"
                   }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
                 }
               }
             }
@@ -5030,7 +5094,7 @@
           "Protect Investigations"
         ],
         "operationId": "Add Investigations Records",
-        "description": "Requires the 'Investigation Id' in path, followed by 'Record Id' in the request body to add a record to the previously created Investigation.<br><br>By adding InvestigationRecords you are confirming that the result is a match to your search criteria. <br><br>To return to the original Investigation search to allocate other records, use \"GET Investigation results by ID.\"",
+        "description": "Requires the 'Investigation Id' in path, followed by 'Record Id' in the request body to add a record to the previously created Investigation.<br><br>By adding InvestigationRecords you are confirming that the result is a match to your search criteria. <br><br>To return to the original Investigation search to allocate other records, use \"GET Investigation results by ID.\".",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -5498,7 +5562,7 @@
         "operationId": "Assign Risk To Investigation",
         "parameters": [
           {
-            "name": "Id",
+            "name": "id",
             "in": "path",
             "required": true,
             "schema": {
@@ -6104,7 +6168,8 @@
     },
     "/protect/profiles/{profileId}/investigations": {
       "get": {
-        "operationId": "List Investigations In A Profile",
+        "operationId": "listInvestigationsInAProfile",
+        "summary": "List Investigations In A Profile.",
         "description": "Endpoint to retrieve all Investigations associated with a specific Profile.",
         "tags": [
           "Protect Profile"
@@ -6121,6 +6186,13 @@
               "type": "string",
               "format": "guid",
               "nullable": false
+            }
+          },
+          {
+            "name": "query.type",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/Connect.Protect.CreateInvestigationQueryDto"
             }
           },
           {
@@ -6455,7 +6527,7 @@
       },
       "delete": {
         "operationId": "Deletes Schedule from Investigation",
-        "description": "Deletes a Schedule from an Investigation meaning entity will no longer be monitored on a nightly basis but record will still remain in the audit trail",
+        "description": "Deletes a Schedule from an Investigation meaning entity will no longer be monitored on a nightly basis but record will still remain in the audit trail.",
         "tags": [
           "Protect Schedules"
         ],
@@ -6717,7 +6789,8 @@
     },
     "/protect/audits/file": {
       "post": {
-        "operationId": "Export Audit Log File",
+        "operationId": "exportAuditLogFile",
+        "summary": "Export Audit Log File",
         "description": "Produces a collection a csv of Audit records.",
         "tags": [
           "Protect Audit"
@@ -6744,6 +6817,275 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Protect.AuditsExportResponseDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/protect/batchUploads": {
+      "post": {
+        "tags": [
+          "Protect Batch Uploads"
+        ],
+        "operationId": "batchUploadFile",
+        "summary": "Batch Upload File",
+        "description": "Endpoint to upload a file to generate multiple searches and investigations. <br><br> note - file needs to be structured as per the template.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+               "schema": {
+                "required": [
+                  "File"
+                ],
+                "properties": {
+                  "investigationType": {
+                    "type": "string",
+                    "nullable": false,
+                    "enum": [
+                      "business",
+                      "individual"
+                    ],
+                    "x-schema": {
+                      "$ref": "#/components/schemas/InvestigationType"
+                    }
+                  },
+                  "File": {
+                    "type": "string",
+                    "format": "binary",
+                    "nullable": true
+                    
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchUpload"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchUpload"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Protect Batch Uploads"
+        ],
+        "operationId": "Returns Batch Uploads",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": false
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "nullable": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BatchUpload"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BatchUpload"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/protect/batchUploads/{batchUploadId}": {
+      "get": {
+        "tags": [
+          "Protect Batch Uploads"
+        ],
+        "operationId": "Returns Batch Upload by ID",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "batchUploadId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid",
+              "nullable": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchUpload"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchUpload"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/protect/batchUploads/{batchUploadId}/errorFile": {
+      "get": {
+        "tags": [
+          "Protect Batch Uploads"
+        ],
+        "operationId": "Returns Error File Link",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "guid",
+              "nullable": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDownloadResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDownloadResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/protect/batchUploads/templates/{type}": {
+      "get": {
+        "tags": [
+          "Protect Batch Uploads"
+        ],
+        "operationId": "Returns Selected Template Link",
+        "description": "Provides template for the file upload csv structure, also provides a user guide if called.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "nullable": false,
+              "enum": [
+                "template",
+                "templateUserGuide"
+              ],
+              "x-schema": {
+                "$ref": "#/components/schemas/BatchUploadFileType"
+              }
+            },
+            "x-schema": {
+              "$ref": "#/components/schemas/BatchUploadFileType"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDownloadResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FileDownloadResponse"
                 }
               }
             }
@@ -6986,6 +7328,7 @@
         "tags": [
           "GB Consumers and AML"
         ],
+        "operationId": "retrievesAPriorIdentitySearch'sInput",
         "summary": "Retrieves a prior identitysearch's input",
         "parameters": [
           {
@@ -7110,7 +7453,7 @@
           "GB Consumers and AML"
         ],
         "summary": "Gets a list of identitysearch history items",
-        "description": "Retrieves a paginated history list for the specified customer/user, filtered based on the include* parameters",
+        "description": "Retrieves a paginated history list for the specified customer/user, filtered based on the include* parameters.",
         "parameters": [
           {
             "name": "page",
@@ -14998,6 +15341,10 @@
               "schedule.removed"
             ]
           },
+          "userId":{
+            "type": "integer",
+            "format": "int32"
+          },
           "keywordSearch": {
             "type": "string"
           },
@@ -15338,8 +15685,7 @@
       "Connect.Protect.CreateInvestigationQueryDto": {
         "type": "object",
         "required": [
-          "type",
-          "name"
+          "type"
         ],
         "properties": {
           "type": {
@@ -15352,26 +15698,6 @@
           },
           "name": {
             "description": "The full or partial business or individual name",
-            "type": "string",
-            "nullable": true
-          },
-          "houseNo": {
-            "type": "string",
-            "nullable": true
-          },
-          "street": {
-            "type": "string",
-            "nullable": true
-          },
-          "province": {
-            "type": "string",
-            "nullable": true
-          },
-          "city": {
-            "type": "string",
-            "nullable": true
-          },
-          "postCode": {
             "type": "string",
             "nullable": true
           },
@@ -15394,20 +15720,7 @@
             "type": "string",
             "nullable": true
           },
-          "generation": {
-            "description": "Individual Only - Example JR, SNR, III. Usually associated with American names.",
-            "type": "string",
-            "nullable": true
-          },
           "dateOfBirth": {
-            "type": "string",
-            "nullable": true
-          },
-          "nationalId": {
-            "type": "string",
-            "nullable": true
-          },
-          "citizenship": {
             "type": "string",
             "nullable": true
           },
@@ -15418,10 +15731,6 @@
               "male",
               "female"
             ]
-          },
-          "phoneNo": {
-            "type": "string",
-            "nullable": true
           }
         }
       },
