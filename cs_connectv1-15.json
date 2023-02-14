@@ -6841,7 +6841,7 @@
         ],
         "operationId": "batchUploadFile",
         "summary": "Batch Upload File",
-        "description": "Endpoint to upload a file to generate multiple searches and investigations. <br><br> note - file needs to be structured as per the template.",
+        "description": "Endpoint to upload a file that generates multiple searches and investigations. <br><br> Note - file needs to be structured as per the template.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
