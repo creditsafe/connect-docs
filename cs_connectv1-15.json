@@ -16,7 +16,7 @@
   "tags": [
     {
       "name": "Authentication",
-      "description": "Endpoint to generate a Bearer JWT (Authentication Token). It is mandatory to include this token under the Header `Authorization` When calling all other endpoints as proof of authenticity. Tokens can exist concurrently and persist for 1 hour from its issued time."
+      "description": "Endpoint to generate a Bearer JWT (Authentication Token). It is mandatory to include this token under the Header `Authorization` When calling all other endpoints as proof of authenticity. Tokens can exist concurrently and persist for 1 hour from its issued time.<br><br><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000052598-what-to-do-if-you-see-access-denied-please-check-that-your-username-and-password-are-correct-\" target=\"_blank\">Authenticate Help - Access Denied.</a>"
     },
     {
       "name": "Companies",
@@ -44,8 +44,7 @@
     },
     {
       "name": "Protect",
-      "description": "The focus on screening clients and third parties is increasing. International regulators are demanding that firms improve their ongoing sanctions screening process. World Compliance data through Connect allows customers to mitigate risk around Anti-Bribery and Corruption under local and international regulations such as the UK Bribery Act, by enabling users to screen their third party agents, suppliers or employees against watch lists.  With World Compliance through Creditsafe Connect, compliance is easy, efficient and cost-effective, even as the regulatory mountain grows.<br><br> <a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000063160-integrating-with-protect#Profiles\" target=\"_blank\"> How to use Protect API Document </a>",
-      "x-traitTag": true
+      "description": "The focus on screening clients and third parties is increasing. International regulators are demanding that firms improve their ongoing sanctions screening process. World Compliance data through Connect allows customers to mitigate risk around Anti-Bribery and Corruption under local and international regulations such as the UK Bribery Act, by enabling users to screen their third party agents, suppliers or employees against watch lists.  With World Compliance through Creditsafe Connect, compliance is easy, efficient and cost-effective, even as the regulatory mountain grows.<br><br> <a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000063160-integrating-with-protect#Profiles\" target=\"_blank\"> How to use Protect API Document </a>"
     },
     {
       "name": "Protect Profile",
@@ -160,16 +159,13 @@
             "description": "comma-separated list of iso-2 country codes.<br>The code `PLC` can be used here to search for companies of this type across all countries.",
             "required": true,
             "schema": {
-              "type": "object",
-              "items": {
-                "$ref": "#/components/schemas/Creditsafe.GlobalData.CountryCode"
-              }
+              "$ref": "#/components/schemas/Creditsafe.GlobalData.CountryCode"
             }
           },
           {
             "name": "language",
             "in": "query",
-            "description": "Typically only used for Countries where more than one Company Name exists for different languages e.g.  Japanese Kanji and English.",
+            "description": "Only used for Countries where more than one Company Name exists for different languages e.g.  Japanese Kanji and English.<br>Country -  Languages Available<br>Brazil [BR] - EN & PT <br> Japan [JP] - EN & JA " ,
             "schema": {
               "type": "string",
               "nullable": true,
@@ -245,7 +241,7 @@
           {
             "name": "exact",
             "in": "query",
-            "description": "Provide as true to find Companies matching a Name exactly.",
+            "description": "Provide as `true` to find Companies matching a Name exactly.",
             "schema": {
               "type": "boolean",
               "nullable": true
@@ -592,6 +588,7 @@
           },
           {
             "name": "countries",
+            "required": true,
             "in": "query",
             "description": "A comma separated list of ISO/Alpha 2 format country codes, or singular country Code. e.g. US,GB will return the common searchable Company fields in the United States and Great Britain.",
             "schema": {
@@ -601,24 +598,17 @@
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "Successful",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "allOf": [
-                      {
-                        "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchemaCountry"
-                      }
-                    ]
-                  }
-                }
+                    "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchemaCountry"
+                }  
               }
             }
           },
           "400": {
-            "description": "",
+            "description": "Bad Request",
             "content": {
               "application/json": {
                 "schema": {
@@ -628,11 +618,24 @@
             }
           },
           "401": {
-            "description": "",
+            "description": "Invalid Token",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Access forbidden"
+                  }
                 }
               }
             }
@@ -8931,6 +8934,7 @@
         "properties": {
           "username": {
             "type": "string",
+            "description": "Credentials assigned upon sign up",
             "example": "username@domain.com"
           },
           "password": {
@@ -12321,6 +12325,7 @@
           },
           "languages": {
             "type": "array",
+            "description": "Available languages to perform a company search in the country queried",
             "items": {
               "type": "string"
             }
