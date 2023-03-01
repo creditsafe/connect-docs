@@ -7219,6 +7219,7 @@
         "tags": [
           "GB Consumers and AML"
         ],
+        "operationId": "submitsAGBConsumerOrAmlSearch",
         "summary": "Submits a GB Consumer or AML Search",
         "description": "Submits a GB Consumer or AML depending on the Product provided. Validates criteria for each individual search before submitting, and may return a list of error strings instead.",
         "parameters": [
@@ -16173,18 +16174,22 @@
           },
           "customerId": {
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "description": "ID value of a cusomter account, typically passed in to allow users to retrieve past searches on a customer."
           },
           "userId": {
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "description": "ID value of the user account, a customer account may have multiple user accounts, this is typically passed in to retrieve past searches by a user."
           },
           "reference": {
             "type": "string",
-            "nullable": true
+            "nullable": true,
+            "description": "A string value that a user can submit during their search. This reference value is stored alongside the search details/customer/user ID values. Is typically passed in to allow users to retrieve past searches based on the reference value supplied."
           },
           "isInternal": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "A boolean value that is handled API side to check whether an account is internal/active. NOTE: Should not be required for external use."
           }
         }
       },
@@ -16208,7 +16213,12 @@
         "type": "object",
         "properties": {
           "secondPerson": {
-            "$ref": "#/components/schemas/Connect.Identity.Person"
+            "description": "Used for consumer search only. Can provide a second unique second person into the search. ",
+            "allOf": [
+              {
+              "$ref": "#/components/schemas/Connect.Identity.Person"
+              }
+            ]
           },
           "balanceOrLimit": {
             "type": "integer",
@@ -16231,6 +16241,7 @@
             "$ref": "#/components/schemas/Connect.Identity.ReasonCode"
           },
           "thirdPartyOptIn": {
+            "description": "Is always set to false on ID/AML/Bankmatch searches. Can be set to true on Consumer searches if need be. If true, does an additional charge against the user account to allow for more data coverage.",
             "type": "boolean"
           },
           "originalSearchRef": {
@@ -16244,6 +16255,7 @@
             "type": "boolean"
           },
           "resolvedPicklist": {
+            "description": "If there are multiple potential results for a search, instead of returning a single result we return a picklist object that allows users to select one of the picklist options and then focus on that being the result instead.",
             "type": "array",
             "items": {
               "type": "string"
@@ -16251,6 +16263,7 @@
             "nullable": true
           },
           "cachedPicklist": {
+            "description": "Picklists last for 15 minutes before expiring. If a user has not selected an option and returns to the search results page on the site before then, we make a check on this value to see if they already have one and if so, show them the picklist again.",
             "type": "object",
             "nullable": true
           },
@@ -19114,7 +19127,11 @@
           },
           "consumer": {
             "description": "Second person search option",
-            "$ref": "#/components/schemas/Connect.Identity.ConsumerSearchCriteria"
+            "allOf":[
+              {
+              "$ref": "#/components/schemas/Connect.Identity.ConsumerSearchCriteria"
+              }
+            ]
           },
           "iDAml": {
             "description": "Reference to bank account detail search",
