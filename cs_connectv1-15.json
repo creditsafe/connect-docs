@@ -19125,14 +19125,6 @@
               }
             ]
           },
-          "consumer": {
-            "description": "Second person search option",
-            "allOf":[
-              {
-              "$ref": "#/components/schemas/Connect.Identity.ConsumerSearchCriteria"
-              }
-            ]
-          },
           "iDAml": {
             "description": "Reference to bank account detail search",
             "allOf": [
@@ -19199,7 +19191,11 @@
           },
           "consumer": {
             "description": "Second person search option",
-            "$ref": "#/components/schemas/Connect.Identity.ConsumerSearchCriteria"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Connect.Identity.ConsumerSearchCriteria"
+              }
+            ]
           },
           "products": {
             "type": "string",
@@ -19226,11 +19222,9 @@
                 }
               }
             },
-            "Reference": "Some reference",
-            "IsInternal": false
+            "Reference": "User Defined Reference"
           },
           "consumer": {
-            "Demo": true,
             "Reason": "QuotationSearch"
           },
           "products": [
