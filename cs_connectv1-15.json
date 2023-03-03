@@ -44,7 +44,8 @@
     },
     {
       "name": "Protect",
-      "description": "The focus on screening clients and third parties is increasing. International regulators are demanding that firms improve their ongoing sanctions screening process. World Compliance data through Connect allows customers to mitigate risk around Anti-Bribery and Corruption under local and international regulations such as the UK Bribery Act, by enabling users to screen their third party agents, suppliers or employees against watch lists.  With World Compliance through Creditsafe Connect, compliance is easy, efficient and cost-effective, even as the regulatory mountain grows.<br><br> <a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000063160-integrating-with-protect#Profiles\" target=\"_blank\"> How to use Protect API Document </a>"
+      "description": "The focus on screening clients and third parties is increasing. International regulators are demanding that firms improve their ongoing sanctions screening process. World Compliance data through Connect allows customers to mitigate risk around Anti-Bribery and Corruption under local and international regulations such as the UK Bribery Act, by enabling users to screen their third party agents, suppliers or employees against watch lists.  With World Compliance through Creditsafe Connect, compliance is easy, efficient and cost-effective, even as the regulatory mountain grows.<br><br> <a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000063160-integrating-with-protect#Profiles\" target=\"_blank\"> How to use Protect API Document </a>",
+      "tags": ["protect Profile"]
     },
     {
       "name": "Protect Profile",
@@ -91,7 +92,7 @@
     },
     {
       "name": "Change Log",
-      "description": "List of updates to the connect API documentation."
+      "description": "List of updates to the connect API documentation.<br><h2>Feature being developed</h2>"
     }
   ],
   "paths": {
