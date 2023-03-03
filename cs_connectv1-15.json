@@ -5566,7 +5566,9 @@
         "tags": [
           "Protect Investigations"
         ],
-        "operationId": "Assign Risk To Investigation",
+        "operationId": "assignRiskToInvestigation",
+        "summary": "Assign Risk to Investigation",
+        "description": "Allows user to update the risk with an Investigation.",
         "parameters": [
           {
             "name": "id",
