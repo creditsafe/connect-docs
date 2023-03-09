@@ -6872,12 +6872,42 @@
               }
             }
           },
-          "401": {
-            "description": "",
+          "400": {
+            "description": "Bad Request Response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Token response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Forbidden Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODEL5bdbb3"
                 }
               }
             }
@@ -6965,7 +6995,9 @@
         "tags": [
           "Protect Batch Uploads"
         ],
-        "operationId": "Returns Batch Uploads",
+        "operationId": "returnsBatchUploads",
+        "summary": "Returns Batch Uploads",
+        "description": "Returns all the Batch Uploads created by a user.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -7010,6 +7042,46 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Token response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Forbidden Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODEL5bdbb3"
+                }
+              }
+            }
           }
         }
       }
@@ -7019,7 +7091,9 @@
         "tags": [
           "Protect Batch Uploads"
         ],
-        "operationId": "Returns Batch Upload by ID",
+        "operationId": "returnsBatchUploadByID",
+        "summary": "Returns Batch Uploads by ID",
+        "description": "Will return the batch upload details of a specific file id.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -7047,6 +7121,46 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BatchUpload"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Token response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Forbidden Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODEL5bdbb3"
                 }
               }
             }
@@ -7089,6 +7203,46 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/FileDownloadResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Token response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Forbidden Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODEL5bdbb3"
                 }
               }
             }
