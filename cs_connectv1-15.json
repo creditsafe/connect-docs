@@ -57,14 +57,15 @@
     },
     {
       "name": "Protect Audit",
-      "description": "Provides a log of all actions taken against endpoint to evidence any necessary that checks were carried out correctly."
+      "description": "Provides a log of all actions taken against endpoints to evidence any necessary that checks were carried out correctly."
     },
     {
       "name": "Protect Schedules",
       "description": "A Schedule has a 1:1 relationship with an Investigation. Investigations that are scheduled will automatically check for new re-screen your initial search criteria on a nightly basis allowing you to review any new alerts each day."
     },
     {
-      "name": "Protect IDV"
+      "name": "Protect IDV",
+      "description": "Person identity verification by validating against other known sources."
     },
     {
       "name": "Protect Batch Uploads",
@@ -6350,7 +6351,7 @@
       "post": {
         "operationId": "createProtectSchedule",
         "summary": "Create Protect Schedule",
-        "description": "Creates a Schedule.",
+        "description": "Creates a Schedule to check against new sanctions that effect your chosen Investigation. <br>The frequency of the schedule is set to 'daily' as a default.<br><br> To receive notifications of alerts you need to follow this POST call with PUT/Update Schedules to set the 'isEmailRequired' to `true`.",
         "tags": [
           "Protect Schedules"
         ],
@@ -6363,7 +6364,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateScheduleDto"
+                "$ref": "#/components/schemas/ConnectProtectCreateScheduleRequest"
               }
             }
           },
@@ -6410,7 +6411,7 @@
         ],
         "operationId": "updatesSchedule",
         "summary": " Updates Schedule",
-        "description": "Endpoint will update the details around the schedule",
+        "description": "Endpoint will update the details around the schedule.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -6418,6 +6419,7 @@
           {
             "name": "id",
             "in": "path",
+            "description": "Enter the schedule id.",
             "required": true,
             "schema": {
               "type": "string",
@@ -6489,11 +6491,10 @@
           }
         },
         "x-codegen-request-body-name": "dto"
-      }
-    },
-    "/protect/schedules/{scheduleId}": {
+      },
       "get": {
-        "operationId": "Retrieve Schedule By Id",
+        "operationId": "retrieveScheduleById",
+        "summary": "Retrieve Schedule By Id",
         "description": "Endpoint to retrieve a specific Schedule by Id. A Schedule Id can be retrieved from the associated Investigation.",
         "tags": [
           "Protect Schedules"
@@ -6503,7 +6504,8 @@
             "$ref": "#/components/parameters/authToken"
           },
           {
-            "name": "scheduleId",
+            "name": "id",
+            "description": "This is the schedule id",
             "in": "path",
             "required": true,
             "schema": {
@@ -6709,7 +6711,8 @@
     },
     "/protect/audits": {
       "get": {
-        "operationId": "Retrieve Protect Audit Log",
+        "operationId": "retrieveProtectAuditLog",
+        "summary": "Retrieve Protect Audit Log",
         "description": "Returns logged interactions with Protect endpoints for audit purposes. Actions logged include creating an Investigation, Investigation Record and Schedule.",
         "tags": [
           "Protect Audit"
@@ -6793,11 +6796,49 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Token response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Forbidden Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODEL5bdbb3"
+                }
+              }
+            }
           }
         }
-      }
-    },
-    "/protect/audits/file": {
+      },
       "post": {
         "operationId": "exportAuditLogFile",
         "summary": "Export Audit Log File",
@@ -15563,7 +15604,8 @@
         "properties": {
           "id": {
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "description": " Unique ID number relating to the World Compliance report. It is also known as the InvestigationRecord."
           },
           "matchType": {
             "type": "string"
@@ -15576,14 +15618,17 @@
           },
           "matchScore": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "description": "A percentage based score depicting how accurate the search parameters relate to the report name."
           },
           "sourceDate": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "This is the date the report was last updated."
           },
           "dateListed": {
-            "type": "string"
+            "type": "string",
+            "description": "T​he date the report was originally created."
           },
           "name": {
             "type": "string"
@@ -15604,7 +15649,8 @@
             "type": "string"
           },
           "entityType": {
-            "type": "string"
+            "type": "string",
+            "description": "Business or Individual."
           },
           "dateOfBirth": {
             "type": "string"
@@ -15854,7 +15900,7 @@
             "type": "array",
             "items": {
               "type": "integer",
-              "format": "int64"
+              "format": "int32"
             }
           }
         }
@@ -15914,7 +15960,8 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "Assign a unique name to the profile for ease of identification."
           }
         }
       },
@@ -15931,6 +15978,9 @@
         ],
         "type": "object",
         "properties": {
+          "correlationId": {
+            "type": "string"
+          },
           "id": {
             "type": "string",
             "format": "guid"
@@ -15964,6 +16014,12 @@
           "lastRun": {
             "type": "string",
             "format": "date-time"
+          },
+          "isEmailRequired": {
+            "type": "boolean"
+          },
+          "isDisabled": {
+            "type":"boolean"
           }
         }
       },
@@ -15974,9 +16030,10 @@
           "Daily"
         ]
       },
-      "Connect.Protect.CreateScheduleDto": {
+      "ConnectProtectCreateScheduleRequest": {
         "required": [
-          "frequency"
+          "screeningThreshold",
+          "investigationId"
         ],
         "type": "object",
         "properties": {
@@ -15984,15 +16041,10 @@
             "type": "string",
             "format": "guid"
           },
-          "frequency": {
-            "type": "string",
-            "enum": [
-              "daily"
-            ]
-          },
           "screeningThreshold": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "description": "The match score you will be alerted above."
           }
         }
       },
@@ -19903,7 +19955,9 @@
       "CreateScheduleDto": {
         "required": [
           "frequency",
-          "isEmailRequired"
+          "isEmailRequired",
+          "investigationId",
+          "screeningThreshold"
         ],
         "type": "object",
         "properties": {
@@ -19912,14 +19966,17 @@
             "format": "guid"
           },
           "frequency": {
-            "type": "string"
+            "type": "string",
+            "description": " Need to enter `Daily`."
           },
           "screeningThreshold": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "description": "Can only enter the following options: 85, 90, 95, 100"
           },
           "isEmailRequired": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Select `true` if you wish to recieve notifications when an alert is detected."
           }
         }
       },
