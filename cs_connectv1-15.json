@@ -7314,7 +7314,8 @@
     },
     "/localSolutions/GB/bankmatch": {
       "get": {
-        "operationId": "Bank Match",
+        "operationId": "bankMatch",
+        "summary": "Bank Match",
         "tags": [
           "Local Solutions"
         ],
@@ -7492,6 +7493,7 @@
         "tags": [
           "GB Consumers and AML"
         ],
+        "operationId": "resolvesAPicklistAgainstAGivenUniqueId",
         "summary": "Resolves a picklist against a given UniqueId",
         "description": "Resolves a picklist belonging to the specified UniqueID, which would have been generated during a prior search. Guids (and thus cached searches) expire after fifteen minutes.",
         "parameters": [
@@ -7548,6 +7550,7 @@
         "tags": [
           "GB Consumers and AML"
         ],
+        "description": "This will return the input criteria used in a search for a specified id.",
         "operationId": "retrievesAPriorIdentitySearch'sInput",
         "summary": "Retrieves a prior identitysearch's input",
         "parameters": [
@@ -7592,6 +7595,7 @@
         "tags": [
           "GB Consumers and AML"
         ],
+        "operationId": "retrievesAPriorIdentitySearchResult",
         "summary": "Retrieves a prior identitysearch result.",
         "description": "Retrieves a prior search result. This will include the search input and any ID/AML searches, but as we cannot hold Consumer search results these are not included. Resubmission is necessary if an updated Consumer result is needed.",
         "parameters": [
