@@ -6950,6 +6950,7 @@
                   "File": {
                     "type": "string",
                     "format": "binary",
+                    "description": "Uploads a file to the server in `csv` format. Ensure the file follows the same format as the template. ",
                     "nullable": true
                     
                   }
@@ -7257,7 +7258,7 @@
         ],
         "operationId": "returnsSelectedTemplateLink",
         "summary": "Returns Selected Template Link",
-        "description": "Provides template for the file upload csv structure, also provides a user guide if called.",
+        "description": "Provides template for the file upload csv structure.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -7268,11 +7269,11 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "`templateUserGuide` provides a link to a pdf document on how to use protect.<br>`template` returns a header list for the file upload.",
+              "description": "`template` returns a header list for the file upload.",
               "nullable": false,
               "enum": [
-                "template",
-                "templateUserGuide"
+                "template"
+               
               ],
               "x-schema": {
                 "$ref": "#/components/schemas/BatchUploadFileType"
