@@ -13,6 +13,7 @@
       "url": "https://connect.sandbox.creditsafe.com/v1"
     }
   ],
+
   "tags": [
     {
       "name": "Authentication",
@@ -44,8 +45,8 @@
     },
     {
       "name": "Protect",
-      "description": "The focus on screening clients and third parties is increasing. International regulators are demanding that firms improve their ongoing sanctions screening process. World Compliance data through Connect allows customers to mitigate risk around Anti-Bribery and Corruption under local and international regulations such as the UK Bribery Act, by enabling users to screen their third party agents, suppliers or employees against watch lists.  With World Compliance through Creditsafe Connect, compliance is easy, efficient and cost-effective, even as the regulatory mountain grows.<br><br> <a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000063160-integrating-with-protect#Profiles\" target=\"_blank\"> How to use Protect API Document </a>",
-      "tags": ["protect Profile"]
+      "description": "The focus on screening clients and third parties is increasing. International regulators are demanding that firms improve their ongoing sanctions screening process. World Compliance data through Connect allows customers to mitigate risk around Anti-Bribery and Corruption under local and international regulations such as the UK Bribery Act, by enabling users to screen their third party agents, suppliers or employees against watch lists.  With World Compliance through Creditsafe Connect, compliance is easy, efficient and cost-effective, even as the regulatory mountain grows.<br><br> <a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000063160-integrating-with-protect#Profiles\" target=\"_blank\"> How to use Protect API Document </a>"
+
     },
     {
       "name": "Protect Profile",
@@ -1499,7 +1500,8 @@
     },
     "/freshinvestigations/{orderId}": {
       "get": {
-        "operationId": "Retrieve FreshInvestigation Order",
+        "operationId": "retrieveFreshInvestigationOrder",
+        "summary": "Retrieve FreshInvestigation Order",
         "tags": [
           "Fresh Investigations"
         ],
@@ -1562,7 +1564,8 @@
     },
     "/freshinvestigations/{orderId}/report": {
       "get": {
-        "operationId": "Retrieve FreshInvestigation Report Content",
+        "operationId": "retrieveFreshInvestigationReportContent",
+        "summary": "Retrieve FreshInvestigation Report Content",
         "tags": [
           "Fresh Investigations"
         ],
@@ -1620,7 +1623,8 @@
           "Global Monitoring"
         ],
         "description": "Returns all user details relating to the Global Monitoring product.",
-        "operationId": "Monitoring User Details",
+        "operationId": "monitoringUserDetails",
+        "summary": "Monitoring User Details",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -1666,7 +1670,8 @@
           "Global Monitoring"
         ],
         "description": "Endpoint to return a collection of `events` for the given company, optionally filtered on the supplied search criteria. Event information will only be returned if the company exists in at least one of your `portfolios`.",
-        "operationId": "List Company Events",
+        "operationId": "listCompanyEvents",
+        "summary": "List Company Events",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -1733,7 +1738,8 @@
           "Global Monitoring"
         ],
         "description": "Get all available notification event rules. Notification event rules allow you to control which events you wish to monitor for the `companies` contained within a given `portfolio`.",
-        "operationId": "All EventRules",
+        "operationId": "allEventRules",
+        "summary": "All EventRules",  
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -1792,7 +1798,8 @@
           "Global Monitoring"
         ],
         "description": "Get all available notification event rules for the given `countryCode`. Notification event rules allow you to control which events you wish to monitor for the `companies` contained within a given `portfolio`.",
-        "operationId": "Filtered EventRules",
+        "operationId": "filteredEventRules",
+        "summary": "Filtered EventRules",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -1862,7 +1869,8 @@
           "Global Monitoring"
         ],
         "description": "Get all notification events generated for companies monitored in your portfolios, based on the notification rules enabled. The notification events returned will be filtered based upon the supplied search criteria.",
-        "operationId": "All Notification Events",
+        "operationId": "allNotificationEvents",
+        "summary": "All Notification Events",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -1950,7 +1958,8 @@
           "Global Monitoring"
         ],
         "description": "Endpoint to get all Portfolios for the user if no query parameters are provided. Can be searched by using the query parameter in the URL.",
-        "operationId": "List All Portfolios",
+        "operationId": "listAllPortfolios",
+        "summary": "List All Portfolios",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -2021,7 +2030,8 @@
           "Global Monitoring"
         ],
         "description": "Endpoint to create a new Portfolio based on the supplied criteria. A portfolio can contain any number of companies that you wish to monitor changes to. The only required Body parameter is \"name\" for Connect users.",
-        "operationId": "Create Monitoring Portfolio",
+        "operationId": "createMonitoringPortfolio",
+        "summary": "Create Monitoring Portfolio",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -2080,7 +2090,8 @@
           "Global Monitoring"
         ],
         "description": "Get the portfolio details such as name and default status with portfolioId.",
-        "operationId": "Retrieve Portfolio By Id",
+        "operationId": "retrievePortfolioById",
+        "summary": "Retrieve Portfolio By Id",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -2146,7 +2157,8 @@
           "Global Monitoring"
         ],
         "description": "Delete the portfolio with portfolioId.",
-        "operationId": "Delete Portfolio",
+        "operationId": "deletePortfolio",
+        "summary": "Delete Portfolio",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -2775,7 +2787,8 @@
           "Global Monitoring"
         ],
         "description": "Get all notificationEvents based on the portfolio id, optionally filter with query parameters.",
-        "operationId": "List Portfolio Notifications",
+        "operationId": "listPortfolioNotifications",
+        "summary": "List Portfolio Notifications",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -2872,7 +2885,8 @@
           "Global Monitoring"
         ],
         "description": "WARNING -  This endpoint will depreciate during the last week of January 2021 and will not be usable anymore. We recommend to utilize the `filterByCreatedDate` path parameter on the `/notificationEvents` endpoints to return exact Notification Events that have triggered on the specific day/date range.",
-        "operationId": "Update isProcessed Flag",
+        "operationId": "updateIsProcessedFlag",
+        "summary": "Update isProcessed Flag",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -2961,7 +2975,8 @@
           "Global Monitoring"
         ],
         "description": "Get all companies from a specific portfolio based on the portfolio id, optionally filter with query parameters.",
-        "operationId": "List Companies In A Portfolio",
+        "operationId": "listCompaniesInAPortfolio",
+        "summary": "List Companies In A Portfolio",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -3058,7 +3073,8 @@
           "Global Monitoring"
         ],
         "description": "Endpoint to add a company using a company id, into a portfolio provided in as a path parameter. Optional fields can be used to add a personalReference, freeText, and personalLimit.",
-        "operationId": "Add Company To Portfolio",
+        "operationId": "addCompanyToPortfolio",
+        "summary": "Add Company To Portfolio",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -3164,7 +3180,8 @@
           "Global Monitoring"
         ],
         "description": "Copy companies from one portfolio to single (or) multiple portfolios.",
-        "operationId": "Copy Companies Between Portfolios",
+        "operationId": "copyCompaniesBetweenPortfolios",
+        "summary": "Copy Companies Between Portfolios",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -3268,7 +3285,8 @@
           "Global Monitoring"
         ],
         "description": "Move companies from one portfolio to single (or) multiple portfolios. Removes the companies from the portfolio provided in the path parameter.",
-        "operationId": "Move Companies Between Portfolios",
+        "operationId": "moveCompaniesBetweenPortfolios",
+        "summary": "Move Companies Between Portfolios",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -3372,7 +3390,8 @@
           "Global Monitoring"
         ],
         "description": "Delete companies from current portfolio.",
-        "operationId": "Clear Companies From Portfolio",
+        "operationId": "clearCompaniesFromPortfolio",
+        "summary": "Clear Companies From Portfolio",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -3464,7 +3483,8 @@
         "tags": [
           "Global Monitoring"
         ],
-        "operationId": "Get Company Details From A Portfolio",
+        "operationId": "getCompanyDetailsFromAPortfolio",
+        "summary": "Get Company Details From A Portfolio",
         "description": "Get various company details from a portfolio. Requires a portfolioID and companyID in the PATH of the request.",
         "parameters": [
           {
@@ -3540,7 +3560,8 @@
           "Global Monitoring"
         ],
         "description": "Endpoint to delete a company from a portfolio.",
-        "operationId": "Delete Company From Portfolio",
+        "operationId": "deleteCompanyFromPortfolio",
+        "summary": "Delete Company From Portfolio",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -3626,7 +3647,8 @@
           "Global Monitoring"
         ],
         "description": "Updates the company details in a specified portfolio.",
-        "operationId": "Update Company Details In Portfolio",
+        "operationId": "updateCompanyDetailsInPortfolio",
+        "summary": "Update Company Details In Portfolio",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -3722,7 +3744,8 @@
         "tags": [
           "Global Monitoring"
         ],
-        "operationId": "List Company Specific NotificationEvents",
+        "operationId": "listCompanySpecificNotificationEvents",
+        "summary": "List Company Specific NotificationEvents",
         "description": "List of notification events based on the company id,optionally filtered with query parameters.",
         "parameters": [
           {
@@ -3855,7 +3878,8 @@
         "tags": [
           "Global Monitoring"
         ],
-        "operationId": "Portfolio User Permissions",
+        "operationId": "portfolioUserPermissions",
+        "summary": "Portfolio User Permissions",
         "description": "Retrieve user permissions within the customer for a portfolio.",
         "parameters": [
           {
@@ -3922,7 +3946,8 @@
           "Global Monitoring"
         ],
         "description": "Update/Create user permissions within the customer for portfolio.",
-        "operationId": "Share Portfolio With Users",
+        "operationId": "sharePortfolioWithUsers",
+        "summary": "Share Portfolio With Users",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4239,7 +4264,8 @@
           "Decision Engine"
         ],
         "description": "Returns the user data fields defined for the given decision tree GUID.",
-        "operationId": "User Data Fields",
+        "operationId": "userDataFields",
+        "summary": "User Data Fields",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4294,7 +4320,8 @@
           "Decision Engine"
         ],
         "description": "Runs the provided decision tree for the given company, optionally using the data provided in the body of the call.",
-        "operationId": "Run Decision Tree",
+        "operationId": "runDecisionTree",
+        "summary": "Run Decision Tree",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4384,7 +4411,8 @@
           "Decision Engine"
         ],
         "description": "Returns a log of all previously ran decisions that the user has permission to access, optionally filtered.",
-        "operationId": "Decision History",
+        "operationId": "decisionHistory",
+        "summary": "Decision History",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4490,7 +4518,8 @@
           "Decision Engine"
         ],
         "description": "Returns a specified decision log for a previously ran decision.",
-        "operationId": "Get Decision Log",
+        "operationId": "getDecisionLog",
+        "summary": "Get Decision Log",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4543,7 +4572,8 @@
           "Decision Engine"
         ],
         "description": "Updates the status and/or notes for a specified decision.",
-        "operationId": "Update Decision Log",
+        "operationId": "updateDecisionLog",
+        "summary": "Update Decision Log",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4607,7 +4637,8 @@
           "Consumers"
         ],
         "description": "Consumer Search and Report endpoint. When sufficient information has been provided to filter potential Consumer results down to one record then the Consumer Report will be returned.",
-        "operationId": "Consumer Report",
+        "operationId": "consumerReport",
+        "summary": "Consumer Report",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4769,7 +4800,8 @@
           "Consumers"
         ],
         "description": "Returns country specific fields that can be used to search for a Consumer.",
-        "operationId": "Consumer Search Criteria",
+        "operationId": "consumerSearchCriteria",
+        "summary": "Consumer Search Criteria",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -5011,7 +5043,8 @@
     },
     "/protect/investigations/{investigationId}": {
       "get": {
-        "operationId": "Return Protect Investigation By Id",
+        "operationId": "returnProtectInvestigationById",
+        "summary": "Return Protect Investigation By Id",
         "description": "Endpoint to return a specific Investigation by ID. Can also be used to retrieve the associated Schedule Id that has been linked to the Investigation.",
         "tags": [
           "Protect Investigations"
@@ -5058,7 +5091,8 @@
         "tags": [
           "Protect Investigations"
         ],
-        "operationId": "Delete Investigation",
+        "operationId": "deleteInvestigation",
+        "summary": "Delete Investigation",
         "description": "Deletes an Investigation by {Id} number. This will remove the entire Investigation and all results within it.",
         "parameters": [
           {
@@ -5102,7 +5136,8 @@
         "tags": [
           "Protect Investigations"
         ],
-        "operationId": "Add Investigations Records",
+        "operationId": "addInvestigationsRecords",
+        "summary": "Add Investigations Records",
         "description": "Requires the 'Investigation Id' in path, followed by 'Record Id' in the request body to add a record to the previously created Investigation.<br><br>By adding InvestigationRecords you are confirming that the result is a match to your search criteria. <br><br>To return to the original Investigation search to allocate other records, use \"GET Investigation results by ID.\".",
         "parameters": [
           {
@@ -5479,12 +5514,13 @@
         "x-codegen-request-body-name": "dto"
       }
     },
-    "/protect/investigations/{InvestigationId}/results": {
+    "/protect/investigations/{investigationId}/results": {
       "get": {
         "tags": [
           "Protect Investigations"
         ],
-        "operationId": "Get Investigation Results By Id",
+        "operationId": "getInvestigationResultsById",
+        "summary": "Get Investigation Results By Id",
         "description": "Returns original Investigation search results to assign any other results to the records.",
         "parameters": [
           {
@@ -5645,7 +5681,9 @@
         "tags": [
           "Protect Investigations"
         ],
-        "operationId": "Create Investigation And Return Report Link",
+        "description": "Creates an investigation and returns a link to the report.",
+        "operationId": "createInvestigationAndReturnReportLink",
+        "summary": "Create Investigation And Return Report Link",
         "requestBody": {
           "content": {
             "application/json": {
@@ -5721,7 +5759,8 @@
         "tags": [
           "Protect Investigations"
         ],
-        "operationId": "Returns Investigation Report",
+        "operationId": "returnsInvestigationReport",
+        "summary": "Returns Investigation Report",
         "description": "This endpoint will Return a report by providing a file path.",
         "parameters": [
           {
@@ -6079,7 +6118,8 @@
     },
     "/protect/profiles/{profileId}": {
       "get": {
-        "operationId": "Retrieve Protect Profile By ID",
+        "operationId": "retrieveProtectProfileByID",
+        "summary": "Retrieve Protect Profile By ID",
         "description": "Retrieves a profile by Id in the Path.",
         "tags": [
           "Protect Profile"
@@ -6124,7 +6164,8 @@
       },
       "put": {
         "description": "Endpoint to change the name of a profile.",
-        "operationId": "Edit Protect Profile",
+        "operationId": "editProtectProfile",
+        "summary": "Edit Protect Profile",
         "tags": [
           "Protect Profile"
         ],
@@ -6242,8 +6283,9 @@
     },
     "/protect/profiles/{profileId}/investigations/{investigationId}": {
       "put": {
-        "operationId": "Add Investigation To Profile",
-        "description": "Adds an Investigation to a Profile",
+        "operationId": "addInvestigationToProfile",
+        "summary": "Add Investigation To Profile",
+        "description": "Adds an Investigation to a Profile.",
         "tags": [
           "Protect Profile"
         ],
@@ -6292,7 +6334,8 @@
     },
     "/protect/investigations/{investigationId}/file": {
       "post": {
-        "operationId": "Create Protect Investigation PDF",
+        "operationId": "createProtectInvestigationPDF",
+        "summary": "Create Protect Investigation PDF",
         "description": "Creates a PDF that shows the full report for the selected entities. This report will include search criteria used, user, time/date stamp and full World Compliance Report. It is recommended to call this endpoint before adding InvestigationRecords to an Investigation, as only non-processed alerts populate the PDF.",
         "tags": [
           "Protect Investigations"
@@ -6505,7 +6548,7 @@
           },
           {
             "name": "id",
-            "description": "This is the schedule id",
+            "description": "Enter the schedule id.",
             "in": "path",
             "required": true,
             "schema": {
@@ -6538,7 +6581,8 @@
         }
       },
       "delete": {
-        "operationId": "Deletes Schedule from Investigation",
+        "operationId": "deletesScheduleFromInvestigation",
+        "summary": "Deletes Schedule from Investigation",
         "description": "Deletes a Schedule from an Investigation meaning entity will no longer be monitored on a nightly basis but record will still remain in the audit trail.",
         "tags": [
           "Protect Schedules"
@@ -6548,7 +6592,8 @@
             "$ref": "#/components/parameters/authToken"
           },
           {
-            "name": "scheduleId",
+            "name": "id",
+            "description": "Enter the schedule id.",
             "in": "path",
             "required": true,
             "schema": {
@@ -6580,9 +6625,9 @@
         "tags": [
           "Protect IDV"
         ],
+        "description": "Creates a search request for a GDC IDV search.",
         "operationId": "idvSearch",
         "summary": "IDV Search",
-        "description": "",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -10323,30 +10368,38 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "The name of the portfolio"
           },
           "isDefault": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "can set the portfolio as default for company monitoring events."
           },
           "emails": {
             "type": "object",
+            "description": "The email address of the user to receive the email notification.",
             "properties": {
               "firstName": {
-                "type": "string"
+                "type": "string",
+                "description": "The first name of the user to receive the email notification."
               },
               "lastName": {
-                "type": "string"
+                "type": "string",
+                "description": "The last name of the user to receive the email notification."
               },
               "emailAddress": {
-                "type": "string"
+                "type": "string",
+                "description": "The email address of the user to receive the email notification."
               }
             }
           },
           "emailSubject": {
-            "type": "string"
+            "type": "string",
+            "description": "The subject of the email notification."
           },
           "emailLanguage": {
-            "type": "string"
+            "type": "string",
+            "description": "The language of the email notification."
           },
           "frequency": {
             "type": "string"
