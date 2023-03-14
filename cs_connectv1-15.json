@@ -8235,15 +8235,16 @@
         "tags": [
           "Data Cleaning"
         ],
-        "operationId": "Get All Jobs",
+        "operationId": "getAllJobs",
         "summary": "Returns all Data Cleaning Jobs",
-        "description": "This endpoint can be used to retrieve all created data cleaning job requests as defined by the query parameters",
+        "description": "This endpoint can be used to retrieve all created data cleaning job requests as defined by the query parameters.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
           },
           {
             "name": "countries",
+            "description": "Comma separated list of ISO/Alpha-2 country codes to filter the results by.",
             "in": "query",
             "required": false,
             "schema": {
@@ -8252,6 +8253,7 @@
           },
           {
             "name": "status",
+            "description": "Returns the individual jobs by status. Possible values are: `pending`, `processing`, `completed`, `failed`.",
             "in": "query",
             "required": false,
             "schema": {
@@ -8260,6 +8262,7 @@
           },
           {
             "name": "jobName",
+            "description": "Returns the individual jobs by name.",
             "in": "query",
             "required": false,
             "schema": {
@@ -8268,6 +8271,7 @@
           },
           {
             "name": "fromDate",
+            "description": "Returns the individual jobs created after the specified date.",
             "in": "query",
             "required": false,
             "schema": {
@@ -8277,6 +8281,7 @@
           },
           {
             "name": "customerId",
+            "description": "Returns the individual jobs by customer id.",
             "in": "query",
             "required": false,
             "schema": {
@@ -8285,6 +8290,7 @@
           },
           {
             "name": "toDate",
+            "description": "Returns the individual jobs created before the specified date.",
             "in": "query",
             "required": false,
             "schema": {
@@ -8294,6 +8300,7 @@
           },
           {
             "name": "userId",
+            "description": "Returns the individual jobs by user id.",
             "in": "query",
             "required": false,
             "schema": {
@@ -8302,6 +8309,7 @@
           },
           {
             "name": "pageSize",
+            "description": "Returns the number of individual jobs per page.",
             "in": "query",
             "required": false,
             "schema": {
@@ -8310,6 +8318,7 @@
           },
           {
             "name": "companyName",
+            "description": "Returns the individual jobs by company name.",
             "in": "query",
             "required": false,
             "schema": {
@@ -8318,6 +8327,7 @@
           },
           {
             "name": "page",
+            "description": "Returns the page number of the individual jobs.",
             "in": "query",
             "required": false,
             "schema": {
@@ -8326,6 +8336,7 @@
           },
           {
             "name": "archived",
+            "description": "Returns the individual jobs by archived status.",
             "in": "query",
             "required": false,
             "schema": {
@@ -8457,7 +8468,7 @@
         "tags": [
           "Data Cleaning"
         ],
-        "operationId": "Job File Upload with id",
+        "operationId": "jobFileUploadWithId",
         "summary": "Upload a Job File with an {id}",
         "description": "Upload a Job File for processing, you need to link to the {id} number generated from the 'Job Request'.",
         "parameters": [
@@ -8466,6 +8477,7 @@
           },
           {
             "name": "id",
+            "description": "The {id} number generated from the 'Job Request'.",
             "in": "path",
             "required": true,
             "schema": {
@@ -8541,7 +8553,7 @@
         "tags": [
           "Data Cleaning"
         ],
-        "operationId": "Job Update Mappings",
+        "operationId": "jobUpdateMappings",
         "summary": "Update Mappings Request",
         "description": "Update the mapping of the uploaded file to match that of the header within it. You can add or remove the required number of mapping points in the Request Body.",
         "parameters": [
@@ -21548,10 +21560,12 @@
         "properties": {
           "jobFile": {
             "type": "string",
-            "format": "binary"
+            "format": "binary",
+            "description": "The file to be uploaded"
           },
           "hasHeader": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates if the file has a header row"
           }
         }
       },
