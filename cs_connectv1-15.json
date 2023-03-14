@@ -8167,9 +8167,9 @@
         "tags": [
           "Data Cleaning"
         ],
-        "operationId": "Create Job",
+        "operationId": "createJob",
         "summary": "Create Job Request",
-        "description": "Enter a name for the 'Job Request' to be associated to the file going to be processed",
+        "description": "Enter a name for the 'Job Request' to be associated to the file going to be processed.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -10473,22 +10473,27 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "The name of the portfolio"
           },
           "isDefault": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Change the setting of the portfolio as default for company monitoring events."
           },
           "emails": {
             "type": "array",
+            "description": "The email addresses of the user to receive the email notification.",
             "items": {
               "$ref": "#/components/schemas/Connect.Monitoring.UpdatePortfolioRequestEmail"
             }
           },
           "emailSubject": {
-            "type": "string"
+            "type": "string",
+            "description": "The subject of the email notification."
           },
           "emailLanguage": {
-            "type": "string"
+            "type": "string",
+            "description": "The language of the email notification."
           },
           "frequency": {
             "type": "string"
@@ -10502,13 +10507,16 @@
         "type": "object",
         "properties": {
           "firstName": {
-            "type": "string"
+            "type": "string",
+            "description": "The first name of the user to receive the email notification."
           },
           "lastName": {
-            "type": "string"
+            "type": "string",
+            "description": "The last name of the user to receive the email notification."
           },
           "emailAddress": {
-            "type": "string"
+            "type": "string",
+            "description": "The email address of the user to receive the email notification."
           }
         },
         "required": [
@@ -21401,7 +21409,8 @@
         ],
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "The name associated to the Data Cleaning job created by the user in the 'POST - Create Job Request'"
           }
         }
       },
