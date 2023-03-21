@@ -542,6 +542,11 @@
           "Authentication"
         ],
         "description": "Returns the available countries in your subscription - Company Report, Director Report, Offline Reports and Monitoring.",
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -14340,6 +14345,9 @@
       "Creditsafe.GlobalData.Reports.LtdFinancialStatement": {
         "type": "object",
         "properties": {
+          "type": {
+            "type": "string"
+          },
           "yearEndDate": {
             "type": "string",
             "format": "date-time"
@@ -15816,7 +15824,8 @@
           },
           "screeningThreshold": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "description": "Can only enter the following options: 85, 90, 95, 100"
           },
           "source": {
             "type": "string"
@@ -15976,7 +15985,8 @@
           },
           "screeningThreshold": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "description": "Can only enter the following options: 85, 90, 95, 100"
           },
           "createdAt": {
             "type": "string",
@@ -16007,7 +16017,7 @@
             "nullable": true
           },
           "screeningThreshold": { 
-            "description": "Default Threshold is 85",
+            "description": "Default Threshold is 85. Can only enter the following options: 85, 90, 95, 100",
             "type": "integer",
             "format": "int32",
             "nullable": true
@@ -16237,7 +16247,8 @@
           },
           "screeningThreshold": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "description": "Can only enter the following options: 85, 90, 95, 100"
           },
           "createdAt": {
             "type": "string",
@@ -16276,7 +16287,7 @@
           "screeningThreshold": {
             "type": "integer",
             "format": "int32",
-            "description": "The match score you will be alerted above."
+            "description": "The match score you will be alerted above. Can only enter the following options: 85, 90, 95, 100"
           }
         }
       },
@@ -20250,7 +20261,8 @@
           },
           "screeningThreshold": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "description": "Can only enter the following options: 85, 90, 95, 100"
           },
           "createdAt": {
             "type": "string",
