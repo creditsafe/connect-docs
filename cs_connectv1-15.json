@@ -12667,14 +12667,14 @@
           "street": {
             "type": "string"
           },
-          "houseNo": {
+          "houseNumber": {
             "type": "string"
           },
           "city": {
             "type": "string"
           },
-          "postCode": {
-            "type": "string"
+          "postalCode": {
+            "type": "string" 
           },
           "province": {
             "type": "string"
