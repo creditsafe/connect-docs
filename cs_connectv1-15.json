@@ -149,6 +149,11 @@
         "description": "Endpoint to search for Companies according to the provided Search Criteria. To get the most relevant results, it is recommended to use a unique identifier such as `regNo` where available. If a unique identifier is not available, use a combination of the companies registered `postCode` and `name` for the next best hit rate.",
         "summary": "Company Search",
         "operationId": "companySearch",
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -420,6 +425,11 @@
           "Companies"
         ],
         "description": "Orders a Company Credit Report by connectId.<br><br> To acquire a PDF version of the report use the optional request in 'Header'.<br><br> This request will provide a 'Base64-encoded' script to convert to a PDF, this will appear at the end of the JSON response.",
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
