@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Creditsafe Connect",
-    "version": "1.8.1",
+    "version": "1.8.2",
     "description": "Last Updated: 3rd March 2023<br><br>Creditsafe Connect is a REST API that provides access to the <a href=\"https://www.creditsafe.com/gb/en/more/about/our-data.html\" target=\"_blank\">Creditsafe Global Company Database.</a> This allows you to: <ul><li>Control your master data</li><li>Utilize up-to-date Business and Director information, enhancing your onboarding and qualification processes</li><li>Receive alerts when your customer's and supplier's Credit Report changes</li></ul><br>Check the status of Creditsafe Services <a href=\"https://status.creditsafe.com/\" target=\"_blank\">HERE</a>   <h2>Customer Feedback</h2> Use the buttons below to let us know what you think of this documentation. Please leave comments in your feedback for the author to consider for future versions.<br><br><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=f49570f5&embed_data=dGVtcGVyYXR1cmVfaWQ9MSZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"> <img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/gold.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=601a6fd1&embed_data=dGVtcGVyYXR1cmVfaWQ9MiZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/green.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=f1f7701c&embed_data=dGVtcGVyYXR1cmVfaWQ9MyZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/amber.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=73951e8b&embed_data=dGVtcGVyYXR1cmVfaWQ9NCZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/red.png\" /></a> <br><br> Selecting one of the buttons above will open a new tab to the feedback portal. <h2>Quick Start</h2> To start your Creditsafe Connect API integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>By default, you will have been setup on our Sandbox environment.</br></br>\nUsing a REST API client construct an `/authenticate` POST request and enter your username & password (case-sensitive) into the POST body. A successful response will return an  `authentication token`.</br></br>\nUse the `authentication token` in an `Authorization` header on all other Creditsafe Connect calls as proof of your authenticity.\n\n<h2>Environments</h2>Production Environment baseurl: <code> https://connect.creditsafe.com/v1 </code> </br> Sandbox Test Environment baseurl:  <code>https://connect.sandbox.creditsafe.com/v1</code>  <h2>Resources</h2> \n  <ul> \n    <li><a href=\"https://creditsafe.github.io/connect-docs/cs_connectv1-15.html\" target=\"_blank\">OpenAPI</a> specification.</li>\n    <li><a href=\"https://www.getpostman.com/collections/4406bbddb81c308db8ff\" target=\"_blank\">Postman Collection</a> of the most common example calls to Creditsafe Connect.</li> \n    <li><a href=\"https://connect-portal.creditsafe.com\" target=\"_blank\"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password and form requests.</li> \n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions\" target=\"_blank\"> Help Articles</a>  including: <ul><li><a href=\"https://help.creditsafeuk.com/en/support/solutions/7000007130\" target=\"_blank\">FAQs</a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000053487-connect-api-data-dictionaries\" target=\"_blank\"> Data Dictionaries </a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000054765-connect-api-data-availability-per-country\" target=\"_blank\"> Data Availability per Country </a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000054656-connect-api-feature-availability-per-country\" target=\"_blank\"> Feature Availability Matrix</a></li>\n    </ul></ul><br>\n<br><h2>Versioning and Changes</h2><h3>Non-Breaking Changes</h3>These will be as a rule, additive functions or bug fixing. It is important that the code is integrated in such a way that it does not depend on which order items are returned.<h3>Breaking Changes</h3>This is when changes to the functionality will break the contract of the current API. This will invoke stakeholder communication and major version number update. "
   },
   "servers": [
@@ -13,6 +13,7 @@
       "url": "https://connect.sandbox.creditsafe.com/v1"
     }
   ],
+
   "tags": [
     {
       "name": "Authentication",
@@ -44,8 +45,8 @@
     },
     {
       "name": "Protect",
-      "description": "The focus on screening clients and third parties is increasing. International regulators are demanding that firms improve their ongoing sanctions screening process. World Compliance data through Connect allows customers to mitigate risk around Anti-Bribery and Corruption under local and international regulations such as the UK Bribery Act, by enabling users to screen their third party agents, suppliers or employees against watch lists.  With World Compliance through Creditsafe Connect, compliance is easy, efficient and cost-effective, even as the regulatory mountain grows.<br><br> <a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000063160-integrating-with-protect#Profiles\" target=\"_blank\"> How to use Protect API Document </a>",
-      "tags": ["protect Profile"]
+      "description": "The focus on screening clients and third parties is increasing. International regulators are demanding that firms improve their ongoing sanctions screening process. World Compliance data through Connect allows customers to mitigate risk around Anti-Bribery and Corruption under local and international regulations such as the UK Bribery Act, by enabling users to screen their third party agents, suppliers or employees against watch lists.  With World Compliance through Creditsafe Connect, compliance is easy, efficient and cost-effective, even as the regulatory mountain grows.<br><br> <a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000063160-integrating-with-protect#Profiles\" target=\"_blank\"> How to use Protect API Document </a>"
+
     },
     {
       "name": "Protect Profile",
@@ -57,14 +58,15 @@
     },
     {
       "name": "Protect Audit",
-      "description": "Provides a log of all actions taken against endpoint to evidence any necessary that checks were carried out correctly."
+      "description": "Provides a log of all actions taken against endpoints to evidence any necessary that checks were carried out correctly."
     },
     {
       "name": "Protect Schedules",
       "description": "A Schedule has a 1:1 relationship with an Investigation. Investigations that are scheduled will automatically check for new re-screen your initial search criteria on a nightly basis allowing you to review any new alerts each day."
     },
     {
-      "name": "Protect IDV"
+      "name": "Protect IDV",
+      "description": "Person identity verification by validating against other known sources."
     },
     {
       "name": "Protect Batch Uploads",
@@ -147,6 +149,11 @@
         "description": "Endpoint to search for Companies according to the provided Search Criteria. To get the most relevant results, it is recommended to use a unique identifier such as `regNo` where available. If a unique identifier is not available, use a combination of the companies registered `postCode` and `name` for the next best hit rate.",
         "summary": "Company Search",
         "operationId": "companySearch",
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -418,6 +425,11 @@
           "Companies"
         ],
         "description": "Orders a Company Credit Report by connectId.<br><br> To acquire a PDF version of the report use the optional request in 'Header'.<br><br> This request will provide a 'Base64-encoded' script to convert to a PDF, this will appear at the end of the JSON response.",
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -540,6 +552,11 @@
           "Authentication"
         ],
         "description": "Returns the available countries in your subscription - Company Report, Director Report, Offline Reports and Monitoring.",
+        "security": [
+          {
+            "bearerToken": []
+          }
+        ],
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -1498,7 +1515,8 @@
     },
     "/freshinvestigations/{orderId}": {
       "get": {
-        "operationId": "Retrieve FreshInvestigation Order",
+        "operationId": "retrieveFreshInvestigationOrder",
+        "summary": "Retrieve FreshInvestigation Order",
         "tags": [
           "Fresh Investigations"
         ],
@@ -1561,7 +1579,8 @@
     },
     "/freshinvestigations/{orderId}/report": {
       "get": {
-        "operationId": "Retrieve FreshInvestigation Report Content",
+        "operationId": "retrieveFreshInvestigationReportContent",
+        "summary": "Retrieve FreshInvestigation Report Content",
         "tags": [
           "Fresh Investigations"
         ],
@@ -1619,7 +1638,8 @@
           "Global Monitoring"
         ],
         "description": "Returns all user details relating to the Global Monitoring product.",
-        "operationId": "Monitoring User Details",
+        "operationId": "monitoringUserDetails",
+        "summary": "Monitoring User Details",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -1665,7 +1685,8 @@
           "Global Monitoring"
         ],
         "description": "Endpoint to return a collection of `events` for the given company, optionally filtered on the supplied search criteria. Event information will only be returned if the company exists in at least one of your `portfolios`.",
-        "operationId": "List Company Events",
+        "operationId": "listCompanyEvents",
+        "summary": "List Company Events",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -1732,7 +1753,8 @@
           "Global Monitoring"
         ],
         "description": "Get all available notification event rules. Notification event rules allow you to control which events you wish to monitor for the `companies` contained within a given `portfolio`.",
-        "operationId": "All EventRules",
+        "operationId": "allEventRules",
+        "summary": "All EventRules",  
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -1791,7 +1813,8 @@
           "Global Monitoring"
         ],
         "description": "Get all available notification event rules for the given `countryCode`. Notification event rules allow you to control which events you wish to monitor for the `companies` contained within a given `portfolio`.",
-        "operationId": "Filtered EventRules",
+        "operationId": "filteredEventRules",
+        "summary": "Filtered EventRules",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -1861,7 +1884,8 @@
           "Global Monitoring"
         ],
         "description": "Get all notification events generated for companies monitored in your portfolios, based on the notification rules enabled. The notification events returned will be filtered based upon the supplied search criteria.",
-        "operationId": "All Notification Events",
+        "operationId": "allNotificationEvents",
+        "summary": "All Notification Events",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -1949,7 +1973,8 @@
           "Global Monitoring"
         ],
         "description": "Endpoint to get all Portfolios for the user if no query parameters are provided. Can be searched by using the query parameter in the URL.",
-        "operationId": "List All Portfolios",
+        "operationId": "listAllPortfolios",
+        "summary": "List All Portfolios",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -2020,7 +2045,8 @@
           "Global Monitoring"
         ],
         "description": "Endpoint to create a new Portfolio based on the supplied criteria. A portfolio can contain any number of companies that you wish to monitor changes to. The only required Body parameter is \"name\" for Connect users.",
-        "operationId": "Create Monitoring Portfolio",
+        "operationId": "createMonitoringPortfolio",
+        "summary": "Create Monitoring Portfolio",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -2079,7 +2105,8 @@
           "Global Monitoring"
         ],
         "description": "Get the portfolio details such as name and default status with portfolioId.",
-        "operationId": "Retrieve Portfolio By Id",
+        "operationId": "retrievePortfolioById",
+        "summary": "Retrieve Portfolio By Id",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -2145,7 +2172,8 @@
           "Global Monitoring"
         ],
         "description": "Delete the portfolio with portfolioId.",
-        "operationId": "Delete Portfolio",
+        "operationId": "deletePortfolio",
+        "summary": "Delete Portfolio",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -2774,7 +2802,8 @@
           "Global Monitoring"
         ],
         "description": "Get all notificationEvents based on the portfolio id, optionally filter with query parameters.",
-        "operationId": "List Portfolio Notifications",
+        "operationId": "listPortfolioNotifications",
+        "summary": "List Portfolio Notifications",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -2871,7 +2900,8 @@
           "Global Monitoring"
         ],
         "description": "WARNING -  This endpoint will depreciate during the last week of January 2021 and will not be usable anymore. We recommend to utilize the `filterByCreatedDate` path parameter on the `/notificationEvents` endpoints to return exact Notification Events that have triggered on the specific day/date range.",
-        "operationId": "Update isProcessed Flag",
+        "operationId": "updateIsProcessedFlag",
+        "summary": "Update isProcessed Flag",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -2960,7 +2990,8 @@
           "Global Monitoring"
         ],
         "description": "Get all companies from a specific portfolio based on the portfolio id, optionally filter with query parameters.",
-        "operationId": "List Companies In A Portfolio",
+        "operationId": "listCompaniesInAPortfolio",
+        "summary": "List Companies In A Portfolio",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -3057,7 +3088,8 @@
           "Global Monitoring"
         ],
         "description": "Endpoint to add a company using a company id, into a portfolio provided in as a path parameter. Optional fields can be used to add a personalReference, freeText, and personalLimit.",
-        "operationId": "Add Company To Portfolio",
+        "operationId": "addCompanyToPortfolio",
+        "summary": "Add Company To Portfolio",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -3163,7 +3195,8 @@
           "Global Monitoring"
         ],
         "description": "Copy companies from one portfolio to single (or) multiple portfolios.",
-        "operationId": "Copy Companies Between Portfolios",
+        "operationId": "copyCompaniesBetweenPortfolios",
+        "summary": "Copy Companies Between Portfolios",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -3267,7 +3300,8 @@
           "Global Monitoring"
         ],
         "description": "Move companies from one portfolio to single (or) multiple portfolios. Removes the companies from the portfolio provided in the path parameter.",
-        "operationId": "Move Companies Between Portfolios",
+        "operationId": "moveCompaniesBetweenPortfolios",
+        "summary": "Move Companies Between Portfolios",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -3371,7 +3405,8 @@
           "Global Monitoring"
         ],
         "description": "Delete companies from current portfolio.",
-        "operationId": "Clear Companies From Portfolio",
+        "operationId": "clearCompaniesFromPortfolio",
+        "summary": "Clear Companies From Portfolio",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -3463,7 +3498,8 @@
         "tags": [
           "Global Monitoring"
         ],
-        "operationId": "Get Company Details From A Portfolio",
+        "operationId": "getCompanyDetailsFromAPortfolio",
+        "summary": "Get Company Details From A Portfolio",
         "description": "Get various company details from a portfolio. Requires a portfolioID and companyID in the PATH of the request.",
         "parameters": [
           {
@@ -3539,7 +3575,8 @@
           "Global Monitoring"
         ],
         "description": "Endpoint to delete a company from a portfolio.",
-        "operationId": "Delete Company From Portfolio",
+        "operationId": "deleteCompanyFromPortfolio",
+        "summary": "Delete Company From Portfolio",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -3625,7 +3662,8 @@
           "Global Monitoring"
         ],
         "description": "Updates the company details in a specified portfolio.",
-        "operationId": "Update Company Details In Portfolio",
+        "operationId": "updateCompanyDetailsInPortfolio",
+        "summary": "Update Company Details In Portfolio",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -3721,7 +3759,8 @@
         "tags": [
           "Global Monitoring"
         ],
-        "operationId": "List Company Specific NotificationEvents",
+        "operationId": "listCompanySpecificNotificationEvents",
+        "summary": "List Company Specific NotificationEvents",
         "description": "List of notification events based on the company id,optionally filtered with query parameters.",
         "parameters": [
           {
@@ -3854,7 +3893,8 @@
         "tags": [
           "Global Monitoring"
         ],
-        "operationId": "Portfolio User Permissions",
+        "operationId": "portfolioUserPermissions",
+        "summary": "Portfolio User Permissions",
         "description": "Retrieve user permissions within the customer for a portfolio.",
         "parameters": [
           {
@@ -3921,7 +3961,8 @@
           "Global Monitoring"
         ],
         "description": "Update/Create user permissions within the customer for portfolio.",
-        "operationId": "Share Portfolio With Users",
+        "operationId": "sharePortfolioWithUsers",
+        "summary": "Share Portfolio With Users",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4238,7 +4279,8 @@
           "Decision Engine"
         ],
         "description": "Returns the user data fields defined for the given decision tree GUID.",
-        "operationId": "User Data Fields",
+        "operationId": "userDataFields",
+        "summary": "User Data Fields",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4293,7 +4335,8 @@
           "Decision Engine"
         ],
         "description": "Runs the provided decision tree for the given company, optionally using the data provided in the body of the call.",
-        "operationId": "Run Decision Tree",
+        "operationId": "runDecisionTree",
+        "summary": "Run Decision Tree",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4383,7 +4426,8 @@
           "Decision Engine"
         ],
         "description": "Returns a log of all previously ran decisions that the user has permission to access, optionally filtered.",
-        "operationId": "Decision History",
+        "operationId": "decisionHistory",
+        "summary": "Decision History",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4489,7 +4533,8 @@
           "Decision Engine"
         ],
         "description": "Returns a specified decision log for a previously ran decision.",
-        "operationId": "Get Decision Log",
+        "operationId": "getDecisionLog",
+        "summary": "Get Decision Log",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4542,7 +4587,8 @@
           "Decision Engine"
         ],
         "description": "Updates the status and/or notes for a specified decision.",
-        "operationId": "Update Decision Log",
+        "operationId": "updateDecisionLog",
+        "summary": "Update Decision Log",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4606,7 +4652,8 @@
           "Consumers"
         ],
         "description": "Consumer Search and Report endpoint. When sufficient information has been provided to filter potential Consumer results down to one record then the Consumer Report will be returned.",
-        "operationId": "Consumer Report",
+        "operationId": "consumerReport",
+        "summary": "Consumer Report",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4768,7 +4815,8 @@
           "Consumers"
         ],
         "description": "Returns country specific fields that can be used to search for a Consumer.",
-        "operationId": "Consumer Search Criteria",
+        "operationId": "consumerSearchCriteria",
+        "summary": "Consumer Search Criteria",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -5010,7 +5058,8 @@
     },
     "/protect/investigations/{investigationId}": {
       "get": {
-        "operationId": "Return Protect Investigation By Id",
+        "operationId": "returnProtectInvestigationById",
+        "summary": "Return Protect Investigation By Id",
         "description": "Endpoint to return a specific Investigation by ID. Can also be used to retrieve the associated Schedule Id that has been linked to the Investigation.",
         "tags": [
           "Protect Investigations"
@@ -5057,7 +5106,8 @@
         "tags": [
           "Protect Investigations"
         ],
-        "operationId": "Delete Investigation",
+        "operationId": "deleteInvestigation",
+        "summary": "Delete Investigation",
         "description": "Deletes an Investigation by {Id} number. This will remove the entire Investigation and all results within it.",
         "parameters": [
           {
@@ -5101,7 +5151,8 @@
         "tags": [
           "Protect Investigations"
         ],
-        "operationId": "Add Investigations Records",
+        "operationId": "addInvestigationsRecords",
+        "summary": "Add Investigations Records",
         "description": "Requires the 'Investigation Id' in path, followed by 'Record Id' in the request body to add a record to the previously created Investigation.<br><br>By adding InvestigationRecords you are confirming that the result is a match to your search criteria. <br><br>To return to the original Investigation search to allocate other records, use \"GET Investigation results by ID.\".",
         "parameters": [
           {
@@ -5478,12 +5529,13 @@
         "x-codegen-request-body-name": "dto"
       }
     },
-    "/protect/investigations/{InvestigationId}/results": {
+    "/protect/investigations/{investigationId}/results": {
       "get": {
         "tags": [
           "Protect Investigations"
         ],
-        "operationId": "Get Investigation Results By Id",
+        "operationId": "getInvestigationResultsById",
+        "summary": "Get Investigation Results By Id",
         "description": "Returns original Investigation search results to assign any other results to the records.",
         "parameters": [
           {
@@ -5644,7 +5696,9 @@
         "tags": [
           "Protect Investigations"
         ],
-        "operationId": "Create Investigation And Return Report Link",
+        "description": "Creates an investigation and returns a link to the report.",
+        "operationId": "createInvestigationAndReturnReportLink",
+        "summary": "Create Investigation And Return Report Link",
         "requestBody": {
           "content": {
             "application/json": {
@@ -5720,7 +5774,8 @@
         "tags": [
           "Protect Investigations"
         ],
-        "operationId": "Returns Investigation Report",
+        "operationId": "returnsInvestigationReport",
+        "summary": "Returns Investigation Report",
         "description": "This endpoint will Return a report by providing a file path.",
         "parameters": [
           {
@@ -6078,7 +6133,8 @@
     },
     "/protect/profiles/{profileId}": {
       "get": {
-        "operationId": "Retrieve Protect Profile By ID",
+        "operationId": "retrieveProtectProfileByID",
+        "summary": "Retrieve Protect Profile By ID",
         "description": "Retrieves a profile by Id in the Path.",
         "tags": [
           "Protect Profile"
@@ -6123,7 +6179,8 @@
       },
       "put": {
         "description": "Endpoint to change the name of a profile.",
-        "operationId": "Edit Protect Profile",
+        "operationId": "editProtectProfile",
+        "summary": "Edit Protect Profile",
         "tags": [
           "Protect Profile"
         ],
@@ -6241,8 +6298,9 @@
     },
     "/protect/profiles/{profileId}/investigations/{investigationId}": {
       "put": {
-        "operationId": "Add Investigation To Profile",
-        "description": "Adds an Investigation to a Profile",
+        "operationId": "addInvestigationToProfile",
+        "summary": "Add Investigation To Profile",
+        "description": "Adds an Investigation to a Profile.",
         "tags": [
           "Protect Profile"
         ],
@@ -6291,7 +6349,8 @@
     },
     "/protect/investigations/{investigationId}/file": {
       "post": {
-        "operationId": "Create Protect Investigation PDF",
+        "operationId": "createProtectInvestigationPDF",
+        "summary": "Create Protect Investigation PDF",
         "description": "Creates a PDF that shows the full report for the selected entities. This report will include search criteria used, user, time/date stamp and full World Compliance Report. It is recommended to call this endpoint before adding InvestigationRecords to an Investigation, as only non-processed alerts populate the PDF.",
         "tags": [
           "Protect Investigations"
@@ -6350,7 +6409,7 @@
       "post": {
         "operationId": "createProtectSchedule",
         "summary": "Create Protect Schedule",
-        "description": "Creates a Schedule.",
+        "description": "Creates a Schedule to check against new sanctions that effect your chosen Investigation. <br>The frequency of the schedule is set to 'daily' as a default.<br><br> To receive notifications of alerts you need to follow this POST call with PUT/Update Schedules to set the 'isEmailRequired' to `true`.",
         "tags": [
           "Protect Schedules"
         ],
@@ -6363,7 +6422,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Connect.Protect.CreateScheduleDto"
+                "$ref": "#/components/schemas/ConnectProtectCreateScheduleRequest"
               }
             }
           },
@@ -6410,7 +6469,7 @@
         ],
         "operationId": "updatesSchedule",
         "summary": " Updates Schedule",
-        "description": "Endpoint will update the details around the schedule",
+        "description": "Endpoint will update the details around the schedule.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -6418,6 +6477,7 @@
           {
             "name": "id",
             "in": "path",
+            "description": "Enter the schedule id.",
             "required": true,
             "schema": {
               "type": "string",
@@ -6489,11 +6549,10 @@
           }
         },
         "x-codegen-request-body-name": "dto"
-      }
-    },
-    "/protect/schedules/{scheduleId}": {
+      },
       "get": {
-        "operationId": "Retrieve Schedule By Id",
+        "operationId": "retrieveScheduleById",
+        "summary": "Retrieve Schedule By Id",
         "description": "Endpoint to retrieve a specific Schedule by Id. A Schedule Id can be retrieved from the associated Investigation.",
         "tags": [
           "Protect Schedules"
@@ -6503,7 +6562,8 @@
             "$ref": "#/components/parameters/authToken"
           },
           {
-            "name": "scheduleId",
+            "name": "id",
+            "description": "Enter the schedule id.",
             "in": "path",
             "required": true,
             "schema": {
@@ -6536,7 +6596,8 @@
         }
       },
       "delete": {
-        "operationId": "Deletes Schedule from Investigation",
+        "operationId": "deletesScheduleFromInvestigation",
+        "summary": "Deletes Schedule from Investigation",
         "description": "Deletes a Schedule from an Investigation meaning entity will no longer be monitored on a nightly basis but record will still remain in the audit trail.",
         "tags": [
           "Protect Schedules"
@@ -6546,7 +6607,8 @@
             "$ref": "#/components/parameters/authToken"
           },
           {
-            "name": "scheduleId",
+            "name": "id",
+            "description": "Enter the schedule id.",
             "in": "path",
             "required": true,
             "schema": {
@@ -6578,9 +6640,9 @@
         "tags": [
           "Protect IDV"
         ],
+        "description": "Creates a search request for a GDC IDV search.",
         "operationId": "idvSearch",
         "summary": "IDV Search",
-        "description": "",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -6709,7 +6771,8 @@
     },
     "/protect/audits": {
       "get": {
-        "operationId": "Retrieve Protect Audit Log",
+        "operationId": "retrieveProtectAuditLog",
+        "summary": "Retrieve Protect Audit Log",
         "description": "Returns logged interactions with Protect endpoints for audit purposes. Actions logged include creating an Investigation, Investigation Record and Schedule.",
         "tags": [
           "Protect Audit"
@@ -6793,11 +6856,49 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Token response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Forbidden Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODEL5bdbb3"
+                }
+              }
+            }
           }
         }
-      }
-    },
-    "/protect/audits/file": {
+      },
       "post": {
         "operationId": "exportAuditLogFile",
         "summary": "Export Audit Log File",
@@ -6831,12 +6932,42 @@
               }
             }
           },
-          "401": {
-            "description": "",
+          "400": {
+            "description": "Bad Request Response",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Token response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Forbidden Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODEL5bdbb3"
                 }
               }
             }
@@ -6879,6 +7010,7 @@
                   "File": {
                     "type": "string",
                     "format": "binary",
+                    "description": "Uploads a file to the server in `csv` format. Ensure the file follows the same format as the template. ",
                     "nullable": true
                     
                   }
@@ -6924,7 +7056,9 @@
         "tags": [
           "Protect Batch Uploads"
         ],
-        "operationId": "Returns Batch Uploads",
+        "operationId": "returnsBatchUploads",
+        "summary": "Returns Batch Uploads",
+        "description": "Returns all the Batch Uploads created by a user.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -6969,6 +7103,46 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Token response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Forbidden Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODEL5bdbb3"
+                }
+              }
+            }
           }
         }
       }
@@ -6978,7 +7152,9 @@
         "tags": [
           "Protect Batch Uploads"
         ],
-        "operationId": "Returns Batch Upload by ID",
+        "operationId": "returnsBatchUploadByID",
+        "summary": "Returns Batch Uploads by ID",
+        "description": "Will return the batch upload details of a specific file id.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -7006,6 +7182,46 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BatchUpload"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Token response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Forbidden Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODEL5bdbb3"
                 }
               }
             }
@@ -7051,6 +7267,46 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad Request Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid Token response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Forbidden Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "404 response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MODEL5bdbb3"
+                }
+              }
+            }
           }
         }
       }
@@ -7062,7 +7318,7 @@
         ],
         "operationId": "returnsSelectedTemplateLink",
         "summary": "Returns Selected Template Link",
-        "description": "Provides template for the file upload csv structure, also provides a user guide if called.",
+        "description": "Provides template for the file upload csv structure.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -7073,11 +7329,11 @@
             "required": true,
             "schema": {
               "type": "string",
-              "description": "`templateUserGuide` provides a link to a pdf document on how to use protect.<br>`template` returns a header list for the file upload.",
+              "description": "`template` returns a header list for the file upload.",
               "nullable": false,
               "enum": [
-                "template",
-                "templateUserGuide"
+                "template"
+               
               ],
               "x-schema": {
                 "$ref": "#/components/schemas/BatchUploadFileType"
@@ -7119,7 +7375,8 @@
     },
     "/localSolutions/GB/bankmatch": {
       "get": {
-        "operationId": "Bank Match",
+        "operationId": "bankMatch",
+        "summary": "Bank Match",
         "tags": [
           "Local Solutions"
         ],
@@ -7297,6 +7554,7 @@
         "tags": [
           "GB Consumers and AML"
         ],
+        "operationId": "resolvesAPicklistAgainstAGivenUniqueId",
         "summary": "Resolves a picklist against a given UniqueId",
         "description": "Resolves a picklist belonging to the specified UniqueID, which would have been generated during a prior search. Guids (and thus cached searches) expire after fifteen minutes.",
         "parameters": [
@@ -7353,6 +7611,7 @@
         "tags": [
           "GB Consumers and AML"
         ],
+        "description": "This will return the input criteria used in a search for a specified id.",
         "operationId": "retrievesAPriorIdentitySearch'sInput",
         "summary": "Retrieves a prior identitysearch's input",
         "parameters": [
@@ -7397,6 +7656,7 @@
         "tags": [
           "GB Consumers and AML"
         ],
+        "operationId": "retrievesAPriorIdentitySearchResult",
         "summary": "Retrieves a prior identitysearch result.",
         "description": "Retrieves a prior search result. This will include the search input and any ID/AML searches, but as we cannot hold Consumer search results these are not included. Resubmission is necessary if an updated Consumer result is needed.",
         "parameters": [
@@ -7922,9 +8182,9 @@
         "tags": [
           "Data Cleaning"
         ],
-        "operationId": "Create Job",
+        "operationId": "createJob",
         "summary": "Create Job Request",
-        "description": "Enter a name for the 'Job Request' to be associated to the file going to be processed",
+        "description": "Enter a name for the 'Job Request' to be associated to the file going to be processed.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -7990,15 +8250,16 @@
         "tags": [
           "Data Cleaning"
         ],
-        "operationId": "Get All Jobs",
+        "operationId": "getAllJobs",
         "summary": "Returns all Data Cleaning Jobs",
-        "description": "This endpoint can be used to retrieve all created data cleaning job requests as defined by the query parameters",
+        "description": "This endpoint can be used to retrieve all created data cleaning job requests as defined by the query parameters.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
           },
           {
             "name": "countries",
+            "description": "Comma separated list of ISO/Alpha-2 country codes to filter the results by.",
             "in": "query",
             "required": false,
             "schema": {
@@ -8007,6 +8268,7 @@
           },
           {
             "name": "status",
+            "description": "Returns the individual jobs by status. Possible values are: `pending`, `processing`, `completed`, `failed`.",
             "in": "query",
             "required": false,
             "schema": {
@@ -8015,6 +8277,7 @@
           },
           {
             "name": "jobName",
+            "description": "Returns the individual jobs by name.",
             "in": "query",
             "required": false,
             "schema": {
@@ -8023,6 +8286,7 @@
           },
           {
             "name": "fromDate",
+            "description": "Returns the individual jobs created after the specified date.",
             "in": "query",
             "required": false,
             "schema": {
@@ -8032,6 +8296,7 @@
           },
           {
             "name": "customerId",
+            "description": "Returns the individual jobs by customer id.",
             "in": "query",
             "required": false,
             "schema": {
@@ -8040,6 +8305,7 @@
           },
           {
             "name": "toDate",
+            "description": "Returns the individual jobs created before the specified date.",
             "in": "query",
             "required": false,
             "schema": {
@@ -8049,6 +8315,7 @@
           },
           {
             "name": "userId",
+            "description": "Returns the individual jobs by user id.",
             "in": "query",
             "required": false,
             "schema": {
@@ -8057,6 +8324,7 @@
           },
           {
             "name": "pageSize",
+            "description": "Returns the number of individual jobs per page.",
             "in": "query",
             "required": false,
             "schema": {
@@ -8065,6 +8333,7 @@
           },
           {
             "name": "companyName",
+            "description": "Returns the individual jobs by company name.",
             "in": "query",
             "required": false,
             "schema": {
@@ -8073,6 +8342,7 @@
           },
           {
             "name": "page",
+            "description": "Returns the page number of the individual jobs.",
             "in": "query",
             "required": false,
             "schema": {
@@ -8081,6 +8351,7 @@
           },
           {
             "name": "archived",
+            "description": "Returns the individual jobs by archived status.",
             "in": "query",
             "required": false,
             "schema": {
@@ -8212,7 +8483,7 @@
         "tags": [
           "Data Cleaning"
         ],
-        "operationId": "Job File Upload with id",
+        "operationId": "jobFileUploadWithId",
         "summary": "Upload a Job File with an {id}",
         "description": "Upload a Job File for processing, you need to link to the {id} number generated from the 'Job Request'.",
         "parameters": [
@@ -8221,6 +8492,7 @@
           },
           {
             "name": "id",
+            "description": "The {id} number generated from the 'Job Request'.",
             "in": "path",
             "required": true,
             "schema": {
@@ -8296,7 +8568,7 @@
         "tags": [
           "Data Cleaning"
         ],
-        "operationId": "Job Update Mappings",
+        "operationId": "jobUpdateMappings",
         "summary": "Update Mappings Request",
         "description": "Update the mapping of the uploaded file to match that of the header within it. You can add or remove the required number of mapping points in the Request Body.",
         "parameters": [
@@ -10123,30 +10395,38 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "The name of the portfolio"
           },
           "isDefault": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "can set the portfolio as default for company monitoring events."
           },
           "emails": {
             "type": "object",
+            "description": "The email address of the user to receive the email notification.",
             "properties": {
               "firstName": {
-                "type": "string"
+                "type": "string",
+                "description": "The first name of the user to receive the email notification."
               },
               "lastName": {
-                "type": "string"
+                "type": "string",
+                "description": "The last name of the user to receive the email notification."
               },
               "emailAddress": {
-                "type": "string"
+                "type": "string",
+                "description": "The email address of the user to receive the email notification."
               }
             }
           },
           "emailSubject": {
-            "type": "string"
+            "type": "string",
+            "description": "The subject of the email notification."
           },
           "emailLanguage": {
-            "type": "string"
+            "type": "string",
+            "description": "The language of the email notification."
           },
           "frequency": {
             "type": "string"
@@ -10220,22 +10500,27 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "The name of the portfolio"
           },
           "isDefault": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Change the setting of the portfolio as default for company monitoring events."
           },
           "emails": {
             "type": "array",
+            "description": "The email addresses of the user to receive the email notification.",
             "items": {
               "$ref": "#/components/schemas/Connect.Monitoring.UpdatePortfolioRequestEmail"
             }
           },
           "emailSubject": {
-            "type": "string"
+            "type": "string",
+            "description": "The subject of the email notification."
           },
           "emailLanguage": {
-            "type": "string"
+            "type": "string",
+            "description": "The language of the email notification."
           },
           "frequency": {
             "type": "string"
@@ -10249,13 +10534,16 @@
         "type": "object",
         "properties": {
           "firstName": {
-            "type": "string"
+            "type": "string",
+            "description": "The first name of the user to receive the email notification."
           },
           "lastName": {
-            "type": "string"
+            "type": "string",
+            "description": "The last name of the user to receive the email notification."
           },
           "emailAddress": {
-            "type": "string"
+            "type": "string",
+            "description": "The email address of the user to receive the email notification."
           }
         },
         "required": [
@@ -12389,14 +12677,14 @@
           "street": {
             "type": "string"
           },
-          "houseNo": {
+          "houseNumber": {
             "type": "string"
           },
           "city": {
             "type": "string"
           },
-          "postCode": {
-            "type": "string"
+          "postalCode": {
+            "type": "string" 
           },
           "province": {
             "type": "string"
@@ -14067,6 +14355,9 @@
       "Creditsafe.GlobalData.Reports.LtdFinancialStatement": {
         "type": "object",
         "properties": {
+          "type": {
+            "type": "string"
+          },
           "yearEndDate": {
             "type": "string",
             "format": "date-time"
@@ -15543,7 +15834,8 @@
           },
           "screeningThreshold": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "description": "Can only enter the following options: 85, 90, 95, 100"
           },
           "source": {
             "type": "string"
@@ -15563,7 +15855,8 @@
         "properties": {
           "id": {
             "type": "integer",
-            "format": "int64"
+            "format": "int64",
+            "description": " Unique ID number relating to the World Compliance report. It is also known as the InvestigationRecord."
           },
           "matchType": {
             "type": "string"
@@ -15576,14 +15869,17 @@
           },
           "matchScore": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "description": "A percentage based score depicting how accurate the search parameters relate to the report name."
           },
           "sourceDate": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "This is the date the report was last updated."
           },
           "dateListed": {
-            "type": "string"
+            "type": "string",
+            "description": "T​he date the report was originally created."
           },
           "name": {
             "type": "string"
@@ -15604,7 +15900,8 @@
             "type": "string"
           },
           "entityType": {
-            "type": "string"
+            "type": "string",
+            "description": "Business or Individual."
           },
           "dateOfBirth": {
             "type": "string"
@@ -15698,7 +15995,8 @@
           },
           "screeningThreshold": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "description": "Can only enter the following options: 85, 90, 95, 100"
           },
           "createdAt": {
             "type": "string",
@@ -15729,7 +16027,7 @@
             "nullable": true
           },
           "screeningThreshold": { 
-            "description": "Default Threshold is 85",
+            "description": "Default Threshold is 85. Can only enter the following options: 85, 90, 95, 100",
             "type": "integer",
             "format": "int32",
             "nullable": true
@@ -15854,7 +16152,7 @@
             "type": "array",
             "items": {
               "type": "integer",
-              "format": "int64"
+              "format": "int32"
             }
           }
         }
@@ -15914,7 +16212,8 @@
         "type": "object",
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "Assign a unique name to the profile for ease of identification."
           }
         }
       },
@@ -15931,6 +16230,9 @@
         ],
         "type": "object",
         "properties": {
+          "correlationId": {
+            "type": "string"
+          },
           "id": {
             "type": "string",
             "format": "guid"
@@ -15955,7 +16257,8 @@
           },
           "screeningThreshold": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "description": "Can only enter the following options: 85, 90, 95, 100"
           },
           "createdAt": {
             "type": "string",
@@ -15964,6 +16267,12 @@
           "lastRun": {
             "type": "string",
             "format": "date-time"
+          },
+          "isEmailRequired": {
+            "type": "boolean"
+          },
+          "isDisabled": {
+            "type":"boolean"
           }
         }
       },
@@ -15974,9 +16283,10 @@
           "Daily"
         ]
       },
-      "Connect.Protect.CreateScheduleDto": {
+      "ConnectProtectCreateScheduleRequest": {
         "required": [
-          "frequency"
+          "screeningThreshold",
+          "investigationId"
         ],
         "type": "object",
         "properties": {
@@ -15984,15 +16294,10 @@
             "type": "string",
             "format": "guid"
           },
-          "frequency": {
-            "type": "string",
-            "enum": [
-              "daily"
-            ]
-          },
           "screeningThreshold": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "description": "The match score you will be alerted above. Can only enter the following options: 85, 90, 95, 100"
           }
         }
       },
@@ -19903,7 +20208,9 @@
       "CreateScheduleDto": {
         "required": [
           "frequency",
-          "isEmailRequired"
+          "isEmailRequired",
+          "investigationId",
+          "screeningThreshold"
         ],
         "type": "object",
         "properties": {
@@ -19912,14 +20219,17 @@
             "format": "guid"
           },
           "frequency": {
-            "type": "string"
+            "type": "string",
+            "description": " Need to enter `Daily`."
           },
           "screeningThreshold": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "description": "Can only enter the following options: 85, 90, 95, 100"
           },
           "isEmailRequired": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Select `true` if you wish to recieve notifications when an alert is detected."
           }
         }
       },
@@ -19961,7 +20271,8 @@
           },
           "screeningThreshold": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "description": "Can only enter the following options: 85, 90, 95, 100"
           },
           "createdAt": {
             "type": "string",
@@ -21132,7 +21443,8 @@
         ],
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "The name associated to the Data Cleaning job created by the user in the 'POST - Create Job Request'"
           }
         }
       },
@@ -21270,10 +21582,12 @@
         "properties": {
           "jobFile": {
             "type": "string",
-            "format": "binary"
+            "format": "binary",
+            "description": "The file to be uploaded"
           },
           "hasHeader": {
-            "type": "boolean"
+            "type": "boolean",
+            "description": "Indicates if the file has a header row"
           }
         }
       },
