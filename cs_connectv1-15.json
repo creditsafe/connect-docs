@@ -7977,11 +7977,12 @@
     },
     "/localSolutions/GB/CCDS/{companyId}": {
       "get": {
-        "operationId": "Retrieves CCDS Data",
+        "operationId": "retrievesCCDSData",
+        "summary": "Retrieves CCDS Data",
         "tags": [
           "Local Solutions"
         ],
-        "description": "Gets CCDS data of the supplied company",
+        "description": "Gets CCDS data of the supplied company.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -8033,7 +8034,8 @@
     },
     "/companies/schema/{countryCode}": {
       "get": {
-        "operationId": "Report Schema",
+        "operationId": "reportSchema",
+        "summary": "Report Schema",
         "tags": [
           "Misc"
         ],
@@ -8101,8 +8103,9 @@
         "tags": [
           "Misc"
         ],
-        "description": "Returns the allowed values of the customData parameter, used in the GET Company Report and Director Report endpoints.  I.e. Supplying `DE` as a country code will return a list of reasons for requesting a DE Credit Report (a legal requirement to supply with each Credit Report request in Germany). This will provide a list of allowedValues to enter into the mandatory Parameter `customData` = `de_reason_code::allowedValue`",
-        "operationId": "Custom Report Parameters",
+        "description": "Returns the allowed values of the customData parameter, used in the GET Company Report and Director Report endpoints.  I.e. Supplying `DE` as a country code will return a list of reasons for requesting a DE Credit Report (a legal requirement to supply with each Credit Report request in Germany). This will provide a list of allowedValues to enter into the mandatory Parameter `customData` = `de_reason_code::allowedValue`.",
+        "operationId": "customReportParameters",
+        "summary": "Custom Report Parameters",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -8412,7 +8415,7 @@
         "tags": [
           "Data Cleaning"
         ],
-        "operationId": "Get Job by id number",
+        "operationId": "getJobByIdNumber",
         "summary": "Returns Job by {id} number",
         "description": "Returns Job by {id} number which is generated from 'Creating Job Request' stage. This endpoint is used to check the `status` of the job.",
         "parameters": [
@@ -8657,7 +8660,7 @@
         "tags": [
           "Data Cleaning"
         ],
-        "operationId": "Submit Job",
+        "operationId": "submitJobRequest",
         "summary": "Submit Job Request",
         "description": "Submission of the file after mappings have been carried out. To have a successful submission a blank response body (See example) is required to be posted.",
         "parameters": [
@@ -8745,7 +8748,7 @@
         "tags": [
           "Data Cleaning"
         ],
-        "operationId": "Update Job Enrichments",
+        "operationId": "updateJobEnrichments",
         "summary": "Update Enrichments Request",
         "description": "Detail which package of enrichment settings are to be applied to the uploaded file.<br><br> Select one of the three creditTypes to acquire the JSON Enrichment tag schema possible for that product.<br><br> Removal of Enrichment tags is possible from each creditType. Addition of Enrichment tags to a creditType is not possible beyond the maximum schema for each.",
         "parameters": [
@@ -8847,7 +8850,7 @@
         "tags": [
           "Data Cleaning"
         ],
-        "operationId": "Data Cleaning Job Enrich",
+        "operationId": "dataCleaningJobEnrich",
         "summary": "Start Enrichment Request",
         "description": "Commencing the Job enrichment to the uploaded file after mapping the enrichment requirements. To have a successful submission a blank response body (See example) is required to be posted.<br><br> POST 'enrich' will not commence unless the `Job Status` is `jobMatchingComplete`.<br><br>Use the GET/dataCleaning/jobs/{id} to check Status of job.",
         "parameters": [
@@ -8936,7 +8939,7 @@
         "tags": [
           "Data Cleaning"
         ],
-        "operationId": "Returns Enriched Job File",
+        "operationId": "returnsEnrichedJobFile",
         "summary": "Returns Enriched Job File",
         "description": "Returns the enriched file after enrichment is complete. Identify the file type to be returned via the query parameter.",
         "parameters": [
@@ -9024,7 +9027,7 @@
         "tags": [
           "Data Cleaning"
         ],
-        "operationId": "Archive Job",
+        "operationId": "archiveJob",
         "summary": "Archive Job by id",
         "description": "Archives the job, this can be done at any stage. To have a successful submission a blank response body (See example) is required to be posted.",
         "parameters": [
@@ -12758,6 +12761,7 @@
           },
           "vatNo": {
             "nullable": true,
+            "type": "string",
             "oneOf": [
               {
                 "type": "string",
