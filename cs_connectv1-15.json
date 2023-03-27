@@ -7914,6 +7914,8 @@
         "tags": [
           "GB Consumers and AML"
         ],
+        "description": "Revalidate's a given identitysearch with additional documents.",
+        "operationId": "revalidateAGivenIdentitysearchWithAdditionalDocuments",
         "summary": "Revalidate a given identitysearch with additional documents",
         "parameters": [
           {
