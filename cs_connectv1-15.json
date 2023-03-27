@@ -7848,6 +7848,8 @@
         "tags": [
           "GB Consumers and AML"
         ],
+        "description": "Allows you to set a reference for an existing history item. This is useful for storing a reference to the record in your own system.",
+        "operationId": "setsTheReferenceForAnExistingHistoryItem",
         "summary": "Sets the reference for an existing history item",
         "parameters": [
           {
