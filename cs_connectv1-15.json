@@ -12684,13 +12684,13 @@
           "street": {
             "type": "string"
           },
-          "houseNumber": {
+          "houseNo": {
             "type": "string"
           },
           "city": {
             "type": "string"
           },
-          "postalCode": {
+          "postCode": {
             "type": "string" 
           },
           "province": {
