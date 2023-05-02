@@ -12762,6 +12762,46 @@
         ],
         "type": "string"
       },
+      "Creditsafe.GlobalData.AddressDataReport": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "simpleValue": {
+            "type": "string"
+          },
+          "street": {
+            "type": "string"
+          },
+          "houseNumber": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "province": {
+            "type": "string"
+          },
+          "telephone": {
+            "type": "string"
+          },
+          "directMarketingOptOut": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "directMarketingOptIn": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "country": {
+            "$ref": "#/components/schemas/Creditsafe.GlobalData.CountryCode"
+          }
+        }
+      },
       "Creditsafe.GlobalData.AddressData": {
         "type": "object",
         "properties": {
@@ -13488,18 +13528,18 @@
         "type": "object",
         "properties": {
           "mainAddress": {
-            "$ref": "#/components/schemas/Creditsafe.GlobalData.AddressData"
+            "$ref": "#/components/schemas/Creditsafe.GlobalData.AddressDataReport"
           },
           "otherAddresses": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Creditsafe.GlobalData.AddressData"
+              "$ref": "#/components/schemas/Creditsafe.GlobalData.AddressDataReport"
             }
           },
           "previousAddresses": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Creditsafe.GlobalData.AddressData"
+              "$ref": "#/components/schemas/Creditsafe.GlobalData.AddressDataReport"
             }
           },
           "emailAddresses": {
