@@ -14632,7 +14632,7 @@
           {
             "type": "object",
             "properties": {
-              "correlationID": {
+              "correlationId": {
                 "type": "string"
               },
               "failedSections": {
@@ -14644,7 +14644,7 @@
               "report": {
                 "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.CompanyReport"
               },
-              "companyID": {
+              "companyId": {
                 "type": "string"
               },
               "dateOfOrder": {
@@ -14654,7 +14654,7 @@
               "language": {
                 "type": "string"
               },
-              "userID": {
+              "userId": {
                 "type": "integer"
               }
             }
