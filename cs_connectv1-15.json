@@ -1539,6 +1539,20 @@
               "type": "string"
             },
             "example": "companyIdentification,creditScore"
+          },
+          {
+            "name": "comments",
+            "in": "query",
+            "description": "Selects number of comments which should be returned with the order details.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "last",
+                "recent",
+                "none"
+              ],
+              "default": "last"
+            }
           }
         ],
         "responses": {
@@ -8067,8 +8081,8 @@
     },
     "/localSolutions/GB/CCDS/{companyId}": {
       "get": {
-        "operationId": "retrievesCCDSData",
-        "summary": "Retrieves CCDS Data",
+        "operationId": "financeAgreements",
+        "summary": "Finance Agreements",
         "tags": [
           "Local Solutions"
         ],
@@ -8094,7 +8108,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Connect.BankMatch.CCDS"
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/Connect.footprintDataFinance"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Connect.fullFinanceData"
+                    }
+                  ]
                 }
               }
             }
@@ -19828,11 +19849,12 @@
           }
         }
       },
-      "Connect.BankMatch.CcdsCompany": {
+      "Connect.creditSafeCcdsCompany": {
         "type": "object",
         "properties": {
           "creditSafeCompanyId": {
             "type": "string",
+            "example": "NI008172",
             "nullable": true
           }
         }
@@ -20166,24 +20188,544 @@
           }
         }
       },
-      "Connect.BankMatch.CCDS": {
+      "Connect.footprintDataFinance": {
         "type": "object",
         "properties": {
+          "correlationId": {
+            "type": "string"
+          },
           "safeNumber": {
             "type": "string",
-            "nullable": true
+            "example": "UK07005751"
           },
-          "ccdsCompany": {
-            "$ref": "#/components/schemas/Connect.BankMatch.CcdsCompany"
+          "creditSafe": {
+            "type": "object",
+            "properties": {
+              "creditSafeCompanyId": {
+                "type": "string",
+                "example": "NI008172"
+              }
+            }
           },
           "overallAggregations": {
-            "$ref": "#/components/schemas/Connect.BankMatch.Totals"
+            "type": "object",
+            "$ref": "#/components/schemas/Connect.ccds.overallAggregations"
           },
           "bankData": {
-            "$ref": "#/components/schemas/Connect.BankMatch.Data"
+            "type": "object",
+            "properties": {
+              "aggregations": {
+                "type": "object",
+                "$ref": "#/components/schemas/Connect.ccds.aggregations"
+              },
+              "facilities": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Connect.ccds.facilities"
+                }
+              }
+            }
           },
           "afpData": {
             "$ref": "#/components/schemas/Connect.BankMatch.Data"
+          },
+          "history": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Connect.ccds.history"
+            }
+          }
+        }
+      },
+      "Connect.fullFinanceData": {
+        "type": "object",
+        "properties": {
+          "correlationId": {
+            "type": "string"
+          },
+          "safeNumber": {
+            "type": "string",
+            "example": "UK07005751"
+          },
+          "creditSafe": {
+            "type": "object",
+            "properties": {
+              "creditSafeCompanyId": {
+                "type": "string",
+                "example": "NI008172"
+              }
+            }
+          },
+          "overallAggregations": {
+            "type": "object",
+            "$ref": "#/components/schemas/Connect.ccds.overallAggregations"
+          },
+          "bankData": {
+            "type": "object",
+            "properties": {
+              "aggregations": {
+                "type": "object",
+                "$ref": "#/components/schemas/Connect.ccds.aggregations"
+              },
+              "facilities": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Connect.ccds.facilities"
+                }
+              }
+            }
+          },
+          "afpData": {
+            "$ref": "#/components/schemas/Connect.BankMatch.Data"
+          },
+          "history": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Connect.ccds.history"
+            }
+          }
+        }
+      },
+      "Connect.ccds.overallAggregations": {
+        "type": "object",
+        "properties": {
+          "totalAccounts": {
+            "type": "integer",
+            "example": "33"
+          },
+          "totalBalance": {
+            "type": "integer",
+            "example": "-813844"
+          },
+          "totalOverdraftOrCreditLimit": {
+            "type": "integer",
+            "example": "250000"
+          },
+          "totalAverageBalance": {
+            "type": "integer",
+            "example": "273009"
+          },
+          "remainingBalance": {
+            "type": "integer",
+            "example": "485247"
+          }
+        }
+      },
+      "Connect.ccds.aggregations": {
+        "type": "object",
+        "properties": {
+          "totalCreditCards": {
+            "type": "object",
+            "properties": {
+              "totalAccounts": {
+                "type": "integer",
+                "example": "0"
+              },
+              "totalBalance": {
+                "type": "integer",
+                "example": "0"
+              },
+              "totalOverdraftOrCreditLimit": {
+                "type": "integer",
+                "example": "0"
+              },
+              "remainingBalance": {
+                "type": "integer",
+                "example": "0"
+              },
+              "totalAverageBalance": {
+                "type": "integer",
+                "example": "0"
+              }
+            }
+          },
+          "totalCurrentAccounts": {
+            "type": "object",
+            "properties": {
+              "totalAccounts": {
+                "type": "integer",
+                "example": "0"
+              },
+              "totalBalance": {
+                "type": "integer",
+                "example": "0"
+              },
+              "totalOverdraftOrCreditLimit": {
+                "type": "integer",
+                "example": "0"
+              },
+              "remainingBalance": {
+                "type": "integer",
+                "example": "0"
+              },
+              "totalAverageBalance": {
+                "type": "integer",
+                "example": "0"
+              }
+            }
+          },
+          "totalLoans": {
+            "type": "object",
+            "properties": {
+              "totalAccounts": {
+                "type": "integer",
+                "example": "0"
+              },
+              "totalBalance": {
+                "type": "integer",
+                "example": "0"
+              },
+              "totalOverdraftOrCreditLimit": {
+                "type": "integer",
+                "example": "0"
+              },
+              "totalAverageBalance": {
+                "type": "integer",
+                "example": "0"
+              }
+            }
+          },
+          "perOrganisationAggregations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "providerId": {
+                  "type": "string"
+                },
+                "creditCards": {
+                  "type": "object",
+                  "properties": {
+                    "totalAccounts": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "totalBalance": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "totalOverdraftOrCreditLimit": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "remainingBalance": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "totalAverageBalance": {
+                      "type": "integer",
+                      "example": "0"
+                    }
+                  }
+                },
+                "currentAccounts": {
+                  "type": "object",
+                  "properties": {
+                    "totalAccounts": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "totalBalance": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "totalOverdraftOrCreditLimit": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "remainingBalance": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "totalAverageBalance": {
+                      "type": "integer",
+                      "example": "0"
+                    }
+                  }
+                },
+                "loans": {
+                  "type": "object",
+                  "properties": {
+                    "totalAccounts": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "totalBalance": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "totalOverdraftOrCreditLimit": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "remainingBalance": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "totalAverageBalance": {
+                      "type": "integer",
+                      "example": "0"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Connect.ccds.facilities": {
+        "type": "object",
+        "properties": {
+          "startDateOfAgreement": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "currentBalance": {
+            "type": "integer",
+            "example": "0"
+          },
+          "actualCurrentBalance": {
+            "type": "integer",
+            "example": "0"
+          },
+          "originalDefaultBalance": {
+            "type": "integer",
+            "example": "0"
+          },
+          "creditOrOverdraftLimit": {
+            "type": "integer",
+            "example": "0"
+          },
+          "repaymentPeriod": {
+            "type": "integer",
+            "example": "0"
+          },
+          "paymentAmount": {
+            "type": "integer",
+            "example": "0"
+          },
+          "numberOfCashAdvances": {
+            "type": "integer",
+            "example": "0"
+          },
+          "valueOfCashAdvances": {
+            "type": "integer",
+            "example": "0"
+          },
+          "minimumBalance": {
+            "type": "integer",
+            "example": "0"
+          },
+          "actualMinimumBalance": {
+            "type": "integer",
+            "example": "0"
+          },
+          "maximumBalance": {
+            "type": "integer",
+            "example": "0"
+          },
+          "actualMaximumBalance": {
+            "type": "integer",
+            "example": "0"
+          },
+          "averageBalance": {
+            "type": "integer",
+            "example": "0"
+          },
+          "actualAverageBalance": {
+            "type": "integer",
+            "example": "0"
+          },
+          "creditTurnover": {
+            "type": "integer",
+            "example": "0"
+          },
+          "debitTurnover": {
+            "type": "integer",
+            "example": "0"
+          },
+          "rejectedPayments": {
+            "type": "integer",
+            "example": "0"
+          },
+          "maximumDurationOfExcess": {
+            "type": "integer",
+            "example": "0"
+          }
+        }
+      },
+      "Connect.ccds.history": {
+        "type": "object",
+        "properties": {
+          "businessTypeIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessName": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessAddress": {
+            "$ref": "#/components/schemas/Connect.BankMatch.BusinessAddress"
+          },
+          "additionalTradingStyle": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessTelephoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyRegistrationNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "vatNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "specialInstructionIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDateOfAgreement": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "currentBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "currentBalanceCreditIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "actualCurrentBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "facilityStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "originalDefaultBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "creditOrOverdraftLimit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "flagSettings": {
+            "type": "string",
+            "nullable": true
+          },
+          "transferredToConsolidatedDebtAccount": {
+            "type": "string",
+            "nullable": true
+          },
+          "repaymentPeriod": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "paymentAmount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "paymentFrequencyIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "numberOfCashAdvances": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "valueOfCashAdvances": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "minimumBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "minimumBalanceCreditIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "actualMinimumBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "maximumBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "maximumBalanceCreditIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "actualMaximumBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "averageBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "averageBalanceCreditIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "actualAverageBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "creditTurnover": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "creditTurnoverNetOrGrossIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "debitTurnover": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "debitTurnoverNetOrGrossIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "rejectedPayments": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "maximumDurationOfExcess": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "currentAccountReportingLevelIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "facilityType": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "facilityTypeCategory": {
+            "type": "string",
+            "nullable": true
+          },
+          "batchDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "string"
+          },
+          "facilityId": {
+            "type": "string",
+            "nullable": true
           }
         }
       },
