@@ -20243,7 +20243,6 @@
             "description": "A version of a summarisation of companies account details which omits any sensitive data and can be shown to non-CCDS members.",
             "type": "object",
             "example":  {
-                "footprintData": {
                     "2020": {
                       "10": {
                         "loans": {
@@ -20273,8 +20272,7 @@
                 }
       }
     }
-  }
-    },
+  }, 
       "Connect.fullFinanceData": {
         "type": "object",
         "properties": {
