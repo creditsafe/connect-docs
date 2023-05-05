@@ -20196,6 +20196,7 @@
           },
           "safeNumber": {
             "type": "string",
+            "description": "Safe Number - Identifier for Companies in Creditsafe's Home Countries.",
             "example": "UK07005751"
           },
           "creditSafe": {
