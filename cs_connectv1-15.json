@@ -8086,7 +8086,7 @@
         "tags": [
           "Local Solutions"
         ],
-        "description": "Gets CCDS data of the supplied company.",
+        "description": "Finance Agreements allows users to view data supplied via the CCDS scheme (Commercial Credit Data Sharing ).Full CCDS allows a user to view up to 48 months' of historical data on current account, loan and credit card facilities. The Financial footprint shows summarised credit activity data.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -20234,9 +20234,42 @@
             "items": {
               "$ref": "#/components/schemas/Connect.ccds.history"
             }
-          }
-        }
-      },
+          },
+          "footprintData":{
+            "type": "object",
+            "example":  {
+                "footprintData": {
+                    "2020": {
+                      "10": {
+                        "loans": {
+                            "ActiveAccounts": 10,
+                            "SettledAccounts": 1,
+                            "EarliestStartDate": "2016-08-17T00:00:00",
+                            "LatestStartDate": "2019-09-18T00:00:00"
+                            },
+                        "currentAccounts": {
+                            "ActiveAccounts": 1,
+                            "SettledAccounts": 0,
+                            "EarliestStartDate": "2012-07-03T00:00:00",
+                            "LatestStartDate": "2012-07-03T00:00:00"
+                            },
+                        "all": {
+                            "activeAccounts": 11,
+                            "settledAccounts": 1,
+                            "earliestStartDate": "2012-07-03T00:00:00",
+                            "latestStartDate": "2019-09-18T00:00:00"
+                            },
+                        "creditCards": {
+                            "activeAccounts": 0,
+                            "settledAccounts": 0
+                            }
+                      }
+                    }
+                }
+      }
+    }
+  }
+    },
       "Connect.fullFinanceData": {
         "type": "object",
         "properties": {
