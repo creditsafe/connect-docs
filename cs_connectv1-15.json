@@ -7408,7 +7408,7 @@
         ],
         "operationId": "gbLandRegistry",
         "summary": "GB Land Registry",
-        "description": "Unknown for now - need to speak to product owner regarding this.",
+        "description": "Allows users to return Land Registry details of a company.",
         "parameters": [
           {
             "name": "companyId",
