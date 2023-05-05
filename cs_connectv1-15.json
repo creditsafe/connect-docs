@@ -20259,7 +20259,7 @@
                           "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
                         },
                         "creditCards": {
-                          "$ref": "#/components/schemas/Connect.ccds.footprintDataFinanceCreditCards"
+                          "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
                         }
                       }
                     }
@@ -20319,19 +20319,7 @@
           }
         }
       },
-      "Connect.ccds.footprintDataFinanceCreditCards": {
-        "type": "object",
-        "properties": {
-          "activeAccounts": {
-            "type": "integer",
-            "format": "int64"
-          },
-          "settledAccounts": {
-            "type": "integer",
-            "format": "int64"
-          }
-        }
-      },
+      
       "Connect.fullFinanceData": {
         "type": "object",
         "properties": {
