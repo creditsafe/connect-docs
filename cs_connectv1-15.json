@@ -20242,6 +20242,30 @@
           "footprintData":{
             "description": "A version of a summarisation of companies account details which omits any sensitive data and can be shown to non-CCDS members.",
             "type": "object",
+              "properties": {
+                "year": {
+                  "type": "object",
+                  "properties": {
+                    "month": {
+                      "type": "object",
+                      "properties": {
+                        "loans": {
+                          "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
+                        },
+                        "currentAccounts": {
+                          "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
+                        },
+                        "all": {
+                          "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
+                        },
+                        "creditCards": {
+                          "$ref": "#/components/schemas/Connect.ccds.footprintDataFinanceCreditCards"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
             "example":  {
                     "2020": {
                       "10": {
@@ -20273,6 +20297,41 @@
       }
     }
   }, 
+
+      "Connect.ccds.footprintDataFinance": {
+        "type": "object",
+        "properties": {
+          "activeAccounts": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "settledAccounts": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "earliestStartDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "latestStartDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Connect.ccds.footprintDataFinanceCreditCards": {
+        "type": "object",
+        "properties": {
+          "activeAccounts": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "settledAccounts": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
       "Connect.fullFinanceData": {
         "type": "object",
         "properties": {
