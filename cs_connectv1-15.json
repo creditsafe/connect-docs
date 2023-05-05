@@ -20174,6 +20174,7 @@
         }
       },
       "Connect.BankMatch.Data": {
+        "description": "Data provided by an alternative finance provider.",
         "type": "object",
         "properties": {
           "aggregations": {
@@ -20214,6 +20215,7 @@
           },
           "bankData": {
             "type": "object",
+            "description": "Data provided by 1 of the top 9 major banks in UK.",
             "properties": {
               "aggregations": {
                 "type": "object",
@@ -20231,12 +20233,14 @@
             "$ref": "#/components/schemas/Connect.BankMatch.Data"
           },
           "history": {
+            "description": "List of accounts connected to the company, snapshot of account at point in time each month.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Connect.ccds.history"
             }
           },
           "footprintData":{
+            "description": "A version of a summarisation of companies account details which omits any sensitive data and can be shown to non-CCDS members.",
             "type": "object",
             "example":  {
                 "footprintData": {
@@ -20278,6 +20282,7 @@
             "type": "string"
           },
           "safeNumber": {
+            "description": "Safe Number - Identifier for Companies in Creditsafe's Home Countries.",
             "type": "string",
             "example": "UK07005751"
           },
@@ -20296,6 +20301,7 @@
           },
           "bankData": {
             "type": "object",
+            "description": "Data provided by 1 of the top 9 major banks in UK.",
             "properties": {
               "aggregations": {
                 "type": "object",
@@ -20313,6 +20319,7 @@
             "$ref": "#/components/schemas/Connect.BankMatch.Data"
           },
           "history": {
+            "description": "List of accounts connected to the company, snapshot of account at point in time each month.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Connect.ccds.history"
@@ -20321,6 +20328,7 @@
         }
       },
       "Connect.ccds.overallAggregations": {
+        "description": "A summarisation of the companies account details.",
         "type": "object",
         "properties": {
           "totalAccounts": {
