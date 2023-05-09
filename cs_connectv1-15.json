@@ -2,8 +2,8 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Creditsafe Connect",
-    "version": "1.8.3",
-    "description": "Last Updated: 05th April 2023<br><br>Creditsafe Connect is a REST API that provides access to the <a href=\"https://www.creditsafe.com/gb/en/more/about/our-data.html\" target=\"_blank\">Creditsafe Global Company Database.</a> This allows you to: <ul><li>Control your master data</li><li>Utilize up-to-date Business and Director information, enhancing your onboarding and qualification processes</li><li>Receive alerts when your customer's and supplier's Credit Report changes</li></ul><br>Check the status of Creditsafe Services <a href=\"https://status.creditsafe.com/\" target=\"_blank\">HERE</a>   <h2>Customer Feedback</h2> Use the buttons below to let us know what you think of this documentation. Please leave comments in your feedback for the author to consider for future versions.<br><br><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=f49570f5&embed_data=dGVtcGVyYXR1cmVfaWQ9MSZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"> <img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/gold.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=601a6fd1&embed_data=dGVtcGVyYXR1cmVfaWQ9MiZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/green.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=f1f7701c&embed_data=dGVtcGVyYXR1cmVfaWQ9MyZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/amber.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=73951e8b&embed_data=dGVtcGVyYXR1cmVfaWQ9NCZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/red.png\" /></a> <br><br> Selecting one of the buttons above will open a new tab to the feedback portal. <h2>Quick Start</h2> To start your Creditsafe Connect API integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>By default, you will have been setup on our Sandbox environment.</br></br>\nUsing a REST API client construct an `/authenticate` POST request and enter your username & password (case-sensitive) into the POST body. A successful response will return an  `authentication token`.</br></br>\nUse the `authentication token` in an `Authorization` header on all other Creditsafe Connect calls as proof of your authenticity.\n\n<h2>Environments</h2>Production Environment baseurl: <code> https://connect.creditsafe.com/v1 </code> </br> Sandbox Test Environment baseurl:  <code>https://connect.sandbox.creditsafe.com/v1</code>  <h2>Resources</h2> \n  <ul> \n    <li><a href=\"https://creditsafe.github.io/connect-docs/cs_connectv1-15.html\" target=\"_blank\">OpenAPI</a> specification.</li>\n    <li><a href=\"https://www.getpostman.com/collections/4406bbddb81c308db8ff\" target=\"_blank\">Postman Collection</a> of the most common example calls to Creditsafe Connect.</li> \n    <li><a href=\"https://connect-portal.creditsafe.com\" target=\"_blank\"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password and form requests.</li> \n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions\" target=\"_blank\"> Help Articles</a>  including: <ul><li><a href=\"https://help.creditsafeuk.com/en/support/solutions/7000007130\" target=\"_blank\">FAQs</a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000053487-connect-api-data-dictionaries\" target=\"_blank\"> Data Dictionaries </a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000054765-connect-api-data-availability-per-country\" target=\"_blank\"> Data Availability per Country </a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000054656-connect-api-feature-availability-per-country\" target=\"_blank\"> Feature Availability Matrix</a></li>\n    </ul></ul><br>\n<br><h2>Versioning and Changes</h2><h3>Non-Breaking Changes</h3>These will be as a rule, additive functions or bug fixing. It is important that the code is integrated in such a way that it does not depend on which order items are returned.<h3>Breaking Changes</h3>This is when changes to the functionality will break the contract of the current API. This will invoke stakeholder communication and major version number update. "
+    "version": "1.8.4",
+    "description": "Last Updated: 05th May 2023<br><br>Creditsafe Connect is a REST API that provides access to the <a href=\"https://www.creditsafe.com/gb/en/more/about/our-data.html\" target=\"_blank\">Creditsafe Global Company Database.</a> This allows you to: <ul><li>Control your master data</li><li>Utilize up-to-date Business and Director information, enhancing your onboarding and qualification processes</li><li>Receive alerts when your customer's and supplier's Credit Report changes</li></ul><br>Check the status of Creditsafe Services <a href=\"https://status.creditsafe.com/\" target=\"_blank\">HERE</a>   <h2>Customer Feedback</h2> Use the buttons below to let us know what you think of this documentation. Please leave comments in your feedback for the author to consider for future versions.<br><br><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=f49570f5&embed_data=dGVtcGVyYXR1cmVfaWQ9MSZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"> <img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/gold.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=601a6fd1&embed_data=dGVtcGVyYXR1cmVfaWQ9MiZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/green.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=f1f7701c&embed_data=dGVtcGVyYXR1cmVfaWQ9MyZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/amber.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=73951e8b&embed_data=dGVtcGVyYXR1cmVfaWQ9NCZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/red.png\" /></a> <br><br> Selecting one of the buttons above will open a new tab to the feedback portal. <h2>Quick Start</h2> To start your Creditsafe Connect API integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>By default, you will have been setup on our Sandbox environment.</br></br>\nUsing a REST API client construct an `/authenticate` POST request and enter your username & password (case-sensitive) into the POST body. A successful response will return an  `authentication token`.</br></br>\nUse the `authentication token` in an `Authorization` header on all other Creditsafe Connect calls as proof of your authenticity.\n\n<h2>Environments</h2>Production Environment baseurl: <code> https://connect.creditsafe.com/v1 </code> </br> Sandbox Test Environment baseurl:  <code>https://connect.sandbox.creditsafe.com/v1</code>  <h2>Resources</h2> \n  <ul> \n    <li><a href=\"https://creditsafe.github.io/connect-docs/cs_connectv1-15.html\" target=\"_blank\">OpenAPI</a> specification.</li>\n    <li><a href=\"https://www.getpostman.com/collections/4406bbddb81c308db8ff\" target=\"_blank\">Postman Collection</a> of the most common example calls to Creditsafe Connect.</li> \n    <li><a href=\"https://connect-portal.creditsafe.com\" target=\"_blank\"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password and form requests.</li> \n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions\" target=\"_blank\"> Help Articles</a>  including: <ul><li><a href=\"https://help.creditsafeuk.com/en/support/solutions/7000007130\" target=\"_blank\">FAQs</a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000053487-connect-api-data-dictionaries\" target=\"_blank\"> Data Dictionaries </a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000054765-connect-api-data-availability-per-country\" target=\"_blank\"> Data Availability per Country </a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000054656-connect-api-feature-availability-per-country\" target=\"_blank\"> Feature Availability Matrix</a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000081984-connect-api-server-response-codes\" target=\"_blank\"> Connect API Response Codes </a></li>\n   </ul></ul><br>\n<br><h2>Versioning and Changes</h2><h3>Non-Breaking Changes</h3>These will be as a rule, additive functions or bug fixing. It is important that the code is integrated in such a way that it does not depend on which order items are returned.<h3>Breaking Changes</h3>This is when changes to the functionality will break the contract of the current API. This will invoke stakeholder communication and major version number update. "
   },
   "servers": [
     {
@@ -13,7 +13,6 @@
       "url": "https://connect.sandbox.creditsafe.com/v1"
     }
   ],
-
   "tags": [
     {
       "name": "Authentication",
@@ -46,7 +45,6 @@
     {
       "name": "Protect",
       "description": "The focus on screening clients and third parties is increasing. International regulators are demanding that firms improve their ongoing sanctions screening process. World Compliance data through Connect allows customers to mitigate risk around Anti-Bribery and Corruption under local and international regulations such as the UK Bribery Act, by enabling users to screen their third party agents, suppliers or employees against watch lists.  With World Compliance through Creditsafe Connect, compliance is easy, efficient and cost-effective, even as the regulatory mountain grows.<br><br> <a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000063160-integrating-with-protect#Profiles\" target=\"_blank\"> How to use Protect API Document </a>"
-
     },
     {
       "name": "Protect Profile",
@@ -177,7 +175,7 @@
           {
             "name": "language",
             "in": "query",
-            "description": "Only used for Countries where more than one Company Name exists for different languages e.g.  Japanese Kanji and English.<br>Country -  Languages Available<br>Brazil [BR] - EN & PT <br> Japan [JP] - EN & JA " ,
+            "description": "Only used for Countries where more than one Company Name exists for different languages e.g.  Japanese Kanji and English.<br>Country -  Languages Available<br>Brazil [BR] - EN & PT <br> Japan [JP] - EN & JA ",
             "schema": {
               "type": "string",
               "nullable": true,
@@ -624,8 +622,8 @@
             "content": {
               "application/json": {
                 "schema": {
-                    "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchemaCountry"
-                }  
+                  "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchemaCountry"
+                }
               }
             }
           },
@@ -1254,7 +1252,7 @@
         ],
         "description": "Endpoint to order an Image Document by Image ID.",
         "operationId": "companyImage",
-        "summary":"Company Image",
+        "summary": "Company Image",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -1536,11 +1534,25 @@
           {
             "name": "sections",
             "in": "query",
-            "description": "Specify a value to return a single section, or multiple-comma separated sections of the completed Fresh Investigation. Leave null to return all sections. Available sections; - companyIdentification - creditScore - contactInformation - directors - otherInformation - groupStructure - extendedGroupStructure - financialStatements - negativeInformation - additionalInformation - directorships - localFinancialStatements - paymentData - companySummary - alternateSummary",
+            "description": "Specify a value to return a single section, or multiple-comma separated sections of the completed Fresh Investigation. Leave null to return all sections. Available sections; - `companyIdentification` - `creditScore` - `contactInformation` - `directors` - `otherInformation` - `groupStructure` - `extendedGroupStructure` - `financialStatements` - `negativeInformation` - `additionalInformation`- `directorships` - `localFinancialStatements` - `paymentData` - `companySummary` - `alternateSummary`",
             "schema": {
               "type": "string"
             },
             "example": "companyIdentification,creditScore"
+          },
+          {
+            "name": "comments",
+            "in": "query",
+            "description": "Selects number of comments which should be returned with the order details.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "last",
+                "recent",
+                "none"
+              ],
+              "default": "last"
+            }
           }
         ],
         "responses": {
@@ -1754,7 +1766,7 @@
         ],
         "description": "Get all available notification event rules. Notification event rules allow you to control which events you wish to monitor for the `companies` contained within a given `portfolio`.",
         "operationId": "allEventRules",
-        "summary": "All EventRules",  
+        "summary": "All EventRules",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4978,14 +4990,14 @@
             "name": "q",
             "description": "Keyword search: It searches in the 'name' fields of the investigation.",
             "in": "query",
-            "schema":{
+            "schema": {
               "type": "string"
             }
           },
           {
             "name": "order",
             "in": "query",
-            "schema":{
+            "schema": {
               "type": "string",
               "enum": [
                 "asc",
@@ -4995,7 +5007,7 @@
           },
           {
             "name": "orderBy",
-            "in":"query",
+            "in": "query",
             "schema": {
               "type": "string",
               "enum": [
@@ -6057,37 +6069,37 @@
             }
           },
           "400": {
-           "description": "Bad Request",
+            "description": "Bad Request",
             "content": {
-             "application/json": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
-               }
+                }
               }
             }
           },
-        "401": {
-          "description": "Invalid Token",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+          "401": {
+            "description": "Invalid Token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
               }
             }
-          }
-        },
-        "403": {
-          "description": "Access Forbidden",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+          },
+          "403": {
+            "description": "Access Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
               }
             }
           }
         }
-      }
-    },
+      },
       "get": {
         "operationId": "listAllProtectProfiles",
         "summary": "List All Protect Profiles",
@@ -6404,7 +6416,6 @@
         }
       }
     },
-    
     "/protect/schedules": {
       "post": {
         "operationId": "createProtectSchedule",
@@ -6797,13 +6808,32 @@
                 "alert.accepted",
                 "alert.rejected",
                 "alert.received",
-                "profile.added",
-                "profile.created",
                 "investigation.accepted",
                 "investigation.created",
+                "investigation.rejected",
+                "investigation.removed",
                 "investigation.file_downloaded",
+                "investigation.risk_assigned",
+                "investigation.record_removed",
+                "investigation.note_removed",
+                "investigation.assigned_to",
+                "investigation.status",
+                "idv.file_downloaded",
+                "idv.gdc_search",
+                "note.created",
+                "profile.created",
+                "profile.added",
+                "profile.updated",
                 "schedule.created",
-                "schedule.removed"
+                "schedule.recharged",
+                "schedule.disabled",
+                "schedule.deleted",
+                "schedule.removed",
+                "schedule.updated",
+                "report.monitoring.requested",
+                "report.monitoring.submitted",
+                "report.monitoring.completed",
+                "report.monitoring.failed"          
               ]
             }
           },
@@ -6991,7 +7021,7 @@
         "requestBody": {
           "content": {
             "multipart/form-data": {
-               "schema": {
+              "schema": {
                 "required": [
                   "File"
                 ],
@@ -7012,7 +7042,6 @@
                     "format": "binary",
                     "description": "Uploads a file to the server in `csv` format. Ensure the file follows the same format as the template. ",
                     "nullable": true
-                    
                   }
                 }
               }
@@ -7333,7 +7362,6 @@
               "nullable": false,
               "enum": [
                 "template"
-               
               ],
               "x-schema": {
                 "$ref": "#/components/schemas/BatchUploadFileType"
@@ -7366,6 +7394,101 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/localSolutions/GB/landRegistry/{companyId}": {
+      "get": {
+        "tags": [
+          "Local Solutions"
+        ],
+        "operationId": "gbLandRegistry",
+        "summary": "GB Land Registry",
+        "description": "Allows users to return Land Registry details of a company.",
+        "parameters": [
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "description": "A company Safe Number or Connect ID.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "language",
+            "in": "query",
+            "description": "language the report is requested in.",
+            "schema": {
+              "pattern": "^[a-zA-Z]{2}$",
+              "type": "string",
+              "default": "en"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreditsafeLocalSolutionsGBLandRegistry"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Access forbidden"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Company not found"
+                  }
                 }
               }
             }
@@ -7977,12 +8100,12 @@
     },
     "/localSolutions/GB/CCDS/{companyId}": {
       "get": {
-        "operationId": "retrievesCCDSData",
-        "summary": "Retrieves CCDS Data",
+        "operationId": "financeAgreements",
+        "summary": "Finance Agreements",
         "tags": [
           "Local Solutions"
         ],
-        "description": "Gets CCDS data of the supplied company.",
+        "description": "Finance Agreements allows users to view data supplied via the CCDS scheme (Commercial Credit Data Sharing ).Full CCDS allows a user to view up to 48 months' of historical data on current account, loan and credit card facilities. The Financial footprint shows summarised credit activity data.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -8004,7 +8127,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Connect.BankMatch.CCDS"
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/Connect.footprintDataFinance"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Connect.fullFinanceData"
+                    }
+                  ]
                 }
               }
             }
@@ -12672,6 +12802,46 @@
         ],
         "type": "string"
       },
+      "Creditsafe.GlobalData.AddressDataReport": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "simpleValue": {
+            "type": "string"
+          },
+          "street": {
+            "type": "string"
+          },
+          "houseNumber": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "province": {
+            "type": "string"
+          },
+          "telephone": {
+            "type": "string"
+          },
+          "directMarketingOptOut": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "directMarketingOptIn": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "country": {
+            "$ref": "#/components/schemas/Creditsafe.GlobalData.CountryCode"
+          }
+        }
+      },
       "Creditsafe.GlobalData.AddressData": {
         "type": "object",
         "properties": {
@@ -12691,7 +12861,7 @@
             "type": "string"
           },
           "postCode": {
-            "type": "string" 
+            "type": "string"
           },
           "province": {
             "type": "string"
@@ -13398,18 +13568,18 @@
         "type": "object",
         "properties": {
           "mainAddress": {
-            "$ref": "#/components/schemas/Creditsafe.GlobalData.AddressData"
+            "$ref": "#/components/schemas/Creditsafe.GlobalData.AddressDataReport"
           },
           "otherAddresses": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Creditsafe.GlobalData.AddressData"
+              "$ref": "#/components/schemas/Creditsafe.GlobalData.AddressDataReport"
             }
           },
           "previousAddresses": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Creditsafe.GlobalData.AddressData"
+              "$ref": "#/components/schemas/Creditsafe.GlobalData.AddressDataReport"
             }
           },
           "emailAddresses": {
@@ -14502,7 +14672,7 @@
           {
             "type": "object",
             "properties": {
-              "correlationID": {
+              "correlationId": {
                 "type": "string"
               },
               "failedSections": {
@@ -14514,7 +14684,7 @@
               "report": {
                 "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.CompanyReport"
               },
-              "companyID": {
+              "companyId": {
                 "type": "string"
               },
               "dateOfOrder": {
@@ -14524,7 +14694,7 @@
               "language": {
                 "type": "string"
               },
-              "userID": {
+              "userId": {
                 "type": "integer"
               }
             }
@@ -15667,7 +15837,7 @@
               "schedule.removed"
             ]
           },
-          "userId":{
+          "userId": {
             "type": "integer",
             "format": "int32"
           },
@@ -16034,7 +16204,7 @@
             "type": "string",
             "nullable": true
           },
-          "screeningThreshold": { 
+          "screeningThreshold": {
             "description": "Default Threshold is 85. Can only enter the following options: 85, 90, 95, 100",
             "type": "integer",
             "format": "int32",
@@ -16280,7 +16450,7 @@
             "type": "boolean"
           },
           "isDisabled": {
-            "type":"boolean"
+            "type": "boolean"
           }
         }
       },
@@ -16536,7 +16706,7 @@
             "description": "Used for consumer search only. Can provide a second unique second person into the search. ",
             "allOf": [
               {
-              "$ref": "#/components/schemas/Connect.Identity.Person"
+                "$ref": "#/components/schemas/Connect.Identity.Person"
               }
             ]
           },
@@ -19435,7 +19605,6 @@
           }
         }
       },
-   
       "AMLSearch": {
         "description": "Search parameters for AML product",
         "properties": {
@@ -19699,11 +19868,12 @@
           }
         }
       },
-      "Connect.BankMatch.CcdsCompany": {
+      "Connect.creditSafeCcdsCompany": {
         "type": "object",
         "properties": {
           "creditSafeCompanyId": {
             "type": "string",
+            "example": "NI008172",
             "nullable": true
           }
         }
@@ -20023,6 +20193,7 @@
         }
       },
       "Connect.BankMatch.Data": {
+        "description": "Data provided by an alternative finance provider.",
         "type": "object",
         "properties": {
           "aggregations": {
@@ -20037,24 +20208,630 @@
           }
         }
       },
-      "Connect.BankMatch.CCDS": {
+      "Connect.footprintDataFinance": {
         "type": "object",
         "properties": {
+          "correlationId": {
+            "type": "string"
+          },
           "safeNumber": {
             "type": "string",
-            "nullable": true
+            "description": "Safe Number - Identifier for Companies in Creditsafe's Home Countries.",
+            "example": "UK07005751"
           },
-          "ccdsCompany": {
-            "$ref": "#/components/schemas/Connect.BankMatch.CcdsCompany"
+          "creditSafe": {
+            "type": "object",
+            "properties": {
+              "creditSafeCompanyId": {
+                "type": "string",
+                "example": "NI008172"
+              }
+            }
           },
           "overallAggregations": {
-            "$ref": "#/components/schemas/Connect.BankMatch.Totals"
+            "type": "object",
+            "$ref": "#/components/schemas/Connect.ccds.overallAggregations"
           },
           "bankData": {
-            "$ref": "#/components/schemas/Connect.BankMatch.Data"
+            "type": "object",
+            "description": "Data provided by 1 of the top 9 major banks in UK.",
+            "properties": {
+              "aggregations": {
+                "type": "object",
+                "$ref": "#/components/schemas/Connect.ccds.aggregations"
+              },
+              "facilities": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Connect.ccds.facilities"
+                }
+              }
+            }
           },
           "afpData": {
             "$ref": "#/components/schemas/Connect.BankMatch.Data"
+          },
+          "history": {
+            "description": "List of accounts connected to the company, snapshot of account at point in time each month.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Connect.ccds.history"
+            }
+          },
+          "footprintData":{
+            "description": "A version of a summarisation of companies account details which omits any sensitive data and can be shown to non-CCDS members.",
+            "type": "object",
+              "properties": {
+                "year": {
+                  "type": "object",
+                  "properties": {
+                    "month": {
+                      "type": "object",
+                      "properties": {
+                        "loans": {
+                          "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
+                        },
+                        "currentAccounts": {
+                          "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
+                        },
+                        "all": {
+                          "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
+                        },
+                        "creditCards": {
+                          "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+            "example":  {
+                    "2020": {
+                      "10": {
+                        "loans": {
+                            "ActiveAccounts": 10,
+                            "SettledAccounts": 1,
+                            "EarliestStartDate": "2016-08-17T00:00:00",
+                            "LatestStartDate": "2019-09-18T00:00:00"
+                            },
+                        "currentAccounts": {
+                            "ActiveAccounts": 1,
+                            "SettledAccounts": 0,
+                            "EarliestStartDate": "2012-07-03T00:00:00",
+                            "LatestStartDate": "2012-07-03T00:00:00"
+                            },
+                        "all": {
+                            "activeAccounts": 11,
+                            "settledAccounts": 1,
+                            "earliestStartDate": "2012-07-03T00:00:00",
+                            "latestStartDate": "2019-09-18T00:00:00"
+                            },
+                        "creditCards": {
+                            "activeAccounts": 0,
+                            "settledAccounts": 0
+                            }
+                      }
+                    }
+                }
+      }
+    }
+  }, 
+
+      "Connect.ccds.footprintDataFinance": {
+        "type": "object",
+        "properties": {
+          "activeAccounts": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "settledAccounts": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "earliestStartDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "latestStartDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      
+      "Connect.fullFinanceData": {
+        "type": "object",
+        "properties": {
+          "correlationId": {
+            "type": "string"
+          },
+          "safeNumber": {
+            "description": "Safe Number - Identifier for Companies in Creditsafe's Home Countries.",
+            "type": "string",
+            "example": "UK07005751"
+          },
+          "creditSafe": {
+            "type": "object",
+            "properties": {
+              "creditSafeCompanyId": {
+                "type": "string",
+                "example": "NI008172"
+              }
+            }
+          },
+          "overallAggregations": {
+            "type": "object",
+            "$ref": "#/components/schemas/Connect.ccds.overallAggregations"
+          },
+          "bankData": {
+            "type": "object",
+            "description": "Data provided by 1 of the top 9 major banks in UK.",
+            "properties": {
+              "aggregations": {
+                "type": "object",
+                "$ref": "#/components/schemas/Connect.ccds.aggregations"
+              },
+              "facilities": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Connect.ccds.facilities"
+                }
+              }
+            }
+          },
+          "afpData": {
+            "$ref": "#/components/schemas/Connect.BankMatch.Data"
+          },
+          "history": {
+            "description": "List of accounts connected to the company, snapshot of account at point in time each month.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Connect.ccds.history"
+            }
+          }
+        }
+      },
+      "Connect.ccds.overallAggregations": {
+        "description": "A summarisation of the companies account details.",
+        "type": "object",
+        "properties": {
+          "totalAccounts": {
+            "type": "integer",
+            "example": "33"
+          },
+          "totalBalance": {
+            "type": "integer",
+            "example": "-813844"
+          },
+          "totalOverdraftOrCreditLimit": {
+            "type": "integer",
+            "example": "250000"
+          },
+          "totalAverageBalance": {
+            "type": "integer",
+            "example": "273009"
+          },
+          "remainingBalance": {
+            "type": "integer",
+            "example": "485247"
+          }
+        }
+      },
+      "Connect.ccds.aggregations": {
+        "type": "object",
+        "properties": {
+          "totalCreditCards": {
+            "type": "object",
+            "properties": {
+              "totalAccounts": {
+                "type": "integer",
+                "example": "0"
+              },
+              "totalBalance": {
+                "type": "integer",
+                "example": "0"
+              },
+              "totalOverdraftOrCreditLimit": {
+                "type": "integer",
+                "example": "0"
+              },
+              "remainingBalance": {
+                "type": "integer",
+                "example": "0"
+              },
+              "totalAverageBalance": {
+                "type": "integer",
+                "example": "0"
+              }
+            }
+          },
+          "totalCurrentAccounts": {
+            "type": "object",
+            "properties": {
+              "totalAccounts": {
+                "type": "integer",
+                "example": "0"
+              },
+              "totalBalance": {
+                "type": "integer",
+                "example": "0"
+              },
+              "totalOverdraftOrCreditLimit": {
+                "type": "integer",
+                "example": "0"
+              },
+              "remainingBalance": {
+                "type": "integer",
+                "example": "0"
+              },
+              "totalAverageBalance": {
+                "type": "integer",
+                "example": "0"
+              }
+            }
+          },
+          "totalLoans": {
+            "type": "object",
+            "properties": {
+              "totalAccounts": {
+                "type": "integer",
+                "example": "0"
+              },
+              "totalBalance": {
+                "type": "integer",
+                "example": "0"
+              },
+              "totalOverdraftOrCreditLimit": {
+                "type": "integer",
+                "example": "0"
+              },
+              "totalAverageBalance": {
+                "type": "integer",
+                "example": "0"
+              }
+            }
+          },
+          "perOrganisationAggregations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "providerId": {
+                  "type": "string"
+                },
+                "creditCards": {
+                  "type": "object",
+                  "properties": {
+                    "totalAccounts": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "totalBalance": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "totalOverdraftOrCreditLimit": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "remainingBalance": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "totalAverageBalance": {
+                      "type": "integer",
+                      "example": "0"
+                    }
+                  }
+                },
+                "currentAccounts": {
+                  "type": "object",
+                  "properties": {
+                    "totalAccounts": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "totalBalance": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "totalOverdraftOrCreditLimit": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "remainingBalance": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "totalAverageBalance": {
+                      "type": "integer",
+                      "example": "0"
+                    }
+                  }
+                },
+                "loans": {
+                  "type": "object",
+                  "properties": {
+                    "totalAccounts": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "totalBalance": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "totalOverdraftOrCreditLimit": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "remainingBalance": {
+                      "type": "integer",
+                      "example": "0"
+                    },
+                    "totalAverageBalance": {
+                      "type": "integer",
+                      "example": "0"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Connect.ccds.facilities": {
+        "type": "object",
+        "properties": {
+          "startDateOfAgreement": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "currentBalance": {
+            "type": "integer",
+            "example": "0"
+          },
+          "actualCurrentBalance": {
+            "type": "integer",
+            "example": "0"
+          },
+          "originalDefaultBalance": {
+            "type": "integer",
+            "example": "0"
+          },
+          "creditOrOverdraftLimit": {
+            "type": "integer",
+            "example": "0"
+          },
+          "repaymentPeriod": {
+            "type": "integer",
+            "example": "0"
+          },
+          "paymentAmount": {
+            "type": "integer",
+            "example": "0"
+          },
+          "numberOfCashAdvances": {
+            "type": "integer",
+            "example": "0"
+          },
+          "valueOfCashAdvances": {
+            "type": "integer",
+            "example": "0"
+          },
+          "minimumBalance": {
+            "type": "integer",
+            "example": "0"
+          },
+          "actualMinimumBalance": {
+            "type": "integer",
+            "example": "0"
+          },
+          "maximumBalance": {
+            "type": "integer",
+            "example": "0"
+          },
+          "actualMaximumBalance": {
+            "type": "integer",
+            "example": "0"
+          },
+          "averageBalance": {
+            "type": "integer",
+            "example": "0"
+          },
+          "actualAverageBalance": {
+            "type": "integer",
+            "example": "0"
+          },
+          "creditTurnover": {
+            "type": "integer",
+            "example": "0"
+          },
+          "debitTurnover": {
+            "type": "integer",
+            "example": "0"
+          },
+          "rejectedPayments": {
+            "type": "integer",
+            "example": "0"
+          },
+          "maximumDurationOfExcess": {
+            "type": "integer",
+            "example": "0"
+          }
+        }
+      },
+      "Connect.ccds.history": {
+        "type": "object",
+        "properties": {
+          "businessTypeIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessName": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessAddress": {
+            "$ref": "#/components/schemas/Connect.BankMatch.BusinessAddress"
+          },
+          "additionalTradingStyle": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessTelephoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyRegistrationNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "vatNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "specialInstructionIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDateOfAgreement": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "currentBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "currentBalanceCreditIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "actualCurrentBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "facilityStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "originalDefaultBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "creditOrOverdraftLimit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "flagSettings": {
+            "type": "string",
+            "nullable": true
+          },
+          "transferredToConsolidatedDebtAccount": {
+            "type": "string",
+            "nullable": true
+          },
+          "repaymentPeriod": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "paymentAmount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "paymentFrequencyIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "numberOfCashAdvances": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "valueOfCashAdvances": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "minimumBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "minimumBalanceCreditIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "actualMinimumBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "maximumBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "maximumBalanceCreditIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "actualMaximumBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "averageBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "averageBalanceCreditIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "actualAverageBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "creditTurnover": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "creditTurnoverNetOrGrossIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "debitTurnover": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "debitTurnoverNetOrGrossIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "rejectedPayments": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "maximumDurationOfExcess": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "currentAccountReportingLevelIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "facilityType": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "facilityTypeCategory": {
+            "type": "string",
+            "nullable": true
+          },
+          "batchDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "date": {
+            "type": "string"
+          },
+          "facilityId": {
+            "type": "string",
+            "nullable": true
           }
         }
       },
@@ -21326,11 +22103,10 @@
         },
         "description": "Simple access forbidden message error response"
       },
-    
-      "ArrayOfConnectDataCleaningJob" : {
-        "type" : "array",
-        "items" : {
-          "$ref" : "#/components/schemas/ConnectDataCleaningJob"
+      "ArrayOfConnectDataCleaningJob": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ConnectDataCleaningJob"
         }
       },
       "ConnectDataCleaningJob": {
@@ -21765,7 +22541,7 @@
           }
         }
       },
-     "ConnectErrorResponsesAccessForbidden": {
+      "ConnectErrorResponsesAccessForbidden": {
         "type": "object",
         "properties": {
           "message": {
@@ -24413,6 +25189,38 @@
             },
             {
               "enrichment": "general.isHeadquarter"
+            }
+          ]
+        }
+      },
+      "CreditsafeLocalSolutionsGBLandRegistry": {
+        "type": "object",
+        "example": {
+          "totalSize": 64293,
+          "data": [
+            {
+              "rn": 1,
+              "address": "Land at Gorse Hill, Farningham, Dartford, Kent, South East",
+              "tenure": "Freehold",
+              "registeredTitle": "K945315",
+              "proprietorship": "Limited Company or Public Limited Company",
+              "correspondenceAddress": "Bridge House, 1 Walnut Tree Close, Guildford, Surrey GU1 4LZ, Ash House Falcon Road, Sowton, Exeter EX2 7LB",
+              "changeDate": "2015-08-20T00:00:00",
+              "propertyType": "Other",
+              "newlyBuild": "No",
+              "companyRegistrationNo": "09346363"
+            },
+            {
+              "rn": 2,
+              "address": "Land at Gorse Hill, Farningham, Dartford, Kent, South East",
+              "tenure": "Freehold",
+              "registeredTitle": "K945323",
+              "proprietorship": "Limited Company or Public Limited Company",
+              "correspondenceAddress": "Bridge House, 1 Walnut Tree Close, Guildford, Surrey GU1 4LZ, Ash House Falcon Road, Sowton, Exeter EX2 7LB",
+              "changeDate": "2015-08-20T00:00:00",
+              "propertyType": "Other",
+              "newlyBuild": "No",
+              "companyRegistrationNo": "09346363"
             }
           ]
         }
