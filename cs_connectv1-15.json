@@ -4225,6 +4225,258 @@
         }
       }
     },
+    "/decisionEngine/instances": {
+      "get": {
+        "tags": [
+          "Decision Engine"
+        ],
+        "description": "Returns all instances user has permission to access.",
+        "operationId": "returnsAllInstances",
+        "summary": "Returns All Available Instances",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "customerId",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetDecisionEngineInstancesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesResourceNotFoundRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/decisionEngine/instance/{guid}": {
+      "get": {
+        "tags": [
+          "Decision Engine"
+        ],
+        "description": "Returns instance user has permission to access.",
+        "operationId": "instanceConfiguration",
+        "summary": "Instance Configuration",
+        "parameters": [
+          {
+            "name": "guid",
+            "in": "path",
+            "required": true,
+            "description": "get results by guid.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesResourceNotFoundRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Decision Engine"
+        ],
+        "description": "Update the instances information.",
+        "operationId": "updateInstanceConfiguration",
+        "summary": "Update Instance Configuration",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDecisionEngineInstanceRequestBodyWithExample"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "guid",
+            "in": "path",
+            "required": true,
+            "description": "get results by guid.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesResourceNotFoundRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/decisionEngine/GUID": {
       "get": {
         "tags": [
@@ -6833,7 +7085,7 @@
                 "report.monitoring.requested",
                 "report.monitoring.submitted",
                 "report.monitoring.completed",
-                "report.monitoring.failed"          
+                "report.monitoring.failed"
               ]
             }
           },
@@ -20258,65 +20510,64 @@
               "$ref": "#/components/schemas/Connect.ccds.history"
             }
           },
-          "footprintData":{
+          "footprintData": {
             "description": "A version of a summarisation of companies account details which omits any sensitive data and can be shown to non-CCDS members.",
             "type": "object",
-              "properties": {
-                "year": {
-                  "type": "object",
-                  "properties": {
-                    "month": {
-                      "type": "object",
-                      "properties": {
-                        "loans": {
-                          "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
-                        },
-                        "currentAccounts": {
-                          "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
-                        },
-                        "all": {
-                          "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
-                        },
-                        "creditCards": {
-                          "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
-                        }
+            "properties": {
+              "year": {
+                "type": "object",
+                "properties": {
+                  "month": {
+                    "type": "object",
+                    "properties": {
+                      "loans": {
+                        "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
+                      },
+                      "currentAccounts": {
+                        "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
+                      },
+                      "all": {
+                        "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
+                      },
+                      "creditCards": {
+                        "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
                       }
                     }
                   }
                 }
-              },
-            "example":  {
-                    "2020": {
-                      "10": {
-                        "loans": {
-                            "ActiveAccounts": 10,
-                            "SettledAccounts": 1,
-                            "EarliestStartDate": "2016-08-17T00:00:00",
-                            "LatestStartDate": "2019-09-18T00:00:00"
-                            },
-                        "currentAccounts": {
-                            "ActiveAccounts": 1,
-                            "SettledAccounts": 0,
-                            "EarliestStartDate": "2012-07-03T00:00:00",
-                            "LatestStartDate": "2012-07-03T00:00:00"
-                            },
-                        "all": {
-                            "activeAccounts": 11,
-                            "settledAccounts": 1,
-                            "earliestStartDate": "2012-07-03T00:00:00",
-                            "latestStartDate": "2019-09-18T00:00:00"
-                            },
-                        "creditCards": {
-                            "activeAccounts": 0,
-                            "settledAccounts": 0
-                            }
-                      }
-                    }
+              }
+            },
+            "example": {
+              "2020": {
+                "10": {
+                  "loans": {
+                    "ActiveAccounts": 10,
+                    "SettledAccounts": 1,
+                    "EarliestStartDate": "2016-08-17T00:00:00",
+                    "LatestStartDate": "2019-09-18T00:00:00"
+                  },
+                  "currentAccounts": {
+                    "ActiveAccounts": 1,
+                    "SettledAccounts": 0,
+                    "EarliestStartDate": "2012-07-03T00:00:00",
+                    "LatestStartDate": "2012-07-03T00:00:00"
+                  },
+                  "all": {
+                    "activeAccounts": 11,
+                    "settledAccounts": 1,
+                    "earliestStartDate": "2012-07-03T00:00:00",
+                    "latestStartDate": "2019-09-18T00:00:00"
+                  },
+                  "creditCards": {
+                    "activeAccounts": 0,
+                    "settledAccounts": 0
+                  }
                 }
-      }
-    }
-  }, 
-
+              }
+            }
+          }
+        }
+      },
       "Connect.ccds.footprintDataFinance": {
         "type": "object",
         "properties": {
@@ -20338,7 +20589,6 @@
           }
         }
       },
-      
       "Connect.fullFinanceData": {
         "type": "object",
         "properties": {
@@ -22549,6 +22799,24 @@
           }
         },
         "description": "Simple access forbidden message error response"
+      },
+      "ConnectErrorResponsesResourceNotFoundRequest": {
+        "type": "object",
+        "description": "",
+        "properties": {
+          "correlationId": {
+            "description": "The unique identifier. (A UUID specified by RFC4122).",
+            "type": "string",
+            "format": "uuid"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string",
+            "description": "Provides further information on why the request was rejected"
+          }
+        }
       },
       "basic": {
         "type": "object",
@@ -25223,6 +25491,196 @@
               "companyRegistrationNo": "09346363"
             }
           ]
+        }
+      },
+      "GetDecisionEngineInstancesResponse": {
+        "type": "object",
+        "properties": {
+          "correlationId": {
+            "type": "string"
+          },
+          "instances": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "guid": {
+                  "type": "string"
+                },
+                "decisionTreeName": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "UpdateDecisionEngineInstanceRequestBodyWithExample": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/UpdateDecisionEngineInstanceRequestBody"
+          },
+          {
+            "type": "object",
+            "example": {
+              "$ref": "#/components/examples/UpdateDecisionEngineInstanceRequestBodyExample"
+            }
+          }
+        ]
+      },
+      "UpdateDecisionEngineInstanceRequestBody": {
+        "type": "object",
+        "properties": {
+          "templateId": {
+            "type": "string",
+            "required": true,
+            "example": "72a7e73e799a4c3ea2a8b89bd2002829"
+          },
+          "guid": {
+            "type": "string",
+            "required": true,
+            "example": "02dce1bbb81b11ed962c01ff1787b18e"
+          },
+          "decisionTreeName": {
+            "type": "string",
+            "required": true,
+            "example": "Test US after NL test update5"
+          },
+          "customerId": {
+            "type": "integer",
+            "example": 103361848
+          },
+          "inputParams": {
+            "type": "object"
+          },
+          "configurationVariables": {
+            "type": "object"
+          },
+          "scalarVariables": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "examples": {
+      "UpdateDecisionEngineInstanceRequestBodyExample": {
+        "value": {
+          "templateId": "72a7e73e799a4c3ea2a8b89bd2002829",
+          "guid": "232101f5cfbf11edb2a53f274007bfbe",
+          "decisionTreeName": "Default US-Test Tree",
+          "publilshed": true,
+          "customerId": 103361848,
+          "inputParams": {
+            "creditAmount": {
+              "labelName": "Sales Amount",
+              "failedStatus": 3,
+              "unavailableStatus": 2,
+              "isMandatory": true,
+              "orderInde": 100,
+              "fieldType": "Integer"
+            }
+          },
+          "configurationVariables": {
+            "companyStatus": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2
+            },
+            "internationalScore": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2,
+              "value": "B"
+            },
+            "riskScore": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2,
+              "value": 50
+            },
+            "dbt": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2,
+              "value": 1
+            },
+            "possibleOFAC": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2
+            },
+            "estimatedAnnualRevenue": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2,
+              "value": 1000
+            },
+            "yearsInBusiness": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2,
+              "value": 5
+            },
+            "derogatoryLegalFilingsCount": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2,
+              "value": 3
+            },
+            "derogatoryLegalFilingsValue": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2,
+              "value": 1000
+            },
+            "numberOfEmployees": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2,
+              "value": 1000
+            },
+            "bankruptcy": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2
+            },
+            "totalNumberOfTradeLines": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2,
+              "value": 25
+            },
+            "percentageOfTotalPastDue": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2,
+              "value": 15
+            },
+            "percentageSeverelyPastDue": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2,
+              "value": 10
+            },
+            "businessCompliance": {
+              "isRequired": false,
+              "failedStatus": null,
+              "unavailableStatus": 2,
+              "value": null
+            },
+            "directorCompliance": {
+              "isRequired": true,
+              "failedStatus": null,
+              "unavailableStatus": null,
+              "value": null
+            }
+          },
+          "scalarVariables": {
+            "creditLimitAdjustmentModifier": {
+              "isRequired": false,
+              "value": 1
+            }
+          }
         }
       }
     },
