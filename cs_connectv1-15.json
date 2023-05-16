@@ -4230,19 +4230,21 @@
         "tags": [
           "Decision Engine"
         ],
-        "description": "Returns all instances user has permission to access.",
+        "description": "Returns all instances (Decision Trees) a user has permission to access.",
         "operationId": "returnsAllInstances",
         "summary": "Returns All Available Instances",
         "parameters": [
           {
-            "name": "userId",
+            "name": "customerId",
+            "description": "The unique identifier of the customer. If used it will return all the Decision Trees associated to that customer.",
             "in": "query",
             "schema": {
               "type": "integer"
             }
           },
           {
-            "name": "customerId",
+            "name": "userId",
+            "description": "The unique identifier of the user. If used it will return all the Decision Trees that user has access to.",
             "in": "query",
             "schema": {
               "type": "integer"
@@ -4252,13 +4254,6 @@
         "responses": {
           "200": {
             "description": "",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4332,13 +4327,6 @@
         "responses": {
           "200": {
             "description": "",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -4419,13 +4407,6 @@
         "responses": {
           "200": {
             "description": "",
-            "headers": {
-              "Access-Control-Allow-Origin": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            },
             "content": {
               "application/json": {
                 "schema": {
@@ -25500,6 +25481,7 @@
             "type": "string"
           },
           "instances": {
+            "description": "The list of decision trees and GUID's available to user.",
             "type": "array",
             "items": {
               "type": "object",
@@ -25530,20 +25512,22 @@
       },
       "UpdateDecisionEngineInstanceRequestBody": {
         "type": "object",
+        "required": [
+          "templateId",
+          "guid",
+          "decisionTreeName"
+        ],
         "properties": {
           "templateId": {
             "type": "string",
-            "required": true,
             "example": "72a7e73e799a4c3ea2a8b89bd2002829"
           },
           "guid": {
             "type": "string",
-            "required": true,
             "example": "02dce1bbb81b11ed962c01ff1787b18e"
           },
           "decisionTreeName": {
             "type": "string",
-            "required": true,
             "example": "Test US after NL test update5"
           },
           "customerId": {
