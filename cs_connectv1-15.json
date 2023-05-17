@@ -10349,6 +10349,7 @@
                 },
                 "contactDetails": {
                   "type": "object",
+                  "description": "Contact details of the person who requested the investigation, and where the information will be sent.",
                   "properties": {
                     "name": {
                       "type": "string",
@@ -10369,6 +10370,7 @@
                 },
                 "status": {
                   "type": "object",
+                  "description": "The status of the investigation",
                   "properties": {
                     "code": {
                       "type": "string"
@@ -10379,10 +10381,12 @@
                   }
                 },
                 "consent": {
-                  "type": "boolean"
+                  "type": "boolean",
+                  "description": "Whether permission was granted by the requesting company to disclose the identity of the investigating party to the target company."
                 },
                 "searchCriteria": {
                   "type": "object",
+                  "description": "The search criteria used to perform the investigation",
                   "properties": {
                     "name": {
                       "type": "string",
