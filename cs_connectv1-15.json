@@ -10325,19 +10325,24 @@
               "type": "object",
               "properties": {
                 "orderID": {
-                  "type": "integer"
+                  "type": "integer",
+                  "description": "Fresh Investigation Unique Identifier"
                 },
                 "userID": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "Fresh Investigation user Identifier"
                 },
                 "creationDate": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "Fresh Investigation Creation Date"
                 },
                 "lastStatusChangeDate": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "Fresh Investigation Last Status Change Date"
                 },
                 "transactionID": {
-                  "type": "integer"
+                  "type": "integer",
+                  "description": "Fresh Investigation Internal Identifier"
                 },
                 "chargeReference": {
                   "type": "string"
@@ -10346,13 +10351,16 @@
                   "type": "object",
                   "properties": {
                     "name": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Contact name of the person who requested the investigation"
                     },
                     "emailAddress": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "The address to which the investigation report will be sent"
                     },
                     "telephoneNumber": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Your telephone number"
                     }
                   }
                 },
@@ -10377,7 +10385,8 @@
                   "type": "object",
                   "properties": {
                     "name": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Target company name"
                     },
                     "vatNo": {
                       "type": "string"
