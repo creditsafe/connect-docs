@@ -16,7 +16,7 @@
   "tags": [
     {
       "name": "Authentication",
-      "description": "Endpoint to generate a Bearer JWT (Authentication Token). It is mandatory to include this token under the Header `Authorization` When calling all other endpoints as proof of authenticity. Tokens can exist concurrently and persist for 1 hour from its issued time.<br><br><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000052598-what-to-do-if-you-see-access-denied-please-check-that-your-username-and-password-are-correct-\" target=\"_blank\">Authenticate Help - Access Denied.</a>"
+      "description": "Endpoint to generate a Bearer JWT (Authentication Token). It is mandatory to include this token under the Header `Authorization` When calling all other endpoints as proof of authenticity. Tokens can exist concurrently and persist for 1 hour from its issued time.<br><br><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000052598-what-to-do-if-you-see-access-denied-please-check-that-your-username-and-password-are-correct-\" target=\"_blank\">Authenticate Help - Access Denied.</a>."
     },
     {
       "name": "Companies",
@@ -126,6 +126,7 @@
               }
             }
           },
+
           "401": {
             "description": "",
             "content": {
@@ -4318,7 +4319,7 @@
             "name": "guid",
             "in": "path",
             "required": true,
-            "description": "get results by guid.",
+            "description": "Get results by guid.",
             "schema": {
               "type": "string"
             }
@@ -25533,18 +25534,22 @@
         "properties": {
           "templateId": {
             "type": "string",
+            "description": "The template ID of the decision tree to be updated.",
             "example": "72a7e73e799a4c3ea2a8b89bd2002829"
           },
           "guid": {
             "type": "string",
+            "description": "The GUID to be updated.",
             "example": "02dce1bbb81b11ed962c01ff1787b18e"
           },
           "decisionTreeName": {
             "type": "string",
+            "description": "The name of the decision tree to be updated.",
             "example": "Test US after NL test update5"
           },
           "customerId": {
             "type": "integer",
+            "description": "The customer ID to be updated.",
             "example": 103361848
           },
           "inputParams": {
