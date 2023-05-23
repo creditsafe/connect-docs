@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Creditsafe Connect",
-    "version": "1.8.4",
+    "version": "1.8.5",
     "description": "Last Updated: 05th May 2023<br><br>Creditsafe Connect is a REST API that provides access to the <a href=\"https://www.creditsafe.com/gb/en/more/about/our-data.html\" target=\"_blank\">Creditsafe Global Company Database.</a> This allows you to: <ul><li>Control your master data</li><li>Utilize up-to-date Business and Director information, enhancing your onboarding and qualification processes</li><li>Receive alerts when your customer's and supplier's Credit Report changes</li></ul><br>Check the status of Creditsafe Services <a href=\"https://status.creditsafe.com/\" target=\"_blank\">HERE</a>   <h2>Customer Feedback</h2> Use the buttons below to let us know what you think of this documentation. Please leave comments in your feedback for the author to consider for future versions.<br><br><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=f49570f5&embed_data=dGVtcGVyYXR1cmVfaWQ9MSZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"> <img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/gold.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=601a6fd1&embed_data=dGVtcGVyYXR1cmVfaWQ9MiZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/green.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=f1f7701c&embed_data=dGVtcGVyYXR1cmVfaWQ9MyZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/amber.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=73951e8b&embed_data=dGVtcGVyYXR1cmVfaWQ9NCZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/red.png\" /></a> <br><br> Selecting one of the buttons above will open a new tab to the feedback portal. <h2>Quick Start</h2> To start your Creditsafe Connect API integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>By default, you will have been setup on our Sandbox environment.</br></br>\nUsing a REST API client construct an `/authenticate` POST request and enter your username & password (case-sensitive) into the POST body. A successful response will return an  `authentication token`.</br></br>\nUse the `authentication token` in an `Authorization` header on all other Creditsafe Connect calls as proof of your authenticity.\n\n<h2>Environments</h2>Production Environment baseurl: <code> https://connect.creditsafe.com/v1 </code> </br> Sandbox Test Environment baseurl:  <code>https://connect.sandbox.creditsafe.com/v1</code>  <h2>Resources</h2> \n  <ul> \n    <li><a href=\"https://creditsafe.github.io/connect-docs/cs_connectv1-15.html\" target=\"_blank\">OpenAPI</a> specification.</li>\n    <li><a href=\"https://www.getpostman.com/collections/4406bbddb81c308db8ff\" target=\"_blank\">Postman Collection</a> of the most common example calls to Creditsafe Connect.</li> \n    <li><a href=\"https://connect-portal.creditsafe.com\" target=\"_blank\"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password and form requests.</li> \n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions\" target=\"_blank\"> Help Articles</a>  including: <ul><li><a href=\"https://help.creditsafeuk.com/en/support/solutions/7000007130\" target=\"_blank\">FAQs</a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000053487-connect-api-data-dictionaries\" target=\"_blank\"> Data Dictionaries </a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000054765-connect-api-data-availability-per-country\" target=\"_blank\"> Data Availability per Country </a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000054656-connect-api-feature-availability-per-country\" target=\"_blank\"> Feature Availability Matrix</a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000081984-connect-api-server-response-codes\" target=\"_blank\"> Connect API Response Codes </a></li>\n   </ul></ul><br>\n<br><h2>Versioning and Changes</h2><h3>Non-Breaking Changes</h3>These will be as a rule, additive functions or bug fixing. It is important that the code is integrated in such a way that it does not depend on which order items are returned.<h3>Breaking Changes</h3>This is when changes to the functionality will break the contract of the current API. This will invoke stakeholder communication and major version number update. "
   },
   "servers": [
@@ -16,7 +16,7 @@
   "tags": [
     {
       "name": "Authentication",
-      "description": "Endpoint to generate a Bearer JWT (Authentication Token). It is mandatory to include this token under the Header `Authorization` When calling all other endpoints as proof of authenticity. Tokens can exist concurrently and persist for 1 hour from its issued time.<br><br><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000052598-what-to-do-if-you-see-access-denied-please-check-that-your-username-and-password-are-correct-\" target=\"_blank\">Authenticate Help - Access Denied.</a>"
+      "description": "Endpoint to generate a Bearer JWT (Authentication Token). It is mandatory to include this token under the Header `Authorization` When calling all other endpoints as proof of authenticity. Tokens can exist concurrently and persist for 1 hour from its issued time.<br><br><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000052598-what-to-do-if-you-see-access-denied-please-check-that-your-username-and-password-are-correct-\" target=\"_blank\">Authenticate Help - Access Denied.</a>."
     },
     {
       "name": "Companies",
@@ -1582,6 +1582,469 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteFreshInvestigations",
+        "summary": "Delete Fresh Investigations",
+        "tags": [
+          "Fresh Investigations"
+        ],
+        "description": "Deletes specified investigations.",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "description": "Investigation id.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteFreshInvetigationsByOrderId"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "updateFreshInvestigationReportContent",
+        "summary": "Update FreshInvestigation Report Content",
+        "tags": [
+          "Fresh Investigations"
+        ],
+        "description": "Update the Fresh Investigation Report data for a specific order, after the order has a status of delivered.",
+        "parameters": [
+          {
+            "name": "orderId",
+            "description": "Fresh investigation orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConnectUpdateFreshInvestigation"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Investigation Report.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Success response of updated fresh investigation.",
+                      "example": "FreshInvestigation OrderId is being updated"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Resource not found"
+                    },
+                    "details": {
+                      "type": "string",
+                      "description": "Provides further information on why the request was rejected"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/freshinvestigations/{orderId}/attachments'": {
+      "post": {
+        "operationId": "uploadAttachmentsForFreshInvestigationOrderId",
+        "summary": "Upload attachments for fresh investigation orderId",
+        "tags": [
+          "Fresh Investigations"
+        ],
+        "description": "Returns the status of attachment upload for the partcular order",
+        "parameters": [
+          {
+            "name": "orderId",
+            "description": "Fresh investigation orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/FreshInvestigationAttachmentUploadForOrderRequest"
+              },
+              "example": {
+                "file": "FILE_PATH"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FreshInvestigationAttachmentUploadForOrderResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "getAttachmentsForTheGivenFreshInvestigationOrderId",
+        "summary": "Get attachments for the given fresh investigation orderId",
+        "tags": [
+          "Fresh Investigations"
+        ],
+        "description": "Returns attachments available for that particular order",
+        "parameters": [
+          {
+            "name": "orderId",
+            "description": "fresh investigation orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FreshInvestigationGetAttachmentsForOrderResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/freshinvestigations/{orderId}/attachments/{id}": {
+      "get": {
+        "operationId": "getAttachmentForTheGivenFreshInvestigationAttachmentId",
+        "summary": "Get attachment for the given fresh investigation attachment Id",
+        "tags": [
+          "Fresh Investigations"
+        ],
+        "description": "Retrieve attachment for the given attachmentId",
+        "parameters": [
+          {
+            "name": "orderId",
+            "description": "fresh investigation orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "description": "fresh investigation attachment id for the given order",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Attachment as a binary stream.",
+            "content": {
+              "application/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreditsafeGlobalDataCoreAttachmentBinaryAttachment"
+                }
+              },
+              "text/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreditsafeGlobalDataCoreAttachmentBinaryAttachment"
+                }
+              },
+              "image/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreditsafeGlobalDataCoreAttachmentBinaryAttachment"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/freshinvestigations/{orderId}/comments": {
+      "post": {
+        "operationId": "commentsForFreshInvestigationOrderId",
+        "summary": "Comments for fresh investigation orderId",
+        "tags": [
+          "Fresh Investigations"
+        ],
+        "description": "Returns the status of comments for the particular order",
+        "parameters": [
+          {
+            "name": "orderId",
+            "description": "fresh investigation orderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FreshInvestigationCommentsForOrderRequest"
+              },
+              "example": {
+                "comments": "comments by user"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FreshInvestigationCommentsForOrderResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "retrieveCommentsOfSpecifiedFreshInvestigationReport",
+        "summary": "Retrieve comments of specified FreshInvestigation Report",
+        "tags": [
+          "Fresh Investigations"
+        ],
+        "description": "Returns the Fresh Investigation Report comments for a specific order.",
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "description": "FreshInvestigation Report Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Investigation Report.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetFreshInvestigationCommentsByOrderIdResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
                 }
               }
             }
@@ -4225,6 +4688,239 @@
         }
       }
     },
+    "/decisionEngine/instances": {
+      "get": {
+        "tags": [
+          "Decision Engine"
+        ],
+        "description": "Returns all instances (Decision Trees) a user has permission to access.",
+        "operationId": "returnsAllInstances",
+        "summary": "Returns All Available Instances",
+        "parameters": [
+          {
+            "name": "customerId",
+            "description": "The unique identifier of the customer. If used it will return all the Decision Trees associated to that customer.",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "userId",
+            "description": "The unique identifier of the user. If used it will return all the Decision Trees that user has access to.",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetDecisionEngineInstancesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesResourceNotFoundRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/decisionEngine/instance/{guid}": {
+      "get": {
+        "tags": [
+          "Decision Engine"
+        ],
+        "description": "Returns instance user has permission to access.",
+        "operationId": "instanceConfiguration",
+        "summary": "Instance Configuration",
+        "parameters": [
+          {
+            "name": "guid",
+            "in": "path",
+            "required": true,
+            "description": "Get results by guid.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesResourceNotFoundRequest"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Decision Engine"
+        ],
+        "description": "Update the instances information.",
+        "operationId": "updateInstanceConfiguration",
+        "summary": "Update Instance Configuration",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDecisionEngineInstanceRequestBodyWithExample"
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "guid",
+            "in": "path",
+            "required": true,
+            "description": "get results by guid.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesBadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesInvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesAccessForbidden"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConnectErrorResponsesResourceNotFoundRequest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/decisionEngine/GUID": {
       "get": {
         "tags": [
@@ -6833,7 +7529,7 @@
                 "report.monitoring.requested",
                 "report.monitoring.submitted",
                 "report.monitoring.completed",
-                "report.monitoring.failed"          
+                "report.monitoring.failed"
               ]
             }
           },
@@ -10092,34 +10788,43 @@
               "type": "object",
               "properties": {
                 "orderID": {
-                  "type": "integer"
+                  "type": "integer",
+                  "description": "Fresh Investigation Unique Identifier"
                 },
                 "userID": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "Fresh Investigation user Identifier"
                 },
                 "creationDate": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "Fresh Investigation Creation Date"
                 },
                 "lastStatusChangeDate": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "Fresh Investigation Last Status Change Date"
                 },
                 "transactionID": {
-                  "type": "integer"
+                  "type": "integer",
+                  "description": "Fresh Investigation Internal Identifier"
                 },
                 "chargeReference": {
                   "type": "string"
                 },
                 "contactDetails": {
                   "type": "object",
+                  "description": "Contact details of the person who requested the investigation, and where the information will be sent.",
                   "properties": {
                     "name": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Contact name of the person who requested the investigation"
                     },
                     "emailAddress": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "The address to which the investigation report will be sent"
                     },
                     "telephoneNumber": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Your telephone number"
                     }
                   }
                 },
@@ -10128,6 +10833,7 @@
                 },
                 "status": {
                   "type": "object",
+                  "description": "The status of the investigation",
                   "properties": {
                     "code": {
                       "type": "string"
@@ -10138,13 +10844,16 @@
                   }
                 },
                 "consent": {
-                  "type": "boolean"
+                  "type": "boolean",
+                  "description": "Whether permission was granted by the requesting company to disclose the identity of the investigating party to the target company."
                 },
                 "searchCriteria": {
                   "type": "object",
+                  "description": "The search criteria used to perform the investigation",
                   "properties": {
                     "name": {
-                      "type": "string"
+                      "type": "string",
+                      "description": "Target company name"
                     },
                     "vatNo": {
                       "type": "string"
@@ -20258,65 +20967,64 @@
               "$ref": "#/components/schemas/Connect.ccds.history"
             }
           },
-          "footprintData":{
+          "footprintData": {
             "description": "A version of a summarisation of companies account details which omits any sensitive data and can be shown to non-CCDS members.",
             "type": "object",
-              "properties": {
-                "year": {
-                  "type": "object",
-                  "properties": {
-                    "month": {
-                      "type": "object",
-                      "properties": {
-                        "loans": {
-                          "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
-                        },
-                        "currentAccounts": {
-                          "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
-                        },
-                        "all": {
-                          "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
-                        },
-                        "creditCards": {
-                          "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
-                        }
+            "properties": {
+              "year": {
+                "type": "object",
+                "properties": {
+                  "month": {
+                    "type": "object",
+                    "properties": {
+                      "loans": {
+                        "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
+                      },
+                      "currentAccounts": {
+                        "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
+                      },
+                      "all": {
+                        "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
+                      },
+                      "creditCards": {
+                        "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
                       }
                     }
                   }
                 }
-              },
-            "example":  {
-                    "2020": {
-                      "10": {
-                        "loans": {
-                            "ActiveAccounts": 10,
-                            "SettledAccounts": 1,
-                            "EarliestStartDate": "2016-08-17T00:00:00",
-                            "LatestStartDate": "2019-09-18T00:00:00"
-                            },
-                        "currentAccounts": {
-                            "ActiveAccounts": 1,
-                            "SettledAccounts": 0,
-                            "EarliestStartDate": "2012-07-03T00:00:00",
-                            "LatestStartDate": "2012-07-03T00:00:00"
-                            },
-                        "all": {
-                            "activeAccounts": 11,
-                            "settledAccounts": 1,
-                            "earliestStartDate": "2012-07-03T00:00:00",
-                            "latestStartDate": "2019-09-18T00:00:00"
-                            },
-                        "creditCards": {
-                            "activeAccounts": 0,
-                            "settledAccounts": 0
-                            }
-                      }
-                    }
+              }
+            },
+            "example": {
+              "2020": {
+                "10": {
+                  "loans": {
+                    "ActiveAccounts": 10,
+                    "SettledAccounts": 1,
+                    "EarliestStartDate": "2016-08-17T00:00:00",
+                    "LatestStartDate": "2019-09-18T00:00:00"
+                  },
+                  "currentAccounts": {
+                    "ActiveAccounts": 1,
+                    "SettledAccounts": 0,
+                    "EarliestStartDate": "2012-07-03T00:00:00",
+                    "LatestStartDate": "2012-07-03T00:00:00"
+                  },
+                  "all": {
+                    "activeAccounts": 11,
+                    "settledAccounts": 1,
+                    "earliestStartDate": "2012-07-03T00:00:00",
+                    "latestStartDate": "2019-09-18T00:00:00"
+                  },
+                  "creditCards": {
+                    "activeAccounts": 0,
+                    "settledAccounts": 0
+                  }
                 }
-      }
-    }
-  }, 
-
+              }
+            }
+          }
+        }
+      },
       "Connect.ccds.footprintDataFinance": {
         "type": "object",
         "properties": {
@@ -20338,7 +21046,6 @@
           }
         }
       },
-      
       "Connect.fullFinanceData": {
         "type": "object",
         "properties": {
@@ -22549,6 +23256,24 @@
           }
         },
         "description": "Simple access forbidden message error response"
+      },
+      "ConnectErrorResponsesResourceNotFoundRequest": {
+        "type": "object",
+        "description": "",
+        "properties": {
+          "correlationId": {
+            "description": "The unique identifier. (A UUID specified by RFC4122).",
+            "type": "string",
+            "format": "uuid"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string",
+            "description": "Provides further information on why the request was rejected"
+          }
+        }
       },
       "basic": {
         "type": "object",
@@ -25223,6 +25948,450 @@
               "companyRegistrationNo": "09346363"
             }
           ]
+        }
+      },
+      "GetDecisionEngineInstancesResponse": {
+        "type": "object",
+        "properties": {
+          "correlationId": {
+            "type": "string"
+          },
+          "instances": {
+            "description": "The list of decision trees and GUID's available to user.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "guid": {
+                  "type": "string"
+                },
+                "decisionTreeName": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "UpdateDecisionEngineInstanceRequestBodyWithExample": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/UpdateDecisionEngineInstanceRequestBody"
+          },
+          {
+            "type": "object",
+            "example": {
+              "$ref": "#/components/examples/UpdateDecisionEngineInstanceRequestBodyExample"
+            }
+          }
+        ]
+      },
+      "UpdateDecisionEngineInstanceRequestBody": {
+        "type": "object",
+        "required": [
+          "templateId",
+          "guid",
+          "decisionTreeName"
+        ],
+        "properties": {
+          "templateId": {
+            "type": "string",
+            "description": "The template ID of the decision tree to be updated.",
+            "example": "72a7e73e799a4c3ea2a8b89bd2002829"
+          },
+          "guid": {
+            "type": "string",
+            "description": "The GUID to be updated.",
+            "example": "02dce1bbb81b11ed962c01ff1787b18e"
+          },
+          "decisionTreeName": {
+            "type": "string",
+            "description": "The name of the decision tree to be updated.",
+            "example": "Test US after NL test update5"
+          },
+          "customerId": {
+            "type": "integer",
+            "description": "The customer ID to be updated.",
+            "example": 103361848
+          },
+          "inputParams": {
+            "type": "object"
+          },
+          "configurationVariables": {
+            "type": "object"
+          },
+          "scalarVariables": {
+            "type": "object"
+          }
+        }
+      },
+      "DeleteFreshInvetigationsByOrderId": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "ConnectUpdateFreshInvestigation": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "consent": {
+            "type": "boolean",
+            "description": "Including this allows Creditsafe to disclose your company details to the target company in the aim of improving the quality of our Investigation Report"
+          },
+          "contactInfo": {
+            "$ref": "#/components/schemas/ConnectFreshInvInvestigationContactInfo"
+          },
+          "chargeReference": {
+            "type": "string",
+            "description": "Free text field to add your own personal reference to the order"
+          },
+          "searchCriteria": {
+            "$ref": "#/components/schemas/ConnectFreshInvInvestigationCompanyData"
+          },
+          "pendingInfo": {
+            "type": "object",
+            "description": "PendingInfo property contains the information of respective sections, that someone has requested respective information to be modified.",
+            "properties": {
+              "contactDetails": {
+                "description": "Your Contact details of fresh investigation for updating.",
+                "$ref": "#/components/schemas/ConnectFreshInvInvestigationContactInfo"
+              },
+              "searchCriteria": {
+                "description": "Search criteria details of the company.",
+                "$ref": "#/components/schemas/ConnectFreshInvInvestigationCompanyData"
+              }
+            }
+          }
+        }
+      },
+      "ConnectFreshInvInvestigationContactInfo": {
+        "description": "Your contact information",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Your name",
+            "nullable": false
+          },
+          "emailAddress": {
+            "type": "string",
+            "description": "The address where Investigation creation confirmations are sent",
+            "nullable": false
+          },
+          "telephoneNumber": {
+            "type": "string",
+            "description": "Your contact number",
+            "nullable": true
+          },
+          "company": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "your company information",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Your company name",
+                "nullable": false
+              },
+              "number": {
+                "type": "string",
+                "nullable": false,
+                "description": "Your company VAT number/Reg Number/Tax Number"
+              }
+            }
+          }
+        }
+      },
+      "ConnectFreshInvInvestigationCompanyData": {
+        "type": "object",
+        "additionalProperties": false,
+        "description": "Details on the company.",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Company name."
+          },
+          "additionalInfo": {
+            "type": "string",
+            "description": "Further details on the company."
+          },
+          "telephoneNumber": {
+            "type": "string",
+            "description": "Company telephone number"
+          },
+          "address": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "Company address",
+            "properties": {
+              "simple": {
+                "type": "string"
+              },
+              "postcode": {
+                "type": "string"
+              },
+              "city": {
+                "type": "string"
+              }
+            }
+          },
+          "regNo": {
+            "type": "string",
+            "description": "Company registration number"
+          },
+          "vatNo": {
+            "type": "string",
+            "description": "Company VAT number"
+          },
+          "countryCode": {
+            "$ref": "#/components/schemas/Creditsafe.GlobalData.CountryCode"
+          }
+        }
+      },
+      "FreshInvestigationAttachmentUploadForOrderRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "importFile": {
+            "type": "string",
+            "format": "binary",
+            "description": "The file which we want to attach to the fresh investigation order"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the file which we want to attach to the fresh investigation order"
+          }
+        }
+      },
+      "FreshInvestigationAttachmentUploadForOrderResponse": {
+        "description": "Attachment upload status for the order",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "correlationId": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "details": {
+            "type": "string"
+          }
+        }
+      },
+      "FreshInvestigationGetAttachmentsForOrderResponse": {
+        "description": "Attachments for the fresh investigation order",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "correlationId": {
+            "type": "string"
+          },
+          "Attachments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "fileName": {
+                  "type": "string"
+                },
+                "fileType": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "FreshInvestigationCommentsForOrderRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "comments": {
+            "description": "comments for fresh investigation orderId",
+            "type": "string"
+          }
+        }
+      },
+      "FreshInvestigationCommentsForOrderResponse": {
+        "description": "comments for the fresh investigation orderId",
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "correlationId": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "GetFreshInvestigationCommentsByOrderIdResponse": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "description": "Total number of comments for a FreshInvestigation Report"
+          },
+          "comments": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "userID": {
+                  "type": "string",
+                  "example": "CSC_123456",
+                  "description": "user id"
+                },
+                "comment": {
+                  "type": "string",
+                  "example": "testing comments",
+                  "description": "comments about the FreshInvestigation Report"
+                },
+                "creationDate": {
+                  "type": "string",
+                  "example": "2023-03-10T05:44:06.000Z",
+                  "description": "The time when comment has been posted."
+                }
+              }
+            }
+          }
+        }
+      },
+      "CreditsafeGlobalDataCoreAttachmentBinaryAttachment": {
+        "type": "string",
+        "format": "binary"
+      }
+    },
+    "examples": {
+      "UpdateDecisionEngineInstanceRequestBodyExample": {
+        "value": {
+          "templateId": "72a7e73e799a4c3ea2a8b89bd2002829",
+          "guid": "232101f5cfbf11edb2a53f274007bfbe",
+          "decisionTreeName": "Default US-Test Tree",
+          "publilshed": true,
+          "customerId": 103361848,
+          "inputParams": {
+            "creditAmount": {
+              "labelName": "Sales Amount",
+              "failedStatus": 3,
+              "unavailableStatus": 2,
+              "isMandatory": true,
+              "orderInde": 100,
+              "fieldType": "Integer"
+            }
+          },
+          "configurationVariables": {
+            "companyStatus": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2
+            },
+            "internationalScore": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2,
+              "value": "B"
+            },
+            "riskScore": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2,
+              "value": 50
+            },
+            "dbt": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2,
+              "value": 1
+            },
+            "possibleOFAC": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2
+            },
+            "estimatedAnnualRevenue": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2,
+              "value": 1000
+            },
+            "yearsInBusiness": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2,
+              "value": 5
+            },
+            "derogatoryLegalFilingsCount": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2,
+              "value": 3
+            },
+            "derogatoryLegalFilingsValue": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2,
+              "value": 1000
+            },
+            "numberOfEmployees": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2,
+              "value": 1000
+            },
+            "bankruptcy": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2
+            },
+            "totalNumberOfTradeLines": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2,
+              "value": 25
+            },
+            "percentageOfTotalPastDue": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2,
+              "value": 15
+            },
+            "percentageSeverelyPastDue": {
+              "isRequired": true,
+              "failedStatus": 2,
+              "unavailableStatus": 2,
+              "value": 10
+            },
+            "businessCompliance": {
+              "isRequired": false,
+              "failedStatus": null,
+              "unavailableStatus": 2,
+              "value": null
+            },
+            "directorCompliance": {
+              "isRequired": true,
+              "failedStatus": null,
+              "unavailableStatus": null,
+              "value": null
+            }
+          },
+          "scalarVariables": {
+            "creditLimitAdjustmentModifier": {
+              "isRequired": false,
+              "value": 1
+            }
+          }
         }
       }
     },
