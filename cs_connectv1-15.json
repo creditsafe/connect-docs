@@ -466,7 +466,7 @@
           {
             "name": "includeIndicators",
             "in": "query",
-            "description": "Optional parameter to include the three following indicator scores in to a company report - `Covid Score` , `Financial Strength` , `Estimated Turnover`<br> Note: Indicators are not available for countries - CN, ES and NO",
+            "description": "Optional parameter to include the indicator scores in to a company report - `Covid Score` , `Financial Strength` , `Estimated Turnover`<br> Note: Indicators are not available for countries - CN, ES and NO",
             "schema": {
               "type": "boolean",
               "default": false
@@ -14325,6 +14325,9 @@
             "changeDate": {
               "type": "string",
               "format": "date-time"
+            },
+            "industryComparison": {
+              "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.IndicatorIndustryComparison"
             }
           }
         }
@@ -17148,10 +17151,6 @@
             "description": "Can only enter the following options: 85, 90, 95, 100"
           },
           "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "lastRun": {
             "type": "string",
             "format": "date-time"
           },
@@ -21770,10 +21769,6 @@
             "type": "string",
             "format": "date-time"
           },
-          "lastRun": {
-            "type": "string",
-            "format": "date-time"
-          },
           "isEmailRequired": {
             "type": "boolean"
           }
@@ -26271,6 +26266,30 @@
       "CreditsafeGlobalDataCoreAttachmentBinaryAttachment": {
         "type": "string",
         "format": "binary"
+      },
+      "Creditsafe.GlobalData.Reports.IndicatorIndustryComparison": {
+        "type": "object",
+        "properties": {
+          "sectorCode": {
+            "type": "string"
+          },
+          "sectorAverage": {
+            "type": "string"
+          },
+          "sectorCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "totalAverage": {
+            "type": "string"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        }
       }
     },
     "examples": {
