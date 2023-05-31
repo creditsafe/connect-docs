@@ -104,7 +104,7 @@
         "tags": [
           "Authentication"
         ],
-        "description": "Supply username and password to generate Authentication Token. <br><br><h3>Rate Limiting Authenticate</h3>Rate limiting has been made active on the authenticate endpoint. The following basis makes up the rate limiting which will need to be accounted for:<br><br><li>5 of the same invalid requests are allowed within 2 minutes.<li> After 5 invalid requests, customer will get 429 HTTP Status for the same request.<li>After 2 minutes, you can re-call the endpoint and will get 401s (as the credentials are invalid)",
+        "description": "Supply username and password to generate Authentication Token. <br><br><h3>Rate Limiting Authenticate</h3>Rate limiting has been made active on the authenticate endpoint. The following basis makes up the rate limiting which will need to be accounted for:<br><br><li>5 of the same invalid requests are allowed within 2 minutes.<li> After 5 invalid requests, customer will get 429 HTTP Status for the same request.<li>After 2 minutes, you can re-call the endpoint and will get 401s (as the credentials are invalid).",
         "requestBody": {
           "content": {
             "application/json": {
@@ -368,6 +368,7 @@
           {
             "name": "customData",
             "in": "query",
+            "description": "Not currently used.",
             "schema": {
               "type": "string",
               "nullable": true
@@ -863,6 +864,61 @@
         }
       }
     },
+    "/people/searchcriteria": {
+      "get": {
+        "tags": [
+          "People/Directors"
+        ],
+        "description": "Returns the set of available People Search parameters/fields for a provided list of countries.",
+        "operationId": "people/DirectorSearchCriteria",
+        "summary": "People/Director Search Criteria",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "countries",
+            "in": "query",
+            "description": "A comma separated list of ISO/Alpha 2 format country codes, or singular country Code. e.g. US,GB will return the common searchable People/Director fields in the United States and Great Britain.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchemaSetDirector"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/people": {
       "get": {
         "tags": [
@@ -1058,61 +1114,7 @@
         }
       }
     },
-    "/people/searchcriteria": {
-      "get": {
-        "tags": [
-          "People/Directors"
-        ],
-        "description": "Returns the set of available People Search parameters/fields for a provided list of countries.",
-        "operationId": "people/DirectorSearchCriteria",
-        "summary": "People/Director Search Criteria",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "countries",
-            "in": "query",
-            "description": "A comma separated list of ISO/Alpha 2 format country codes, or singular country Code. e.g. US,GB will return the common searchable People/Director fields in the United States and Great Britain.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchemaSetDirector"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
+
     "/images/companies": {
       "get": {
         "tags": [
@@ -1753,7 +1755,7 @@
         "tags": [
           "Fresh Investigations"
         ],
-        "description": "Returns the status of attachment upload for the partcular order",
+        "description": "Returns the status of attachment upload for the partcular order.",
         "parameters": [
           {
             "name": "orderId",
@@ -1817,7 +1819,7 @@
         "tags": [
           "Fresh Investigations"
         ],
-        "description": "Returns attachments available for that particular order",
+        "description": "Returns attachments available for that particular order.",
         "parameters": [
           {
             "name": "orderId",
@@ -1870,7 +1872,7 @@
         "tags": [
           "Fresh Investigations"
         ],
-        "description": "Retrieve attachment for the given attachmentId",
+        "description": "Retrieve attachment for the given attachmentId.",
         "parameters": [
           {
             "name": "orderId",
@@ -1942,7 +1944,7 @@
         "tags": [
           "Fresh Investigations"
         ],
-        "description": "Returns the status of comments for the particular order",
+        "description": "Returns the status of comments for the particular order.",
         "parameters": [
           {
             "name": "orderId",
@@ -13282,7 +13284,8 @@
           "Subsidiary",
           "Franchise",
           "Franchisor",
-          "SingleOffice"
+          "SingleOffice",
+          "Other"
         ],
         "type": "string"
       },
@@ -13639,22 +13642,12 @@
             "$ref": "#/components/schemas/Creditsafe.GlobalData.CompanyStatus"
           },
           "vatNo": {
-            "nullable": true,
-            "type": "string",
-            "oneOf": [
-              {
-                "type": "string",
-                "nullable": true
+              "type": "array",
+              "items": {
+                "type": "string"
               },
-              {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "nullable": true
-                }
-              }
-            ]
-          },
+              "nullable": true
+            },         
           "address": {
             "$ref": "#/components/schemas/Creditsafe.GlobalData.AddressData"
           },
