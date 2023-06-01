@@ -13125,6 +13125,7 @@
             "type": "string"
           },
           "messages": {
+            "description": "Provides information about the request and the response.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Creditsafe.GlobalData.Message"
@@ -14552,10 +14553,12 @@
                 "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.EntityType"
               },
               "hasNegativeInfo": {
+                "description": "Linked with DE searches, may return with other countries if data is available.",
                 "type": "boolean",
                 "nullable": true
               },
               "signingAuthority": {
+                "description": "Linked with DE searches, may return with other countries if data is available.",
                 "type": "boolean",
                 "nullable": true
               },
@@ -15517,6 +15520,7 @@
             "type": "object",
             "properties": {
               "countriesCriteria": {
+                "description": "The list of available parameters for the search in the given country.",
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchemaCountryDirector"
