@@ -4696,8 +4696,8 @@
           "Decision Engine"
         ],
         "description": "Returns all instances (Decision Trees) a user has permission to access.",
-        "operationId": "returnsAllInstances",
-        "summary": "Returns All Available Instances",
+        "operationId": "returnAllInstances",
+        "summary": "Return All Available Instances",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -4852,7 +4852,7 @@
         "tags": [
           "Decision Engine"
         ],
-        "description": "Update the instances information.",
+        "description": "Update the instances information. You will need to call the `GET /decisionEngine/instance/{guid}` endpoint to get the current configuration and then update the fields you want to change.",
         "operationId": "updateInstanceConfiguration",
         "summary": "Update Instance Configuration",
         "requestBody": {
@@ -26016,13 +26016,18 @@
             "example": 103361848
           },
           "inputParams": {
-            "type": "object"
+            "type": "object",
+            "description": "The input parameters to be updated can be obtained from the `GET/instance configuration` endpoint."
           },
           "configurationVariables": {
-            "type": "object"
+            "type": "object",
+            "description": "The Configuration Variables to be updated can be obtained from the `GET/instance configuration` endpoint."
+
           },
           "scalarVariables": {
-            "type": "object"
+            "type": "object",
+            "description": "The Scalar Variables to be updated can be obtained from the `GET/instance configuration` endpoint."
+
           }
         }
       },
