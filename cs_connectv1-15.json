@@ -4852,7 +4852,7 @@
         "tags": [
           "Decision Engine"
         ],
-        "description": "Update the instances information. You will need to call the `GET /decisionEngine/instance/{guid}` endpoint to get the current configuration and then update the fields you want to change.",
+        "description": "Update the instances information.<br><br>You will need to call the `GET /decisionEngine/instance/{guid}` endpoint to get the current configuration and then update the fields you want to change.",
         "operationId": "updateInstanceConfiguration",
         "summary": "Update Instance Configuration",
         "requestBody": {
@@ -4889,6 +4889,7 @@
               }
             }
           },
+          
           "400": {
             "description": "",
             "content": {
@@ -4931,7 +4932,8 @@
           }
         }
       }
-    },
+      },
+    
     "/decisionEngine/GUID": {
       "get": {
         "tags": [
