@@ -1114,7 +1114,6 @@
         }
       }
     },
-
     "/images/companies": {
       "get": {
         "tags": [
@@ -4889,7 +4888,6 @@
               }
             }
           },
-          
           "400": {
             "description": "",
             "content": {
@@ -4932,8 +4930,7 @@
           }
         }
       }
-      },
-    
+    },
     "/decisionEngine/GUID": {
       "get": {
         "tags": [
@@ -13654,12 +13651,12 @@
             "$ref": "#/components/schemas/Creditsafe.GlobalData.CompanyStatus"
           },
           "vatNo": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              },
-              "nullable": true
-            },         
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
           "address": {
             "$ref": "#/components/schemas/Creditsafe.GlobalData.AddressData"
           },
@@ -15550,33 +15547,40 @@
       "Creditsafe.GlobalData.DirectorSearchData": {
         "type": "object",
         "properties": {
-          "country": {
-            "$ref": "#/components/schemas/Creditsafe.GlobalData.CountryCode"
-          },
           "peopleId": {
+            "description": "The unique identifier of the person.",
             "type": "string"
           },
-          "dateOfLatestChange": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
           "firstName": {
+            "description": "The first name of the director.",
             "type": "string"
           },
           "lastName": {
+            "description": "The last name of the director.",
             "type": "string"
           },
-          "companyId": {
-            "type": "string"
+          "country": {
+            "description": "The country of the director.",
+            "$ref": "#/components/schemas/Creditsafe.GlobalData.CountryCode"
+          },
+          "company": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "description": "The unique identifier of the company.",
+                "type": "string"
+              }
+            }
           },
           "companyName": {
+            "description": "The name of the company.",
             "type": "string"
           },
           "companyType": {
             "$ref": "#/components/schemas/Creditsafe.GlobalData.CompanyType"
           },
           "companyRegistrationNumber": {
+            "description": "The registration number of the company.",
             "type": "string"
           },
           "status": {
@@ -15584,6 +15588,27 @@
           },
           "address": {
             "$ref": "#/components/schemas/Creditsafe.GlobalData.AddressData"
+          },
+          "dateOfLatestChange": {
+            "description": "The date of the latest change to the director information.",
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "dateOfBirth": {
+            "description": "The date of birth of the director.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "localDirectorNumber": {
+            "description": "The local director number of the director.",
+            "type": "string"
+          },
+          "score": {
+            "type": "integer"
+          },
+          "taxCode": {
+            "type": "string"
           },
           "searchRanking": {
             "type": "string"
@@ -15605,14 +15630,17 @@
                 }
               },
               "page": {
+                "description": "Select the page number of the result.",
                 "type": "integer",
                 "format": "int32"
               },
               "pageSize": {
+                "description": "Select the number of results per page.",
                 "type": "integer",
                 "format": "int32"
               },
               "totalSize": {
+                "description": "The total number of results.",
                 "type": "integer",
                 "format": "int32"
               }
@@ -26024,12 +26052,10 @@
           "configurationVariables": {
             "type": "object",
             "description": "The Configuration Variables to be updated can be obtained from the `GET/instance configuration` endpoint."
-
           },
           "scalarVariables": {
             "type": "object",
             "description": "The Scalar Variables to be updated can be obtained from the `GET/instance configuration` endpoint."
-
           }
         }
       },
