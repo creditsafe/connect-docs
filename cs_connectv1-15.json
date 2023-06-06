@@ -2155,294 +2155,6 @@
         }
       }
     },
-    "/monitoring/companies/{id}/events": {
-      "get": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "Endpoint to return a collection of `events` for the given company, optionally filtered on the supplied search criteria. Event information will only be returned if the company exists in at least one of your `portfolios`.",
-        "operationId": "listCompanyEvents",
-        "summary": "List Company Events",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "$ref": "#/components/parameters/startDate"
-          },
-          {
-            "$ref": "#/components/parameters/endDate"
-          },
-          {
-            "$ref": "#/components/parameters/page"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The connectId of the company that you wish to retrieve events for.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.CompanyEvents"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/monitoring/eventRules": {
-      "get": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "Get all available notification event rules. Notification event rules allow you to control which events you wish to monitor for the `companies` contained within a given `portfolio`.",
-        "operationId": "allEventRules",
-        "summary": "All EventRules",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.EventRulesResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "EventRule resource not found "
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/monitoring/eventRules/{countryCode}": {
-      "get": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "Get all available notification event rules for the given `countryCode`. Notification event rules allow you to control which events you wish to monitor for the `companies` contained within a given `portfolio`.",
-        "operationId": "filteredEventRules",
-        "summary": "Filtered EventRules",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "countryCode",
-            "in": "path",
-            "description": "ISO/Alpha 2 format country code for which notification event rules will be returned.",
-            "required": true,
-            "schema": {
-              "maxLength": 2,
-              "minLength": 2,
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.EventRulesResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "EventRule resource not found"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/monitoring/notificationEvents": {
-      "get": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "Get all notification events generated for companies monitored in your portfolios, based on the notification rules enabled. The notification events returned will be filtered based upon the supplied search criteria.",
-        "operationId": "allNotificationEvents",
-        "summary": "All Notification Events",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "searchQuery",
-            "in": "query",
-            "description": "Return notificationEvents that match the given value",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "$ref": "#/components/parameters/sortBy"
-          },
-          {
-            "$ref": "#/components/parameters/sortDir"
-          },
-          {
-            "$ref": "#/components/parameters/startDate"
-          },
-          {
-            "$ref": "#/components/parameters/endDate"
-          },
-          {
-            "$ref": "#/components/parameters/page"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "$ref": "#/components/parameters/filterByCreatedDate"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.AllNotificationsEvents"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "NotificationEvent resource not found"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/monitoring/portfolios": {
       "get": {
         "tags": [
@@ -2831,595 +2543,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Connect.Monitoring.MonitoredCountriesInPortfolio"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "Portfolio not found"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/monitoring/portfolios/{portfolioId}/eventRules": {
-      "get": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "Get all notification `eventRules` for the given `portfolioId`. Notification event rules allow you to control which events you wish to monitor for the `companies` contained within the given `portfolio`.",
-        "operationId": "listPortfolioEventRules",
-        "summary": "List Portfolio Event Rules",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "portfolioId",
-            "in": "path",
-            "description": "The unique identifier for the portfolio that you wish to retrieve notification event rules for, obtained from `/portfolios`.",
-            "required": true,
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.ListPortfolioEventRules"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "EventRule resource not found"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/monitoring/portfolios/{portfolioId}/eventRules/{countryCode}": {
-      "get": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "Endpoint to that lists all the eventRules, their status and parameters based on a portfolio Id, filtered by country. Newly created portfolios are without any notification event rules by default, but you can switch rules on/off per country or on a global basis. There are different rules available for each country due to the different type of change event data that's available. The following GET request lists all the available rules for a portfolio.",
-        "operationId": "listPortfolioEventRulesByCountry",
-        "summary": "List Portfolio Event Rules By Country",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "portfolioId",
-            "in": "path",
-            "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "countryCode",
-            "in": "path",
-            "description": "Country code to show events for.",
-            "required": true,
-            "schema": {
-              "maxLength": 2,
-              "minLength": 2,
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.ListPortfolioEventRules"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "EventRule resource not found"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "Endpoint to update an eventRule in a portfolio. Must provide a portfolio unique identifier and a country code in the URL of the PUT request. The Body of the request must contain the `ruleCode` number of the eventRule you want to update, with an `isActive` parameter. Some event rules may also contain specific parameters, which can be set with `param0`, `param1` and `param2`. parameters. Get the above information by calling the List All eventRules endpoint.",
-        "operationId": "updateEventRules",
-        "summary": "Update EventRules",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "portfolioId",
-            "in": "path",
-            "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "countryCode",
-            "in": "path",
-            "description": "Country code to show events for",
-            "required": true,
-            "schema": {
-              "maxLength": 2,
-              "minLength": 2,
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Monitoring.UpdateEventRulesRequest"
-              },
-              "example": [
-                {
-                  "ruleCode": 101,
-                  "isActive": 1,
-                  "param0": true,
-                  "param1": "15",
-                  "param2": "10"
-                },
-                {
-                  "ruleCode": 1802,
-                  "isActive": 1,
-                  "param0": "10"
-                },
-                {
-                  "ruleCode": 1815,
-                  "isActive": 0
-                }
-              ]
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "204": {
-            "description": "No Content",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "EventRule resource not found"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/monitoring/portfolios/{portfolioId}/eventRules/setDefault": {
-      "put": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "Update a portfolios event rules to default state. In Connect, default state means all rules are turned off.",
-        "operationId": "setPortfolioDefaultRules",
-        "summary": "Set Portfolio Default Rules",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "portfolioId",
-            "in": "path",
-            "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "message": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "EventRule resource not found"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/monitoring/portfolios/{portfolioId}/riskSummary": {
-      "get": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "Get current portfolio risk summary information.",
-        "operationId": "portfolioRiskSummary",
-        "summary": "Portfolio Risk Summary",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "portfolioId",
-            "in": "path",
-            "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.RiskSummary"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "Portfolio not found"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/monitoring/portfolios/{portfolioId}/notificationEvents": {
-      "get": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "Get all notificationEvents based on the portfolio id, optionally filter with query parameters.",
-        "operationId": "listPortfolioNotifications",
-        "summary": "List Portfolio Notifications",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "searchQuery",
-            "in": "query",
-            "description": "Return notificationEvents that match the given value",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "$ref": "#/components/parameters/sortBy"
-          },
-          {
-            "$ref": "#/components/parameters/sortDir"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "$ref": "#/components/parameters/page"
-          },
-          {
-            "$ref": "#/components/parameters/startDate"
-          },
-          {
-            "$ref": "#/components/parameters/endDate"
-          },
-          {
-            "$ref": "#/components/parameters/filterByCreatedDate"
-          },
-          {
-            "name": "portfolioId",
-            "in": "path",
-            "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.AllNotificationsEvents"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "Portfolio not found"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/monitoring/portfolios/{portfolioId}/notificationEvents/{notificationEventId}": {
-      "patch": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "WARNING -  This endpoint will depreciate during the last week of January 2021 and will not be usable anymore. We recommend to utilize the `filterByCreatedDate` path parameter on the `/notificationEvents` endpoints to return exact Notification Events that have triggered on the specific day/date range.",
-        "operationId": "updateIsProcessedFlag",
-        "summary": "Update isProcessed Flag",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "portfolioId",
-            "in": "path",
-            "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "notificationEventId",
-            "in": "path",
-            "required": true,
-            "description": "A unique notification event ID.",
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Monitoring.IsProcessedRequest"
-              },
-              "example": {
-                "isProcessed": true
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.IsProcessedResponse"
                 }
               }
             }
@@ -4230,6 +3353,595 @@
         }
       }
     },
+    "/monitoring/portfolios/{portfolioId}/eventRules": {
+      "get": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "description": "Get all notification `eventRules` for the given `portfolioId`. Notification event rules allow you to control which events you wish to monitor for the `companies` contained within the given `portfolio`.",
+        "operationId": "listPortfolioEventRules",
+        "summary": "List Portfolio Event Rules",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "portfolioId",
+            "in": "path",
+            "description": "The unique identifier for the portfolio that you wish to retrieve notification event rules for, obtained from `/portfolios`.",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Monitoring.ListPortfolioEventRules"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "EventRule resource not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/portfolios/{portfolioId}/eventRules/{countryCode}": {
+      "get": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "description": "Endpoint to that lists all the eventRules, their status and parameters based on a portfolio Id, filtered by country. Newly created portfolios are without any notification event rules by default, but you can switch rules on/off per country or on a global basis. There are different rules available for each country due to the different type of change event data that's available. The following GET request lists all the available rules for a portfolio.",
+        "operationId": "listPortfolioEventRulesByCountry",
+        "summary": "List Portfolio Event Rules By Country",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "portfolioId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "countryCode",
+            "in": "path",
+            "description": "Country code to show events for.",
+            "required": true,
+            "schema": {
+              "maxLength": 2,
+              "minLength": 2,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Monitoring.ListPortfolioEventRules"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "EventRule resource not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "description": "Endpoint to update an eventRule in a portfolio. Must provide a portfolio unique identifier and a country code in the URL of the PUT request. The Body of the request must contain the `ruleCode` number of the eventRule you want to update, with an `isActive` parameter. Some event rules may also contain specific parameters, which can be set with `param0`, `param1` and `param2`. parameters. Get the above information by calling the List All eventRules endpoint.",
+        "operationId": "updateEventRules",
+        "summary": "Update EventRules",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "portfolioId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "countryCode",
+            "in": "path",
+            "description": "Country code to show events for",
+            "required": true,
+            "schema": {
+              "maxLength": 2,
+              "minLength": 2,
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Connect.Monitoring.UpdateEventRulesRequest"
+              },
+              "example": [
+                {
+                  "ruleCode": 101,
+                  "isActive": 1,
+                  "param0": true,
+                  "param1": "15",
+                  "param2": "10"
+                },
+                {
+                  "ruleCode": 1802,
+                  "isActive": 1,
+                  "param0": "10"
+                },
+                {
+                  "ruleCode": 1815,
+                  "isActive": 0
+                }
+              ]
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "EventRule resource not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/portfolios/{portfolioId}/eventRules/setDefault": {
+      "put": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "description": "Update a portfolios event rules to default state. In Connect, default state means all rules are turned off.",
+        "operationId": "setPortfolioDefaultRules",
+        "summary": "Set Portfolio Default Rules",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "portfolioId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "EventRule resource not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/portfolios/{portfolioId}/riskSummary": {
+      "get": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "description": "Get current portfolio risk summary information.",
+        "operationId": "portfolioRiskSummary",
+        "summary": "Portfolio Risk Summary",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "portfolioId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Monitoring.RiskSummary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Portfolio not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/portfolios/{portfolioId}/notificationEvents": {
+      "get": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "description": "Get all notificationEvents based on the portfolio id, optionally filter with query parameters.",
+        "operationId": "listPortfolioNotifications",
+        "summary": "List Portfolio Notifications",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "searchQuery",
+            "in": "query",
+            "description": "Return notificationEvents that match the given value",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/sortBy"
+          },
+          {
+            "$ref": "#/components/parameters/sortDir"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/startDate"
+          },
+          {
+            "$ref": "#/components/parameters/endDate"
+          },
+          {
+            "$ref": "#/components/parameters/filterByCreatedDate"
+          },
+          {
+            "name": "portfolioId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Monitoring.AllNotificationsEvents"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Portfolio not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/portfolios/{portfolioId}/notificationEvents/{notificationEventId}": {
+      "patch": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "description": "WARNING -  This endpoint will depreciate during the last week of January 2021 and will not be usable anymore. We recommend to utilize the `filterByCreatedDate` path parameter on the `/notificationEvents` endpoints to return exact Notification Events that have triggered on the specific day/date range.",
+        "operationId": "updateIsProcessedFlag",
+        "summary": "Update isProcessed Flag",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "portfolioId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "notificationEventId",
+            "in": "path",
+            "required": true,
+            "description": "A unique notification event ID.",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Connect.Monitoring.IsProcessedRequest"
+              },
+              "example": {
+                "isProcessed": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Monitoring.IsProcessedResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Portfolio not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/monitoring/portfolios/{portfolioId}/companies/{id}/notificationEvents": {
       "get": {
         "tags": [
@@ -4681,6 +4393,294 @@
                   "type": "object",
                   "example": {
                     "message": "Portfolio not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/companies/{id}/events": {
+      "get": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "description": "Endpoint to return a collection of `events` for the given company, optionally filtered on the supplied search criteria. Event information will only be returned if the company exists in at least one of your `portfolios`.",
+        "operationId": "listCompanyEvents",
+        "summary": "List Company Events",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "$ref": "#/components/parameters/startDate"
+          },
+          {
+            "$ref": "#/components/parameters/endDate"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The connectId of the company that you wish to retrieve events for.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Monitoring.CompanyEvents"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/eventRules": {
+      "get": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "description": "Get all available notification event rules. Notification event rules allow you to control which events you wish to monitor for the `companies` contained within a given `portfolio`.",
+        "operationId": "allEventRules",
+        "summary": "All EventRules",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Monitoring.EventRulesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "EventRule resource not found "
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/eventRules/{countryCode}": {
+      "get": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "description": "Get all available notification event rules for the given `countryCode`. Notification event rules allow you to control which events you wish to monitor for the `companies` contained within a given `portfolio`.",
+        "operationId": "filteredEventRules",
+        "summary": "Filtered EventRules",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "countryCode",
+            "in": "path",
+            "description": "ISO/Alpha 2 format country code for which notification event rules will be returned.",
+            "required": true,
+            "schema": {
+              "maxLength": 2,
+              "minLength": 2,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Monitoring.EventRulesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "EventRule resource not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/notificationEvents": {
+      "get": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "description": "Get all notification events generated for companies monitored in your portfolios, based on the notification rules enabled. The notification events returned will be filtered based upon the supplied search criteria.",
+        "operationId": "allNotificationEvents",
+        "summary": "All Notification Events",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "searchQuery",
+            "in": "query",
+            "description": "Return notificationEvents that match the given value",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/sortBy"
+          },
+          {
+            "$ref": "#/components/parameters/sortDir"
+          },
+          {
+            "$ref": "#/components/parameters/startDate"
+          },
+          {
+            "$ref": "#/components/parameters/endDate"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "$ref": "#/components/parameters/filterByCreatedDate"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Monitoring.AllNotificationsEvents"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "NotificationEvent resource not found"
                   }
                 }
               }
