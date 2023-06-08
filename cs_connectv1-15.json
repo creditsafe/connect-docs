@@ -2113,7 +2113,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Returns all user details relating to the Global Monitoring product.",
+        "description": "You would use this endpoint to retrieve the user details related to the Global Monitoring product, such as the user's information.",
         "operationId": "monitoringUserDetails",
         "summary": "Monitoring User Details",
         "parameters": [
@@ -2160,7 +2160,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Endpoint to get all Portfolios for the user if no query parameters are provided. Can be searched by using the query parameter in the URL.",
+        "description": "This endpoint allows you to manage portfolios. You can use the GET method to retrieve all portfolios associated with the user.",
         "operationId": "listAllPortfolios",
         "summary": "List All Portfolios",
         "parameters": [
@@ -2232,7 +2232,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Endpoint to create a new Portfolio based on the supplied criteria. A portfolio can contain any number of companies that you wish to monitor changes to. The only required Body parameter is \"name\" for Connect users.",
+        "description": "This endpoint to create a new Portfolio based on the supplied criteria.<br><br> A portfolio can contain any number of companies that you wish to monitor changes to. The only required Body parameter is \"name\" for Connect users.",
         "operationId": "createMonitoringPortfolio",
         "summary": "Create Monitoring Portfolio",
         "parameters": [
@@ -2245,9 +2245,6 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/Connect.Monitoring.CreatePortfolioRequest"
-              },
-              "example": {
-                "name": "My New Portfolio"
               }
             }
           },
@@ -2292,7 +2289,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Get the portfolio details such as name and default status with portfolioId.",
+        "description": "This endpoint allows you to retrieve the portfolio details from the portfolioId.",
         "operationId": "retrievePortfolioById",
         "summary": "Retrieve Portfolio By Id",
         "parameters": [
@@ -2359,7 +2356,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Delete the portfolio with portfolioId.",
+        "description": "This endpoint allows you to delete the portfolio using the portfolioId.",
         "operationId": "deletePortfolio",
         "summary": "Delete Portfolio",
         "parameters": [
@@ -2426,7 +2423,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Update Portfolio details such as Name, email recipients, language and subject line.",
+        "description": "This endpoint allows you to update Portfolio details such as Name, email recipients, language and subject line.",
         "operationId": "updatePortfolioDetails",
         "summary": "Update Portfolio Details",
         "parameters": [
@@ -2519,7 +2516,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Get a list of distinct countries of companies monitored within a portfolio.",
+        "description": "This endpoint provides a list of distinct countries associated with the companies monitored within a specific portfolio.",
         "operationId": "listCountriesOfMonitoredCompanies",
         "summary": "List Countries of Monitored Companies",
         "parameters": [
@@ -2588,7 +2585,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Get all companies from a specific portfolio based on the portfolio id, optionally filter with query parameters.",
+        "description": "This endpoints gets all companies from a specific portfolio based on the portfolio id, optionally filter with query parameters.",
         "operationId": "listCompaniesInAPortfolio",
         "summary": "List Companies In A Portfolio",
         "parameters": [
@@ -2793,7 +2790,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Copy companies from one portfolio to single (or) multiple portfolios.",
+        "description": "This endpoint allows you to copy companies from one portfolio to another. You can specify the source and destination portfolios to perform the copy operation.",
         "operationId": "copyCompaniesBetweenPortfolios",
         "summary": "Copy Companies Between Portfolios",
         "parameters": [
@@ -11217,6 +11214,28 @@
                       "description": "A true or false value which shows if the portfolio is set as default",
                       "example": false
                     },
+                    "emails": {
+                      "type": "array",
+                      "items": {
+                        "properties": {
+                          "firstName": {
+                            "type": "string",
+                            "description": "The first name of the user to receive the email notification.",
+                            "example": "John"
+                          },
+                          "lastName": {
+                            "type": "string",
+                            "description": "The last name of the user to receive the email notification.",
+                            "example": "Doe"
+                          },
+                          "email": {
+                            "type": "string",
+                            "description": "The email address of the user to receive the email notification.",
+                            "example": "john.doe@creditsafe.com"
+                          }
+                        }
+                      }
+                    },
                     "isSharedPortfolio": {
                       "type": "number",
                       "description": "Shows if the portfolio is shared with other users or not. 1 means the portfolio is shared.",
@@ -11252,37 +11271,46 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "The name of the portfolio"
+            "description": "The name of the portfolio",
+            "example": "Test Portfolio"
           },
           "isDefault": {
             "type": "boolean",
-            "description": "can set the portfolio as default for company monitoring events."
+            "description": "can set the portfolio as default for company monitoring events.",
+            "example": false
           },
           "emails": {
-            "type": "object",
+            "type": "array",
             "description": "The email address of the user to receive the email notification.",
-            "properties": {
-              "firstName": {
-                "type": "string",
-                "description": "The first name of the user to receive the email notification."
-              },
-              "lastName": {
-                "type": "string",
-                "description": "The last name of the user to receive the email notification."
-              },
-              "emailAddress": {
-                "type": "string",
-                "description": "The email address of the user to receive the email notification."
+            "items": {
+              "properties": {
+                "firstName": {
+                  "type": "string",
+                  "description": "The first name of the user to receive the email notification.",
+                  "example": "John"
+                },
+                "lastName": {
+                  "type": "string",
+                  "description": "The last name of the user to receive the email notification.",
+                  "example": "Doe"
+                },
+                "emailAddress": {
+                  "type": "string",
+                  "description": "The email address of the user to receive the email notification.",
+                  "example": "john.doe@creditsafe.com"
+                }
               }
             }
           },
           "emailSubject": {
             "type": "string",
-            "description": "The subject of the email notification."
+            "description": "The subject of the email notification.",
+            "example": "Creditsafe Monitoring Notification on portfolio {{portfolioName}}"
           },
           "emailLanguage": {
             "type": "string",
-            "description": "The language of the email notification."
+            "description": "The language of the email notification.",
+            "example": "en"
           },
           "frequency": {
             "type": "string"
@@ -11339,6 +11367,34 @@
             "type": "boolean",
             "description": "States if the portfolio is set as Default or not",
             "example": false
+          },
+          "emailSubject": {
+            "type": "string",
+            "description": "The subject of the email notification.",
+            "example": "Creditsafe Monitoring Notification on portfolio {{portfolioName}}"
+          },
+          "emails": {
+            "type": "array",
+            "description": "The email addresses of the user to receive the email notification.",
+            "items": {
+              "properties": {
+                "firstName": {
+                  "type": "string",
+                  "description": "The first name of the user to receive the email notification.",
+                  "example": "John"
+                },
+                "lastName": {
+                  "type": "string",
+                  "description": "The last name of the user to receive the email notification.",
+                  "example": "Doe"
+                },
+                "emailAddress": {
+                  "type": "string",
+                  "description": "The email address of the user to receive the email notification.",
+                  "example": "john.doe@creditsafe.com"
+                }
+              }
+            }
           }
         }
       },
@@ -11348,7 +11404,7 @@
           "message": {
             "type": "string",
             "description": "Message stating if your request was successful",
-            "example": "Portfolio removed"
+            "example": "Portfolio removed and service usage will be updated shortly"
           }
         }
       },
@@ -11361,7 +11417,7 @@
           },
           "isDefault": {
             "type": "boolean",
-            "description": "Change the setting of the portfolio as default for company monitoring events."
+            "description": "Change the setting of the portfolio as default for company monitoring events.<br><br> Changing the default portfolio will automatically change the status of the previous default to 'false'."
           },
           "emails": {
             "type": "array",
@@ -11681,6 +11737,14 @@
                   "description": "The current status of the company",
                   "example": 1,
                   "nullable": true
+                },
+                "dateAdded": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "dateModified": {
+                  "type": "string",
+                  "format": "date-time"
                 }
               }
             }
@@ -11695,12 +11759,15 @@
             "description": "The company Safe Number or Connect ID"
           },
           "personalReference": {
+            "description": "A personal reference for the company",
             "type": "string"
           },
           "freeText": {
+            "description": "A free field to add any additional text to the company in the portfolio",
             "type": "string"
           },
           "personalLimit": {
+            "description": "A personal limit for the company - separate from the credit limit",
             "type": "string"
           }
         },
@@ -11730,6 +11797,7 @@
         "type": "object",
         "properties": {
           "portfolios": {
+            "description": "Comma separated portfolioId(s).",
             "type": "array",
             "items": {
               "type": "integer",
@@ -11737,6 +11805,7 @@
             }
           },
           "companies": {
+            "description": "Array of companies to copy.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Connect.Monitoring.CopyAndMoveCompaniesBodyCompanies"
