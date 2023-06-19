@@ -2615,15 +2615,6 @@
             }
           },
           {
-            "name": "events",
-            "in": "query",
-            "description": "If set to true, all events will be returned for each company",
-            "schema": {
-              "type": "boolean",
-              "default": false
-            }
-          },
-          {
             "name": "portfolioId",
             "in": "path",
             "required": true,
@@ -2895,7 +2886,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Move companies from one portfolio to single (or) multiple portfolios. Removes the companies from the portfolio provided in the path parameter.",
+        "description": "This endpoint allows you to move companies from one portfolio to single (or) multiple portfolios. Removes the companies from the portfolio provided in the path parameter.",
         "operationId": "moveCompaniesBetweenPortfolios",
         "summary": "Move Companies Between Portfolios",
         "parameters": [
@@ -2914,7 +2905,7 @@
           {
             "name": "removeAll",
             "in": "query",
-            "description": "When RemoveAll query parameter is False, portfolios and companies List needs to be passed. When RemoveAll query parameter is True, only portfolios need to be passed and companies List must be empty. All companies are moved and deleted from current portfolio.",
+            "description": "When RemoveAll query parameter is False, a portfolios and companies list needs to be passed. When RemoveAll query parameter is True, only portfolios need to be passed and companies List must be empty. All companies are moved and deleted from current portfolio.",
             "schema": {
               "type": "boolean",
               "default": false
@@ -3000,7 +2991,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Delete companies from current portfolio.",
+        "description": "This endpoint allows for companies to be deleted from the specified portfolio.",
         "operationId": "clearCompaniesFromPortfolio",
         "summary": "Clear Companies From Portfolio",
         "parameters": [
@@ -3096,7 +3087,7 @@
         ],
         "operationId": "getCompanyDetailsFromAPortfolio",
         "summary": "Get Company Details From A Portfolio",
-        "description": "Get various company details from a portfolio. Requires a portfolioID and companyID in the PATH of the request.",
+        "description": "This endpoint allows you to get various company details from a portfolio. Requires a portfolioID and companyID in the PATH of the request.",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
@@ -3298,6 +3289,16 @@
           }
         },
         "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Monitoring.UpdateCompanyInPortfolio"
+                }
+              }
+            }
+          },
           "204": {
             "description": "No Content"
           },
@@ -11811,7 +11812,10 @@
               "$ref": "#/components/schemas/Connect.Monitoring.CopyAndMoveCompaniesBodyCompanies"
             }
           }
-        }
+        },
+        "required": [
+          "portfolios"
+        ]
       },
       "Connect.Monitoring.CopyAndMoveCompaniesBodyCompanies": {
         "type": "object",
@@ -11892,46 +11896,20 @@
             "description": "A unique ID assigned to this request.",
             "example": "23921650-c073-11ea-860f-06bc8182190e"
           },
-          "id": {
+          "connectId": {
             "type": "string",
             "description": "The connectId of the company. A connectId is the primary Company identifier that is used to uniquely identify all companies across Creditsafe's Universe and Partner Network.",
             "example": "US-X-US22384484"
-          },
-          "safeNumber": {
-            "type": "string",
-            "description": "The Safe Number (Creditsafe's identifier on all Companies owned in the Creditsafe Universe) of the company.",
-            "example": "US22384484"
-          },
-          "name": {
-            "type": "string",
-            "description": "The name of the company .",
-            "example": "GOOGLE LLC"
-          },
-          "address": {
-            "type": "string",
-            "description": "The address of the company.",
-            "example": "VIA PABLO NERUDA, 4, TREZZANO SUL NAVIGLIO, 20090"
-          },
-          "countryCode": {
-            "type": "string",
-            "description": "ISO/Alpha 2 format country code of the company.",
-            "example": "US"
           },
           "portfolioId": {
             "type": "number",
             "description": "The portfolio Id of the portfolio that contains the company.",
             "example": 589960
           },
-          "creditLimit": {
-            "type": "number",
-            "description": "The credit limit of the company.",
-            "example": 10000,
-            "nullable": true
-          },
-          "dateLastEvent": {
+          "personalReference": {
             "type": "string",
-            "description": "The date of the most recent event the company has had.",
-            "example": "2018-06-14T00:59:06",
+            "description": "Field that can be used to add a personal reference against the company in a portfolio.",
+            "example": "Follow up Jan 2021",
             "nullable": true
           },
           "freeText": {
@@ -11946,10 +11924,36 @@
             "example": 10000,
             "nullable": true
           },
-          "personalReference": {
+          "safeNumber": {
             "type": "string",
-            "description": "Field that can be used to add a personal reference against the company in a portfolio.",
-            "example": "Follow up Jan 2021",
+            "description": "The Safe Number (Creditsafe's identifier on all Companies owned in the Creditsafe Universe) of the company.",
+            "example": "US22384484"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the company .",
+            "example": "GOOGLE LLC"
+          },
+          "countryCode": {
+            "type": "string",
+            "description": "ISO/Alpha 2 format country code of the company.",
+            "example": "US"
+          },
+          "address": {
+            "type": "string",
+            "description": "The address of the company.",
+            "example": "VIA PABLO NERUDA, 4, TREZZANO SUL NAVIGLIO, 20090"
+          },
+          "companyStatus": {
+            "type": "string",
+            "description": "The current status of the company",
+            "example": 1,
+            "nullable": true
+          },
+          "creditLimit": {
+            "type": "number",
+            "description": "The credit limit of the company.",
+            "example": 10000,
             "nullable": true
           },
           "ratingCommon": {
@@ -11964,11 +11968,41 @@
             "example": "Not rated - insufficient information to rate",
             "nullable": true
           },
-          "companyStatus": {
+          "dateLastEvent": {
             "type": "string",
-            "description": "The current status of the company",
-            "example": 1,
+            "format": "date-time",
+            "description": "The date of the most recent event the company has had.",
+            "example": "2018-06-14T00:59:06",
             "nullable": true
+          },
+          "dateAdded": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date the company was added to the portfolio.",
+            "example": "2020-07-01T00:59:06",
+            "nullable": true
+          },
+          "dateModified": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date the company was last modified in the portfolio.",
+            "example": "2020-07-01T00:59:06",
+            "nullable": true
+          }
+        }
+      },
+      "Connect.Monitoring.UpdateCompanyInPortfolio": {
+        "type": "object",
+        "properties": {
+          "correlationId": {
+            "type": "string",
+            "description": "A unique ID assigned to this request.",
+            "example": "23921650-c073-11ea-860f-06bc8182190e"
+          },
+          "message": {
+            "type": "string",
+            "description": "A message stating successful update.",
+            "example": "Company updated successfully"
           }
         }
       },
@@ -11991,12 +12025,15 @@
         "type": "object",
         "properties": {
           "personalReference": {
+            "description": "Field that can be used to add a personal reference against the company in a portfolio.",
             "type": "string"
           },
           "freeText": {
+            "description": "Field that can be used to add a free text note to when adding/updating a company to a portfolio.",
             "type": "string"
           },
           "personalLimit": {
+            "description": "Field that can be used to add a personal limit number against the company in a portfolio.",
             "type": "string"
           }
         },
