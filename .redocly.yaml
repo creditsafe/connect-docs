@@ -2,13 +2,11 @@
 
 apis:
   # Update the apiName with your actual API name, and the version with your actual API version.
-  apiName@version:
+  Connectv1:
     # Update the path to your OpenAPI root file
     root: ./cs_connect1-15.yaml
+    
 
-extends:
-  - recommended
-  
 rules:
   # A sample custom rule. Read more about rules: https://redocly.com/docs/cli/rules/
   assert/operation-description:
@@ -26,6 +24,5 @@ features.openapi:
       - lang: curl
       - lang: Node.js
       - lang: Python
-  showExtensions: 
-    - sideNavStyle: 
-       
+
+
