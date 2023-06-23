@@ -467,7 +467,7 @@
           {
             "name": "includeIndicators",
             "in": "query",
-            "description": "Optional parameter to include the indicator scores in to a company report - `Covid Score` , `Financial Strength` , `Estimated Turnover`<br> Note: Indicators are not available for countries - CN, ES and NO",
+            "description": "Optional parameter to include the indicator scores in to a company report - `Covid Score` , `Financial Strength` , `Estimated Turnover`<br>",
             "schema": {
               "type": "boolean",
               "default": false
@@ -10032,7 +10032,7 @@
     },
     "requestBodies": {
       "Identity": {
-        "description": "Select the `products` tab for the request body for each of the products `AML` and `Consumer`",
+        "description": "Select the `products` tab for the request body for each of the products `AML` and `Consumer`. <br> <br> NOTE:' If a previous address is used in addition to current the `postCode` becomes required.",
         "content": {
           "application/json": {
             "schema": {
@@ -17331,6 +17331,10 @@
       },
       "Connect.Identity.currentName": {
         "type": "object",
+        "required": [
+          "forename",
+          "surname"
+        ],
         "properties": {
           "title": {
             "type": "string",
@@ -17391,6 +17395,9 @@
       },
       "Connect.Identity.Address": {
         "type": "object",
+        "required": [
+          "postCode"
+        ],
         "properties": {
           "buildingNo": {
             "type": "string",
@@ -17478,9 +17485,6 @@
           },
           "previous2": {
             "$ref": "#/components/schemas/Connect.Identity.Address1"
-          },
-          "previous3": {
-            "$ref": "#/components/schemas/Connect.Identity.Address1"
           }
         }
       },
@@ -17506,7 +17510,7 @@
           }
         }
       },
-      "Connect.Identity.CommonSearchCriteria": {
+      "Connect.Identity.amlCommonSearchCriteria": {
         "type": "object",
         "properties": {
           "person": {
@@ -17516,6 +17520,46 @@
             "type": "integer",
             "format": "int64",
             "description": "ID value of a cusomter account, typically passed in to allow users to retrieve past searches on a customer."
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID value of the user account, a customer account may have multiple user accounts, this is typically passed in to retrieve past searches by a user."
+          },
+          "reference": {
+            "type": "string",
+            "nullable": true,
+            "description": "A string value that a user can submit during their search. This reference value is stored alongside the search details/customer/user ID values. Is typically passed in to allow users to retrieve past searches based on the reference value supplied."
+          },
+          "isInternal": {
+            "type": "boolean",
+            "description": "A boolean value that is handled API side to check whether an account is internal/active. NOTE: Should not be required for external use."
+          }
+        }
+      },
+      "Connect.Identity.consumerCommonSearchCriteria": {
+        "type": "object",
+        "properties": {
+          "person": {
+            "$ref": "#/components/schemas/Connect.Identity.Person"
+          },
+          "reference": {
+            "type": "string",
+            "nullable": true,
+            "description": "A string value that a user can submit during their search. This reference value is stored alongside the search details/customer/user ID values. Is typically passed in to allow users to retrieve past searches based on the reference value supplied."
+          }
+        }
+      },
+      "Connect.Identity.CommonSearchCriteria": {
+        "type": "object",
+        "properties": {
+          "person": {
+            "$ref": "#/components/schemas/Connect.Identity.Person"
+          },
+          "customerId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID value of a customer account, typically passed in to allow users to retrieve past searches on a customer."
           },
           "userId": {
             "type": "integer",
@@ -17551,8 +17595,11 @@
       },
       "Connect.Identity.ConsumerSearchCriteria": {
         "type": "object",
+        "required": [
+          "reason"
+        ],
         "properties": {
-          "secondPerson": {
+          "Consumer Specific Search Criteria": {
             "description": "Used for consumer search only. Can provide a second unique second person into the search. ",
             "allOf": [
               {
@@ -17560,54 +17607,11 @@
               }
             ]
           },
-          "balanceOrLimit": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "transient": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "creditType": {
-            "type": "string",
-            "nullable": true
-          },
-          "term": {
-            "type": "string",
-            "nullable": true
-          },
           "reason": {
             "$ref": "#/components/schemas/Connect.Identity.ReasonCode"
           },
           "thirdPartyOptIn": {
             "description": "Is always set to false on ID/AML/Bankmatch searches. Can be set to true on Consumer searches if need be. If true, does an additional charge against the user account to allow for more data coverage.",
-            "type": "boolean"
-          },
-          "originalSearchRef": {
-            "type": "string",
-            "nullable": true
-          },
-          "addressLink": {
-            "type": "boolean"
-          },
-          "associateLink": {
-            "type": "boolean"
-          },
-          "resolvedPicklist": {
-            "description": "If there are multiple potential results for a search, instead of returning a single result we return a picklist object that allows users to select one of the picklist options and then focus on that being the result instead.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "nullable": true
-          },
-          "cachedPicklist": {
-            "description": "Picklists last for 15 minutes before expiring. If a user has not selected an option and returns to the search results page on the site before then, we make a check on this value to see if they already have one and if so, show them the picklist again.",
-            "type": "object",
-            "nullable": true
-          },
-          "isSubsequent": {
             "type": "boolean"
           }
         }
@@ -20466,7 +20470,7 @@
             "description": "Person search criteria",
             "allOf": [
               {
-                "$ref": "#/components/schemas/Connect.Identity.CommonSearchCriteria"
+                "$ref": "#/components/schemas/Connect.Identity.amlCommonSearchCriteria"
               }
             ]
           },
@@ -20530,7 +20534,7 @@
             "description": "Person search criteria",
             "allOf": [
               {
-                "$ref": "#/components/schemas/Connect.Identity.CommonSearchCriteria"
+                "$ref": "#/components/schemas/Connect.Identity.consumerCommonSearchCriteria"
               }
             ]
           },
