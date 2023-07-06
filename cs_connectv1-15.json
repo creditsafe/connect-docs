@@ -12909,6 +12909,10 @@
           "ZW",
           "XK",
           "SS",
+          "SX",
+          "CW",
+          "BQ",
+          "WW",
           "PLC"
         ],
         "type": "string"
@@ -20465,31 +20469,64 @@
         },
         "example": {
           "common": {
-            "Person": {
-              "currentName": {
-                "title": "MRS",
-                "Forename": "Sarah",
-                "Surname": "Hawkins"
-              },
-              "dateofBirth": "1974-07-07",
-              "addresses": {
-                "Current": {
-                  "buildingNo": "6",
-                  "buildingName": "HAZELTREE COURT",
-                  "street": "",
-                  "city": "TROWBRIDGE",
-                  "postCode": "BA99 7SZ"
-                }
-              }
+            "common": {
+                "person": {
+                    "currentName": {
+                        "title": "Miss",
+                        "forename": "Anne",
+                        "otherNames": "",
+                        "surname": "Delta",
+                        "suffix": ""
+                    },
+                    "previousName": {
+                        "title": "Miss",
+                        "forename": "Anne",
+                        "otherNames": "",
+                        "surname": "Alpha",
+                        "suffix": ""
+                    },
+                    "dateOfBirth": "1948-06-04",
+                    "gender": "Female",
+                    "addresses": {
+                        "current": {
+                            "buildingNo": "7",
+                            "buildingName": "",
+                            "street": "Twelve Acre Cresent",
+                            "city": "Barton-Le-Willows",
+                            "postCode": "X9 8JD",
+                            "startDate": "2010-05-13",
+                            "endDate": "2012-05-08"
+                        },
+                        "previous1":{
+                            "buildingNo": "6",
+                            "buildingName": "",
+                            "street": "Twelve Acre Cresent",
+                            "city": "Barton-Le-Willows",
+                            "postCode": "X9 8JD",
+                            "startDate": "2012-05-08",
+                            "endDate": "2013-05-08"
+                        },
+                        "previous2":{
+                            "buildingNo": "1",
+                            "buildingName": "",
+                            "street": "Twelve Acre Cresent",
+                            "city": "Barton-Le-Willows",
+                            "postCode": "X9 8JD",
+                            "startDate": "2013-05-08",
+                            "endDate": ""
+                        }
+                    }
+                  }
+                },
+                "reference": "Test - Consumer Search"
+                },
+            "consumer":{
+            "reason": "QuotationSearch",
+            "thirdPartyOptIn": "False"
             },
-            "Reference": "User Defined Reference"
-          },
-          "consumer": {
-            "Reason": "QuotationSearch"
-          },
-          "products": [
-            "Consumer"
-          ]
+            "products": [
+                "Consumer"
+            ]
         }
       },
       "Connect.ConfidenceMatch.MatchResults": {
