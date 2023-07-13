@@ -2284,6 +2284,172 @@
         }
       }
     },
+    "/monitoring/portfolios/{portfolioId}/import": {
+      "post": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "description": "Endpoint allows you to import a list of companies to add to the selected portfolio along with some personal information for the company. Importing a portfolio will add the companies to the specified portfolio, duplicates in the import file will be ignored.You may also optionally add an email to the body of the request and get an email notification when the import is processed..",
+        "operationId": "importAPortfolioFile",
+        "summary": "Import A Portfolio File",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "portfolioId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Connect.Monitoring.ImportAndSyncPortfolioRequest"
+              },
+              "example": {
+                "importCsv": "FILE_PATH",
+                "email": "john.smith@creditsafe.com"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Monitoring.ImportAndSyncPortfolioResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Portfolio not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/portfolios/{portfolioId}/sync": {
+      "post": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "description": "Endpoint allows you to sync a portfolio file with your portfolio. Sync action will delete all companies in your specified portfolio, and then add the companies from the file into the portfolio.",
+        "operationId": "syncAPortfolioFile",
+        "summary": "Sync A Portfolio File",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "portfolioId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Connect.Monitoring.ImportAndSyncPortfolioRequest"
+              },
+              "example": {
+                "importCsv": "FILE_PATH",
+                "email": "john.smith@creditsafe.com"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Monitoring.ImportAndSyncPortfolioResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Portfolio not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/monitoring/portfolios/{portfolioId}": {
       "get": {
         "tags": [
@@ -4144,172 +4310,7 @@
         }
       }
     },
-    "/monitoring/portfolios/{portfolioId}/import": {
-      "post": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "Endpoint allows you to import a list of companies to add to the selected portfolio along with some personal information for the company. Importing a portfolio will add the companies to the specified portfolio, duplicates in the import file will be ignored.You may also optionally add an email to the body of the request and get an email notification when the import is processed..",
-        "operationId": "importAPortfolioFile",
-        "summary": "Import A Portfolio File",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "portfolioId",
-            "in": "path",
-            "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Monitoring.ImportAndSyncPortfolioRequest"
-              },
-              "example": {
-                "importCsv": "FILE_PATH",
-                "email": "john.smith@creditsafe.com"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.ImportAndSyncPortfolioResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "Portfolio not found"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/monitoring/portfolios/{portfolioId}/sync": {
-      "post": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "Endpoint allows you to sync a portfolio file with your portfolio. Sync action will delete all companies in your specified portfolio, and then add the companies from the file into the portfolio.",
-        "operationId": "syncAPortfolioFile",
-        "summary": "Sync A Portfolio File",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "portfolioId",
-            "in": "path",
-            "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Monitoring.ImportAndSyncPortfolioRequest"
-              },
-              "example": {
-                "importCsv": "FILE_PATH",
-                "email": "john.smith@creditsafe.com"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.ImportAndSyncPortfolioResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "Portfolio not found"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
+
     "/monitoring/companies/{id}/events": {
       "get": {
         "tags": [
@@ -12066,7 +12067,7 @@
           "importcsv": {
             "type": "string",
             "format": "binary",
-            "description": "The import file must be in either a .csv, .xls or .xlsx."
+            "description": "The import file ideally needs to be a .csv file."
           },
           "email": {
             "type": "string",
