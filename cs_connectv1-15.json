@@ -2,8 +2,8 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Creditsafe Connect",
-    "version": "1.8.5",
-    "description": "Last Updated: 05th May 2023<br><br>Creditsafe Connect is a REST API that provides access to the <a href=\"https://www.creditsafe.com/gb/en/more/about/our-data.html\" target=\"_blank\">Creditsafe Global Company Database.</a> This allows you to: <ul><li>Control your master data</li><li>Utilize up-to-date Business and Director information, enhancing your onboarding and qualification processes</li><li>Receive alerts when your customer's and supplier's Credit Report changes</li></ul><br>Check the status of Creditsafe Services <a href=\"https://status.creditsafe.com/\" target=\"_blank\">HERE</a>   <h2>Customer Feedback</h2> Use the buttons below to let us know what you think of this documentation. Please leave comments in your feedback for the author to consider for future versions.<br><br><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=f49570f5&embed_data=dGVtcGVyYXR1cmVfaWQ9MSZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"> <img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/gold.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=601a6fd1&embed_data=dGVtcGVyYXR1cmVfaWQ9MiZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/green.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=f1f7701c&embed_data=dGVtcGVyYXR1cmVfaWQ9MyZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/amber.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=73951e8b&embed_data=dGVtcGVyYXR1cmVfaWQ9NCZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/red.png\" /></a> <br><br> Selecting one of the buttons above will open a new tab to the feedback portal. <h2>Quick Start</h2> To start your Creditsafe Connect API integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>By default, you will have been setup on our Sandbox environment.</br></br>\nUsing a REST API client construct an `/authenticate` POST request and enter your username & password (case-sensitive) into the POST body. A successful response will return an  `authentication token`.</br></br>\nUse the `authentication token` in an `Authorization` header on all other Creditsafe Connect calls as proof of your authenticity.\n\n<h2>Environments</h2>Production Environment baseurl: <code> https://connect.creditsafe.com/v1 </code> </br> Sandbox Test Environment baseurl:  <code>https://connect.sandbox.creditsafe.com/v1</code>  <h2>Resources</h2> \n  <ul> \n    <li><a href=\"https://creditsafe.github.io/connect-docs/cs_connectv1-15.html\" target=\"_blank\">OpenAPI</a> specification.</li>\n    <li><a href=\"https://www.getpostman.com/collections/4406bbddb81c308db8ff\" target=\"_blank\">Postman Collection</a> of the most common example calls to Creditsafe Connect.</li> \n    <li><a href=\"https://connect-portal.creditsafe.com\" target=\"_blank\"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password and form requests.</li> \n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions\" target=\"_blank\"> Help Articles</a>  including: <ul><li><a href=\"https://help.creditsafeuk.com/en/support/solutions/7000007130\" target=\"_blank\">FAQs</a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000053487-connect-api-data-dictionaries\" target=\"_blank\"> Data Dictionaries </a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000054765-connect-api-data-availability-per-country\" target=\"_blank\"> Data Availability per Country </a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000054656-connect-api-feature-availability-per-country\" target=\"_blank\"> Feature Availability Matrix</a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000081984-connect-api-server-response-codes\" target=\"_blank\"> Connect API Response Codes </a></li>\n   </ul></ul><br>\n<br><h2>Versioning and Changes</h2><h3>Non-Breaking Changes</h3>These will be as a rule, additive functions or bug fixing. It is important that the code is integrated in such a way that it does not depend on which order items are returned.<h3>Breaking Changes</h3>This is when changes to the functionality will break the contract of the current API. This will invoke stakeholder communication and major version number update. "
+    "version": "1.8.6",
+    "description": "Last Updated: 14th July 2023<br><br>Creditsafe Connect is a REST API that provides access to the <a href=\"https://www.creditsafe.com/gb/en/more/about/our-data.html\" target=\"_blank\">Creditsafe Global Company Database.</a> This allows you to: <ul><li>Control your master data</li><li>Utilize up-to-date Business and Director information, enhancing your onboarding and qualification processes</li><li>Receive alerts when your customer's and supplier's Credit Report changes</li></ul><br>Check the status of Creditsafe Services <a href=\"https://status.creditsafe.com/\" target=\"_blank\">HERE</a>   <h2>Customer Feedback</h2> Use the buttons below to let us know what you think of this documentation. Please leave comments in your feedback for the author to consider for future versions.<br><br><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=f49570f5&embed_data=dGVtcGVyYXR1cmVfaWQ9MSZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"> <img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/gold.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=601a6fd1&embed_data=dGVtcGVyYXR1cmVfaWQ9MiZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/green.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=f1f7701c&embed_data=dGVtcGVyYXR1cmVfaWQ9MyZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/amber.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=73951e8b&embed_data=dGVtcGVyYXR1cmVfaWQ9NCZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/red.png\" /></a> <br><br> Selecting one of the buttons above will open a new tab to the feedback portal. <h2>Quick Start</h2> To start your Creditsafe Connect API integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>By default, you will have been setup on our Sandbox environment.</br></br>\nUsing a REST API client construct an `/authenticate` POST request and enter your username & password (case-sensitive) into the POST body. A successful response will return an  `authentication token`.</br></br>\nUse the `authentication token` in an `Authorization` header on all other Creditsafe Connect calls as proof of your authenticity.\n\n<h2>Environments</h2>Production Environment baseurl: <code> https://connect.creditsafe.com/v1 </code> </br> Sandbox Test Environment baseurl:  <code>https://connect.sandbox.creditsafe.com/v1</code>  <h2>Resources</h2> \n  <ul> \n    <li><a href=\"https://creditsafe.github.io/connect-docs/cs_connectv1-15.html\" target=\"_blank\">OpenAPI</a> specification.</li>\n    <li><a href=\"https://www.getpostman.com/collections/4406bbddb81c308db8ff\" target=\"_blank\">Postman Collection</a> of the most common example calls to Creditsafe Connect.</li> \n    <li><a href=\"https://connect-portal.creditsafe.com\" target=\"_blank\"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password and form requests.</li> \n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions\" target=\"_blank\"> Help Articles</a>  including: <ul><li><a href=\"https://help.creditsafeuk.com/en/support/solutions/7000007130\" target=\"_blank\">FAQs</a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000053487-connect-api-data-dictionaries\" target=\"_blank\"> Data Dictionaries </a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000054765-connect-api-data-availability-per-country\" target=\"_blank\"> Data Availability per Country </a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000054656-connect-api-feature-availability-per-country\" target=\"_blank\"> Feature Availability Matrix</a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000081984-connect-api-server-response-codes\" target=\"_blank\"> Connect API Response Codes </a></li>\n   </ul></ul><br>\n<br><h2>Versioning and Changes</h2><h3>Non-Breaking Changes</h3>These will be as a rule, additive functions or bug fixing. It is important that the code is integrated in such a way that it does not depend on which order items are returned.<h3>Breaking Changes</h3>This is when changes to the functionality will break the contract of the current API. This will invoke stakeholder communication and major version number update. "
   },
   "servers": [
     {
@@ -104,7 +104,7 @@
         "tags": [
           "Authentication"
         ],
-        "description": "Supply username and password to generate Authentication Token.",
+        "description": "Supply username and password to generate Authentication Token. <br><br><h3>Rate Limiting Authenticate</h3>Rate limiting has been made active on the authenticate endpoint. The following basis makes up the rate limiting which will need to be accounted for:<br><br><li>5 of the same invalid requests are allowed within 2 minutes.<li> After 5 invalid requests, customer will get 429 HTTP Status for the same request.<li>After 2 minutes, you can re-call the endpoint and will get 401s (as the credentials are invalid).",
         "requestBody": {
           "content": {
             "application/json": {
@@ -368,6 +368,7 @@
           {
             "name": "customData",
             "in": "query",
+            "description": "Not currently used.",
             "schema": {
               "type": "string",
               "nullable": true
@@ -466,7 +467,7 @@
           {
             "name": "includeIndicators",
             "in": "query",
-            "description": "Optional parameter to include the three following indicator scores in to a company report - `Covid Score` , `Financial Strength` , `Estimated Turnover`<br> Note: Indicators are not available for countries - CN, ES and NO",
+            "description": "Optional parameter to include the indicator scores in to a company report - `Covid Score` , `Financial Strength` , `Estimated Turnover`<br>",
             "schema": {
               "type": "boolean",
               "default": false
@@ -863,6 +864,61 @@
         }
       }
     },
+    "/people/searchcriteria": {
+      "get": {
+        "tags": [
+          "People/Directors"
+        ],
+        "description": "Returns the set of available People Search parameters/fields for a provided list of countries.",
+        "operationId": "people/DirectorSearchCriteria",
+        "summary": "People/Director Search Criteria",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "countries",
+            "in": "query",
+            "description": "A comma separated list of ISO/Alpha 2 format country codes, or singular country Code. e.g. US,GB will return the common searchable People/Director fields in the United States and Great Britain.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchemaSetDirector"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/people": {
       "get": {
         "tags": [
@@ -1031,61 +1087,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.Directors.DirectorReportResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/people/searchcriteria": {
-      "get": {
-        "tags": [
-          "People/Directors"
-        ],
-        "description": "Returns the set of available People Search parameters/fields for a provided list of countries.",
-        "operationId": "people/DirectorSearchCriteria",
-        "summary": "People/Director Search Criteria",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "countries",
-            "in": "query",
-            "description": "A comma separated list of ISO/Alpha 2 format country codes, or singular country Code. e.g. US,GB will return the common searchable People/Director fields in the United States and Great Britain.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchemaSetDirector"
                 }
               }
             }
@@ -1753,7 +1754,7 @@
         "tags": [
           "Fresh Investigations"
         ],
-        "description": "Returns the status of attachment upload for the partcular order",
+        "description": "Returns the status of attachment upload for the partcular order.",
         "parameters": [
           {
             "name": "orderId",
@@ -1817,7 +1818,7 @@
         "tags": [
           "Fresh Investigations"
         ],
-        "description": "Returns attachments available for that particular order",
+        "description": "Returns attachments available for that particular order.",
         "parameters": [
           {
             "name": "orderId",
@@ -1870,7 +1871,7 @@
         "tags": [
           "Fresh Investigations"
         ],
-        "description": "Retrieve attachment for the given attachmentId",
+        "description": "Retrieve attachment for the given attachmentId.",
         "parameters": [
           {
             "name": "orderId",
@@ -1942,7 +1943,7 @@
         "tags": [
           "Fresh Investigations"
         ],
-        "description": "Returns the status of comments for the particular order",
+        "description": "Returns the status of comments for the particular order.",
         "parameters": [
           {
             "name": "orderId",
@@ -2112,7 +2113,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Returns all user details relating to the Global Monitoring product.",
+        "description": "You would use this endpoint to retrieve the user details related to the Global Monitoring product, such as the user's information.",
         "operationId": "monitoringUserDetails",
         "summary": "Monitoring User Details",
         "parameters": [
@@ -2154,300 +2155,12 @@
         }
       }
     },
-    "/monitoring/companies/{id}/events": {
-      "get": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "Endpoint to return a collection of `events` for the given company, optionally filtered on the supplied search criteria. Event information will only be returned if the company exists in at least one of your `portfolios`.",
-        "operationId": "listCompanyEvents",
-        "summary": "List Company Events",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "$ref": "#/components/parameters/startDate"
-          },
-          {
-            "$ref": "#/components/parameters/endDate"
-          },
-          {
-            "$ref": "#/components/parameters/page"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "name": "id",
-            "in": "path",
-            "description": "The connectId of the company that you wish to retrieve events for.",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.CompanyEvents"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/monitoring/eventRules": {
-      "get": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "Get all available notification event rules. Notification event rules allow you to control which events you wish to monitor for the `companies` contained within a given `portfolio`.",
-        "operationId": "allEventRules",
-        "summary": "All EventRules",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.EventRulesResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "EventRule resource not found "
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/monitoring/eventRules/{countryCode}": {
-      "get": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "Get all available notification event rules for the given `countryCode`. Notification event rules allow you to control which events you wish to monitor for the `companies` contained within a given `portfolio`.",
-        "operationId": "filteredEventRules",
-        "summary": "Filtered EventRules",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "countryCode",
-            "in": "path",
-            "description": "ISO/Alpha 2 format country code for which notification event rules will be returned.",
-            "required": true,
-            "schema": {
-              "maxLength": 2,
-              "minLength": 2,
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.EventRulesResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "EventRule resource not found"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/monitoring/notificationEvents": {
-      "get": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "Get all notification events generated for companies monitored in your portfolios, based on the notification rules enabled. The notification events returned will be filtered based upon the supplied search criteria.",
-        "operationId": "allNotificationEvents",
-        "summary": "All Notification Events",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "searchQuery",
-            "in": "query",
-            "description": "Return notificationEvents that match the given value",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "$ref": "#/components/parameters/sortBy"
-          },
-          {
-            "$ref": "#/components/parameters/sortDir"
-          },
-          {
-            "$ref": "#/components/parameters/startDate"
-          },
-          {
-            "$ref": "#/components/parameters/endDate"
-          },
-          {
-            "$ref": "#/components/parameters/page"
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "$ref": "#/components/parameters/filterByCreatedDate"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.AllNotificationsEvents"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "NotificationEvent resource not found"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/monitoring/portfolios": {
       "get": {
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Endpoint to get all Portfolios for the user if no query parameters are provided. Can be searched by using the query parameter in the URL.",
+        "description": "This endpoint allows you to manage portfolios. You can use the GET method to retrieve all portfolios associated with the user.",
         "operationId": "listAllPortfolios",
         "summary": "List All Portfolios",
         "parameters": [
@@ -2519,7 +2232,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Endpoint to create a new Portfolio based on the supplied criteria. A portfolio can contain any number of companies that you wish to monitor changes to. The only required Body parameter is \"name\" for Connect users.",
+        "description": "This endpoint to create a new Portfolio based on the supplied criteria.<br><br> A portfolio can contain any number of companies that you wish to monitor changes to. The only required Body parameter is \"name\" for Connect users.",
         "operationId": "createMonitoringPortfolio",
         "summary": "Create Monitoring Portfolio",
         "parameters": [
@@ -2532,9 +2245,6 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/Connect.Monitoring.CreatePortfolioRequest"
-              },
-              "example": {
-                "name": "My New Portfolio"
               }
             }
           },
@@ -2574,12 +2284,178 @@
         }
       }
     },
+    "/monitoring/portfolios/{portfolioId}/import": {
+      "post": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "description": "Endpoint allows you to import a list of companies to add to the selected portfolio along with some personal information for the company. Importing a portfolio will add the companies to the specified portfolio, duplicates in the import file will be ignored.You may also optionally add an email to the body of the request and get an email notification when the import is processed..",
+        "operationId": "importAPortfolioFile",
+        "summary": "Import A Portfolio File",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "portfolioId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Connect.Monitoring.ImportAndSyncPortfolioRequest"
+              },
+              "example": {
+                "importCsv": "FILE_PATH",
+                "email": "john.smith@creditsafe.com"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Monitoring.ImportAndSyncPortfolioResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Portfolio not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/portfolios/{portfolioId}/sync": {
+      "post": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "description": "Endpoint allows you to sync a portfolio file with your portfolio. Sync action will delete all companies in your specified portfolio, and then add the companies from the file into the portfolio.",
+        "operationId": "syncAPortfolioFile",
+        "summary": "Sync A Portfolio File",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "portfolioId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Connect.Monitoring.ImportAndSyncPortfolioRequest"
+              },
+              "example": {
+                "importCsv": "FILE_PATH",
+                "email": "john.smith@creditsafe.com"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Monitoring.ImportAndSyncPortfolioResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Portfolio not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/monitoring/portfolios/{portfolioId}": {
       "get": {
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Get the portfolio details such as name and default status with portfolioId.",
+        "description": "This endpoint allows you to retrieve the portfolio details from the portfolioId.",
         "operationId": "retrievePortfolioById",
         "summary": "Retrieve Portfolio By Id",
         "parameters": [
@@ -2646,7 +2522,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Delete the portfolio with portfolioId.",
+        "description": "This endpoint allows you to delete the portfolio using the portfolioId.",
         "operationId": "deletePortfolio",
         "summary": "Delete Portfolio",
         "parameters": [
@@ -2713,7 +2589,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Update Portfolio details such as Name, email recipients, language and subject line.",
+        "description": "This endpoint allows you to update Portfolio details such as Name, email recipients, language and subject line.",
         "operationId": "updatePortfolioDetails",
         "summary": "Update Portfolio Details",
         "parameters": [
@@ -2806,7 +2682,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Get a list of distinct countries of companies monitored within a portfolio.",
+        "description": "This endpoint provides a list of distinct countries associated with the companies monitored within a specific portfolio.",
         "operationId": "listCountriesOfMonitoredCompanies",
         "summary": "List Countries of Monitored Companies",
         "parameters": [
@@ -2862,6 +2738,777 @@
                   "type": "object",
                   "example": {
                     "message": "Portfolio not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/portfolios/{portfolioId}/companies": {
+      "get": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "description": "This endpoints gets all companies from a specific portfolio based on the portfolio id, optionally filter with query parameters.",
+        "operationId": "listCompaniesInAPortfolio",
+        "summary": "List Companies In A Portfolio",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "searchQuery",
+            "in": "query",
+            "description": "Return companies that match the given value",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "name": "countryCode",
+            "in": "query",
+            "description": "Return <<resourcePathName>> that match the given countryCode",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "portfolioId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Monitoring.CompaniesInAPortfolio"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Portfolio not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "description": "Endpoint to add a company using a company id, into a portfolio provided in as a path parameter. Optional fields can be used to add a personalReference, freeText, and personalLimit.",
+        "operationId": "addCompanyToPortfolio",
+        "summary": "Add Company To Portfolio",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "portfolioId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Connect.Monitoring.AddCompanyToPortfolioRequest"
+              },
+              "example": {
+                "id": "GB-0-12345678",
+                "personalReference": "Some text",
+                "freeText": "Some useful test",
+                "personalLimit": "40"
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Monitoring.AddCompanyToPortfolioResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Company resource not found"
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "correlationId": {
+                      "type": "string",
+                      "description": "A unique ID assigned to this request.",
+                      "example": "23921650-c073-11ea-860f-06bc8182190e"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "A status message relating to your request.",
+                      "example": "Company  GB-1-7586731 already in portfolio"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/portfolios/{portfolioId}/companies/copy": {
+      "post": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "description": "This endpoint allows you to copy companies from one portfolio to another. You can specify the source and destination portfolios to perform the copy operation.",
+        "operationId": "copyCompaniesBetweenPortfolios",
+        "summary": "Copy Companies Between Portfolios",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "portfolioId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the portfolio you want to copy companies from, obtained from `/portfolios`.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "copyAll",
+            "in": "query",
+            "description": "When CopyAll query parameter is False, portfolios and companies list needs to be passed. When CopyAll query parameter is True, only portfolios need to be passed and companies List must be empty. All companies are copied from current portfolio are considered here.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Connect.Monitoring.CopyAndMoveCompaniesRequest"
+              },
+              "example": {
+                "portfolios": [
+                  196854,
+                  197369
+                ],
+                "companies": [
+                  {
+                    "id": "BE-X-733313367"
+                  },
+                  {
+                    "id": "BE-X-868222848"
+                  },
+                  {
+                    "id": "BE-X-835695382"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Monitoring.CopyAndMoveCompaniesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Company resource not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/portfolios/{portfolioId}/companies/remove": {
+      "post": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "description": "This endpoint allows you to move companies from one portfolio to single (or) multiple portfolios. Removes the companies from the portfolio provided in the path parameter.",
+        "operationId": "moveCompaniesBetweenPortfolios",
+        "summary": "Move Companies Between Portfolios",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "portfolioId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the portfolio you want to move companies from, obtained from `/portfolios`.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "removeAll",
+            "in": "query",
+            "description": "When RemoveAll query parameter is False, a portfolios and companies list needs to be passed. When RemoveAll query parameter is True, only portfolios need to be passed and companies List must be empty. All companies are moved and deleted from current portfolio.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Connect.Monitoring.CopyAndMoveCompaniesRequest"
+              },
+              "example": {
+                "portfolios": [
+                  196854,
+                  197369
+                ],
+                "companies": [
+                  {
+                    "id": "BE-X-733313367"
+                  },
+                  {
+                    "id": "BE-X-868222848"
+                  },
+                  {
+                    "id": "BE-X-835695382"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Monitoring.CopyAndMoveCompaniesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Company resource not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/portfolios/{portfolioId}/companies/clear": {
+      "patch": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "description": "This endpoint allows for companies to be deleted from the specified portfolio.",
+        "operationId": "clearCompaniesFromPortfolio",
+        "summary": "Clear Companies From Portfolio",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "clearAll",
+            "in": "query",
+            "description": "When ClearAll query parameter is False,Companies List needs to be passed. When ClearAll query parameter is True, Companies List must be empty. All companies will be deleted",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          },
+          {
+            "name": "portfolioId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the portfolio you want to delete companies from, obtained from `/portfolios`.",
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Connect.Monitoring.ClearCompaniesRequest"
+              },
+              "example": {
+                "companies": [
+                  "BE-X-733313367",
+                  "BE-X-868222848"
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Monitoring.ClearCompaniesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Portfolios not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/portfolios/{portfolioId}/companies/{companyId}": {
+      "get": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "operationId": "getCompanyDetailsFromAPortfolio",
+        "summary": "Get Company Details From A Portfolio",
+        "description": "This endpoint allows you to get various company details from a portfolio. Requires a portfolioID and companyID in the PATH of the request.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "portfolioId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "description": "A company Safe Number or Connect ID.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Monitoring.GetCompanyFromPortfolio"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Portfolio not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "description": "Endpoint to delete a company from a portfolio.",
+        "operationId": "deleteCompanyFromPortfolio",
+        "summary": "Delete Company From Portfolio",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "portfolioId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "description": "A company Safe Number or Connect ID.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Monitoring.DeleteCompanyFromPortfolio"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Access forbidden"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "example": "{\"message\": \"Company not found\" }"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "description": "Updates the company details in a specified portfolio.",
+        "operationId": "updateCompanyDetailsInPortfolio",
+        "summary": "Update Company Details In Portfolio",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "portfolioId",
+            "in": "path",
+            "required": true,
+            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "companyId",
+            "in": "path",
+            "required": true,
+            "description": "A company Safe Number or Connect ID.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Connect.Monitoring.UpdateCompanyDetailsInPortfolioRequest"
+              },
+              "example": {
+                "personalReference": "personal reference",
+                "freeText": "Some useful text",
+                "personalLimit": "40"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Monitoring.UpdateCompanyInPortfolio"
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Access forbidden"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "Company resource not found"
                   }
                 }
               }
@@ -3369,866 +4016,7 @@
         }
       }
     },
-    "/monitoring/portfolios/{portfolioId}/notificationEvents/{notificationEventId}": {
-      "patch": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "WARNING -  This endpoint will depreciate during the last week of January 2021 and will not be usable anymore. We recommend to utilize the `filterByCreatedDate` path parameter on the `/notificationEvents` endpoints to return exact Notification Events that have triggered on the specific day/date range.",
-        "operationId": "updateIsProcessedFlag",
-        "summary": "Update isProcessed Flag",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "portfolioId",
-            "in": "path",
-            "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "notificationEventId",
-            "in": "path",
-            "required": true,
-            "description": "A unique notification event ID.",
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Monitoring.IsProcessedRequest"
-              },
-              "example": {
-                "isProcessed": true
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.IsProcessedResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "Portfolio not found"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/monitoring/portfolios/{portfolioId}/companies": {
-      "get": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "Get all companies from a specific portfolio based on the portfolio id, optionally filter with query parameters.",
-        "operationId": "listCompaniesInAPortfolio",
-        "summary": "List Companies In A Portfolio",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "searchQuery",
-            "in": "query",
-            "description": "Return companies that match the given value",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "$ref": "#/components/parameters/pageSize"
-          },
-          {
-            "$ref": "#/components/parameters/page"
-          },
-          {
-            "name": "countryCode",
-            "in": "query",
-            "description": "Return <<resourcePathName>> that match the given countryCode",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "events",
-            "in": "query",
-            "description": "If set to true, all events will be returned for each company",
-            "schema": {
-              "type": "boolean",
-              "default": false
-            }
-          },
-          {
-            "name": "portfolioId",
-            "in": "path",
-            "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.CompaniesInAPortfolio"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "Portfolio not found"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "Endpoint to add a company using a company id, into a portfolio provided in as a path parameter. Optional fields can be used to add a personalReference, freeText, and personalLimit.",
-        "operationId": "addCompanyToPortfolio",
-        "summary": "Add Company To Portfolio",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "portfolioId",
-            "in": "path",
-            "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Monitoring.AddCompanyToPortfolioRequest"
-              },
-              "example": {
-                "id": "GB-0-12345678",
-                "personalReference": "Some text",
-                "freeText": "Some useful test",
-                "personalLimit": "40"
-              }
-            }
-          },
-          "required": false
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.AddCompanyToPortfolioResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "Company resource not found"
-                  }
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "correlationId": {
-                      "type": "string",
-                      "description": "A unique ID assigned to this request.",
-                      "example": "23921650-c073-11ea-860f-06bc8182190e"
-                    },
-                    "message": {
-                      "type": "string",
-                      "description": "A status message relating to your request.",
-                      "example": "Company  GB-1-7586731 already in portfolio"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/monitoring/portfolios/{portfolioId}/companies/copy": {
-      "post": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "Copy companies from one portfolio to single (or) multiple portfolios.",
-        "operationId": "copyCompaniesBetweenPortfolios",
-        "summary": "Copy Companies Between Portfolios",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "portfolioId",
-            "in": "path",
-            "required": true,
-            "description": "The unique identifier of the portfolio you want to copy companies from, obtained from `/portfolios`.",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "copyAll",
-            "in": "query",
-            "description": "When CopyAll query parameter is False, portfolios and companies list needs to be passed. When CopyAll query parameter is True, only portfolios need to be passed and companies List must be empty. All companies are copied from current portfolio are considered here.",
-            "schema": {
-              "type": "boolean",
-              "default": false
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Monitoring.CopyAndMoveCompaniesRequest"
-              },
-              "example": {
-                "portfolios": [
-                  196854,
-                  197369
-                ],
-                "companies": [
-                  {
-                    "id": "BE-X-733313367"
-                  },
-                  {
-                    "id": "BE-X-868222848"
-                  },
-                  {
-                    "id": "BE-X-835695382"
-                  }
-                ]
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.CopyAndMoveCompaniesResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "Company resource not found"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/monitoring/portfolios/{portfolioId}/companies/remove": {
-      "post": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "Move companies from one portfolio to single (or) multiple portfolios. Removes the companies from the portfolio provided in the path parameter.",
-        "operationId": "moveCompaniesBetweenPortfolios",
-        "summary": "Move Companies Between Portfolios",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "portfolioId",
-            "in": "path",
-            "required": true,
-            "description": "The unique identifier of the portfolio you want to move companies from, obtained from `/portfolios`.",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "removeAll",
-            "in": "query",
-            "description": "When RemoveAll query parameter is False, portfolios and companies List needs to be passed. When RemoveAll query parameter is True, only portfolios need to be passed and companies List must be empty. All companies are moved and deleted from current portfolio.",
-            "schema": {
-              "type": "boolean",
-              "default": false
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Monitoring.CopyAndMoveCompaniesRequest"
-              },
-              "example": {
-                "portfolios": [
-                  196854,
-                  197369
-                ],
-                "companies": [
-                  {
-                    "id": "BE-X-733313367"
-                  },
-                  {
-                    "id": "BE-X-868222848"
-                  },
-                  {
-                    "id": "BE-X-835695382"
-                  }
-                ]
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.CopyAndMoveCompaniesResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "Company resource not found"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/monitoring/portfolios/{portfolioId}/companies/clear": {
-      "patch": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "Delete companies from current portfolio.",
-        "operationId": "clearCompaniesFromPortfolio",
-        "summary": "Clear Companies From Portfolio",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "clearAll",
-            "in": "query",
-            "description": "When ClearAll query parameter is False,Companies List needs to be passed. When ClearAll query parameter is True, Companies List must be empty. All companies will be deleted",
-            "schema": {
-              "type": "boolean",
-              "default": false
-            }
-          },
-          {
-            "name": "portfolioId",
-            "in": "path",
-            "required": true,
-            "description": "The unique identifier of the portfolio you want to delete companies from, obtained from `/portfolios`.",
-            "schema": {
-              "type": "number"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Monitoring.ClearCompaniesRequest"
-              },
-              "example": {
-                "companies": [
-                  "BE-X-733313367",
-                  "BE-X-868222848"
-                ]
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.ClearCompaniesResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "Portfolios not found"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/monitoring/portfolios/{portfolioId}/companies/{companyId}": {
-      "get": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "operationId": "getCompanyDetailsFromAPortfolio",
-        "summary": "Get Company Details From A Portfolio",
-        "description": "Get various company details from a portfolio. Requires a portfolioID and companyID in the PATH of the request.",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "portfolioId",
-            "in": "path",
-            "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "companyId",
-            "in": "path",
-            "required": true,
-            "description": "A company Safe Number or Connect ID.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.GetCompanyFromPortfolio"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "Portfolio not found"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "Endpoint to delete a company from a portfolio.",
-        "operationId": "deleteCompanyFromPortfolio",
-        "summary": "Delete Company From Portfolio",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "portfolioId",
-            "in": "path",
-            "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "companyId",
-            "in": "path",
-            "required": true,
-            "description": "A company Safe Number or Connect ID.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.DeleteCompanyFromPortfolio"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "Access forbidden"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string",
-                  "example": "{\"message\": \"Company not found\" }"
-                }
-              }
-            }
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "Global Monitoring"
-        ],
-        "description": "Updates the company details in a specified portfolio.",
-        "operationId": "updateCompanyDetailsInPortfolio",
-        "summary": "Update Company Details In Portfolio",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/authToken"
-          },
-          {
-            "name": "portfolioId",
-            "in": "path",
-            "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "companyId",
-            "in": "path",
-            "required": true,
-            "description": "A company Safe Number or Connect ID.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Monitoring.UpdateCompanyDetailsInPortfolioRequest"
-              },
-              "example": {
-                "personalReference": "personal reference",
-                "freeText": "Some useful text",
-                "personalLimit": "40"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "Access forbidden"
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "example": {
-                    "message": "Company resource not found"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
+
     "/monitoring/portfolios/{portfolioId}/companies/{id}/notificationEvents": {
       "get": {
         "tags": [
@@ -4522,49 +4310,95 @@
         }
       }
     },
-    "/monitoring/portfolios/{portfolioId}/import": {
-      "post": {
+
+    "/monitoring/companies/{id}/events": {
+      "get": {
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Endpoint allows you to import a list of companies to add to the selected portfolio along with some personal information for the company. Importing a portfolio will add the companies to the specified portfolio, duplicates in the import file will be ignored.You may also optionally add an email to the body of the request and get an email notification when the import is processed..",
-        "operationId": "importAPortfolioFile",
-        "summary": "Import A Portfolio File",
+        "description": "Endpoint to return a collection of `events` for the given company, optionally filtered on the supplied search criteria. Event information will only be returned if the company exists in at least one of your `portfolios`.",
+        "operationId": "listCompanyEvents",
+        "summary": "List Company Events",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
           },
           {
-            "name": "portfolioId",
+            "$ref": "#/components/parameters/startDate"
+          },
+          {
+            "$ref": "#/components/parameters/endDate"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "name": "id",
             "in": "path",
+            "description": "The connectId of the company that you wish to retrieve events for.",
             "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
             "schema": {
-              "type": "number"
+              "type": "string"
             }
           }
         ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Monitoring.ImportAndSyncPortfolioRequest"
-              },
-              "example": {
-                "importCsv": "FILE_PATH",
-                "email": "john.smith@creditsafe.com"
-              }
-            }
-          },
-          "required": true
-        },
         "responses": {
           "200": {
             "description": "",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.ImportAndSyncPortfolioResponse"
+                  "$ref": "#/components/schemas/Connect.Monitoring.CompanyEvents"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/eventRules": {
+      "get": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "description": "Get all available notification event rules. Notification event rules allow you to control which events you wish to monitor for the `companies` contained within a given `portfolio`.",
+        "operationId": "allEventRules",
+        "summary": "All EventRules",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Monitoring.EventRulesResponse"
                 }
               }
             }
@@ -4596,7 +4430,7 @@
                 "schema": {
                   "type": "object",
                   "example": {
-                    "message": "Portfolio not found"
+                    "message": "EventRule resource not found "
                   }
                 }
               }
@@ -4605,49 +4439,37 @@
         }
       }
     },
-    "/monitoring/portfolios/{portfolioId}/sync": {
-      "post": {
+    "/monitoring/eventRules/{countryCode}": {
+      "get": {
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Endpoint allows you to sync a portfolio file with your portfolio. Sync action will delete all companies in your specified portfolio, and then add the companies from the file into the portfolio.",
-        "operationId": "syncAPortfolioFile",
-        "summary": "Sync A Portfolio File",
+        "description": "Get all available notification event rules for the given `countryCode`. Notification event rules allow you to control which events you wish to monitor for the `companies` contained within a given `portfolio`.",
+        "operationId": "filteredEventRules",
+        "summary": "Filtered EventRules",
         "parameters": [
           {
             "$ref": "#/components/parameters/authToken"
           },
           {
-            "name": "portfolioId",
+            "name": "countryCode",
             "in": "path",
+            "description": "ISO/Alpha 2 format country code for which notification event rules will be returned.",
             "required": true,
-            "description": "The unique identifier of the portfolio, obtained from `/portfolios`.",
             "schema": {
-              "type": "number"
+              "maxLength": 2,
+              "minLength": 2,
+              "type": "string"
             }
           }
         ],
-        "requestBody": {
-          "content": {
-            "multipart/form-data": {
-              "schema": {
-                "$ref": "#/components/schemas/Connect.Monitoring.ImportAndSyncPortfolioRequest"
-              },
-              "example": {
-                "importCsv": "FILE_PATH",
-                "email": "john.smith@creditsafe.com"
-              }
-            }
-          },
-          "required": true
-        },
         "responses": {
           "200": {
             "description": "",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Connect.Monitoring.ImportAndSyncPortfolioResponse"
+                  "$ref": "#/components/schemas/Connect.Monitoring.EventRulesResponse"
                 }
               }
             }
@@ -4679,7 +4501,96 @@
                 "schema": {
                   "type": "object",
                   "example": {
-                    "message": "Portfolio not found"
+                    "message": "EventRule resource not found"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/monitoring/notificationEvents": {
+      "get": {
+        "tags": [
+          "Global Monitoring"
+        ],
+        "description": "Get all notification events generated for companies monitored in your portfolios, based on the notification rules enabled. The notification events returned will be filtered based upon the supplied search criteria.",
+        "operationId": "allNotificationEvents",
+        "summary": "All Notification Events",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
+            "name": "searchQuery",
+            "in": "query",
+            "description": "Return notificationEvents that match the given value",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/sortBy"
+          },
+          {
+            "$ref": "#/components/parameters/sortDir"
+          },
+          {
+            "$ref": "#/components/parameters/startDate"
+          },
+          {
+            "$ref": "#/components/parameters/endDate"
+          },
+          {
+            "$ref": "#/components/parameters/page"
+          },
+          {
+            "$ref": "#/components/parameters/pageSize"
+          },
+          {
+            "$ref": "#/components/parameters/filterByCreatedDate"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.Monitoring.AllNotificationsEvents"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.BadRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "message": "NotificationEvent resource not found"
                   }
                 }
               }
@@ -4694,9 +4605,12 @@
           "Decision Engine"
         ],
         "description": "Returns all instances (Decision Trees) a user has permission to access.",
-        "operationId": "returnsAllInstances",
-        "summary": "Returns All Available Instances",
+        "operationId": "returnAllInstances",
+        "summary": "Return All Available Instances",
         "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
           {
             "name": "customerId",
             "description": "The unique identifier of the customer. If used it will return all the Decision Trees associated to that customer.",
@@ -4778,6 +4692,9 @@
         "summary": "Instance Configuration",
         "parameters": [
           {
+            "$ref": "#/components/parameters/authToken"
+          },
+          {
             "name": "guid",
             "in": "path",
             "required": true,
@@ -4844,7 +4761,7 @@
         "tags": [
           "Decision Engine"
         ],
-        "description": "Update the instances information.",
+        "description": "Update the instances information.<br><br>You will need to call the `GET /decisionEngine/instance/{guid}` endpoint to get the current configuration and then update the fields you want to change.",
         "operationId": "updateInstanceConfiguration",
         "summary": "Update Instance Configuration",
         "requestBody": {
@@ -4857,6 +4774,9 @@
           }
         },
         "parameters": [
+          {
+            "$ref": "#/components/parameters/authToken"
+          },
           {
             "name": "guid",
             "in": "path",
@@ -10024,7 +9944,7 @@
     },
     "requestBodies": {
       "Identity": {
-        "description": "Select the `products` tab for the request body for each of the products `AML` and `Consumer`",
+        "description": "Select the `products` tab for the request body for each of the products `AML` and `Consumer`. <br> <br> NOTE:' If a previous address is used in addition to current the `postCode` becomes required.",
         "content": {
           "application/json": {
             "schema": {
@@ -11207,6 +11127,28 @@
                       "description": "A true or false value which shows if the portfolio is set as default",
                       "example": false
                     },
+                    "emails": {
+                      "type": "array",
+                      "items": {
+                        "properties": {
+                          "firstName": {
+                            "type": "string",
+                            "description": "The first name of the user to receive the email notification.",
+                            "example": "John"
+                          },
+                          "lastName": {
+                            "type": "string",
+                            "description": "The last name of the user to receive the email notification.",
+                            "example": "Doe"
+                          },
+                          "email": {
+                            "type": "string",
+                            "description": "The email address of the user to receive the email notification.",
+                            "example": "john.doe@creditsafe.com"
+                          }
+                        }
+                      }
+                    },
                     "isSharedPortfolio": {
                       "type": "number",
                       "description": "Shows if the portfolio is shared with other users or not. 1 means the portfolio is shared.",
@@ -11242,37 +11184,46 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "The name of the portfolio"
+            "description": "The name of the portfolio",
+            "example": "Test Portfolio"
           },
           "isDefault": {
             "type": "boolean",
-            "description": "can set the portfolio as default for company monitoring events."
+            "description": "can set the portfolio as default for company monitoring events.",
+            "example": false
           },
           "emails": {
-            "type": "object",
+            "type": "array",
             "description": "The email address of the user to receive the email notification.",
-            "properties": {
-              "firstName": {
-                "type": "string",
-                "description": "The first name of the user to receive the email notification."
-              },
-              "lastName": {
-                "type": "string",
-                "description": "The last name of the user to receive the email notification."
-              },
-              "emailAddress": {
-                "type": "string",
-                "description": "The email address of the user to receive the email notification."
+            "items": {
+              "properties": {
+                "firstName": {
+                  "type": "string",
+                  "description": "The first name of the user to receive the email notification.",
+                  "example": "John"
+                },
+                "lastName": {
+                  "type": "string",
+                  "description": "The last name of the user to receive the email notification.",
+                  "example": "Doe"
+                },
+                "emailAddress": {
+                  "type": "string",
+                  "description": "The email address of the user to receive the email notification.",
+                  "example": "john.doe@creditsafe.com"
+                }
               }
             }
           },
           "emailSubject": {
             "type": "string",
-            "description": "The subject of the email notification."
+            "description": "The subject of the email notification.",
+            "example": "Creditsafe Monitoring Notification on portfolio {{portfolioName}}"
           },
           "emailLanguage": {
             "type": "string",
-            "description": "The language of the email notification."
+            "description": "The language of the email notification.",
+            "example": "en"
           },
           "frequency": {
             "type": "string"
@@ -11329,6 +11280,34 @@
             "type": "boolean",
             "description": "States if the portfolio is set as Default or not",
             "example": false
+          },
+          "emailSubject": {
+            "type": "string",
+            "description": "The subject of the email notification.",
+            "example": "Creditsafe Monitoring Notification on portfolio {{portfolioName}}"
+          },
+          "emails": {
+            "type": "array",
+            "description": "The email addresses of the user to receive the email notification.",
+            "items": {
+              "properties": {
+                "firstName": {
+                  "type": "string",
+                  "description": "The first name of the user to receive the email notification.",
+                  "example": "John"
+                },
+                "lastName": {
+                  "type": "string",
+                  "description": "The last name of the user to receive the email notification.",
+                  "example": "Doe"
+                },
+                "emailAddress": {
+                  "type": "string",
+                  "description": "The email address of the user to receive the email notification.",
+                  "example": "john.doe@creditsafe.com"
+                }
+              }
+            }
           }
         }
       },
@@ -11338,7 +11317,7 @@
           "message": {
             "type": "string",
             "description": "Message stating if your request was successful",
-            "example": "Portfolio removed"
+            "example": "Portfolio removed and service usage will be updated shortly"
           }
         }
       },
@@ -11351,7 +11330,7 @@
           },
           "isDefault": {
             "type": "boolean",
-            "description": "Change the setting of the portfolio as default for company monitoring events."
+            "description": "Change the setting of the portfolio as default for company monitoring events.<br><br> Changing the default portfolio will automatically change the status of the previous default to 'false'."
           },
           "emails": {
             "type": "array",
@@ -11671,6 +11650,14 @@
                   "description": "The current status of the company",
                   "example": 1,
                   "nullable": true
+                },
+                "dateAdded": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "dateModified": {
+                  "type": "string",
+                  "format": "date-time"
                 }
               }
             }
@@ -11685,12 +11672,15 @@
             "description": "The company Safe Number or Connect ID"
           },
           "personalReference": {
+            "description": "A personal reference for the company",
             "type": "string"
           },
           "freeText": {
+            "description": "A free field to add any additional text to the company in the portfolio",
             "type": "string"
           },
           "personalLimit": {
+            "description": "A personal limit for the company - separate from the credit limit",
             "type": "string"
           }
         },
@@ -11720,6 +11710,7 @@
         "type": "object",
         "properties": {
           "portfolios": {
+            "description": "Comma separated portfolioId(s).",
             "type": "array",
             "items": {
               "type": "integer",
@@ -11727,12 +11718,16 @@
             }
           },
           "companies": {
+            "description": "Array of companies to copy.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Connect.Monitoring.CopyAndMoveCompaniesBodyCompanies"
             }
           }
-        }
+        },
+        "required": [
+          "portfolios"
+        ]
       },
       "Connect.Monitoring.CopyAndMoveCompaniesBodyCompanies": {
         "type": "object",
@@ -11813,46 +11808,20 @@
             "description": "A unique ID assigned to this request.",
             "example": "23921650-c073-11ea-860f-06bc8182190e"
           },
-          "id": {
+          "connectId": {
             "type": "string",
             "description": "The connectId of the company. A connectId is the primary Company identifier that is used to uniquely identify all companies across Creditsafe's Universe and Partner Network.",
             "example": "US-X-US22384484"
-          },
-          "safeNumber": {
-            "type": "string",
-            "description": "The Safe Number (Creditsafe's identifier on all Companies owned in the Creditsafe Universe) of the company.",
-            "example": "US22384484"
-          },
-          "name": {
-            "type": "string",
-            "description": "The name of the company .",
-            "example": "GOOGLE LLC"
-          },
-          "address": {
-            "type": "string",
-            "description": "The address of the company.",
-            "example": "VIA PABLO NERUDA, 4, TREZZANO SUL NAVIGLIO, 20090"
-          },
-          "countryCode": {
-            "type": "string",
-            "description": "ISO/Alpha 2 format country code of the company.",
-            "example": "US"
           },
           "portfolioId": {
             "type": "number",
             "description": "The portfolio Id of the portfolio that contains the company.",
             "example": 589960
           },
-          "creditLimit": {
-            "type": "number",
-            "description": "The credit limit of the company.",
-            "example": 10000,
-            "nullable": true
-          },
-          "dateLastEvent": {
+          "personalReference": {
             "type": "string",
-            "description": "The date of the most recent event the company has had.",
-            "example": "2018-06-14T00:59:06",
+            "description": "Field that can be used to add a personal reference against the company in a portfolio.",
+            "example": "Follow up Jan 2021",
             "nullable": true
           },
           "freeText": {
@@ -11867,10 +11836,36 @@
             "example": 10000,
             "nullable": true
           },
-          "personalReference": {
+          "safeNumber": {
             "type": "string",
-            "description": "Field that can be used to add a personal reference against the company in a portfolio.",
-            "example": "Follow up Jan 2021",
+            "description": "The Safe Number (Creditsafe's identifier on all Companies owned in the Creditsafe Universe) of the company.",
+            "example": "US22384484"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the company .",
+            "example": "GOOGLE LLC"
+          },
+          "countryCode": {
+            "type": "string",
+            "description": "ISO/Alpha 2 format country code of the company.",
+            "example": "US"
+          },
+          "address": {
+            "type": "string",
+            "description": "The address of the company.",
+            "example": "VIA PABLO NERUDA, 4, TREZZANO SUL NAVIGLIO, 20090"
+          },
+          "companyStatus": {
+            "type": "string",
+            "description": "The current status of the company",
+            "example": 1,
+            "nullable": true
+          },
+          "creditLimit": {
+            "type": "number",
+            "description": "The credit limit of the company.",
+            "example": 10000,
             "nullable": true
           },
           "ratingCommon": {
@@ -11885,11 +11880,41 @@
             "example": "Not rated - insufficient information to rate",
             "nullable": true
           },
-          "companyStatus": {
+          "dateLastEvent": {
             "type": "string",
-            "description": "The current status of the company",
-            "example": 1,
+            "format": "date-time",
+            "description": "The date of the most recent event the company has had.",
+            "example": "2018-06-14T00:59:06",
             "nullable": true
+          },
+          "dateAdded": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date the company was added to the portfolio.",
+            "example": "2020-07-01T00:59:06",
+            "nullable": true
+          },
+          "dateModified": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date the company was last modified in the portfolio.",
+            "example": "2020-07-01T00:59:06",
+            "nullable": true
+          }
+        }
+      },
+      "Connect.Monitoring.UpdateCompanyInPortfolio": {
+        "type": "object",
+        "properties": {
+          "correlationId": {
+            "type": "string",
+            "description": "A unique ID assigned to this request.",
+            "example": "23921650-c073-11ea-860f-06bc8182190e"
+          },
+          "message": {
+            "type": "string",
+            "description": "A message stating successful update.",
+            "example": "Company updated successfully"
           }
         }
       },
@@ -11912,12 +11937,15 @@
         "type": "object",
         "properties": {
           "personalReference": {
+            "description": "Field that can be used to add a personal reference against the company in a portfolio.",
             "type": "string"
           },
           "freeText": {
+            "description": "Field that can be used to add a free text note to when adding/updating a company to a portfolio.",
             "type": "string"
           },
           "personalLimit": {
+            "description": "Field that can be used to add a personal limit number against the company in a portfolio.",
             "type": "string"
           }
         },
@@ -12039,7 +12067,7 @@
           "importcsv": {
             "type": "string",
             "format": "binary",
-            "description": "The import file must be in either a .csv, .xls or .xlsx."
+            "description": "The import file ideally needs to be a .csv file."
           },
           "email": {
             "type": "string",
@@ -12882,6 +12910,10 @@
           "ZW",
           "XK",
           "SS",
+          "SX",
+          "CW",
+          "BQ",
+          "WW",
           "PLC"
         ],
         "type": "string"
@@ -13123,6 +13155,7 @@
             "type": "string"
           },
           "messages": {
+            "description": "Provides information about the request and the response.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Creditsafe.GlobalData.Message"
@@ -13282,7 +13315,8 @@
           "Subsidiary",
           "Franchise",
           "Franchisor",
-          "SingleOffice"
+          "SingleOffice",
+          "Other"
         ],
         "type": "string"
       },
@@ -13639,21 +13673,11 @@
             "$ref": "#/components/schemas/Creditsafe.GlobalData.CompanyStatus"
           },
           "vatNo": {
-            "nullable": true,
-            "type": "string",
-            "oneOf": [
-              {
-                "type": "string",
-                "nullable": true
-              },
-              {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "nullable": true
-                }
-              }
-            ]
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
           },
           "address": {
             "$ref": "#/components/schemas/Creditsafe.GlobalData.AddressData"
@@ -14325,6 +14349,9 @@
             "changeDate": {
               "type": "string",
               "format": "date-time"
+            },
+            "industryComparison": {
+              "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.IndicatorIndustryComparison"
             }
           }
         }
@@ -14556,10 +14583,12 @@
                 "$ref": "#/components/schemas/Creditsafe.GlobalData.Reports.EntityType"
               },
               "hasNegativeInfo": {
+                "description": "Linked with DE searches, may return with other countries if data is available.",
                 "type": "boolean",
                 "nullable": true
               },
               "signingAuthority": {
+                "description": "Linked with DE searches, may return with other countries if data is available.",
                 "type": "boolean",
                 "nullable": true
               },
@@ -15521,6 +15550,7 @@
             "type": "object",
             "properties": {
               "countriesCriteria": {
+                "description": "The list of available parameters for the search in the given country.",
                 "type": "array",
                 "items": {
                   "$ref": "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchemaCountryDirector"
@@ -15539,33 +15569,40 @@
       "Creditsafe.GlobalData.DirectorSearchData": {
         "type": "object",
         "properties": {
-          "country": {
-            "$ref": "#/components/schemas/Creditsafe.GlobalData.CountryCode"
-          },
           "peopleId": {
+            "description": "The unique identifier of the person.",
             "type": "string"
           },
-          "dateOfLatestChange": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          },
           "firstName": {
+            "description": "The first name of the director.",
             "type": "string"
           },
           "lastName": {
+            "description": "The last name of the director.",
             "type": "string"
           },
-          "companyId": {
-            "type": "string"
+          "country": {
+            "description": "The country of the director.",
+            "$ref": "#/components/schemas/Creditsafe.GlobalData.CountryCode"
+          },
+          "company": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "description": "The unique identifier of the company.",
+                "type": "string"
+              }
+            }
           },
           "companyName": {
+            "description": "The name of the company.",
             "type": "string"
           },
           "companyType": {
             "$ref": "#/components/schemas/Creditsafe.GlobalData.CompanyType"
           },
           "companyRegistrationNumber": {
+            "description": "The registration number of the company.",
             "type": "string"
           },
           "status": {
@@ -15573,6 +15610,27 @@
           },
           "address": {
             "$ref": "#/components/schemas/Creditsafe.GlobalData.AddressData"
+          },
+          "dateOfLatestChange": {
+            "description": "The date of the latest change to the director information.",
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "dateOfBirth": {
+            "description": "The date of birth of the director.",
+            "type": "string",
+            "format": "date-time"
+          },
+          "localDirectorNumber": {
+            "description": "The local director number of the director.",
+            "type": "string"
+          },
+          "score": {
+            "type": "integer"
+          },
+          "taxCode": {
+            "type": "string"
           },
           "searchRanking": {
             "type": "string"
@@ -15594,14 +15652,17 @@
                 }
               },
               "page": {
+                "description": "Select the page number of the result.",
                 "type": "integer",
                 "format": "int32"
               },
               "pageSize": {
+                "description": "Select the number of results per page.",
                 "type": "integer",
                 "format": "int32"
               },
               "totalSize": {
+                "description": "The total number of results.",
                 "type": "integer",
                 "format": "int32"
               }
@@ -17151,10 +17212,6 @@
             "type": "string",
             "format": "date-time"
           },
-          "lastRun": {
-            "type": "string",
-            "format": "date-time"
-          },
           "isEmailRequired": {
             "type": "boolean"
           },
@@ -17190,6 +17247,10 @@
       },
       "Connect.Identity.currentName": {
         "type": "object",
+        "required": [
+          "forename",
+          "surname"
+        ],
         "properties": {
           "title": {
             "type": "string",
@@ -17250,6 +17311,9 @@
       },
       "Connect.Identity.Address": {
         "type": "object",
+        "required": [
+          "postCode"
+        ],
         "properties": {
           "buildingNo": {
             "type": "string",
@@ -17337,9 +17401,6 @@
           },
           "previous2": {
             "$ref": "#/components/schemas/Connect.Identity.Address1"
-          },
-          "previous3": {
-            "$ref": "#/components/schemas/Connect.Identity.Address1"
           }
         }
       },
@@ -17365,7 +17426,7 @@
           }
         }
       },
-      "Connect.Identity.CommonSearchCriteria": {
+      "Connect.Identity.amlCommonSearchCriteria": {
         "type": "object",
         "properties": {
           "person": {
@@ -17375,6 +17436,46 @@
             "type": "integer",
             "format": "int64",
             "description": "ID value of a cusomter account, typically passed in to allow users to retrieve past searches on a customer."
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID value of the user account, a customer account may have multiple user accounts, this is typically passed in to retrieve past searches by a user."
+          },
+          "reference": {
+            "type": "string",
+            "nullable": true,
+            "description": "A string value that a user can submit during their search. This reference value is stored alongside the search details/customer/user ID values. Is typically passed in to allow users to retrieve past searches based on the reference value supplied."
+          },
+          "isInternal": {
+            "type": "boolean",
+            "description": "A boolean value that is handled API side to check whether an account is internal/active. NOTE: Should not be required for external use."
+          }
+        }
+      },
+      "Connect.Identity.consumerCommonSearchCriteria": {
+        "type": "object",
+        "properties": {
+          "person": {
+            "$ref": "#/components/schemas/Connect.Identity.Person"
+          },
+          "reference": {
+            "type": "string",
+            "nullable": true,
+            "description": "A string value that a user can submit during their search. This reference value is stored alongside the search details/customer/user ID values. Is typically passed in to allow users to retrieve past searches based on the reference value supplied."
+          }
+        }
+      },
+      "Connect.Identity.CommonSearchCriteria": {
+        "type": "object",
+        "properties": {
+          "person": {
+            "$ref": "#/components/schemas/Connect.Identity.Person"
+          },
+          "customerId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "ID value of a customer account, typically passed in to allow users to retrieve past searches on a customer."
           },
           "userId": {
             "type": "integer",
@@ -17410,8 +17511,11 @@
       },
       "Connect.Identity.ConsumerSearchCriteria": {
         "type": "object",
+        "required": [
+          "reason"
+        ],
         "properties": {
-          "secondPerson": {
+          "Consumer Specific Search Criteria": {
             "description": "Used for consumer search only. Can provide a second unique second person into the search. ",
             "allOf": [
               {
@@ -17419,54 +17523,11 @@
               }
             ]
           },
-          "balanceOrLimit": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "transient": {
-            "type": "boolean",
-            "nullable": true
-          },
-          "creditType": {
-            "type": "string",
-            "nullable": true
-          },
-          "term": {
-            "type": "string",
-            "nullable": true
-          },
           "reason": {
             "$ref": "#/components/schemas/Connect.Identity.ReasonCode"
           },
           "thirdPartyOptIn": {
             "description": "Is always set to false on ID/AML/Bankmatch searches. Can be set to true on Consumer searches if need be. If true, does an additional charge against the user account to allow for more data coverage.",
-            "type": "boolean"
-          },
-          "originalSearchRef": {
-            "type": "string",
-            "nullable": true
-          },
-          "addressLink": {
-            "type": "boolean"
-          },
-          "associateLink": {
-            "type": "boolean"
-          },
-          "resolvedPicklist": {
-            "description": "If there are multiple potential results for a search, instead of returning a single result we return a picklist object that allows users to select one of the picklist options and then focus on that being the result instead.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "nullable": true
-          },
-          "cachedPicklist": {
-            "description": "Picklists last for 15 minutes before expiring. If a user has not selected an option and returns to the search results page on the site before then, we make a check on this value to see if they already have one and if so, show them the picklist again.",
-            "type": "object",
-            "nullable": true
-          },
-          "isSubsequent": {
             "type": "boolean"
           }
         }
@@ -20325,7 +20386,7 @@
             "description": "Person search criteria",
             "allOf": [
               {
-                "$ref": "#/components/schemas/Connect.Identity.CommonSearchCriteria"
+                "$ref": "#/components/schemas/Connect.Identity.amlCommonSearchCriteria"
               }
             ]
           },
@@ -20389,7 +20450,7 @@
             "description": "Person search criteria",
             "allOf": [
               {
-                "$ref": "#/components/schemas/Connect.Identity.CommonSearchCriteria"
+                "$ref": "#/components/schemas/Connect.Identity.consumerCommonSearchCriteria"
               }
             ]
           },
@@ -20407,35 +20468,68 @@
             "example": "consumer"
           }
         },
-        "example": {
-          "common": {
-            "Person": {
-              "currentName": {
-                "title": "MRS",
-                "Forename": "Sarah",
-                "Surname": "Hawkins"
-              },
-              "dateofBirth": "1974-07-07",
-              "addresses": {
-                "Current": {
-                  "buildingNo": "6",
-                  "buildingName": "HAZELTREE COURT",
-                  "street": "",
-                  "city": "TROWBRIDGE",
-                  "postCode": "BA99 7SZ"
+        "example": 
+          {
+            "common": {
+              "person": {
+                "currentName": {
+                  "title": "Miss",
+                  "forename": "Anne",
+                  "otherNames": "",
+                  "surname": "Delta",
+                  "suffix": ""
+                },
+                "previousName": {
+                  "title": "Miss",
+                  "forename": "Anne",
+                  "otherNames": "",
+                  "surname": "Alpha",
+                  "suffix": ""
+                },
+                "dateOfBirth": "1948-06-04",
+                "gender": "Female",
+                "addresses": {
+                  "current": {
+                    "buildingNo": "7",
+                    "buildingName": "",
+                    "street": "Twelve Acre Cresent",
+                    "city": "Barton-Le-Willows",
+                    "postCode": "X9 8JD",
+                    "startDate": "2010-05-13",
+                    "endDate": "2012-05-08"
+                  },
+                  "previous1": {
+                    "buildingNo": "6",
+                    "buildingName": "",
+                    "street": "Twelve Acre Cresent",
+                    "city": "Barton-Le-Willows",
+                    "postCode": "X9 8JD",
+                    "startDate": "2012-05-08",
+                    "endDate": "2013-05-08"
+                  },
+                  "previous2": {
+                    "buildingNo": "1",
+                    "buildingName": "",
+                    "street": "Twelve Acre Cresent",
+                    "city": "Barton-Le-Willows",
+                    "postCode": "X9 8JD",
+                    "startDate": "2013-05-08",
+                    "endDate": ""
+                  }
                 }
-              }
-            },
-            "Reference": "User Defined Reference"
+              },
+            
+            "reference": "Test - Consumer Search"
           },
           "consumer": {
-            "Reason": "QuotationSearch"
+            "reason": "QuotationSearch",
+            "thirdPartyOptIn": "False"
           },
           "products": [
             "Consumer"
           ]
         }
-      },
+        },
       "Connect.ConfidenceMatch.MatchResults": {
         "properties": {
           "totalMatches": {
@@ -21767,10 +21861,6 @@
             "description": "Can only enter the following options: 85, 90, 95, 100"
           },
           "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "lastRun": {
             "type": "string",
             "format": "date-time"
           },
@@ -26015,13 +26105,16 @@
             "example": 103361848
           },
           "inputParams": {
-            "type": "object"
+            "type": "object",
+            "description": "The input parameters to be updated can be obtained from the `GET/instance configuration` endpoint."
           },
           "configurationVariables": {
-            "type": "object"
+            "type": "object",
+            "description": "The Configuration Variables to be updated can be obtained from the `GET/instance configuration` endpoint."
           },
           "scalarVariables": {
-            "type": "object"
+            "type": "object",
+            "description": "The Scalar Variables to be updated can be obtained from the `GET/instance configuration` endpoint."
           }
         }
       },
@@ -26271,6 +26364,30 @@
       "CreditsafeGlobalDataCoreAttachmentBinaryAttachment": {
         "type": "string",
         "format": "binary"
+      },
+      "Creditsafe.GlobalData.Reports.IndicatorIndustryComparison": {
+        "type": "object",
+        "properties": {
+          "sectorCode": {
+            "type": "string"
+          },
+          "sectorAverage": {
+            "type": "string"
+          },
+          "sectorCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "totalAverage": {
+            "type": "string"
+          },
+          "totalCount": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        }
       }
     },
     "examples": {
