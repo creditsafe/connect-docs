@@ -36,7 +36,7 @@
     },
     {
       "name": "Global Monitoring",
-      "description": "Endpoints to Monitor changes to Company Information. Company changes can be retrieved by creating a Portfolio (a collection of companies) and configuring the `eventRules` (the criteria in which to trigger a change, e.g. company name changes, limit changes) on the portfolio. When a company in your Portfolio changes to satisfy an eventRule, a `notificationEvent` will be raised to inform you of the nature of the change. See <a href=\"https://www.creditsafe.com/gb/en/credit-risk/credit-reports/company-credit-reports/company-monitoring.html\"> here</a> for Creditsafe's Global Monitoring capabilities. <br><br><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000058022-connect-monitoring-set-up-guide\" target=\"_blank\">Global Monitoring Setup Guide</a>"
+      "description": "Endpoints to Monitor changes to Company Information. Company changes can be retrieved by creating a Portfolio (a collection of companies) and configuring the `eventRules` (the criteria in which to trigger a change, e.g. company name changes, limit changes) on the portfolio. When a company in your Portfolio changes to satisfy an eventRule, a `notificationEvent` will be raised to inform you of the nature of the change. See <a href=\"https://www.creditsafe.com/gb/en/credit-risk/credit-reports/company-credit-reports/company-monitoring.html\"> here</a> for Creditsafe's Global Monitoring capabilities. <br><br><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000083503-global-monitoring-basic-integration-guide\" target=\"_blank\">Global Monitoring Basic Integration Guide</a>"
     },
     {
       "name": "Decision Engine",
@@ -4016,7 +4016,6 @@
         }
       }
     },
-
     "/monitoring/portfolios/{portfolioId}/companies/{id}/notificationEvents": {
       "get": {
         "tags": [
@@ -4310,7 +4309,6 @@
         }
       }
     },
-
     "/monitoring/companies/{id}/events": {
       "get": {
         "tags": [
@@ -11457,13 +11455,34 @@
             "description": "Flag to show if EventRule is active or not. 0 for false, 1 for true."
           },
           "param0": {
-            "type": "string"
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
           },
           "param1": {
-            "type": "string"
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
           },
           "param2": {
-            "type": "string"
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "integer"
+              }
+            ]
           }
         },
         "required": [
@@ -20468,57 +20487,55 @@
             "example": "consumer"
           }
         },
-        "example": 
-          {
-            "common": {
-              "person": {
-                "currentName": {
-                  "title": "Miss",
-                  "forename": "Anne",
-                  "otherNames": "",
-                  "surname": "Delta",
-                  "suffix": ""
-                },
-                "previousName": {
-                  "title": "Miss",
-                  "forename": "Anne",
-                  "otherNames": "",
-                  "surname": "Alpha",
-                  "suffix": ""
-                },
-                "dateOfBirth": "1948-06-04",
-                "gender": "Female",
-                "addresses": {
-                  "current": {
-                    "buildingNo": "7",
-                    "buildingName": "",
-                    "street": "Twelve Acre Cresent",
-                    "city": "Barton-Le-Willows",
-                    "postCode": "X9 8JD",
-                    "startDate": "2010-05-13",
-                    "endDate": "2012-05-08"
-                  },
-                  "previous1": {
-                    "buildingNo": "6",
-                    "buildingName": "",
-                    "street": "Twelve Acre Cresent",
-                    "city": "Barton-Le-Willows",
-                    "postCode": "X9 8JD",
-                    "startDate": "2012-05-08",
-                    "endDate": "2013-05-08"
-                  },
-                  "previous2": {
-                    "buildingNo": "1",
-                    "buildingName": "",
-                    "street": "Twelve Acre Cresent",
-                    "city": "Barton-Le-Willows",
-                    "postCode": "X9 8JD",
-                    "startDate": "2013-05-08",
-                    "endDate": ""
-                  }
-                }
+        "example": {
+          "common": {
+            "person": {
+              "currentName": {
+                "title": "Miss",
+                "forename": "Anne",
+                "otherNames": "",
+                "surname": "Delta",
+                "suffix": ""
               },
-            
+              "previousName": {
+                "title": "Miss",
+                "forename": "Anne",
+                "otherNames": "",
+                "surname": "Alpha",
+                "suffix": ""
+              },
+              "dateOfBirth": "1948-06-04",
+              "gender": "Female",
+              "addresses": {
+                "current": {
+                  "buildingNo": "7",
+                  "buildingName": "",
+                  "street": "Twelve Acre Cresent",
+                  "city": "Barton-Le-Willows",
+                  "postCode": "X9 8JD",
+                  "startDate": "2010-05-13",
+                  "endDate": "2012-05-08"
+                },
+                "previous1": {
+                  "buildingNo": "6",
+                  "buildingName": "",
+                  "street": "Twelve Acre Cresent",
+                  "city": "Barton-Le-Willows",
+                  "postCode": "X9 8JD",
+                  "startDate": "2012-05-08",
+                  "endDate": "2013-05-08"
+                },
+                "previous2": {
+                  "buildingNo": "1",
+                  "buildingName": "",
+                  "street": "Twelve Acre Cresent",
+                  "city": "Barton-Le-Willows",
+                  "postCode": "X9 8JD",
+                  "startDate": "2013-05-08",
+                  "endDate": ""
+                }
+              }
+            },
             "reference": "Test - Consumer Search"
           },
           "consumer": {
@@ -20529,7 +20546,7 @@
             "Consumer"
           ]
         }
-        },
+      },
       "Connect.ConfidenceMatch.MatchResults": {
         "properties": {
           "totalMatches": {
