@@ -251,7 +251,7 @@
           {
             "name": "exact",
             "in": "query",
-            "description": "Provide as `true` to find Companies matching a Name exactly.",
+            "description": "Provide as `true` to find Companies matching a Name exactly.<br>A list of countries this is available at <a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000083702-company-search-exact-parameter-availability\" target=\"_blank\">Here.",
             "schema": {
               "type": "boolean",
               "nullable": true
@@ -5449,6 +5449,7 @@
           },
           {
             "name": "countries",
+            "required": true,
             "in": "query",
             "description": "Comma-separated list of ISO-2 country codes",
             "schema": {
