@@ -314,7 +314,7 @@
           {
             "name": "callRef",
             "in": "query",
-            "description": "This parameter allows users to assign a unique identifier to their API queries. By using a callRef, it facilitates easier tracking and logging within Connect. If users provide a callRef, Connect can later retrieve and identify the specific requests associated with that identifier, enabling detailed tracing of interactions.",
+            "description": "This parameter allows users to assign a unique identifier to their API queries. By using a callRef, it facilitates easier tracking and logging within Connect. If you provide a callRef, the Connect team can later retrieve and identify the specific requests associated with that identifier, enabling detailed tracing of interactions.",
             "schema": {
               "type": "string",
               "nullable": true,
@@ -485,7 +485,7 @@
           {
             "name": "callRef",
             "in": "query",
-            "description": "This parameter allows users to assign a unique identifier to their API queries. By using a callRef, it facilitates easier tracking and logging within Connect. If users provide a callRef, Connect can later retrieve and identify the specific requests associated with that identifier, enabling detailed tracing of interactions.",
+            "description": "This parameter allows users to assign a unique identifier to their API queries. By using a callRef, it facilitates easier tracking and logging within Connect. If you provide a callRef, the Connect team can later retrieve and identify the specific requests associated with that identifier, enabling detailed tracing of interactions.",
             "schema": {
               "type": "string",
               "default": null,
@@ -815,7 +815,7 @@
           {
             "name": "callRef",
             "in": "query",
-            "description": "This parameter allows users to assign a unique identifier to their API queries. By using a callRef, it facilitates easier tracking and logging within Connect. If users provide a callRef, Connect can later retrieve and identify the specific requests associated with that identifier, enabling detailed tracing of interactions.",
+            "description": "This parameter allows users to assign a unique identifier to their API queries. By using a callRef, it facilitates easier tracking and logging within Connect. If you provide a callRef, the Connect team can later retrieve and identify the specific requests associated with that identifier, enabling detailed tracing of interactions.",
             "schema": {
               "type": "string",
               "nullable": true,
@@ -994,7 +994,7 @@
           {
             "name": "callRef",
             "in": "query",
-            "description": "This parameter allows users to assign a unique identifier to their API queries. By using a callRef, it facilitates easier tracking and logging within Connect. If users provide a callRef, Connect can later retrieve and identify the specific requests associated with that identifier, enabling detailed tracing of interactions.",
+            "description": "This parameter allows users to assign a unique identifier to their API queries. By using a callRef, it facilitates easier tracking and logging within Connect. If you provide a callRef, the Connect team can later retrieve and identify the specific requests associated with that identifier, enabling detailed tracing of interactions.",
             "schema": {
               "type": "string",
               "nullable": true
@@ -1064,7 +1064,7 @@
           {
             "name": "callRef",
             "in": "query",
-            "description": "This parameter allows users to assign a unique identifier to their API queries. By using a callRef, it facilitates easier tracking and logging within Connect. If users provide a callRef, Connect can later retrieve and identify the specific requests associated with that identifier, enabling detailed tracing of interactions.",
+            "description": "This parameter allows users to assign a unique identifier to their API queries. By using a callRef, it facilitates easier tracking and logging within Connect. If you provide a callRef, the Connect team can later retrieve and identify the specific requests associated with that identifier, enabling detailed tracing of interactions.",
             "schema": {
               "type": "string"
             }
@@ -5381,7 +5381,7 @@
           {
             "name": "callRef",
             "in": "query",
-            "description": "This parameter allows users to assign a unique identifier to their API queries. By using a callRef, it facilitates easier tracking and logging within Connect. If users provide a callRef, Connect can later retrieve and identify the specific requests associated with that identifier, enabling detailed tracing of interactions.",
+            "description": "This parameter allows users to assign a unique identifier to their API queries. By using a callRef, it facilitates easier tracking and logging within Connect. If you provide a callRef, the Connect team can later retrieve and identify the specific requests associated with that identifier, enabling detailed tracing of interactions.",
             "schema": {
               "type": "string",
               "nullable": true,
@@ -5459,7 +5459,7 @@
           {
             "name": "callRef",
             "in": "query",
-            "description": "This parameter allows users to assign a unique identifier to their API queries. By using a callRef, it facilitates easier tracking and logging within Connect. If users provide a callRef, Connect can later retrieve and identify the specific requests associated with that identifier, enabling detailed tracing of interactions.",
+            "description": "This parameter allows users to assign a unique identifier to their API queries. By using a callRef, it facilitates easier tracking and logging within Connect. If you provide a callRef, the Connect team can later retrieve and identify the specific requests associated with that identifier, enabling detailed tracing of interactions.",
             "schema": {
               "type": "string"
             }
