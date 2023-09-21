@@ -2619,8 +2619,10 @@
                     "firstName": "John",
                     "lastName": "Smith",
                     "emailAddress": "john.smith@creditsafe.com"
+                    
                   }
-                ]
+                ],
+                "frequency": "1"
               }
             }
           },
@@ -11347,7 +11349,8 @@
             "description": "The language of the email notification."
           },
           "frequency": {
-            "type": "string"
+            "type": "string",
+            "description": "For emails to be activated you must submit a value of '1'"
           }
         },
         "required": [
