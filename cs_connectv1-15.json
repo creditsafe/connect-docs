@@ -14358,8 +14358,7 @@
               "type": "string",
               "enum": [
                 "eti",
-                "fsi",
-                "cov"
+                "fsi"
               ]
             },
             "value": {
@@ -17535,7 +17534,7 @@
           "reason"
         ],
         "properties": {
-          "Consumer Specific Search Criteria": {
+          "Second Person Search Option": {
             "description": "Used for consumer search only. Can provide a second unique second person into the search. ",
             "allOf": [
               {
@@ -20475,7 +20474,7 @@
             ]
           },
           "consumer": {
-            "description": "Second person search option",
+            "description": "Consumer Specific Search Criteria",
             "allOf": [
               {
                 "$ref": "#/components/schemas/Connect.Identity.ConsumerSearchCriteria"
@@ -20515,7 +20514,7 @@
                   "city": "Barton-Le-Willows",
                   "postCode": "X9 8JD",
                   "startDate": "2010-05-13",
-                  "endDate": "2012-05-08"
+                  "endDate": ""
                 },
                 "previous1": {
                   "buildingNo": "6",
@@ -20532,8 +20531,8 @@
                   "street": "Twelve Acre Cresent",
                   "city": "Barton-Le-Willows",
                   "postCode": "X9 8JD",
-                  "startDate": "2013-05-08",
-                  "endDate": ""
+                  "startDate": "2010-05-13",
+                  "endDate": "2012-05-08"
                 }
               }
             },
