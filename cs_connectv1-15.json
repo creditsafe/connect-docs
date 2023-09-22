@@ -467,7 +467,7 @@
           {
             "name": "includeIndicators",
             "in": "query",
-            "description": "Optional parameter to include the indicator scores in to a company report - `Covid Score` , `Financial Strength` , `Estimated Turnover`<br>",
+            "description": "Optional parameter to include the indicator scores in to a company report -`Financial Strength` , `Payment Behaviour Indicator`, `Estimated Turnover`<br>",
             "schema": {
               "type": "boolean",
               "default": false
@@ -14361,7 +14361,8 @@
               "type": "string",
               "enum": [
                 "eti",
-                "fsi"
+                "fsi",
+                "pbi"
               ]
             },
             "value": {
