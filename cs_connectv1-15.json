@@ -3612,7 +3612,7 @@
           {
             "name": "countryCode",
             "in": "path",
-            "description": "Country code to show events for.",
+            "description": "Country code to show events for. <br> Please note that there is one exception in that `PLC` is the only 3-character that can be accepted here.",
             "required": true,
             "schema": {
               "maxLength": 2,
