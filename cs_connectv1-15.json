@@ -467,7 +467,7 @@
           {
             "name": "includeIndicators",
             "in": "query",
-            "description": "Optional parameter to include the indicator scores in to a company report -`Financial Strength` , `Payment Behaviour Indicator`, `Estimated Turnover`<br>",
+            "description": "Optional parameter to include the indicator scores in to a company report -`fsi = Financial Strength` , `pbi = Payment Behaviour Indicator`, `eti = Estimated Turnover`, `pei = Payment Expectation Indicator`<br><br> Addition information on indicator acronyms can be found <a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000084411-connect-report-indicator-definitions\" target=\"_blank\">HERE.</a><br><br> Addition information on understanding indicators can be found <a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000078780-what-are-indicators-in-the-scores-and-indicators-tab-\" target=\"_blank\">HERE.</a>",
             "schema": {
               "type": "boolean",
               "default": false
@@ -14361,6 +14361,7 @@
               "type": "string",
               "enum": [
                 "eti",
+                "pei",
                 "fsi",
                 "pbi"
               ]
