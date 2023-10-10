@@ -1139,22 +1139,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "olderThan",
-            "in": "query",
-            "description": "Returns Images older than this date. Use with newerThan parameter.",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "newerThan",
-            "in": "query",
-            "description": "Returns Images newer than this date. Use with olderThan parameter.",
-            "schema": {
-              "type": "string"
-            }
           }
         ],
         "responses": {
