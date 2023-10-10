@@ -3,7 +3,7 @@
   "info": {
     "title": "Creditsafe Connect",
     "version": "1.8.9",
-    "description": "Last Updated: 22nd September 2023<br><br>Creditsafe Connect is a REST API that provides access to the <a href=\"https://www.creditsafe.com/gb/en/more/about/our-data.html\" target=\"_blank\">Creditsafe Global Company Database.</a> This allows you to: <ul><li>Control your master data</li><li>Utilize up-to-date Business and Director information, enhancing your onboarding and qualification processes</li><li>Receive alerts when your customer's and supplier's Credit Report changes</li></ul><br>Check the status of Creditsafe Services <a href=\"https://status.creditsafe.com/\" target=\"_blank\">HERE</a>   <h2>Customer Feedback</h2> Use the buttons below to let us know what you think of this documentation. Please leave comments in your feedback for the author to consider for future versions.<br><br><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=f49570f5&embed_data=dGVtcGVyYXR1cmVfaWQ9MSZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"> <img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/gold.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=601a6fd1&embed_data=dGVtcGVyYXR1cmVfaWQ9MiZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/green.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=f1f7701c&embed_data=dGVtcGVyYXR1cmVfaWQ9MyZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/amber.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=73951e8b&embed_data=dGVtcGVyYXR1cmVfaWQ9NCZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/red.png\" /></a> <br><br> Selecting one of the buttons above will open a new tab to the feedback portal. <h2>Quick Start</h2> To start your Creditsafe Connect API integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>By default, you will have been setup on our Sandbox environment.</br></br>\nUsing a REST API client construct an `/authenticate` POST request and enter your username & password (case-sensitive) into the POST body. A successful response will return an  `authentication token`.</br></br>\nUse the `authentication token` in an `Authorization` header on all other Creditsafe Connect calls as proof of your authenticity.\n\n<h2>Environments</h2>Production Environment baseurl: <code> https://connect.creditsafe.com/v1 </code> </br> Sandbox Test Environment baseurl:  <code>https://connect.sandbox.creditsafe.com/v1</code>  <h2>Resources</h2> \n  <ul> \n    <li><a href=\"https://creditsafe.github.io/connect-docs/cs_connectv1-15.html\" target=\"_blank\">OpenAPI</a> specification.</li>\n    <li><a href=\"https://www.getpostman.com/collections/4406bbddb81c308db8ff\" target=\"_blank\">Postman Collection</a> of the most common example calls to Creditsafe Connect.</li> \n    <li><a href=\"https://connect-portal.creditsafe.com\" target=\"_blank\"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password and form requests.</li> \n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions\" target=\"_blank\"> Help Articles</a>  including: <ul><li><a href=\"https://help.creditsafeuk.com/en/support/solutions/7000007130\" target=\"_blank\">FAQs</a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000053487-connect-api-data-dictionaries\" target=\"_blank\"> Data Dictionaries </a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000054765-connect-api-data-availability-per-country\" target=\"_blank\"> Data Availability per Country </a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000054656-connect-api-feature-availability-per-country\" target=\"_blank\"> Feature Availability Matrix</a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000081984-connect-api-server-response-codes\" target=\"_blank\"> Connect API Response Codes </a></li>\n   </ul></ul><br>\n<br><h2>Versioning and Changes</h2><h3>Non-Breaking Changes</h3>These will be as a rule, additive functions or bug fixing. It is important that the code is integrated in such a way that it does not depend on which order items are returned.<h3>Breaking Changes</h3>This is when changes to the functionality will break the contract of the current API. This will invoke stakeholder communication and major version number update. "
+    "description": "Last Updated: 9th October 2023<br><br>Creditsafe Connect is a REST API that provides access to the <a href=\"https://www.creditsafe.com/gb/en/more/about/our-data.html\" target=\"_blank\">Creditsafe Global Company Database.</a> This allows you to: <ul><li>Control your master data</li><li>Utilize up-to-date Business and Director information, enhancing your onboarding and qualification processes</li><li>Receive alerts when your customer's and supplier's Credit Report changes</li></ul><br>Check the status of Creditsafe Services <a href=\"https://status.creditsafe.com/\" target=\"_blank\">HERE</a>   <h2>Customer Feedback</h2> Use the buttons below to let us know what you think of this documentation. Please leave comments in your feedback for the author to consider for future versions.<br><br><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=f49570f5&embed_data=dGVtcGVyYXR1cmVfaWQ9MSZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"> <img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/gold.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=601a6fd1&embed_data=dGVtcGVyYXR1cmVfaWQ9MiZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/green.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=f1f7701c&embed_data=dGVtcGVyYXR1cmVfaWQ9MyZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/amber.png\" /></a><a href=\"https://app.customerthermometer.com/?template=log_feedback&hash=73951e8b&embed_data=dGVtcGVyYXR1cmVfaWQ9NCZ0aGVybW9tZXRlcl9pZD0xNjM2NTImbnBzX3JhdGluZz0=&e=&f=&l=&c=&c1=&c2=&c3=&c4=&c5=&c6=&c7=&c8=&c9=&c10=\" target=\"_blank\"><img src=\"https://app.customerthermometer.com/sites/app/images/icon_sets/icon_set_3s/red.png\" /></a> <br><br> Selecting one of the buttons above will open a new tab to the feedback portal. <h2>Quick Start</h2> To start your Creditsafe Connect API integration you will need to have activated your account and set a password by following the instructions in your Welcome Email. If you have not received a Welcome Email please contact your Creditsafe Account Manager.</br></br>By default, you will have been setup on our Sandbox environment.</br></br>\nUsing a REST API client construct an `/authenticate` POST request and enter your username & password (case-sensitive) into the POST body. A successful response will return an  `authentication token`.</br></br>\nUse the `authentication token` in an `Authorization` header on all other Creditsafe Connect calls as proof of your authenticity.\n\n<h2>Environments</h2>Production Environment baseurl: <code> https://connect.creditsafe.com/v1 </code> </br> Sandbox Test Environment baseurl:  <code>https://connect.sandbox.creditsafe.com/v1</code>  <h2>Resources</h2> \n  <ul> \n    <li><a href=\"https://creditsafe.github.io/connect-docs/cs_connectv1-15.html\" target=\"_blank\">OpenAPI</a> specification.</li>\n    <li><a href=\"https://www.getpostman.com/collections/4406bbddb81c308db8ff\" target=\"_blank\">Postman Collection</a> of the most common example calls to Creditsafe Connect.</li> \n    <li><a href=\"https://connect-portal.creditsafe.com\" target=\"_blank\"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password and form requests.</li> \n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions\" target=\"_blank\"> Help Articles</a>  including: <ul><li><a href=\"https://help.creditsafeuk.com/en/support/solutions/7000007130\" target=\"_blank\">FAQs</a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000053487-connect-api-data-dictionaries\" target=\"_blank\"> Data Dictionaries </a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000054765-connect-api-data-availability-per-country\" target=\"_blank\"> Data Availability per Country </a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000054656-connect-api-feature-availability-per-country\" target=\"_blank\"> Feature Availability Matrix</a></li>\n    <li><a href=\"https://help.creditsafeuk.com/en/support/solutions/articles/7000081984-connect-api-server-response-codes\" target=\"_blank\"> Connect API Response Codes </a></li>\n   </ul></ul><br>\n<br><h2>Versioning and Changes</h2><h3>Non-Breaking Changes</h3>These will be as a rule, additive functions or bug fixing. It is important that the code is integrated in such a way that it does not depend on which order items are returned.<h3>Breaking Changes</h3>This is when changes to the functionality will break the contract of the current API. This will invoke stakeholder communication and major version number update. "
   },
   "servers": [
     {
@@ -2160,7 +2160,7 @@
             }
           },
           {
-            "$ref": "#/components/parameters/page"
+            "$ref": "#/components/parameters/gmPage"
           },
           {
             "$ref": "#/components/parameters/pageSize"
@@ -2755,7 +2755,7 @@
             "$ref": "#/components/parameters/pageSize"
           },
           {
-            "$ref": "#/components/parameters/page"
+            "$ref": "#/components/parameters/gmPage"
           },
           {
             "name": "countryCode",
@@ -3933,7 +3933,7 @@
             "$ref": "#/components/parameters/pageSize"
           },
           {
-            "$ref": "#/components/parameters/page"
+            "$ref": "#/components/parameters/gmPage"
           },
           {
             "$ref": "#/components/parameters/startDate"
@@ -4034,7 +4034,7 @@
             }
           },
           {
-            "$ref": "#/components/parameters/page"
+            "$ref": "#/components/parameters/gmPage"
           },
           {
             "name": "isProcessed",
@@ -4313,7 +4313,7 @@
             "$ref": "#/components/parameters/endDate"
           },
           {
-            "$ref": "#/components/parameters/page"
+            "$ref": "#/components/parameters/gmPage"
           },
           {
             "$ref": "#/components/parameters/pageSize"
@@ -4526,7 +4526,7 @@
             "$ref": "#/components/parameters/endDate"
           },
           {
-            "$ref": "#/components/parameters/page"
+            "$ref": "#/components/parameters/gmPage"
           },
           {
             "$ref": "#/components/parameters/pageSize"
@@ -9874,6 +9874,15 @@
         "schema": {
           "type": "integer",
           "default": 1
+        }
+      },
+      "gmPage": {
+        "name": "page",
+        "in": "query",
+        "description": "Starting page number inGlobal Monitoring is `0`. If all items are displayed on one page this can also be left blank.",
+        "schema": {
+          "type": "integer",
+          "default": 0
         }
       },
       "pageSize": {
