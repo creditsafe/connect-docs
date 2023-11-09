@@ -17471,10 +17471,6 @@
             "type": "string",
             "nullable": true,
             "description": "A string value that a user can submit during their search. This reference value is stored alongside the search details/customer/user ID values. Is typically passed in to allow users to retrieve past searches based on the reference value supplied."
-          },
-          "isInternal": {
-            "type": "boolean",
-            "description": "A boolean value that is handled API side to check whether an account is internal/active. NOTE: Should not be required for external use."
           }
         }
       },
@@ -17511,10 +17507,6 @@
             "type": "string",
             "nullable": true,
             "description": "A string value that a user can submit during their search. This reference value is stored alongside the search details/customer/user ID values. Is typically passed in to allow users to retrieve past searches based on the reference value supplied."
-          },
-          "isInternal": {
-            "type": "boolean",
-            "description": "A boolean value that is handled API side to check whether an account is internal/active. NOTE: Should not be required for external use."
           }
         }
       },
@@ -20424,10 +20416,14 @@
             ]
           },
           "products": {
-            "type": "string",
+            "type": "array",
             "description": "Enter `AML` for this product search",
-            "example": "AML"
-          }
+            "example": "AML",
+            "items": {
+              "type": "string"
+            
+         }
+        }
         },
         "example": {
           "common": {
