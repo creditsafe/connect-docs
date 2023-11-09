@@ -690,6 +690,7 @@
             "name": "matchThreshold",
             "in": "query",
             "example": 905,
+            "required": true,
             "description": "Return matches above this score (900 - 999)",
             "schema": {
               "type": "integer"
@@ -13688,7 +13689,6 @@
             "$ref": "#/components/schemas/Creditsafe.GlobalData.CompanyStatus"
           },
           "vatNo": {
-            "nullable": true,
             "oneOf": [
               {
                 "type": "string",
