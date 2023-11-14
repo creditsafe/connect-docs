@@ -21188,6 +21188,36 @@
           }
         }
       },
+      "Connect.ccds.financialIndicatorData": {
+        "type":"object",
+        "properties": {
+          "id":{
+            "type": "string"
+          },
+          "updated_date": {
+            "type": "string"
+          },
+          "30_day_pod":{
+            "type": "integer"
+            
+          },
+          "30_day_indicator":{
+            "type": "integer"
+          }, 
+          "60_day_pod":{
+            "type": "integer"
+          }, 
+          "60_day_indicator":{
+            "type": "integer"
+          }, 
+          "90_day_pod": {
+            "type": "integer"
+          },
+          "90_day_indicator":{
+            "type": "integer"
+          }
+        }
+      },
 
       "Connect.ccds.footprintDataFinance": {
         "type": "object",
@@ -21258,6 +21288,77 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Connect.ccds.history"
+            }
+          },
+          "financialIndicator": {
+            "description": "A version of a summarisation of companies account details which omits any sensitive data and can be shown to non-CCDS members.",
+            "type": "object",
+            "properties": {
+              "year": {
+                "type": "object",
+                "properties": {
+                  "month": {
+                    "$ref": "#/components/schemas/Connect.ccds.financialIndicatorData"
+                    }
+                  }
+                }
+              }
+            },
+          "footprintData": {
+            "description": "A version of a summarisation of companies account details which omits any sensitive data and can be shown to non-CCDS members.",
+            "type": "object",
+            "properties": {
+              "year": {
+                "type": "object",
+                "properties": {
+                  "month": {
+                    "type": "object",
+                    "properties": {
+                      "loans": {
+                        "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
+                      },
+                      "currentAccounts": {
+                        "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
+                      },
+                      "all": {
+                        "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
+                      },
+                      "creditCards": {
+                        "$ref": "#/components/schemas/Connect.ccds.footprintDataFinance"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            
+            "example": {
+              "2023": {
+                "10": {
+                  "loans": {
+                    "ActiveAccounts": 10,
+                    "SettledAccounts": 1,
+                    "EarliestStartDate": "2016-08-17T00:00:00",
+                    "LatestStartDate": "2019-09-18T00:00:00"
+                  },
+                  "currentAccounts": {
+                    "ActiveAccounts": 1,
+                    "SettledAccounts": 0,
+                    "EarliestStartDate": "2012-07-03T00:00:00",
+                    "LatestStartDate": "2012-07-03T00:00:00"
+                  },
+                  "all": {
+                    "activeAccounts": 11,
+                    "settledAccounts": 1,
+                    "earliestStartDate": "2012-07-03T00:00:00",
+                    "latestStartDate": "2019-09-18T00:00:00"
+                  },
+                  "creditCards": {
+                    "activeAccounts": 0,
+                    "settledAccounts": 0
+                  }
+                }
+              }
             }
           }
         }
