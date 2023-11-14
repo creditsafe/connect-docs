@@ -17735,7 +17735,7 @@
           "id": {
             "$ref": "#/components/schemas/Connect.Identity.SupplierResult"
           },
-          "aml": {
+          "amlResult": {
             "$ref": "#/components/schemas/Connect.Identity.SupplierResult"
           },
           "bankMatch": {
@@ -21108,7 +21108,7 @@
               }
             },
             "example": {
-              "2020": {
+              "2023": {
                 "10": {
                   "loans": {
                     "ActiveAccounts": 10,
@@ -21135,9 +21135,60 @@
                 }
               }
             }
+          },
+          "indicatorData":{
+            "description": "",
+            "type": "object",
+            "properties": {
+              "year": {
+                "type":"object",
+                "properties": {
+                  "month": {
+                    "$ref": "#/components/schemas/Connect.ccds.indicatorDataFinance"
+                    }
+                  }
+                }
+              },
+            "example": {
+              "2023": {
+                "10": {
+                  "30_day_pod": 0,
+                  "30_day_indicator": 0,
+                  "60_day_pod": 0,
+                  "60_day_indicator": 0,
+                  "90_day_pod": 0,
+                  "90_day_indicator": 0
+                }
+              }
+            }
+            }
+          }
+      },
+      "Connect.ccds.indicatorDataFinance": {
+        "type":"object",
+        "properties": {
+          "30_day_pod":{
+            "type": "integer"
+            
+          },
+          "30_day_indicator":{
+            "type": "integer"
+          }, 
+          "60_day_pod":{
+            "type": "integer"
+          }, 
+          "60_day_indicator":{
+            "type": "integer"
+          }, 
+          "90_day_pod": {
+            "type": "integer"
+          },
+          "90_day_indicator":{
+            "type": "integer"
           }
         }
       },
+
       "Connect.ccds.footprintDataFinance": {
         "type": "object",
         "properties": {
