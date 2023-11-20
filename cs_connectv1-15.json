@@ -21092,64 +21092,64 @@
           "history": {
             "description": "List of accounts connected to the company, snapshot of account at point in time each month.",
             "type": "array",
-            "allOf": [
+            "items": {
+              "$ref": "#/components/schemas/Connect.ccds.history"
+            },
+            "example": [
               {
-                "$ref": "#/components/schemas/Connect.ccds.history"
+                "businessTypeIndicator": "L",
+                "businessName": "POTS & CO LTD",
+                "businessAddress": {
+                  "line1": "UNIT 3&7 DAN HOUSE",
+                  "line2": "ELVEDEN ROAD",
+                  "line3": "LONDON",
+                  "line4": null,
+                  "line5": null,
+                  "line6": null,
+                  "postcode": "NW10 7ST"
+                },
+                "additionalTradingStyle": null,
+                "businessTelephoneNumber": null,
+                "companyRegistrationNumber": null,
+                "vatNumber": null,
+                "specialInstructionIndicator": null,
+                "startDateOfAgreement": "2017-05-15T00:00:00",
+                "currentBalance": 0,
+                "currentBalanceCreditIndicator": null,
+                "actualCurrentBalance": 0,
+                "facilityStatus": 0,
+                "originalDefaultBalance": 0,
+                "creditOrOverdraftLimit": 0,
+                "flagSettings": "",
+                "transferredToConsolidatedDebtAccount": null,
+                "repaymentPeriod": 0,
+                "paymentAmount": 0,
+                "paymentFrequencyIndicator": null,
+                "numberOfCashAdvances": 0,
+                "valueOfCashAdvances": 0,
+                "minimumBalance": 0,
+                "minimumBalanceCreditIndicator": null,
+                "actualMinimumBalance": 0,
+                "maximumBalance": 0,
+                "maximumBalanceCreditIndicator": null,
+                "actualMaximumBalance": 0,
+                "averageBalance": 0,
+                "averageBalanceCreditIndicator": null,
+                "actualAverageBalance": 0,
+                "creditTurnover": 0,
+                "creditTurnoverNetOrGrossIndicator": null,
+                "debitTurnover": 0,
+                "debitTurnoverNetOrGrossIndicator": null,
+                "rejectedPayments": 0,
+                "maximumDurationOfExcess": 0,
+                "currentAccountReportingLevelIndicator": null,
+                "facilityType": "01",
+                "facilityTypeCategory": "LOAN",
+                "batchDate": "20220131",
+                "date": "20220131",
+                "facilityId": "baffec1bd22b1f30ec6ebce04c9c1ad158d7fce6c9f693c53f880b5db631dd9a"
               }
-            ],
-            "example": {
-              "businessTypeIndicator": "L",
-              "businessName": "POTS & CO LTD",
-              "businessAddress": {
-                "line1": "UNIT 3&7 DAN HOUSE",
-                "line2": "ELVEDEN ROAD",
-                "line3": "LONDON",
-                "line4": null,
-                "line5": null,
-                "line6": null,
-                "postcode": "NW10 7ST"
-              },
-              "additionalTradingStyle": null,
-              "businessTelephoneNumber": null,
-              "companyRegistrationNumber": null,
-              "vatNumber": null,
-              "specialInstructionIndicator": null,
-              "startDateOfAgreement": "2017-05-15T00:00:00",
-              "currentBalance": 0,
-              "currentBalanceCreditIndicator": null,
-              "actualCurrentBalance": 0,
-              "facilityStatus": 0,
-              "originalDefaultBalance": 0,
-              "creditOrOverdraftLimit": 0,
-              "flagSettings": "",
-              "transferredToConsolidatedDebtAccount": null,
-              "repaymentPeriod": 0,
-              "paymentAmount": 0,
-              "paymentFrequencyIndicator": null,
-              "numberOfCashAdvances": 0,
-              "valueOfCashAdvances": 0,
-              "minimumBalance": 0,
-              "minimumBalanceCreditIndicator": null,
-              "actualMinimumBalance": 0,
-              "maximumBalance": 0,
-              "maximumBalanceCreditIndicator": null,
-              "actualMaximumBalance": 0,
-              "averageBalance": 0,
-              "averageBalanceCreditIndicator": null,
-              "actualAverageBalance": 0,
-              "creditTurnover": 0,
-              "creditTurnoverNetOrGrossIndicator": null,
-              "debitTurnover": 0,
-              "debitTurnoverNetOrGrossIndicator": null,
-              "rejectedPayments": 0,
-              "maximumDurationOfExcess": 0,
-              "currentAccountReportingLevelIndicator": null,
-              "facilityType": "01",
-              "facilityTypeCategory": "LOAN",
-              "batchDate": "20220131",
-              "date": "20220131",
-              "facilityId": "baffec1bd22b1f30ec6ebce04c9c1ad158d7fce6c9f693c53f880b5db631dd9a"
-            }
+            ]
           },
           "footprintData": {
             "description": "A version of a summarisation of companies account details which omits any sensitive data and can be shown to non-CCDS members.",
@@ -21570,7 +21570,7 @@
                 "rejectedPayments": 0,
                 "maximumDurationOfExcess": 0,
                 "currentAccountReportingLevelIndicator": null,
-                "facilityType": 1,
+                "facilityType": "01",
                 "facilityTypeCategory": "LOAN",
                 "batchDate": "20220131",
                 "date": "20220131",
@@ -21690,7 +21690,18 @@
           },
           "overallAggregations": {
             "type": "object",
-            "$ref": "#/components/schemas/Connect.ccds.overallAggregations"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Connect.ccds.overallAggregations"
+              }
+            ],
+            "example": {
+              "totalAccounts": -1,
+              "totalBalance": 0,
+              "totalOverdraftOrCreditLimit": 0,
+              "remainingBalance": 0,
+              "totalAverageBalance": 0
+            }
           },
           "bankData": {
             "type": "object",
@@ -21716,7 +21727,62 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/Connect.ccds.history"
-            }
+            },
+            "example": [
+              {
+                "businessTypeIndicator": "L",
+                "businessName": "TEST COMPANY LIMITED - THE",
+                "businessAddress": {
+                  "line1": "BRYN HOUSE",
+                  "line2": "CAERPHILLY BUSINESS PARK",
+                  "line3": "VAN ROAD",
+                  "line4": "CARDIFF",
+                  "line5": null,
+                  "line6": null,
+                  "postcode": "CF83 3GG"
+                },
+                "additionalTradingStyle": null,
+                "businessTelephoneNumber": null,
+                "companyRegistrationNumber": "X9999999",
+                "vatNumber": null,
+                "specialInstructionIndicator": null,
+                "startDateOfAgreement": "2017-05-15T00:00:00",
+                "currentBalance": 0,
+                "currentBalanceCreditIndicator": null,
+                "actualCurrentBalance": 0,
+                "facilityStatus": 0,
+                "originalDefaultBalance": 0,
+                "creditOrOverdraftLimit": 0,
+                "flagSettings": "",
+                "transferredToConsolidatedDebtAccount": null,
+                "repaymentPeriod": 0,
+                "paymentAmount": 0,
+                "paymentFrequencyIndicator": null,
+                "numberOfCashAdvances": 0,
+                "valueOfCashAdvances": 0,
+                "minimumBalance": 0,
+                "minimumBalanceCreditIndicator": null,
+                "actualMinimumBalance": 0,
+                "maximumBalance": 0,
+                "maximumBalanceCreditIndicator": null,
+                "actualMaximumBalance": 0,
+                "averageBalance": 0,
+                "averageBalanceCreditIndicator": null,
+                "actualAverageBalance": 0,
+                "creditTurnover": 0,
+                "creditTurnoverNetOrGrossIndicator": null,
+                "debitTurnover": 0,
+                "debitTurnoverNetOrGrossIndicator": null,
+                "rejectedPayments": 0,
+                "maximumDurationOfExcess": 0,
+                "currentAccountReportingLevelIndicator": null,
+                "facilityType": "01",
+                "facilityTypeCategory": "LOAN",
+                "batchDate": "20220131",
+                "date": "20220131",
+                "facilityId": "baffec1bd22b1f30ec6ebce04c9c1ad158d7fce6c9f693c53f880b5db631dd9a"
+              }
+            ]
           },
           "financialIndicator": {
             "description": "A version of a summarisation of companies account details which omits any sensitive data and can be shown to non-CCDS members.",
@@ -21729,6 +21795,22 @@
                     "$ref": "#/components/schemas/Connect.ccds.financialIndicatorData"
                   }
                 }
+              }
+            },
+            "example": {
+              "2023": {
+                "10": [
+                  {
+                    "id": "UK1234567890",
+                    "updated_date": "2020-10-21",
+                    "30_day_pod": 0.07,
+                    "30_day_indicator": 7,
+                    "60_day_pod": 0.08,
+                    "60_day_indicator": 8,
+                    "90_day_pod": 0.08,
+                    "90_day_indicator": 8
+                  }
+                ]
               }
             }
           },
@@ -21763,10 +21845,10 @@
               "2023": {
                 "10": {
                   "loans": {
-                    "ActiveAccounts": 10,
-                    "SettledAccounts": 1,
-                    "EarliestStartDate": "2016-08-17T00:00:00",
-                    "LatestStartDate": "2019-09-18T00:00:00"
+                    "ActiveAccounts": 0,
+                    "SettledAccounts": 0,
+                    "EarliestStartDate": "",
+                    "LatestStartDate": ""
                   },
                   "currentAccounts": {
                     "ActiveAccounts": 1,
@@ -22214,8 +22296,7 @@
             "nullable": true
           },
           "facilityType": {
-            "type": "integer",
-            "format": "int64"
+            "type": "string"
           },
           "facilityTypeCategory": {
             "type": "string",
