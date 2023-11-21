@@ -21103,9 +21103,9 @@
                   "line1": "UNIT 3&7 DAN HOUSE",
                   "line2": "ELVEDEN ROAD",
                   "line3": "LONDON",
-                  "line4": null,
-                  "line5": null,
-                  "line6": null,
+                  "line4": "",
+                  "line5": "",
+                  "line6": "",
                   "postcode": "NW10 7ST"
                 },
                 "additionalTradingStyle": null,
@@ -21349,7 +21349,7 @@
           "safeNumber": {
             "description": "Safe Number - Identifier for Companies in Creditsafe's Home Countries.",
             "type": "string",
-            "example": "UK07005751"
+            "example": "UK07499628"
           },
           "creditSafe": {
             "type": "object",
@@ -21387,8 +21387,72 @@
             "description": "List of accounts connected to the company, snapshot of account at point in time each month.",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/Connect.ccds.history"
-            }
+              "$ref": "#/components/schemas/Connect.ccdsFull.history"
+            },
+            "example": [
+              {
+                "businessTypeIndicator": "L",
+                "businessName": "TEST COMPANY LIMITED - THE",
+                "businessAddress": {
+                  "line1": "BRYN HOUSE",
+                  "line2": "CAERPHILLY BUSINESS PARK",
+                  "line3": "VAN ROAD",
+                  "line4": "CARDIFF",
+                  "line5": "",
+                  "line6": "",
+                  "postcode": "CF83 3GG"
+                },
+                "additionalTradingStyle": null,
+                "businessTelephoneNumber": null,
+                "companyRegistrationNumber": "X9999999",
+                "vatNumber": null,
+                "specialInstructionIndicator": null,
+                "startDateOfAgreement": "2017-05-15T00:00:00",
+                "currentBalance": 0,
+                "currentBalanceCreditIndicator": null,
+                "actualCurrentBalance": 0,
+                "facilityStatus": 0,
+                "originalDefaultBalance": 0,
+                "creditOrOverdraftLimit": 0,
+                "flagSettings": "",
+                "transferredToConsolidatedDebtAccount": null,
+                "repaymentPeriod": 0,
+                "paymentAmount": 0,
+                "paymentFrequencyIndicator": null,
+                "numberOfCashAdvances": 0,
+                "valueOfCashAdvances": 0,
+                "minimumBalance": 0,
+                "minimumBalanceCreditIndicator": null,
+                "actualMinimumBalance": 0,
+                "maximumBalance": 0,
+                "maximumBalanceCreditIndicator": null,
+                "actualMaximumBalance": 0,
+                "averageBalance": 0,
+                "averageBalanceCreditIndicator": null,
+                "actualAverageBalance": 0,
+                "creditTurnover": 0,
+                "creditTurnoverNetOrGrossIndicator": null,
+                "debitTurnover": 0,
+                "debitTurnoverNetOrGrossIndicator": null,
+                "rejectedPayments": 0,
+                "maximumDurationOfExcess": 0,
+                "changedfacilitynumber": "",
+                "bankaccountiban": "0000000000000000000000000000000000",
+                "currentAccountReportingLevelIndicator": "",
+                "sourceCode": 999,
+                "facilitynumber": "00007684-3000701331",
+                "facilityid": "999_00007684-3000701331",
+                "identifier": "999_00007684-3000701331",
+                "providertype": "Bank",
+                "bankcode": "TST",
+                "facilityType": "32",
+                "facilityTypeCategory": "LOAN",
+                "isvalid": true,
+                "bank": "TEST",
+                "portfolio": 999,
+                "date": "20211231"
+              }
+            ]
           },
           "financialIndicator": {
             "description": "A version of a summarisation of companies account details which omits any sensitive data and can be shown to non-CCDS members.",
@@ -21401,6 +21465,22 @@
                     "$ref": "#/components/schemas/Connect.ccds.financialIndicatorData"
                   }
                 }
+              }
+            },
+            "example": {
+              "2023": {
+                "10": [
+                  {
+                    "id": "UK1234567890",
+                    "updated_date": "2020-10-21",
+                    "30_day_pod": 0.07,
+                    "30_day_indicator": 7,
+                    "60_day_pod": 0.08,
+                    "60_day_indicator": 8,
+                    "90_day_pod": 0.08,
+                    "90_day_indicator": 8
+                  }
+                ]
               }
             }
           },
@@ -21531,8 +21611,8 @@
                   "line2": "CAERPHILLY BUSINESS PARK",
                   "line3": "VAN ROAD",
                   "line4": "CARDIFF",
-                  "line5": null,
-                  "line6": null,
+                  "line5": "",
+                  "line6": "CF83 3GG",
                   "postcode": "CF83 3GG"
                 },
                 "additionalTradingStyle": null,
@@ -21599,12 +21679,12 @@
                   {
                     "id": "UK123456790",
                     "updated_date": "2020-10-21",
-                    "30_day_pod": 0,
-                    "30_day_indicator": 0,
-                    "60_day_pod": 0,
-                    "60_day_indicator": 0,
-                    "90_day_pod": 0,
-                    "90_day_indicator": 0
+                    "30_day_pod": 0.07,
+                    "30_day_indicator": 7,
+                    "60_day_pod": 0.08,
+                    "60_day_indicator": 8,
+                    "90_day_pod": 0.08,
+                    "90_day_indicator": 8
                   }
                 ]
               }
@@ -21737,8 +21817,8 @@
                   "line2": "CAERPHILLY BUSINESS PARK",
                   "line3": "VAN ROAD",
                   "line4": "CARDIFF",
-                  "line5": null,
-                  "line6": null,
+                  "line5": "",
+                  "line6": "CF83 3GG",
                   "postcode": "CF83 3GG"
                 },
                 "additionalTradingStyle": null,
@@ -22312,6 +22392,206 @@
           "facilityId": {
             "type": "string",
             "nullable": true
+          }
+        }
+      },
+      "Connect.ccdsFull.history": {
+        "type": "object",
+        "properties": {
+          "businessTypeIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessName": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessAddress": {
+            "$ref": "#/components/schemas/Connect.BankMatch.BusinessAddress"
+          },
+          "additionalTradingStyle": {
+            "type": "string",
+            "nullable": true
+          },
+          "businessTelephoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyRegistrationNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "vatNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "specialInstructionIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "startDateOfAgreement": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "currentBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "currentBalanceCreditIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "actualCurrentBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "facilityStatus": {
+            "type": "string",
+            "nullable": true
+          },
+          "originalDefaultBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "creditOrOverdraftLimit": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "flagSettings": {
+            "type": "string",
+            "nullable": true
+          },
+          "transferredToConsolidatedDebtAccount": {
+            "type": "string",
+            "nullable": true
+          },
+          "repaymentPeriod": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "paymentAmount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "paymentFrequencyIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "numberOfCashAdvances": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "valueOfCashAdvances": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "minimumBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "minimumBalanceCreditIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "actualMinimumBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "maximumBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "maximumBalanceCreditIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "actualMaximumBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "averageBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "averageBalanceCreditIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "actualAverageBalance": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "creditTurnover": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "creditTurnoverNetOrGrossIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "debitTurnover": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "debitTurnoverNetOrGrossIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "rejectedPayments": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "maximumDurationOfExcess": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "changedfacilitynumber": {
+            "type": "string"
+          },
+          "bankaccountiban": {
+            "type": "string"
+          },
+          "currentAccountReportingLevelIndicator": {
+            "type": "string",
+            "nullable": true
+          },
+          "sourceCode": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "facilitynumber": {
+            "type": "string"
+          },
+          "facilityid": {
+            "type": "string"
+          },
+          "identifier": {
+            "type": "string"
+          },
+          "providertype": {
+            "type": "string"
+          },
+          "bankcode": {
+            "type": "string"
+          },
+          "facilityType": {
+            "type": "string"
+          },
+          "facilityTypeCategory": {
+            "type": "string",
+            "nullable": true
+          },
+          "isvalid": {
+            "type": "boolean"
+          },
+          "bank": {
+            "type": "string"
+          },
+          "portfolio": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string"
           }
         }
       },
