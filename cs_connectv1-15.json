@@ -691,7 +691,7 @@
             "in": "query",
             "example": 905,
             "required": true,
-            "description": "Return matches above this score (900 - 999)",
+            "description": "There are 3 main score bands to use for a successful response.<br> - Use score `898` for a 'good' match on 'name'.<br> - Use score `899` for a 'good' match on 'name' and 'ok' response on an address component.<br> - Use scores between `900 - 999` for use on the other searches adjusting for level of 'match' response.",
             "schema": {
               "type": "integer"
             }
@@ -2826,7 +2826,7 @@
         "tags": [
           "Global Monitoring"
         ],
-        "description": "Endpoint to add a company using a company id, into a portfolio provided in as a path parameter. Optional fields can be used to add a personalReference, freeText, and personalLimit.",
+        "description": "Endpoint to add a company using a company id, into a portfolio provided in as a path parameter. Additional fields can be used to add a personalReference, freeText, and personalLimit. These fields need to be submitted in the requestBody but can be 'nulled' if not required. See the two examples of the submission with and without these fields.",
         "operationId": "addCompanyToPortfolio",
         "summary": "Add Company To Portfolio",
         "parameters": [
@@ -2851,7 +2851,7 @@
               },
               "examples": {
                 "id only": {
-                  "summary": "Submitting a requestBody with only an 'id' Number",
+                  "summary": "Submitting a requestBody with only an 'id'",
                   "value": {
                     "id": "GB-0-12345678",
                     "personalReference": "",
