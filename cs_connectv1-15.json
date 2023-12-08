@@ -21001,14 +21001,6 @@
               }
             ]
           },
-          "iDAml": {
-            "description": "Reference to bank account detail search",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Connect.Identity.AmlSearchCriteria"
-              }
-            ]
-          },
           "products": {
             "type": "array",
             "description": "Enter `AML` for this product search",
@@ -21041,12 +21033,6 @@
               }
             },
             "reference": ""
-          },
-          "idAml": {
-            "landlineNumber": "",
-            "exDirectory": false,
-            "sortCode": "",
-            "bankAccountNumber": ""
           },
           "products": [
             "Aml"
