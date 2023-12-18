@@ -21644,25 +21644,6 @@
               "totalAverageBalance": 0
             }
           },
-          "bankData": {
-            "type": "object",
-            "description": "Data provided by 1 of the top 9 major banks in UK.",
-            "properties": {
-              "aggregations": {
-                "type": "object",
-                "$ref": "#/components/schemas/Connect.ccds.aggregations"
-              },
-              "facilities": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Connect.ccds.facilities"
-                }
-              }
-            }
-          },
-          "afpData": {
-            "$ref": "#/components/schemas/Connect.BankMatch.Data"
-          },
           "history": {
             "description": "List of accounts connected to the company, snapshot of account at point in time each month.",
             "type": "array",
@@ -21938,25 +21919,6 @@
             "type": "object",
             "$ref": "#/components/schemas/Connect.ccds.overallAggregations"
           },
-          "bankData": {
-            "type": "object",
-            "description": "Data provided by 1 of the top 9 major banks in UK.",
-            "properties": {
-              "aggregations": {
-                "type": "object",
-                "$ref": "#/components/schemas/Connect.ccds.aggregations"
-              },
-              "facilities": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Connect.ccds.facilities"
-                }
-              }
-            }
-          },
-          "afpData": {
-            "$ref": "#/components/schemas/Connect.BankMatch.Data"
-          },
           "history": {
             "description": "List of accounts connected to the company, snapshot of account at point in time each month.",
             "type": "array",
@@ -22151,25 +22113,6 @@
               "totalAverageBalance": 0
             }
           },
-          "bankData": {
-            "type": "object",
-            "description": "Data provided by 1 of the top 9 major banks in UK.",
-            "properties": {
-              "aggregations": {
-                "type": "object",
-                "$ref": "#/components/schemas/Connect.ccds.aggregations"
-              },
-              "facilities": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Connect.ccds.facilities"
-                }
-              }
-            }
-          },
-          "afpData": {
-            "$ref": "#/components/schemas/Connect.BankMatch.Data"
-          },
           "history": {
             "description": "List of accounts connected to the company, snapshot of account at point in time each month.",
             "type": "array",
@@ -22356,25 +22299,6 @@
               "remainingBalance": 0,
               "totalAverageBalance": 0
             }
-          },
-          "bankData": {
-            "type": "object",
-            "description": "Data provided by 1 of the top 9 major banks in UK.",
-            "properties": {
-              "aggregations": {
-                "type": "object",
-                "$ref": "#/components/schemas/Connect.ccds.aggregations"
-              },
-              "facilities": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/Connect.ccds.facilities"
-                }
-              }
-            }
-          },
-          "afpData": {
-            "$ref": "#/components/schemas/Connect.BankMatch.Data"
           },
           "history": {
             "description": "List of accounts connected to the company, snapshot of account at point in time each month.",
