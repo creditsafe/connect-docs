@@ -17,6 +17,7 @@
         "importcsv",
         "Judgements",
         "lifestage",
+        "maximisation",
         "Neighbourhood",
         "openapi",
         "organisation",
@@ -29,6 +30,7 @@
         "reportcustomdata",
         "searchcriteria",
         "searchreasons",
+        "summarisation",
         "Unauthorised",
         "Unsearched",
         "utilise"

@@ -2,7 +2,7 @@
 
 apis:
   # Update the apiName with your actual API name, and the version with your actual API version.
-  Connectv1:
+  cs-connect-api:
     # Update the path to your OpenAPI root file
     root: ./cs_connect1-15.yaml
     
@@ -18,11 +18,13 @@ rules:
       minLength: 30
       pattern: ^[A-Z].+(\.|\.)$
 
-features.openapi:
-  generateCodeSamples:
-    languages:
-      - lang: curl
-      - lang: Node.js
-      - lang: Python
+theme: 
+  openapi:
+    generateCodeSamples: 
+      languages: 
+        - lang: Python
+        - lang: Java
+        - lang: curl
+      
 
 
