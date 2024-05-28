@@ -3,10 +3,10 @@ info:
   title: Creditsafe Connect
 
     
-  version: 1.10.0
+  version: 1.10.1
   description: >-
     
-    Last Updated: 9th May 2024<br>
+    Last Updated: 24th May 2024<br>
 
     # Introduction 
 
@@ -1551,13 +1551,13 @@ paths:
           content:
             application/*:
               schema:
-                $ref: "#/components/schemas/CreditsafeGlobalDataCoreAttachmentBinaryAttachment"
+                $ref: "#/components/schemas/CreditsafeFreshInvestigationGlobalDataCoreAttachmentBinaryAttachment"
             text/*:
               schema:
-                $ref: "#/components/schemas/CreditsafeGlobalDataCoreAttachmentBinaryAttachment"
+                $ref: "#/components/schemas/CreditsafeFreshInvestigationGlobalDataCoreAttachmentBinaryAttachment"
             image/*:
               schema:
-                $ref: "#/components/schemas/CreditsafeGlobalDataCoreAttachmentBinaryAttachment"
+                $ref: "#/components/schemas/CreditsafeFreshInvestigationGlobalDataCoreAttachmentBinaryAttachment"
         "400":
           description: ""
           content:
@@ -5912,8 +5912,8 @@ paths:
             application/json:
               schema:
                 oneOf:
-                  - $ref: "#/components/schemas/Connect.Identity.consumerSearchResult"
-                  - $ref: "#/components/schemas/Connect.Identity.multiBureauAmlSearchResult"
+                  - $ref: "#/components/schemas/Connect.Identity.ConsumerSearchResult"
+                  - $ref: "#/components/schemas/Connect.Identity.MultiBureauAmlSearchResult"
                   - $ref: "#/components/schemas/Connect.Identity.AmlSearchResult"
 
         "400":
@@ -11018,7 +11018,9 @@ paths:
           in: query
           description: The hit decisions to filter by. It can be the collection of undecided, truematch, falsepositive, discarded
           schema:
-            type: array                    
+            type: array
+            items: 
+              type: string
       responses:
         '200':
           description: 'Success'
@@ -11071,7 +11073,9 @@ paths:
           in: query
           description: The hit decisions to filter by. It can be the collection of undecided, truematch, falsepositive, discarded
           schema:
-            type: array                    
+            type: array           
+            items: 
+              type: string         
       responses:
         '200':
           description: 'Success'
@@ -11138,6 +11142,8 @@ paths:
         required: false
         schema:
           type: array
+          items: 
+            type: string
       - $ref: '#/components/parameters/page'
       - $ref: '#/components/parameters/pageSizeKyc'
       responses:
@@ -12166,7 +12172,7 @@ components:
             oneOf:
               - $ref: "#/components/schemas/AMLSearch"
               - $ref: "#/components/schemas/AMLMultiBureauSearch"
-              - $ref: "#/components/schemas/consumerSearch"
+              - $ref: "#/components/schemas/ConsumerSearch"
   schemas:
     Connect.Authentication.AuthRequest:
       type: object
@@ -15640,7 +15646,7 @@ components:
           type: array
           items:
             type: string
-    Creditsafe.GlobalData.Reports.indicators:
+    Creditsafe.GlobalData.Reports.Indicators:
       type: array
       items:
         type: object
@@ -16377,7 +16383,7 @@ components:
         contactInformation:
           $ref: "#/components/schemas/Creditsafe.GlobalData.Reports.LtdContactInformation"
         indicators:
-          $ref: "#/components/schemas/Creditsafe.GlobalData.Reports.indicators"
+          $ref: "#/components/schemas/Creditsafe.GlobalData.Reports.Indicators"
         shareCapitalStructure:
           $ref: "#/components/schemas/Creditsafe.GlobalData.Reports.LtdShareCapitalStruct\
             ure"
@@ -16967,31 +16973,30 @@ components:
           items:
             type: object
     Creditsafe.GlobalData.Core.Attachment.BinaryAttachment:
-      allOf:
-        - type: object
-          properties:
-            correlationID:
-              type: string
-              description: A unique ID assigned to this request.
-            failedSections:
-              type: array
-              items:
-                $ref: "#/components/schemas/Creditsafe.GlobalData.Reports.ReportSection"
-            report:
-              $ref: "#/components/schemas/Creditsafe.GlobalData.Reports.CompanyReport"
-            pdfReportStream:
-              type: string
-              format: byte
-              description: Base64-encoded contents of the PDF.
-            companyID:
-              type: string
-            dateOfOrder:
-              type: string
-              format: date-time
-            language:
-              type: string
-            userID:
-              type: integer
+        type: object
+        properties:
+          correlationID:
+            type: string
+            description: A unique ID assigned to this request.
+          failedSections:
+            type: array
+            items:
+              $ref: "#/components/schemas/Creditsafe.GlobalData.Reports.ReportSection"
+          report:
+            $ref: "#/components/schemas/Creditsafe.GlobalData.Reports.CompanyReport"
+          pdfReportStream:
+            type: string
+            format: byte
+            description: Base64-encoded contents of the PDF.
+          companyID:
+            type: string
+          dateOfOrder:
+            type: string
+            format: date-time
+          language:
+            type: string
+          userID:
+            type: integer
     Creditsafe.GlobalData.Core.SupplierConnector.ConsumerReportResponse:
       allOf:
         - $ref: "#/components/schemas/Creditsafe.GlobalData.ServiceResponse"
@@ -17712,7 +17717,7 @@ components:
           format: int32
           description: "The match score you will be alerted above. Can only enter the
             following options: 85, 90, 95, 100"
-    Connect.Identity.currentName:
+    Connect.Identity.CurrentName:
       type: object
       description: Contains the current name details of the person.
       required:
@@ -17865,7 +17870,7 @@ components:
       description: Represents a person's identity, including current and historical names and addresses.
       properties:
         currentName:
-          $ref: "#/components/schemas/Connect.Identity.currentName"
+          $ref: "#/components/schemas/Connect.Identity.CurrentName"
         previousName:
           $ref: "#/components/schemas/Connect.Identity.Name"
         dateOfBirth:
@@ -17877,8 +17882,9 @@ components:
           $ref: "#/components/schemas/Connect.Identity.Gender"
         addresses:
           $ref: "#/components/schemas/Connect.Identity.AddressList"
-    Connect.Identity.amlCommonSearchCriteria:
+    Connect.Identity.AmlCommonSearchCriteria:
       type: object
+      description: Person search criteria
       properties:
         person:
           $ref: "#/components/schemas/Connect.Identity.Person"
@@ -17889,7 +17895,7 @@ components:
             reference value is stored alongside the search details/customer/user
             ID values. Is typically passed in to allow users to retrieve past
             searches based on the reference value supplied.
-    Connect.Identity.consumerCommonSearchCriteria:
+    Connect.Identity.ConsumerCommonSearchCriteria:
       type: object
       properties:
         person:
@@ -17960,6 +17966,20 @@ components:
       properties:
         isAMLMultiBureau:
           type: boolean
+    Connect.Identity.AmlMultiBureauSearchCriteria:
+      type: object
+      description: Contains information relevant for anti-money laundering (AML) identity verification, including contact details, banking information, and documentation status.
+      properties:
+        landlineNumber:
+          type: integer
+          description: The person's landline telephone number. Useful for verification calls or as a contact method.
+        ExDirectory:
+          type: boolean
+          description: Indicates whether the person's landline number is excluded from public directories, typically for privacy reasons.
+        isAMLMultiBureau:
+          type: boolean
+          description: Indicates whether multiple bureaus were used for AML verification. True if data from multiple sources was consulted to enhance accuracy.
+          example: true
     Connect.Identity.AmlSearchCriteria:
       type: object
       description: Contains information relevant for anti-money laundering (AML) identity verification, including contact details, banking information, and documentation status.
@@ -17973,15 +17993,11 @@ components:
         isAMLMultiBureau:
           type: boolean
           description: Indicates whether multiple bureaus were used for AML verification. True if data from multiple sources was consulted to enhance accuracy.
+          example: false
     Connect.Identity.Product:
       type: string
-      enum:
-        - Consumer
-        - Id
-        - Aml
-        - Bank Match
-        - Bank Match with AML
-    Connect.Identity.SearchRequest:
+      example: AML
+    Connect.Identity.AMLSearchRequest:
       type: object
       description: The input data submitted for the AML search, detailing the information used to initiate the search.
       properties:
@@ -17994,6 +18010,27 @@ components:
 
         idAml:
           $ref: "#/components/schemas/Connect.Identity.AmlSearchCriteria"
+        products:
+          type: array
+          description: |-
+            Below is a list of Definitions for the ENUM
+          
+          items:
+            $ref: "#/components/schemas/Connect.Identity.Product"
+          nullable: true
+    Connect.Identity.AMLMultiBureauSearchRequest:
+      type: object
+      description: The input data submitted for the AML search, detailing the information used to initiate the search.
+      properties:
+        uniqueId:
+          type: string
+          description: A unique identifier for the result, distinct from the correlation ID, which may be used internally for further processing or reference.
+          nullable: true
+        common:
+          $ref: "#/components/schemas/Connect.Identity.CommonSearchCriteria"
+
+        idAml:
+          $ref: "#/components/schemas/Connect.Identity.AmlMultiBureauSearchCriteria"
         products:
           type: array
           description: |-
@@ -18030,7 +18067,7 @@ components:
           type: string
           format: date-time
           description: The exact date and time when the search was executed, recorded in ISO 8601 format. This timestamp is crucial for logging and chronological analysis.
-    Connect.Identity.multiBureauAmlSupplierResult:
+    Connect.Identity.MultiBureauAmlSupplierResult:
       type: object
       description: Detailed results specifically from AML verification sources, including data from multiple bureaus if applicable.
       properties:
@@ -19364,7 +19401,7 @@ components:
         uniqueId:
           type: string
         input:
-          $ref: "#/components/schemas/Connect.Identity.SearchRequest"
+          $ref: "#/components/schemas/Connect.Identity.AMLSearchRequest"
         common:
           $ref: "#/components/schemas/Connect.Identity.CommonResult"
         consumer:
@@ -19390,7 +19427,7 @@ components:
             items:
               type: string
           nullable: true
-    Connect.Identity.multiBureauAmlSearchResult:
+    Connect.Identity.MultiBureauAmlSearchResult:
       type: object
       properties:
         correlationId:
@@ -19400,11 +19437,11 @@ components:
           type: string
           description: A unique identifier for the result, distinct from the correlation ID, which may be used internally for further processing or reference.
         input:
-          $ref: "#/components/schemas/Connect.Identity.SearchRequest"
+          $ref: "#/components/schemas/Connect.Identity.AMLMultiBureauSearchRequest"
         common:
           $ref: "#/components/schemas/Connect.Identity.CommonResult"
         amlResult:
-          $ref: "#/components/schemas/Connect.Identity.multiBureauAmlSupplierResult"
+          $ref: "#/components/schemas/Connect.Identity.MultiBureauAmlSupplierResult"
         errors:
           type: object
           description: Contains any errors that occurred during the search process, listed as an array of string messages. Each string provides details on specific issues encountered.
@@ -19423,7 +19460,7 @@ components:
           type: string
           description: A unique identifier for the result, distinct from the correlation ID, which may be used internally for further processing or reference.
         input:
-          $ref: "#/components/schemas/Connect.Identity.SearchRequest"
+          $ref: "#/components/schemas/Connect.Identity.AMLSearchRequest"
         common:
           $ref: "#/components/schemas/Connect.Identity.CommonResult"
         amlResult:
@@ -19436,7 +19473,7 @@ components:
             items:
               type: string
           nullable: true
-    Connect.Identity.consumerSearchResult:
+    Connect.Identity.ConsumerSearchResult:
       type: object
       properties:
         correlationId: 
@@ -20310,7 +20347,7 @@ components:
       type: object
       properties:
         data:
-          $ref: "#/components/schemas/Connect.Identity.SearchRequest"
+          $ref: "#/components/schemas/Connect.Identity.AMLSearchRequest"
         message:
           type: string
           nullable: true
@@ -22061,7 +22098,7 @@ components:
           type: boolean
           nullable: true
         input:
-          $ref: "#/components/schemas/Connect.Identity.SearchRequest"
+          $ref: "#/components/schemas/Connect.Identity.AMLSearchRequest"
         consumer:
           $ref: "#/components/schemas/Connect.Identity.TransUnionResult"
         id:
@@ -22214,9 +22251,7 @@ components:
       description: Search parameters for AML product
       properties:
         common:
-          description: Person search criteria
-          allOf:
-            - $ref: "#/components/schemas/Connect.Identity.amlCommonSearchCriteria"
+          $ref: "#/components/schemas/Connect.Identity.AmlCommonSearchCriteria"
         idAml:
           type: object
           description: Contains information relevant for anti-money laundering (AML) identity verification, including contact details, banking information, and documentation status. 
@@ -22295,9 +22330,6 @@ components:
         IdAml:
             LandlineNumber: ""
             ExDirectory: false
-            SortCode: ""
-            BankAccountNumber: ""
-            isAMLMultiBureau: true
             Documents: null
         products: 
             - AML
@@ -22306,9 +22338,8 @@ components:
       description: Search parameters for AML product
       properties:
         common:
-          description: Person search criteria
-          allOf:
-            - $ref: "#/components/schemas/Connect.Identity.amlCommonSearchCriteria"
+          
+          $ref: "#/components/schemas/Connect.Identity.AmlCommonSearchCriteria"
         idAml:
           type: object
           description: Contains information relevant for anti-money laundering (AML) identity verification, including contact details, banking information, and documentation status. 
@@ -22390,20 +22421,18 @@ components:
         IdAml:
             LandlineNumber: ""
             ExDirectory: false
-            SortCode: ""
-            BankAccountNumber: ""
             isAMLMultiBureau: true
             Documents: null
         products: 
             - AML
         uniqueId: null
-    consumerSearch:
+    ConsumerSearch:
       description: Search parameters for a consumer product
       properties:
         common:
           description: Person search criteria
           allOf:
-            - $ref: "#/components/schemas/Connect.Identity.consumerCommonSearchCriteria"
+            - $ref: "#/components/schemas/Connect.Identity.ConsumerCommonSearchCriteria"
         
         consumer:
           description: Consumer Specific Search Criteria
@@ -26694,7 +26723,7 @@ components:
                 type: string
                 example: 2023-03-10T05:44:06.000Z
                 description: The time when comment has been posted.
-    CreditsafeGlobalDataCoreAttachmentBinaryAttachment:
+    CreditsafeFreshInvestigationGlobalDataCoreAttachmentBinaryAttachment:
       type: string
       format: binary
     Creditsafe.GlobalData.Reports.IndicatorIndustryComparison:
@@ -30196,6 +30225,8 @@ components:
                 type: string
               countryCodes:
                 type: array
+                items: 
+                  type: string
               threshold:
                 type: number
               type:
@@ -30204,6 +30235,8 @@ components:
                   - individual
               datasets:
                 type: array
+                items: 
+                  type: string
               status:
                 type: string
                 enum:
@@ -30252,6 +30285,8 @@ components:
                 type: string
               pepTiers:
                 type: array
+                items: 
+                  type: string
         totalSize:
           type: number
         correlationId:
