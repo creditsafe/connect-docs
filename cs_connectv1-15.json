@@ -1,12 +1,10 @@
-openapi: 3.0.1
+openapi: 3.0.2
 info:
   title: Creditsafe Connect
-
+  version: 1.10.4
+  description: |
     
-  version: 1.10.1
-  description: >-
-    
-    Last Updated: 24th May 2024<br>
+    Last Updated: 09th July 2024<br>
 
     # Introduction 
 
@@ -30,16 +28,18 @@ info:
     Production Environment baseurl: <code> https://connect.creditsafe.com/v1 </code> </br> Sandbox Test Environment baseurl:  <code>https://connect.sandbox.creditsafe.com/v1</code>  
 
     ## Resources 
-      <ul> 
-        <li><a href="https://creditsafe.github.io/connect-docs/cs_connectv1-15.html" target="_blank">OpenAPI</a> specification.</li>
-        <li><a href="https://connect-portal.creditsafe.com" target="_blank"> A Front End Demo Site</a>. Use this as a quick easy way to validate your username & password and form requests.</li> 
-        <li><a href="https://help.creditsafeuk.com/en/support/solutions" target="_blank"> Help Articles</a>  including: <ul><li><a href="https://help.creditsafeuk.com/en/support/solutions/7000007130" target="_blank">FAQs</a></li>
-        <li><a href="https://help.creditsafeuk.com/en/support/solutions/articles/7000053487-connect-api-data-dictionaries" target="_blank"> Data Dictionaries </a></li>
-        <li><a href="https://help.creditsafeuk.com/en/support/solutions/articles/7000054765-connect-api-data-availability-per-country" target="_blank"> Data Availability per Country </a></li>
-        <li><a href="https://help.creditsafeuk.com/en/support/solutions/articles/7000054656-connect-api-feature-availability-per-country" target="_blank"> Feature Availability Matrix</a></li>
-        <li><a href="https://help.creditsafeuk.com/en/support/solutions/articles/7000063360-connect-report-templates-glossary-availability" target="_blank"> Connect Report Templates </a></li>
-        <li><a href="https://help.creditsafeuk.com/en/support/solutions/articles/7000081984-connect-api-server-response-codes" target="_blank"> Connect API Response Codes </a></li>
-       </ul></ul><br>
+
+    | Item | Description |
+    |----------------|----------------|
+    | <a href="https://connect-portal.creditsafe.com" target="_blank"> A Front End Demo Site</a> | Opens a friendly UI to test the Connect API |
+    | <a href="https://creditsafe.github.io/connect-docs/cs_connectv1-15.html" target="_blank"> Open API Spec </a>  | This will allow you to view the documentation in the swagger portal - this will be discontinued
+    | <a href="https://help.creditsafeuk.com/en/support/solutions" target="_blank"> Help Articles</a> | Opens the Help Hub with a list of common questions and answers |
+    | <a href="https://help.creditsafeuk.com/en/support/solutions/articles/7000053487-connect-api-data-dictionaries" target="_blank"> Data Dictionaries </a> | The connect documentation shows the general use case, the data dictionaries include the additional specific data that is returned by individual countries |
+    | <a href="https://help.creditsafeuk.com/en/support/solutions/articles/7000054765-connect-api-data-availability-per-country" target="_blank"> Data Availability per Country </a> | The Data Matrix is a document that outlines all the fields that are available in the company report for an online territory |
+    | <a href="https://help.creditsafeuk.com/en/support/solutions/articles/7000054656-connect-api-feature-availability-per-country" target="_blank"> Creditsafe Online Country Feature Availability</a> | This matrix displays what features are available with the online Creditsafe Countries and the partner network |
+    | <a href="https://help.creditsafeuk.com/en/support/solutions/articles/7000063360-connect-report-templates-glossary-availability" target="_blank"> Connect Report Templates </a> | The document identifies the templates available for specific parts of the Company Credit Report, avoiding the need to order the full report object in one API call. |
+    | <a href="https://help.creditsafeuk.com/en/support/solutions/articles/7000081984-connect-api-server-response-codes" target="_blank"> Connect API Response Codes </a> | Opens up a basic table of response codes, provides a link to a more detailed response code list | 
+
     <br>
 
       ## Versioning and Changes
@@ -52,7 +52,6 @@ info:
 servers:
   - url: https://connect.creditsafe.com/v1
   - url: https://connect.sandbox.creditsafe.com/v1
-
 tags:
   - name: Authentication
     description: This endpoint generates a Bearer JWT (Authentication Token), which is essential for 
@@ -189,7 +188,8 @@ tags:
         searches. You must specify the product type and search parameters you want
         to obtain a response for in the body of the request.
   - name: US Search Support
-    
+  - name: FR Bank Match 
+  - name: NL KVK
   - name: DC Introduction
     description: A suite of endpoints to allow you to upload, map, match and then
       append Creditsafe company data to your own master data. Maintaining the
@@ -197,13 +197,6 @@ tags:
       maximisation of opportunity.
   - name: KYC Introduction
     description: >-
-      > **🚧 BETA PRODUCT VERSION 🚧**
-       <br><br>
-        **This product is currently in BETA.** We welcome your feedback and suggestions to improve its functionality. As a beta product, 
-       it may undergo significant changes before its final release. Please use it with that understanding, and feel free to contact us with 
-       your feedback.
-       <br><br>
-
       KYC (Know Your Customer) Protect enables you to make better-informed risk management decisions by utilizing our comprehensive
       business information. This service is designed for both Know Your Business operations and AML (Anti-Money Laundering) screening features.
       <br><br>
@@ -220,12 +213,7 @@ tags:
       Report. Currently only piloting with German Consumers.
   - name: Bank Verification
     description: The Bank Verification API allows you to make a query to validate known details of an individual's or business's bank account against the banks' or building societies' databases.<br><br>
-      **🚧 BETA PRODUCT VERSION 🚧**
-      <br><br>
-      **This product is currently in BETA.** We welcome your feedback and suggestions to improve its functionality. As a beta product, 
-      it may undergo significant changes before its final release. Please use it with that understanding, and feel free to contact us with 
-      your feedback.
-      <br><br>
+      
   - name: Misc
     description: Supporting endpoints for metadata/discovery. Not frequently used
       directly in integrations.
@@ -278,12 +266,14 @@ x-tagGroups:
       - Land Registry
       - Finance Agreements
       - US Search Support
+      - FR Bank Match 
+      - NL KVK
   - name: Data cleaning
     tags:
       - DC Introduction
       - DC Create and View All Jobs
       - DC Individual Job Management
-  - name: KYC Protect - BETA 
+  - name: KYC Protect
     tags: 
       - KYC Introduction
       - KYC Administrator Resources
@@ -328,8 +318,7 @@ paths:
           <li>In the event that the threshold is exceeded, you must wait a full 5 minutes before the endpoint will accept new requests again.</li>
           </ul>
           </ol>  
-        
-      
+          
 
       requestBody:
         content:
@@ -350,6 +339,51 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Connect.Authentication.Unauthorised"
+  /companies/searchcriteria:
+    get:
+      operationId: companySearchCriteria
+      summary: Company Search Criteria
+      tags:
+        - Companies
+      description: Returns the set of available Company Search parameters/fields for a
+        provided list of countries.
+      parameters:
+         
+        - name: countries
+          required: true
+          in: query
+          description: A comma separated list of ISO/Alpha 2 format country codes, or
+            singular country Code. e.g. US,GB will return the common searchable
+            Company fields in the United States and Great Britain.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchemaCountry"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Connect.ErrorResponses.BadRequest"
+        "401":
+          description: Invalid Token
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Connect.ErrorResponses.InvalidToken"
+        "403":
+          description: Access Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Access forbidden
   /companies:
     get:
       tags:
@@ -363,8 +397,7 @@ paths:
       operationId: companySearch
       security:
         - bearerToken: []
-      parameters:
-         
+      parameters: 
         - $ref: "#/components/parameters/page"
         - $ref: "#/components/parameters/pageSize"
         - name: countries
@@ -567,7 +600,6 @@ paths:
       security:
         - bearerToken: []
       parameters:
-         
         - name: Accept
           in: header
           required: false
@@ -691,51 +723,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-  /companies/searchcriteria:
-    get:
-      operationId: companySearchCriteria
-      summary: Company Search Criteria
-      tags:
-        - Companies
-      description: Returns the set of available Company Search parameters/fields for a
-        provided list of countries.
-      parameters:
-         
-        - name: countries
-          required: true
-          in: query
-          description: A comma separated list of ISO/Alpha 2 format country codes, or
-            singular country Code. e.g. US,GB will return the common searchable
-            Company fields in the United States and Great Britain.
-          schema:
-            type: string
-      responses:
-        "200":
-          description: Successful
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchemaCountry"
-        "400":
-          description: Bad Request
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Connect.ErrorResponses.BadRequest"
-        "401":
-          description: Invalid Token
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Connect.ErrorResponses.InvalidToken"
-        "403":
-          description: Access Forbidden
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Access forbidden
   /companies/match:
     get:
       tags:
@@ -1059,7 +1046,7 @@ paths:
          
         - $ref: "#/components/parameters/page"
         - $ref: "#/components/parameters/pageSize"
-        - name: Id
+        - name: id
           in: query
           description: The company's connectId.
           schema:
@@ -1452,7 +1439,7 @@ paths:
                   details:
                     type: string
                     description: Provides further information on why the request was rejected
-  /freshinvestigations/{orderId}/attachments':
+  /freshinvestigations/{orderId}/attachments:
     post:
       operationId: uploadAttachmentsForFreshInvestigationOrderId
       summary: Upload attachments for fresh investigation orderId
@@ -2912,7 +2899,7 @@ paths:
                 type: object
                 example:
                   message: Portfolio not found
-  /monitoring/portfolios/{portfolioId}/companies/{id}/notificationEvents:
+  /monitoring/portfolios/{portfolioId}/companies/{companyId}/notificationEvents:
     get:
       tags:
         - GM Individual Portfolio Management
@@ -2962,7 +2949,7 @@ paths:
           description: The unique identifier of the portfolio, obtained from `/portfolios`.
           schema:
             type: string
-        - name: id
+        - name: companyId
           in: path
           required: true
           description: A company Safe Number or Connect ID.
@@ -5706,27 +5693,27 @@ paths:
               schema:
                 $ref: "#/components/schemas/Connect.ErrorResponses.InvalidToken"
  
-  /localSolutions/GB/confirmation-payee/single-request:
+  /localSolutions/GB/bankVerification/search:
     post:
-      operationId: bankVerificationSingleRequest
+      operationId: bankVerificationSearch
       summary: Single Request
       tags:
       - Bank Verification
-      description: This endpoint will perform a check with the supplied data against a bank or building society.<br><br>
+      description: This endpoint will perform a search with the supplied data against a bank or building society.<br><br>
         NOTE:- This endpoint will charge when a successful request is made to a bank or building society. This endpoint will charge when a result is returned. This includes charging if the no match is found.<br><br>
         All property fields need to be submitted with the request, if information for a specific property is not needed, it is required to pass an empty string.
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/GBLocalSolutionCPSingleRequest'
+              $ref: '#/components/schemas/GBLocalSolutionBankVerificationSearchRequest'
       responses:
         '200':
           description: ''
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GBLocalSolutionCPSingleReqResponse'
+                $ref: '#/components/schemas/GBLocalSolutionBankVerificationSearchResponse'
         '400':
           description: ''
           content:
@@ -5740,9 +5727,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ConnectErrorResponsesInvalidToken'
                      
-  /localSolutions/GB/confirmation-payee/validate/{id}:
+  /localSolutions/GB/bankVerification/validate/{id}:
     post:
-      operationId: bankVerificationSingleRequestId
+      operationId: BankVerificationValidate
       tags:
       - Bank Verification
       summary: Validate Bank Verification Request
@@ -5760,6 +5747,9 @@ paths:
           application/json:
             schema:
               type: object
+              required: 
+                -  bankAccount
+                -  sortCode
               properties:
                 bankAccount:
                   type: string
@@ -5792,13 +5782,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectErrorResponsesInvalidToken'       
-  /localSolutions/GB/confirmation-payee/history-request/{id}:
+  /localSolutions/GB/bankVerification/history/{id}:
     get:
       tags:
       - Bank Verification
       summary: Returns Request History By ID 
       description: This endpoint will return details of a past request by id.
-      operationId: bankVerificationhistorygetrequest
+      operationId: BankVerificationGetHistoryById
       parameters:
       - name: id
         in: path
@@ -5825,12 +5815,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectErrorResponsesInvalidToken'
+  /localSolutions/GB/bankVerification/history/{id}/reference:  
     patch:
       tags:
       - Bank Verification
       summary: Update CustomerReference by HistoryId
       description: This endpoint will update the stored customerReference field of a past request with the provided ID.
-      operationId: bankVerificationhistorypatchrequest
+      operationId: BankVerificationUpdateHistory
       parameters:
       - name: id
         in: path
@@ -5858,19 +5849,51 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectErrorResponsesInvalidToken'
-  /localSolutions/GB/confirmation-payee/history-requests:
-    post:
+  /localSolutions/GB/bankVerification/history:  
+    get:
       tags:
       - Bank Verification
       summary: Requests Search History 
-      description: Bank Verification History Post Request<br><br>
+      description: Bank Verification History list Request<br><br>
         Note:- All property fields need to be submitted with the request, if information for a specific property is not needed, it is required to pass an empty string.
-      operationId: bankVerificationhistorypostrequest
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/GBLocalSolutionPostHistoryRequestsRequest'
+      operationId: bankVerificationGetHistoryList
+      parameters:
+        - name: searchByCustomer
+          in: query
+          required: true 
+          description: A value of false will only search records for your account. If your account manager has configured your account to be able to view other users records within your company, a value of true will search all records made by all accounts within your company.
+          schema:
+            type: boolean
+        - name: customerName
+          in: query
+          description: Name of the customer returned by the supplier.
+          schema:
+            type: string
+        - name: matchResult
+          in: query
+          description: Whether a match or not a match returned by the supplier. Values are 'Full', 'Close' and 'No Match'.
+          schema:
+            type: string
+        - name: dateFrom
+          in: query
+          description: Start date for filtering the results list by.
+          schema:
+            type: string
+        - name: dateTo
+          in: query
+          description: End date for filtering the results list by.
+          schema:
+            type: string
+        - name: accountType
+          in: query
+          description: Type of account queried with the the supplier. Values are 'Business' and 'Personal'.
+          schema:
+            type: string
+        - name: customerReference
+          in: query
+          description: Your Customer reference.
+          schema:
+            type: string
       responses:
         '200':
           description: ''
@@ -5879,7 +5902,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/GBLocalSolutionPostHistoryRequestsResponse'
+                  $ref: '#/components/schemas/GBLocalSolutionGetHistoryListResponse'
         '400':
           description: ''
           content:
@@ -6322,7 +6345,156 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectErrorResponsesInvalidToken'
-  
+  /localSolutions/FR/bankmatch:
+    get:
+      tags:
+      - FR Bank Match
+      description: |
+       This endpoint can be used to check the reliability of a company/bank details combination, 
+       and ensure that the IBAN is not linked to a risk of fraud. <br><br>
+
+       **NOTE** - There are a set of 'required' parameters for this endpoint, however please note the exceptions in the `countryCode`
+       description.
+      operationId: frBankmatch
+      summary: Bank Match 
+      parameters:
+      - name: registrationId
+        in: query
+        required: true
+        description: registrationId of company
+        schema:
+          type: string
+      - name: countryCode
+        in: query
+        required: true
+        description: |
+          Country codes in iso-2 format <br>
+
+          The following counties do **NOT** support the `iban` parameter - <br>
+          `AU`, `CA`,`CN`, `HK`, `IN`,`JP`,`KR`,`MX`, `MY`, `SG`, `US`, `ZA`<br><br>
+          Please see the following link for required parameters on these countries: <br>
+            <a href="https://help.creditsafeuk.com/a/solutions/articles/7000088525?lang=en&portalId=7000000824" target="_blank">Unsupported Country parameter requirements</a>
+        schema:
+          type: string
+      - name: bban
+        in: query
+        description: Bank Account Number for countries where IBAN format doesn't support
+        schema:
+          type: string
+      - name: iban
+        in: query
+        required: true
+        description: Bank Account details in IBAN format
+        schema:
+          type: string
+      - name: bic
+        in: query
+        description: Business/Bank Identifier Code to identify the bank/branch holding the account along with BBAN
+        schema:
+          type: string
+      - name: routingCode
+        in: query
+        description: Routing Code to identify the bank/branch holding the account along with BBAN
+        schema:
+          type: string
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocalSolutionsFRBankMatch'
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectErrorResponsesBadRequest'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectErrorResponsesInvalidToken'
+        '403':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectErrorResponsesAccessForbidden'
+  /localSolutions/FR/bankmatch/audition:
+    get:
+      tags:
+        - FR Bank Match
+      description: This endpoint is used to check the status of a verification whose status is ‘pending’.
+      operationId: frBankmatchStatus
+      summary: Bank Match Status
+      parameters:
+      - name: audition_id
+        in: query
+        description: identifier to check status
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocalSolutionsFRBankMatch'
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectErrorResponsesBadRequest'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectErrorResponsesInvalidToken'
+  /localSolutions/NL/extract/{kvkNumber}:
+    get:
+      operationId: ExtractNLKvkNumber
+      summary: Return NL Extract
+      tags:
+        - NL KVK
+      description: NL extract from KVK Number
+      parameters:
+        - name: kvkNumber
+          in: path
+          schema:
+            type: string
+          description: kvkNumber to fetch details
+          required: true
+      responses:
+        '200':
+          description: 'success and returns html text'
+          content:
+            text/html:
+              schema:
+                type: string
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectErrorResponsesBadRequest'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectErrorResponsesInvalidToken'
+        '403':
+          description: 'Forbidden'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectErrorResponsesAccessForbidden' 
+
   /companies/schema/{countryCode}:
     get:
       operationId: reportSchema
@@ -8318,6 +8490,7 @@ paths:
       tags:
       - KYC Profile Key Parties
       summary: Delete a batch of key parties
+      description: Delete a selection of key parties from a specific profile.
       operationId: compliancedeletekyckeypartiesbyprofileid
       parameters:
       - name: profileId
@@ -8709,7 +8882,7 @@ paths:
               application/json:
                 schema:
                   $ref: '#/components/schemas/ConnectErrorResponsesResourceNotFoundRequest'
-  /compliance/kyc-protect/lookup/currency-codes:
+  /compliance/kyc-protect/lookup/currencyCodes:
     get:
       tags:
         - KYC Administrator Resources
@@ -8744,7 +8917,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectErrorResponsesAccessForbidden'                              
-  /compliance/kyc-protect/lookup/country-codes:
+  /compliance/kyc-protect/lookup/countryCodes:
     get:
       tags:
         - KYC Administrator Resources
@@ -8780,6 +8953,43 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectErrorResponsesAccessForbidden'                              
+  /compliance/kyc-protect/lookup/kycMonitoring/countryCodes:
+    get:
+      tags:
+        - KYC Global Monitoring
+      description: Gets the list of acceptable country codes for kyc monitoring.
+      operationId: complianceProtectGetLookupMonitoringCountryCodes
+      summary: Returns Available Country Codes
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectErrorResponsesBadRequest'
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectErrorResponsesInvalidToken'
+        '403':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectErrorResponsesAccessForbidden'
+  
+  
+  
   /access/users/active:
     get:
       tags:
@@ -11472,7 +11682,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ConnectErrorResponsesResourceNotFoundRequest'
-  /compliance/kyc-protect/BatchUploads/template:
+  /compliance/kyc-protect/batchUploads/template:
     get:
       tags:
       - KYC Batch Uploads
@@ -12439,11 +12649,13 @@ components:
                 properties:
                   id:
                     type: string
-                  country:
-                    type: string
                   localId:
                     type: string
+                  country:
+                    type: string
                   name:
+                    type: string
+                  type: 
                     type: string
               document:
                 type: object
@@ -12470,6 +12682,10 @@ components:
                 type: string
               status:
                 type: string
+              availableFormats:
+                type: array
+                items:
+                  type: string       
               localProperties:
                 type: object
                 properties:
@@ -14406,7 +14622,6 @@ components:
         - IQ
         - IE
         - IM
-        - IL
         - IT
         - JM
         - JP
@@ -14444,8 +14659,6 @@ components:
         - MX
         - FM
         - MD
-        - MC
-        - MN
         - ME
         - MS
         - MA
@@ -14491,7 +14704,6 @@ components:
         - PM
         - VC
         - WS
-        - SM
         - ST
         - SA
         - SN
@@ -14837,12 +15049,6 @@ components:
       allOf:
         - $ref: "#/components/schemas/Creditsafe.GlobalData.SearchCriteriaSchema-ValueSch\
             ema_1_System.String"
-        - type: object
-          properties:
-            allowedMatchTypes:
-              type: array
-              items:
-                $ref: "#/components/schemas/Creditsafe.GlobalData.QueryMatchType"
     Creditsafe.GlobalData.SearchCriteriaSchema-ValueSchema_1_Creditsafe.GlobalData.CompanyType:
       type: object
       properties:
@@ -15080,11 +15286,11 @@ components:
           type: string
         street:
           type: string
-        houseNo:
+        houseNumber:
           type: string
         city:
           type: string
-        postCode:
+        postalCode:
           type: string
         province:
           type: string
@@ -25209,6 +25415,192 @@ components:
         modifiedBy:
           type: string
           description: Name of the user who last modified the Address
+    LocalSolutionsFRBankMatch:
+      type: object
+      description: Represents a match result from the Local Solutions FR Bank system.
+      properties:
+        '@domain':
+          type: string
+          description: The domain associated with the match.
+        createdBy:
+          type: string
+          description: The user or system that created the match record.
+        createdDate:
+          type: string
+          format: date-time
+          description: The date and time when the match record was created.
+        lastModifiedBy:
+          type: string
+          description: The user or system that last modified the match record.
+        lastModifiedDate:
+          type: string
+          format: date-time
+          description: The date and time when the match record was last modified.
+        id:
+          type: string
+          description: The unique identifier of the match record.
+        score:
+          type: integer
+          description: The score assigned to the match.
+        classification:
+          type: string
+          description: The classification of the match.
+        status:
+          type: string
+          description: The current status of the match.
+        entity:
+          type: object
+          description: Details of the entity involved in the match.
+          properties:
+            createdDate:
+              type: string
+              format: date-time
+              description: The date and time when the entity was created.
+            lastModifiedDate:
+              type: string
+              format: date-time
+              description: The date and time when the entity was last modified.
+            paymentIdentity:
+              type: object
+              description: Payment identity information.
+              properties:
+                iban:
+                  type: string
+                  description: The International Bank Account Number (IBAN).
+                type:
+                  type: string
+                  description: The type of payment identity.
+            company:
+              type: object
+              description: Company information associated with the entity.
+              properties:
+                createdDate:
+                  type: string
+                  format: date-time
+                  description: The date and time when the company was created.
+                lastModifiedDate:
+                  type: string
+                  format: date-time
+                  description: The date and time when the company was last modified.
+                registrationId:
+                  type: string
+                  description: The registration ID of the company.
+                name:
+                  type: string
+                  description: The name of the company.
+                legalPerson:
+                  type: boolean
+                  description: Indicates if the company is a legal entity.
+                codeTva:
+                  type: string
+                  description: The VAT code of the company.
+                typeId:
+                  type: string
+                  description: The type ID of the company.
+                countryCode:
+                  type: string
+                  description: The country code of the company.
+                status:
+                  type: string
+                  description: The current status of the company.
+            additionalProperties:
+              type: object
+              description: Additional properties related to the entity.
+              properties:
+                vatRequestInfo:
+                  type: object
+                  description: VAT request information.
+                  properties:
+                    valid:
+                      type: boolean
+                      description: Indicates if the VAT request is valid.
+                    requestIdentifier:
+                      type: string
+                      description: The identifier for the VAT request.
+                    date:
+                      type: string
+                      format: date
+                      description: The date of the VAT request.
+        issuerCompany:
+          type: object
+          description: Information about the issuer company.
+          properties:
+            createdBy:
+              type: string
+              description: The user or system that created the issuer company record.
+            createdDate:
+              type: string
+              format: date-time
+              description: The date and time when the issuer company record was created.
+            lastModifiedBy:
+              type: string
+              description: The user or system that last modified the issuer company record.
+            lastModifiedDate:
+              type: string
+              format: date-time
+              description: The date and time when the issuer company record was last modified.
+            id:
+              type: string
+              description: The unique identifier of the issuer company.
+            registrationId:
+              type: string
+              description: The registration ID of the issuer company.
+            name:
+              type: string
+              description: The name of the issuer company.
+            typeId:
+              type: string
+              description: The type ID of the issuer company.
+            countryCode:
+              type: string
+              description: The country code of the issuer company.
+        input:
+          type: object
+          description: Input data for the match.
+          properties:
+            '@input':
+              type: string
+              description: The input data identifier.
+            paymentIdentity:
+              type: object
+              description: Payment identity information from the input.
+              properties:
+                iban:
+                  type: string
+                  description: The International Bank Account Number (IBAN) from the input.
+            company:
+              type: object
+              description: Company information from the input.
+              properties:
+                registrationId:
+                  type: string
+                  description: The registration ID of the company from the input.
+                countryCode:
+                  type: string
+                  description: The country code of the company from the input.
+        withDeferredResult:
+          type: boolean
+          description: Indicates if the match result is deferred.
+        byAPI:
+          type: boolean
+          description: Indicates if the match was processed via API.
+        byFTP:
+          type: boolean
+          description: Indicates if the match was processed via FTP.
+        workflow:
+          type: string
+          description: The workflow associated with the match.
+        reasons:
+          type: array
+          items:
+            type: string
+          description: The reasons associated with the match.
+        reasonLabels:
+          type: object
+          description: Labels for the reasons associated with the match.
+          additionalProperties:
+            type: string
+          
     ConnectErrorResponsesBadRequest:
       type: object
       description: ''
@@ -34626,10 +35018,10 @@ components:
           format: date-time
           nullable: true
         countryCodes:
-          type: string
+          type: array
           items:
             type: string
-          nullable: true
+            nullable: true
         threshold:
           type: integer
           format: int32
@@ -35472,7 +35864,7 @@ components:
           type: integer
           format: int32
           example: 0       
-    GBLocalSolutionCPSingleReqResponse:
+    GBLocalSolutionBankVerificationSearchResponse:
       type: object
       properties:
         supplierRequestData:
@@ -35532,35 +35924,7 @@ components:
         requestId:
           type: string
           description: A unique reference to your request used for querying the below endpoints where <id> is required
-    GBLocalSolutionPostHistoryRequestsRequest:
-      type: object
-      properties:
-        searchByCustomer:
-          type: boolean
-          description: A value of false will only search records for your account. If your account manager has configured your account to be able to view other users records within your company, a value of true will search all records made by all acounts within your company.
-        filters:
-          type: object
-          description: A selection of properties to filter results by
-          properties:
-            customerName:
-              type: string
-              description: Name of the customer returned by the supplier
-            matchResult:
-              type: string
-              description: Whether a match or not a match returned by the supplier. Values are 'Match' and 'No Match'
-            dateFrom:
-              type: string
-              description: Start date for filtering the results list by
-            dateTo:
-              type: string
-              description: End date for filtering the results list by
-            accountType:
-              type: string
-              description: Type of account queried with the the supplier
-            customerReference:
-              type: string
-              description: Your Customer reference
-    GBLocalSolutionCPSingleRequest:
+    GBLocalSolutionBankVerificationSearchRequest:
       type: object
       required: 
         - customerName
@@ -35588,7 +35952,7 @@ components:
           type: string
           description: Field is for text input and does not affect the search result<br>
             This field can be used for filtering your past results at a later date
-    GBLocalSolutionPostHistoryRequestsResponse:
+    GBLocalSolutionGetHistoryListResponse:
       type: object
       properties:
         requestId:
@@ -35600,13 +35964,13 @@ components:
           description: Name of the customer returned by the supplier
         accountType:
           type: string
-          description: Type of account queried with the the supplier
+          description: Type of account queried with the the supplier. Possible values are Business or Personal
         customerReference:
           type: string
           description: Your Customer reference
         matchResult:
           type: string
-          description: Whether a match or not a match returned by the supplier. Values are 'Match' and 'No Match'
+          description: Whether a match or not a match returned by the supplier. Possible values are Full, Close, No Match
         requestDatetime:
           type: string
           format: date-time
@@ -35661,6 +36025,8 @@ components:
           description: A unique reference to your request used for querying the endpoints where {id} is required
     GBLocalSolutionCPHistoryRequestByIdRequest:
       type: object
+      required: 
+        -  customerReference 
       properties:
         customerReference:
           type: string
